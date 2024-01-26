@@ -9,6 +9,7 @@ author:
       - name: Tecnológico de Monterrey
 format: revealjs
 editor: visual
+slide-number: True
 ---
 
 ## ?Qué es la visualización de datos?
