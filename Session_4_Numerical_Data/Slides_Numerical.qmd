@@ -20,7 +20,7 @@ TBD
 
 # Estadísticos Descriptivos
 
-## Resumenes estadísticos
+## Resúmenes estadísticos
 
 Una muestra suele ser una larga lista de números. Para ayudar a resaltar las características importantes de una muestra, calculamos estadísticas resumidas. Para datos numéricos, las estadísticas resumidas más populares son:
 

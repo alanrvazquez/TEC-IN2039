@@ -14,27 +14,136 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## ?Qué es la visualización de datos?
+## Contenido
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+1.  Introducción a la ciencia de datos
 
-## El papel de la visualización de datos
+2.  Los tres principios de la visualización de datos
 
-When you click the **Render** button a document will be generated that includes:
+3.  Actividad
 
--   Content authored with markdown
--   Output from executable code
+4.  Descripción de la Situación Problema
 
-## Texto
+5.  Herramientas para construir gráficas
 
-Alan
+# Introducción a Ciencia de Datos
 
-## Imagenes
+## CRIS-MD
 
-Alan
+## Tipos de datos
 
-## Sonido
+### Numericos
 
-Alan
+### Texto
+
+### Imágenes
+
+### Audio
+
+Aqui nos enfocaremos en cosas que ya estan en una tabla.
+
+## ¿Qué es la visualización de datos?
+
+> “Una visualización \[de datos\] es cualquier presentación visual destinada a revelar evidencia, haciendo visible lo invisible” Alberto Cairo (2015).
+
+En esencia, una visualización de datos nos permite profundizar en conjuntos de datos complejos para obtener información significativa mediante el uso de pantallas gráficas.
+
+Las visualizaciones de datos se ocupan principalmente de proporcionar evidencia y permitir que la audiencia explore y llegue a sus propias conclusiones sobre lo que las visualizaciones revelan sobre los datos.
+
+# Los 3 principios de la visualización de datos
+
+## ***Principio 1*****: Transforma los datos en información.** 
+
+Tu gráfica debe de transformar los datos en información.Para esto, debe de tener los elementos indicados contar una historia.
+
+## ***Principio 2*****:** Contesta la pregunta de interés. 
+
+Tu gráfica debe de contestar las preguntas:
+
+-   ¿Cuál es la comparación importante?
+
+-   ¿Cómo la enfatizamos?
+
+## *Principio 3: Enriquece con información adicional* 
+
+No te limites a cosas simples. Enriquece tu gráfica con símbolos de color para transmitir información adicional. Si es posible, agrega contexto con marcadores y etiquetas de referencia.
+
+También, agrega una leyenda a la grafica que describa las características importantes y resuma sus conclusiones.
 
 ## 
+
+> "*El mayor valor de una imagen es cuando nos obliga a notar lo que nunca esperábamos ver.*"
+>
+> John W. Tukey.
+
+![John Tukey - Wikipedia](https://upload.wikimedia.org/wikipedia/en/e/e9/John_Tukey.jpg){alt="John Tukey - Wikipedia"}
+
+## Principios del diseño gráfico
+
+1.  Es más fácil identificar objetos por color que por forma.
+
+2.  Cuando sea posible, utiliza etiquetas directas en lugar de una leyenda.
+
+3.  Elementos como texto, líneas, formas, etc., que tengan la misma naturaleza deben parecerse.
+
+    ## 
+
+4.  Haz un esfuerzo por lograr un equilibrio entre gráficos y texto.
+
+5.  Ten cuidado con las opciones predeterminadas del software de visualización.
+
+6.  Utiliza un diseño de cuadrícula para organizar su visualización.
+
+# Actividad
+
+Criticar una gráfica.
+
+# Situación Problema
+
+Describir situación problema
+
+### 
+
+# Herramientas para construir gráficas
+
+## R software
+
+-   R es un lenguaje de programación estadística de código abierto.
+
+-   R también es un entorno para gráficos y computación estadística.
+
+-   Es fácilmente extensible con paquetes.
+
+![](images/clipboard-148304512.png){width="324"}
+
+## Librerías en R
+
+-   Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.
+
+-   En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)
+
+-   ¡Trabajaremos con un pequeño (pero importante) subconjunto de estos!
+
+## R Studio
+
+R Studio es una interfaz conveniente para R llamada IDE (entorno de desarrollo integrado). Comúnmente digo "Escribo código R en RStudio IDE"
+
+R Studio no es un requisito para programar con R, pero los programadores y científicos de datos de R lo utilizan con mucha frecuencia.
+
+## R Markdown
+
+R Markdown y los diversos paquetes que lo admiten permiten a los usuarios de R escribir su código y su prosa en documentos computacionales reproducibles.
+
+Generalmente nos referiremos a documentos R Markdown (con extensión .Rmd).
+
+Por ejemplo, "Haga esto en su documento R Markdown". Rara vez discutiremos la carga del paquete de rebajas.
+
+## 
+
+R Markdown le permite crear informes totalmente reproducibles. Es decir, cada vez que se teje el análisis se ejecuta desde el principio. Sintaxis de rebajas simple para texto.
+
+El código va en fragmentos, definidos por tres comillas invertidas, la narrativa sale de los fragmentos
+
+¡El entorno de su documento R Markdown está separado de la Consola!
+
+Acompañame a ver una demostración de R Markdown utilizando el siguiente archivo “Demo_RMarkdown.Rmd”.
