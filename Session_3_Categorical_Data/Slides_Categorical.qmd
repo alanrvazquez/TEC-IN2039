@@ -18,17 +18,38 @@ css: style.css
 
 Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
 
-## Bullets
+## Resumenes Estadísticos
 
-When you click the **Render** button a document will be generated that includes:
+Los dos resúmenes numéricos más utilizados para datos categóricos son las frecuencias y las proporciones muestrales (a veces llamadas frecuencias relativas).
 
--   Content authored with markdown
--   Output from executable code
+-   La **frecuencia** de una categoría determinada es simplemente la cantidad de elementos de muestra que caen en esa categoría.
 
-## Code
+-   La **proporción** muestral es la frecuencia dividida por el tamaño de la muestra.
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Tablas de Frecuencia
 
-```{r}
-1 + 1
-```
+TBD
+
+## Gráficas de Barras
+
+Los gráficos de barras se utilizan comúnmente para describir datos cualitativos clasificados en varias categorías según el sector, la región, los diferentes períodos de tiempo u otros factores similares.
+
+> Diferentes sectores, diferentes regiones o diferentes períodos de tiempo se etiquetan como categorías específicas.
+
+Un gráfico de barras se construye creando categorías que se representan etiquetando cada categoría y que se representan mediante intervalos de igual longitud en un eje horizontal.
+
+El recuento o frecuencia dentro de la categoría correspondiente está representado por una barra de altura proporcional a la frecuencia.
+
+## Ejemplo
+
+![](images/clipboard-914413015.png)
+
+## Gráficos Circulares
+
+Los gráficos circulares se utilizan comúnmente para describir datos cualitativos de una población.
+
+Se construye dividiendo un círculo en varias porciones que representan diferentes categorías de una población.
+
+El gráfico circular nos ayuda a comprender mejor de un vistazo la composición de la población con respecto a la característica de interés.
+
+![](images/clipboard-800609446.png)

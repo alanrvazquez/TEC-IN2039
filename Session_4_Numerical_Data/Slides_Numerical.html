@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-input017ead5f</title>
+  <title>quarto-input8a50c186</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -31,6 +31,7 @@
     }
   </style>
   <link rel="stylesheet" href="Slides_Numerical_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="style.css">
   <link href="Slides_Numerical_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Slides_Numerical_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="Slides_Numerical_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -343,27 +344,127 @@ Alan R. Vázquez
 </div>
 
 </section>
-<section id="quarto" class="slide level2">
-<h2>Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section id="introducción" class="slide level2">
+<h2>Introducción</h2>
+<p>TBD</p>
 </section>
-<section id="bullets" class="slide level2">
-<h2>Bullets</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes:</p>
+<section>
+<section id="estadísticos-descriptivos" class="title-slide slide level1 center">
+<h1>Estadísticos Descriptivos</h1>
+
+</section>
+<section id="resumenes-estadísticos" class="slide level2">
+<h2>Resumenes estadísticos</h2>
+<p>Una muestra suele ser una larga lista de números. Para ayudar a resaltar las características importantes de una muestra, calculamos estadísticas resumidas. Para datos numéricos, las estadísticas resumidas más populares son:</p>
 <ul>
-<li>Content authored with markdown</li>
-<li>Output from executable code</li>
+<li><p>Muestra promedio.</p></li>
+<li><p>Variación de la muestra.</p></li>
+<li><p>Desviación estándar muestral.</p></li>
 </ul>
 </section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<p>When you click the <strong>Render</strong> button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<div class="footer footer-default">
+<section id="promedio" class="slide level2">
+<h2>Promedio</h2>
+<p>La media muestral da una indicación del centro de los datos.</p>
+<p>Para calcularla, considera <span class="math inline">\(n\)</span> observaciones denotadas usando <span class="math inline">\(y_1, y_2, \ldots, y_n\)</span> .</p>
+<p>El promedio es igual a:</p>
+<p><span class="math display">\[\bar{y} = \frac{1}{n}\sum_{i=1}^{n} y_i\]</span></p>
+</section>
+<section id="varianza" class="slide level2">
+<h2>Varianza</h2>
+<p>La varianza muestral es como un promedio de las diferencias al cuadrado entre cada observación y la media muestral.</p>
+<p>Da una indicación de cuán dispersos están los datos.</p>
+<p>Considera <span class="math inline">\(n\)</span> observaciones denotadas usando <span class="math inline">\(y_1, y_2, \ldots, y_n\)</span> . La varianza es igual a:</p>
+<p><span class="math display">\[
+s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2
+\]</span></p>
+</section>
+<section id="desviación-estándar" class="slide level2">
+<h2>Desviación Estándar</h2>
+<p>Desafortunadamente, la varianza muestral no está en la misma escala que las observaciones, ya que las diferencias entre cada observación y la media muestral se elevan al cuadrado.</p>
+<p>Para obtener una medida de dispersión cuyas unidades sean las mismas que las de la muestra, simplemente tomamos la raíz cuadrada de la varianza muestral.</p>
+<p><span class="math display">\[
+s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
+\]</span></p>
+<p>Esta cantidad se conoce como desviación estándar muestral.</p>
+</section>
+<section id="otros-estadísticos-cuartiles" class="slide level2">
+<h2>Otros estadísticos: Cuartiles</h2>
+<p>La mediana de la muestra es el número medio de los valores de datos ordenados. Los cuartiles de muestra dividen los datos lo más cerca posible en cuartos:</p>
+<ul>
+<li><p>El primer cuartil (<span class="math inline">\(Q_1\)</span>) es la mediana de la mitad inferior de los datos.</p></li>
+<li><p>El segundo cuartil (<span class="math inline">\(Q_2\)</span>) es la mediana de los datos.</p></li>
+<li><p>El tercer cuartil (<span class="math inline">\(Q_3\)</span>) es la mediana de la mitad superior de los datos.</p></li>
+</ul>
+</section>
+<section id="percentiles" class="slide level2">
+<h2>Percentiles</h2>
+<p>El p-ésimo percentil de una muestra divide la muestra tal que el <span class="math inline">\(p\)</span>% de los valores de la muestra sean menores que el p-ésimo percentil, y (<span class="math inline">\(100 - p\)</span>)% sean mayor que este.</p>
+<p>Para encontrar el percentil de muestra p-ésimo, haz lo siguiente:</p>
+<ol type="1">
+<li><p>Ordena los <span class="math inline">\(n\)</span> valores muestrales de menor a mayor.</p></li>
+<li><p>Calcula la cantidad <span class="math inline">\(\left( \frac{p}{100}\right) \left(n+1 \right)\)</span>.</p></li>
+<li><p>Si esta cantidad es un número entero, el valor de la muestra en esta posición es el percentil <span class="math inline">\(p\)</span>. De lo contrario, promedia los dos valores de muestra en cada lado.</p></li>
+</ol>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+
+<img data-src="images/clipboard-1950324610.png" class="r-stretch"><p>El percentil 0 es el mínimo y el percentil 100 es el máximo.</p>
+</section></section>
+<section>
+<section id="gráficas-para-datos-numéricos" class="title-slide slide level1 center">
+<h1>Gráficas para datos numéricos</h1>
+
+</section>
+<section id="histogramas" class="slide level2">
+<h2>Histogramas</h2>
+<p>Visualización gráfica que da una idea de la “forma” de la muestra, indicando regiones donde los puntos de muestra están concentrados y regiones donde son escasos.</p>
+<p>Las barras del histograma se tocan entre sí. Un espacio indica que no hay observaciones en ese intervalo.</p>
+</section>
+<section id="ejemplo" class="slide level2">
+<h2>Ejemplo</h2>
+<p>Considere las emisiones de partículas (PM) de 62 vehículos conducidos a gran altitud.</p>
+
+<img data-src="images/clipboard-2617005649.png" class="r-stretch"></section>
+<section id="table-de-frecuencia" class="slide level2">
+<h2>Table de Frecuencia</h2>
+
+<img data-src="images/clipboard-2941409444.png" class="r-stretch"><p>Densidad = Frecuencia relativa/Intervalo de clase de ancho.</p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+
+<img data-src="images/clipboard-1381544110.png" class="r-stretch"></section>
+<section id="gáfica-de-cajas" class="slide level2">
+<h2>Gáfica de Cajas</h2>
+<p>Un diagrama de caja es un gráfico que presenta la mediana, el primer y tercer cuartil y cualquier “valor atípico” presente en la muestra.</p>
+<p>El rango intercuartil (IQR) es la diferencia entre el tercer cuartil y el primer cuartil (<span class="math inline">\(Q_3 - Q_1\)</span>). Esta es la distancia necesaria para abarcar la mitad media de los datos.</p>
+</section>
+<section id="anatomía-de-una-gráfica-de-cajas" class="slide level2">
+<h2>Anatomía de una Gráfica de Cajas</h2>
+
+<img data-src="images/clipboard-84021266.png" class="r-stretch"><p>Te invito a conocer más en esa liga <strong><a href="https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097" class="uri">https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097</a></strong></p>
+</section>
+<section id="valores-atípicos-o-outliers" class="slide level2">
+<h2>Valores atípicos o <em>outliers</em></h2>
+<ul>
+<li><p>Los valores atípicos son puntos que son mucho más grandes o más pequeños que el resto de los puntos de muestra.</p></li>
+<li><p>Ellos pueden ser errores de entrada de datos o pueden ser puntos que realmente son diferentes al resto.</p></li>
+<li><p>Los valores atípicos no deben eliminarse descuidadamente sin una razón válida.</p></li>
+</ul>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p><img data-src="images/clipboard-239924690.png"></p>
+<p>En presencia de valores atípicos, la mediana es una mejor medida de centralidad que la media.</p>
+<p><img data-src="images/clipboard-1917186197.png"></p>
+<p>La mediana es muy relevante cuando se estudian ingresos y salarios, por ejemplo.</p>
+<p>Te invito a conocer más sobre el uso de la mediana en esta liga: <a href="https://blog.datawrapper.de/weekly-chart-income/" class="uri">https://blog.datawrapper.de/weekly-chart-income/</a></p>
+</section></section>
+<section id="actividad" class="title-slide slide level1 center">
+<h1>Actividad</h1>
+
+<img src="IN2039_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
 </section>
@@ -419,7 +520,7 @@ Alan R. Vázquez
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -578,44 +679,6 @@ Alan R. Vázquez
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

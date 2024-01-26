@@ -14,21 +14,139 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Quarto
+## Introducción
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+TBD
 
-## Bullets
+# Estadísticos Descriptivos
 
-When you click the **Render** button a document will be generated that includes:
+## Resumenes estadísticos
 
--   Content authored with markdown
--   Output from executable code
+Una muestra suele ser una larga lista de números. Para ayudar a resaltar las características importantes de una muestra, calculamos estadísticas resumidas. Para datos numéricos, las estadísticas resumidas más populares son:
 
-## Code
+-   Muestra promedio.
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+-   Variación de la muestra.
 
-```{r}
-1 + 1
-```
+-   Desviación estándar muestral.
+
+## Promedio
+
+La media muestral da una indicación del centro de los datos.
+
+Para calcularla, considera $n$ observaciones denotadas usando $y_1, y_2, \ldots, y_n$ .
+
+El promedio es igual a:
+
+$$\bar{y} = \frac{1}{n}\sum_{i=1}^{n} y_i$$
+
+## Varianza
+
+La varianza muestral es como un promedio de las diferencias al cuadrado entre cada observación y la media muestral.
+
+Da una indicación de cuán dispersos están los datos.
+
+Considera $n$ observaciones denotadas usando $y_1, y_2, \ldots, y_n$ . La varianza es igual a:
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2
+$$
+
+## Desviación Estándar
+
+Desafortunadamente, la varianza muestral no está en la misma escala que las observaciones, ya que las diferencias entre cada observación y la media muestral se elevan al cuadrado.
+
+Para obtener una medida de dispersión cuyas unidades sean las mismas que las de la muestra, simplemente tomamos la raíz cuadrada de la varianza muestral.
+
+$$
+s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
+$$
+
+Esta cantidad se conoce como desviación estándar muestral.
+
+## Otros estadísticos: Cuartiles
+
+La mediana de la muestra es el número medio de los valores de datos ordenados. Los cuartiles de muestra dividen los datos lo más cerca posible en cuartos:
+
+-   El primer cuartil ($Q_1$) es la mediana de la mitad inferior de los datos.
+
+-   El segundo cuartil ($Q_2$) es la mediana de los datos.
+
+-   El tercer cuartil ($Q_3$) es la mediana de la mitad superior de los datos.
+
+## Percentiles
+
+El p-ésimo percentil de una muestra divide la muestra tal que el $p$% de los valores de la muestra sean menores que el p-ésimo percentil, y ($100 - p$)% sean mayor que este.
+
+Para encontrar el percentil de muestra p-ésimo, haz lo siguiente:
+
+1.  Ordena los $n$ valores muestrales de menor a mayor.
+
+2.  Calcula la cantidad $\left( \frac{p}{100}\right) \left(n+1 \right)$.
+
+3.  Si esta cantidad es un número entero, el valor de la muestra en esta posición es el percentil $p$. De lo contrario, promedia los dos valores de muestra en cada lado.
+
+## 
+
+![](images/clipboard-1950324610.png)
+
+El percentil 0 es el mínimo y el percentil 100 es el máximo.
+
+# Gráficas para datos numéricos
+
+## Histogramas
+
+Visualización gráfica que da una idea de la “forma” de la muestra, indicando regiones donde los puntos de muestra están concentrados y regiones donde son escasos.
+
+Las barras del histograma se tocan entre sí. Un espacio indica que no hay observaciones en ese intervalo.
+
+## Ejemplo
+
+Considere las emisiones de partículas (PM) de 62 vehículos conducidos a gran altitud.
+
+![](images/clipboard-2617005649.png)
+
+## Table de Frecuencia
+
+![](images/clipboard-2941409444.png)
+
+Densidad = Frecuencia relativa/Intervalo de clase de ancho.
+
+## 
+
+![](images/clipboard-1381544110.png)
+
+## Gáfica de Cajas
+
+Un diagrama de caja es un gráfico que presenta la mediana, el primer y tercer cuartil y cualquier "valor atípico" presente en la muestra.
+
+El rango intercuartil (IQR) es la diferencia entre el tercer cuartil y el primer cuartil ($Q_3 - Q_1$). Esta es la distancia necesaria para abarcar la mitad media de los datos.
+
+## Anatomía de una Gráfica de Cajas
+
+![](images/clipboard-84021266.png)
+
+Te invito a conocer más en esa liga **<https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097>**
+
+## Valores atípicos o *outliers*
+
+-   Los valores atípicos son puntos que son mucho más grandes o más pequeños que el resto de los puntos de muestra.
+
+-   Ellos pueden ser errores de entrada de datos o pueden ser puntos que realmente son diferentes al resto.
+
+-    Los valores atípicos no deben eliminarse descuidadamente sin una razón válida.
+
+## 
+
+![](images/clipboard-239924690.png)
+
+En presencia de valores atípicos, la mediana es una mejor medida de centralidad que la media.
+
+![](images/clipboard-1917186197.png)
+
+La mediana es muy relevante cuando se estudian ingresos y salarios, por ejemplo.
+
+Te invito a conocer más sobre el uso de la mediana en esta liga: <https://blog.datawrapper.de/weekly-chart-income/>
+
+# Actividad
+

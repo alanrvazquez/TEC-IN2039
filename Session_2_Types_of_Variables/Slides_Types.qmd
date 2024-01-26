@@ -14,21 +14,38 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Quarto
+## Introducción
 
 Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
 
-## Bullets
+## Tipos de Datos
 
-When you click the **Render** button a document will be generated that includes:
+Existen dos tipos principales de datos:
 
--   Content authored with markdown
--   Output from executable code
+-   Datos numéricos
 
-## Code
+-   Datos categóricos
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Datos categóricos
 
-```{r}
-1 + 1
-```
+When sample items are placed into categories and category names are assigned to the sample items, the data are **categorical** or **qualitative**.
+
+-   Hair color.
+
+-   Country of origin.
+
+-   Zip code.
+
+## 
+
+## Datos númericos
+
+When a numerical quantity designating how much or how many is assigned to each item in the sample, the resulting set of values is **numerical** or **quantitative**.
+
+-   Height (in centimeters).
+
+-   Weight (in kilograms).
+
+-   Age (in years).
+
+# Actividad
