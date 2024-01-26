@@ -76,7 +76,7 @@ También, agrega una leyenda a la grafica que describa las características impo
 >
 > John W. Tukey.
 
-![John Tukey - Wikipedia](https://upload.wikimedia.org/wikipedia/en/e/e9/John_Tukey.jpg){alt="John Tukey - Wikipedia"}
+![](https://upload.wikimedia.org/wikipedia/en/e/e9/John_Tukey.jpg){alt="John Tukey - Wikipedia"}
 
 ## Principios del diseño gráfico
 
@@ -85,8 +85,6 @@ También, agrega una leyenda a la grafica que describa las características impo
 2.  Cuando sea posible, utiliza etiquetas directas en lugar de una leyenda.
 
 3.  Elementos como texto, líneas, formas, etc., que tengan la misma naturaleza deben parecerse.
-
-    ## 
 
 4.  Haz un esfuerzo por lograr un equilibrio entre gráficos y texto.
 
@@ -114,7 +112,7 @@ Describir situación problema
 
 -   Es fácilmente extensible con paquetes.
 
-![](images/clipboard-148304512.png){width="324"}
+![](images/clipboard-148304512.png){fig-align="center" width="324"}
 
 ## Librerías en R
 
@@ -130,6 +128,8 @@ R Studio es una interfaz conveniente para R llamada IDE (entorno de desarrollo i
 
 R Studio no es un requisito para programar con R, pero los programadores y científicos de datos de R lo utilizan con mucha frecuencia.
 
+![](images/clipboard-3369988845.png){fig-align="center"}
+
 ## R Markdown
 
 R Markdown y los diversos paquetes que lo admiten permiten a los usuarios de R escribir su código y su prosa en documentos computacionales reproducibles.
@@ -137,6 +137,8 @@ R Markdown y los diversos paquetes que lo admiten permiten a los usuarios de R e
 Generalmente nos referiremos a documentos R Markdown (con extensión .Rmd).
 
 Por ejemplo, "Haga esto en su documento R Markdown". Rara vez discutiremos la carga del paquete de rebajas.
+
+![](images/clipboard-2543451120.png){fig-align="center" width="284"}
 
 ## 
 
