@@ -1,0 +1,63 @@
+---
+title: |
+   | Sesión 1: 
+   | Introducción y Herramientas
+author: 
+  - name: Alan R. Vázquez
+    email: alanrvazquez@tec.mx
+    affiliations:
+      - name: Tecnológico de Monterrey
+format: revealjs
+editor: visual
+---
+
+## ?Qué es la visualización de datos?
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## El papel de la visualización de datos
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Tipos de Datos
+
+When a numerical quantity designating how much or how many is assigned to each item in the sample, the resulting set of values is **numerical** or **quantitative**.
+
+-   Height (in centimeters).
+
+-   Weight (in kilograms).
+
+-   Age (in years).
+
+When sample items are placed into categories and category names are assigned to the sample items, the data are **categorical** or **qualitative**.
+
+-   Hair color.
+
+-   Country of origin.
+
+-   Zip code.
+
+## 
+
+![](images/clipboard-2226893720.png)
+
+## Datos númericos
+
+Alan
+
+## Texto
+
+Alan
+
+## Imagenes
+
+Alan
+
+## Sonido
+
+Alan
+
+## 
