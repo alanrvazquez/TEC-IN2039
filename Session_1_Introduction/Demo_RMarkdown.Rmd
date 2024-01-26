@@ -1,0 +1,186 @@
+---
+title: "Brief Introduction to R Markdown"
+author: "Joshua French"
+date: "2023-01-18"
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
+---
+
+## What is R Markdown? 
+
+R Markdown is a tool for dynamic, reproducible creation of data-centric documents that include text, code, the results of executed code.
+
+- R Markdown was created by R Studio (<https://www.rstudio.com>) in 2014 (or at least that's the oldest discussion I can find).
+- It is a variant of Markdown, which was created by John Gruber (creator of Daring Fireball (<https://daringfireball.net/>)) and Aaron Swartz (co-creator of Reddit ([https://www.reddit.com/](https://www.reddit.com)) as a lightweight markup language for creating formatted text using a plain-text editor.
+- In general, a markdown language is a language that is written in plain-text but that is rendered different based on "markups" in the text.
+- Has some capabilities similar to Jupyter (<https://jupyter.org/>) notebooks.
+
+R Markdown is a great way to:
+
+- Create a data analysis notebook that documents how and why you did analysis a certain way.
+- Share your work with others in a variety of formats.
+- Make your work reproducible.
+
+R Markdown is a very useful tool for the data scientist.
+
+R Studio provides R Markdown (and other) cheatsheets at <https://rstudio.com/resources/cheatsheets/>
+
+
+## What's in an R Markdown document?
+
+An R Markdown document has three components:
+
+1.  An optional YAML header.
+2.  Formatted text.
+3.  **Chunks** of computer code.
+
+YAML stands for 'Yet Another Markdown Language.'
+
+## Formatting text in R Markdown
+
+### Headings and sections
+
+Headings and sections of different levels are created with `#`.
+
+- `#` indicates the first level
+- `##` being the second level
+- etc.
+
+The words after the `#` will be larger than the regular text.
+
+### Font styles and effects
+
+- *Italic text*: `*text*` or `_text_`.
+- **Bold text**: `**text**` or `__text__` (two underscores on each side)
+- `Typewriter (code) text`: `` `text` ``
+- ^superscript^ and ~subscript~: `^superscript^` and `~subscript~`
+- ~~strikethrough~~: `~~strikethrough~~`
+
+### Numbered/ordered lists
+
+Numbered lists with sub-bullets:
+
+A numbered list with subnumbering.
+
+1. Item 1
+    a. Sub-item 1 # two tabs, not one
+    b. Sub-item 2
+        i. Sub-sub-item 1 # four tabs, not two
+2. Item 2
+    a. Sub-item 1
+
+Note: There must be a line between any text and the number `1`.
+
+### Unordered lists
+
+Unordered lists with sub-bullets:
+
+Some text with bullets.
+
+* Item 1
+  * Sub-item 1
+  * Sub-item 2
+    * Sub-sub-item 1
+* Item 2
+  * Sub-item 1
+
+Notes:
+
+- There must be a line between any text and the \*.
+- You can use `+` or `-` instead of `*` when creating unordered lists with the same result.
+
+### Code evaluation
+
+- `eval`: (`TRUE`) A logical value indicating whether the chunk should be evaluated in the Console.
+-  You can also evaluate **selected lines** if you provide a numeric vector. e.g., `eval = 1:3` would evaluate lines 1 through 3.
+
+```{r, eval = TRUE}
+seq(from = 3, to = 20, by = 4)
+seq(3, 20, 4)
+rnorm(n=10)
+```
+
+### Text output
+
+- `echo`: (`TRUE`). A logical value indicating whether the source code should be displayed.
+```{r, eval = TRUE, echo = FALSE}
+seq(from = 3, to = 20, by = 4)
+seq(3, 20, 4)
+rnorm(n=10)
+```
+- You can also echo **selected lines** if you provide a numeric vector. e.g., `echo = 1:3` would echolines 1 through 3
+- `results`: (`'markup'`). Determines how the results are displayed.
+- Other options are `'asis'`, `'hold'`, `'hide'`.
+
+```{r, eval = TRUE, echo = TRUE, results = 'asis'}
+seq(from = 3, to = 20, by = 4)
+seq(3, 20, 4)
+rnorm(n=10)
+```
+
+- `collapse`: (`FALSE`). A logical value indicating whether the source and output should be collapsed into a single block.
+
+```{r, eval = TRUE, echo = TRUE, results = 'markup', collapse = TRUE}
+seq(from = 3, to = 20, by = 4)
+seq(3, 20, 4)
+rnorm(n=10)
+```
+
+- `include`: (`TRUE`) A logical value indicating whether to include the chunk output. Set to `FALSE` when you want something to run but not be shown.
+
+```{r, eval = TRUE, echo = FALSE, results = 'asis', collapse = TRUE, include = FALSE}
+seq(from = 3, to = 20, by = 4)
+seq(3, 20, 4)
+rnorm(n=10)
+```
+
+Other options: `warning`, `error`, `messages` (`TRUE`) determine whether warnings, errors, and messages will be displayed, respectively.
+
+### Equations
+
+Math is rendered using LaTeX (which is [pronounced](https://www.latex-project.org/about/) "Lah-tech" or "Lay-tech"). So you can use \$ and \$\$ to render inline math and display math like you would in LaTeX.
+
+E.g., Typing "The regression coefficient \$\\beta\$" will produce "The regression coefficient $\beta$".
+
+A "display style equation" is an equation that is set off from the rest of the text. The symbols are often larger, and the equation is often centered.
+
+A display style equation is created between `\[ ... \]` or `$$ ... $$`. You add the various command to typeset your equation in the `...`. 
+
+Consider adding the following text in your document:
+$$
+Y = \beta_0 + \beta_1 X + \epsilon.
+$$
+More details on how to type math on R Markdown can be found here <https://rpruim.github.io/s341/S19/from-class/MathinRmd.html>
+
+This is my line and I show the same equation $Y = \beta_0$.
+
+## YAML header basics 
+
+The YAML (Yet Another Markdown Language) header controls many aspects of the R Markdown document.
+
+We only discuss some of the basic details of YAML headers below. If you do need to know about the YAML header in detail, then you probably need a more advanced introduction to R Markdown!
+
+The YAML header is provided at the top of an R Markdown document between sets of 3 dashes.
+
+The YAML header allows you to specify:
+
+- `title`: The title of the document, which is displayed in font larger than the section headings or main text.
+- `author`: The author of the document. This is displayed just below the title.
+- `date`: The date. You can use something like "2022-09-01" to add a static date.
+- `output`: The output type produced when knitting the document.
+
+### R Markdown output types 
+
+One of the incredible features of R Markdown is that you can easily produce multiple output types from a single document. Some of the main document output types are:
+
+- `pdf_document`: Excellent for distributing a static (unchanging) document. Also great for submitting homework solutions to your instructor! To compile into a pdf, you must install "tinytex."
+```{r}
+#install.packages("tinytex")
+#tinytex::install_tinytex()
+```
+
+- `html_document`: Excellent for sharing interactive files. Can be viewed in a web browser.
+- `word_document`: If for some reason you need Microsoft Word editing capabilities.
+
