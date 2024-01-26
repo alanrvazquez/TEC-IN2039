@@ -1,0 +1,47 @@
+---
+title: "Introducción a la Visualización de Datos"
+author: 
+  - name: Alan R. Vazquez
+    email: alanrvazquez@tec.mx
+    affiliations:
+      - name: Tecnológico de Monterrey
+format: revealjs
+editor: visual
+---
+
+## ?Qué es la visualización de datos?
+
+Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## El papel de la visualización de datos
+
+When you click the **Render** button a document will be generated that includes:
+
+-   Content authored with markdown
+-   Output from executable code
+
+## Tipos de Datos
+
+When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+## Datos númericos
+
+Alan
+
+## Texto
+
+Alan
+
+## Imagenes
+
+Alan
+
+## Sonido
+
+Alan
+
+## 
