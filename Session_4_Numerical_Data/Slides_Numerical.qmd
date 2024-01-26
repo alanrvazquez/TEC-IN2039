@@ -10,6 +10,8 @@ author:
 format: revealjs
 editor: visual
 slide-number: True
+logo: IN2039_logo.png
+css: style.css
 ---
 
 ## Quarto
