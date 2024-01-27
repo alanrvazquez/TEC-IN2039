@@ -17,7 +17,7 @@ output:
 ```
 
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
-library(ggplot2)
+library(tidyverse)
 library(palmerpenguins)
 ```
 
