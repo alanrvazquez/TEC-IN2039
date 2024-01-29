@@ -46,9 +46,13 @@ Aqui nos enfocaremos en cosas que ya estan en una tabla.
 
 > “Una visualización \[de datos\] es cualquier presentación visual destinada a revelar evidencia, haciendo visible lo invisible” Alberto Cairo (2015).
 
-En esencia, una visualización de datos nos permite profundizar en conjuntos de datos complejos para obtener información significativa mediante el uso de pantallas gráficas.
+En esencia, una visualización de datos te permite profundizar en conjuntos de datos complejos para obtener información significativa mediante el uso de pantallas gráficas.
 
 Las visualizaciones de datos se ocupan principalmente de proporcionar evidencia y permitir que la audiencia explore y llegue a sus propias conclusiones sobre lo que las visualizaciones revelan sobre los datos.
+
+::: notes
+As data scientists, we create data visualizations in order to understand our data and explain our analyses to other people. A plot should have a message, and it’s our job to communicate this message as clearly as possible.
+:::
 
 # Los 3 principios de la visualización de datos
 
@@ -63,6 +67,16 @@ Tu gráfica debe de contestar las preguntas:
 -   ¿Cuál es la comparación importante?
 
 -   ¿Cómo la enfatizamos?
+
+::: notes
+-   Do you have reason to expect that one group/observation might be different?
+
+-   Why might your finding about shape matter?
+
+-   What additional comparison might bring added value to the investigation?
+
+-   Are there any potentially important features to create comparisons with/against?
+:::
 
 ## *Principio 3: Enriquece con información adicional*
 
