@@ -52,11 +52,11 @@ Las visualizaciones de datos se ocupan principalmente de proporcionar evidencia 
 
 # Los 3 principios de la visualización de datos
 
-## ***Principio 1*****: *Transforma los datos en información.*** 
+## ***Principio 1*****: *Transforma los datos en información.***
 
 Tu gráfica debe de transformar los datos en información.Para esto, debe de tener los elementos indicados contar una historia.
 
-## ***Principio 2*****:** Contesta la pregunta de interés. 
+## ***Principio 2*****:** Contesta la pregunta de interés.
 
 Tu gráfica debe de contestar las preguntas:
 
@@ -64,7 +64,7 @@ Tu gráfica debe de contestar las preguntas:
 
 -   ¿Cómo la enfatizamos?
 
-## *Principio 3: Enriquece con información adicional* 
+## *Principio 3: Enriquece con información adicional*
 
 No te limites a cosas simples. Enriquece tu gráfica con símbolos de color para transmitir información adicional. Si es posible, agrega contexto con marcadores y etiquetas de referencia.
 
