@@ -75,11 +75,15 @@ Tu gráfica debe de contestar las preguntas:
 
 -   Are there any potentially important features to create comparisons with/against?
 
+\[Incluir noticias del new york times\]
+
 ## ***Principio 2*****: *Transforma los datos en información.***
 
 Tu gráfica debe de usar los datos para contestar la pregunta. Es decir, debe de transformar los datos en información.
 
 Para esto, debe de tener los elementos indicados contar una historia.
+
+\[Incluir graficas del New York Times\]
 
 ## *Principio 3: Enriquece con información adicional*
 
