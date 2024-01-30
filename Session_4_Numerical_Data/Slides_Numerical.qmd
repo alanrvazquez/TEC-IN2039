@@ -208,6 +208,20 @@ La mediana es muy relevante cuando se estudian ingresos y salarios, por ejemplo.
 
 Te invito a conocer más sobre el uso de la mediana en esta liga: <https://blog.datawrapper.de/weekly-chart-income/>
 
+## Violin plots
+
+The violin plot aims to bridge the gap between the density curve and box plot.
+
+violin plots sketch density curves along an axis. The curve is flipped to create a symmetric “violin” shape.
+
+\[Violin plot\]
+
+## Violin plots versus box plots
+
+Box plots cannot reveal as much shape as a histogram or density curve. They primarily show symmetry and skew, long/short tails, and unusually large/small values (also known as *outliers*).
+
+Violin plots do not show outliers.
+
 # Actividad
 
 # Applicando el Principio 3

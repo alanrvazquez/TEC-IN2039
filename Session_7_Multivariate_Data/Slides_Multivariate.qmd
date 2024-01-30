@@ -14,21 +14,198 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Quarto
+## Principle 2 for multivariate data
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+Overall:
 
-## Bullets
+-   Are there any potentially important features to create comparisons with/against?
 
-When you click the **Render** button a document will be generated that includes:
+-   What additional comparison might bring added value to the investigation?
 
--   Content authored with markdown
--   Output from executable code
+Translation into statistics.
 
-## Code
+-   How do Feature X and Feature Y relate to each other?
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+-   Is the distribution of Feature X the same across subgroups defined by Feature Z?
 
-```{r}
-1 + 1
-```
+-   Are there any unusual observations In the combination of (X,Y)? In X for a subgroup of Z?
+
+## ¿What to look for in a relationship?
+
+When we investigate multiple variables, we examine the relationships between them, in addition to their distributions.
+
+Here, we consider pairs of features and describe what to look for.
+
+| Tipo         | Número | Gráfica                                                                                         |
+|:-------------|:-------------|:--------------------------------------------|
+| Quantitativa | 2      | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
+| Categórica   | 2      | Side-by-side bar plots, mosaic plot, overlaid lines                                             |
+| Mixta        | 2      | Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot |
+
+::: notes
+For two features, the combination of types (both quantitative, both qualitative, or a mix) matters.
+:::
+
+# Two quantitative features
+
+## Scatter plots
+
+If both features are quantitative, then we often examine their relationship with a ***scatter plot***. Each point in a scatter plot marks the position of a pair of values for an observation.
+
+With scatter plots, we look for linear and simple nonlinear relationships, and we examine the strength of the relationships.
+
+\[INSERT R CODE\]
+
+## Transformations
+
+We also look to see if a transformation of one or the other or both features leads to a linear relationship.
+
+\[R CODE WITH TRANSFORMATION\]
+
+## What about to individual plots?
+
+It’s important to note that two univariate plots are missing information found in a bivariate plot—information about how the two features vary together. Practically, histograms for two quantitative features do not contain enough information to create a scatter plot of the features.
+
+\[r code with separate histograms\]
+
+# One categorical and one quantitative variable
+
+## Divide the data into groups!
+
+To examine the relationship between a quantitative and a qualitative feature, we often use the qualitative feature to divide the data into groups and compare the distribution of the quantitative feature across these groups.
+
+For example, we can compare the distribution of height for small, medium, and large dog breeds with three overlaid density curves:
+
+\[R CODE WITH PLOT\]
+
+## Box plots by group
+
+Side-by-side box plots offer a similar comparison of distributions across groups. The box plot offers a simpler approach that can give a crude understanding of a distribution.
+
+\[R code with boxplot\]
+
+## Violin plots by group
+
+Likewise, violin plots sketch density curves along an axis for each group. The curve is flipped to create a symmetric “violin” shape.
+
+# Two Categorical Features 
+
+## Divide the data into groups according to one variable
+
+With two qualitative features, we often compare the distribution of one feature across subgroups defined by the other feature.
+
+In effect, we hold one feature constant and plot the distribution of the other one.
+
+To do this, we can use some of the same plots we used to display the distribution of one qualitative feature, such as a line plot or bar plot.
+
+## We need to pre-process the data
+
+To examine the relationship between these two qualitative features, we calculate three sets of proportions (one each for low, medium, and high suitability).
+
+Within each suitability category, we find the proportion of small, medium, and large dogs. These proportions are displayed in the following table.
+
+\[R CODE TO ILLUSTRATE THIS\]
+
+## Line plot by group
+
+Group by line.
+
+## Mosaic Plot
+
+Explain and R code.
+
+# What about more than one variable?
+
+When we examine a distribution or relationship, we often want to compare it across subgroups of the data. This process of conditioning on additional factors often leads to visualizations that involve three or more variables.
+
+Here, we explain how to read plots that are commonly used to visualize multiple variables.
+
+## Facet or trellis plot
+
+Facet plots allow you to display these three features.
+
+\[R code with facet plot or trellis\]
+
+## Two quantitative and one qualitative
+
+R code
+
+## Two qualitative and one quantitative variable
+
+a
+
+## Three quantitative variables
+
+aa
+
+## Three categorical variables
+
+# Actividad
+
+## Emphasize the important difference
+
+The activity may be about selecting the best graphs among two possibilities. When we show the answer we can include the code to generate the plot.
+
+-   Emphasize
+
+-   Ordering
+
+-   Stacking
+
+<https://learningds.org/ch/11/viz_comparisons.html>
+
+# Applying principle 3
+
+## Ajustando los tick marks
+
+¿Es apropiado incluir el zero o no?
+
+Ejemplo de histograma sin zero y con zero.
+
+## Transformaciones
+
+Another common way to adjust scale is to transform the data or the plot’s axes. We use transformations for skewed data so that it is easier to inspect the distribution.
+
+And when the transformation produces a symmetric distribution, the symmetry carries with it useful properties for modeling (which we will see later).
+
+There are multiple ways to transform data, but the log transformation tends to be especially useful.
+
+## The log transformation
+
+The log transform can reveal several common types of relationships. Because of this, the log transform is considered the jackknife of transformations.
+
+![](images/Screenshot 2024-01-30 at 1.32.44 p.m..png){fig-align="center"}
+
+## What do you see?
+
+Show image in r
+
+This is *overplotting*, where we have overlapping points because of a large dataset.
+
+## Smoothing
+
+We can find high-density regions of a scatter plot by binning data, like in a histogram. The following plot, remakes the earlier scatter plot of the Cherry Blossom race times against age. This plot uses hexagonal bins to aggregate points together, and then shades the hexagons based on how many points fall in them:
+
+\[SHOW PLOT WITH AND WITHOUT SMOOTHING\]
+
+## Another important application
+
+Another smoothing approach that is often more informative smooths the y-values for points with a similar x-value. To explain, let’s group together runners with similar ages; we use five-year increments: 20–25, 25–30, 30–35, and so on. Then, for each five-year bin of runners, we average their race times, plot the average time for each group, and connect the points to form a “curve”:
+
+\[SHOW PLOT WITH AND WITHOUT SMOOTHING\]
+
+## When not to smooth
+
+Smoothing and aggregating can help us see important features and relationships, but when we have only a handful of observations, smoothing techniques can be misleading.
+
+With just a few observations, we prefer rug plots over histograms, box plots, and density curves, and we use scatter plots rather than smooth curves and density contours.
+
+\[SHOW R CODE WITH BOXPLOT AND STRIPLOT\]
+
+::: notes
+One of the most common misuses of smoothing happens with box plots. As an example, here is a collection of seven box plots of longevity, one for each of seven types of dog breed:
+
+Some of these box plots have as few as two or three observations. The strip plot that follows is a preferable visualization:
+
+In this plot, we can still compare the groups, but we also see the exact values in each group. Now we can tell that there are only three breeds in the non-sporting group; the impression of a skewed distribution, based on the box plot, reads too much into the shape of the box.
+:::
