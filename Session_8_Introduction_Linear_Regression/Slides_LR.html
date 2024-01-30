@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-inpute860709d</title>
+  <title>quarto-input43e4e976</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -31,6 +31,7 @@
     }
   </style>
   <link rel="stylesheet" href="Slides_LR_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="style.css">
   <link href="Slides_LR_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Slides_LR_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="Slides_LR_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -326,7 +327,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><p>Sesión 8:<br>
-Introducción a la Regresión Lineal</p></h1>
+Introducción a la Regresión Lineal Simple</p></h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -343,30 +344,233 @@ Alan R. Vázquez
 </div>
 
 </section>
-<section id="quarto" class="slide level2">
-<h2>Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
+<section>
+<section id="relationship-between-two-continuous-variables" class="title-slide slide level1 center">
+<h1>Relationship between two continuous variables</h1>
+
 </section>
-<section id="bullets" class="slide level2">
-<h2>Bullets</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes:</p>
+<section id="principio-1-formula-la-pregunta." class="slide level2">
+<h2>Principio 1: Formula la pregunta.</h2>
+<p>Preguntas que podemos contestar con la regression linear simple</p>
 <ul>
-<li>Content authored with markdown</li>
-<li>Output from executable code</li>
+<li><p>Is there a relationship between a response variable and predictors?</p></li>
+<li><p>How strong is the relationship?</p></li>
+<li><p>What is the uncertainty?</p></li>
+<li><p>How accurately can we predict a future outcome?</p></li>
 </ul>
 </section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<p>When you click the <strong>Render</strong> button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<div class="footer footer-default">
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<blockquote>
+<p>If we know a Star Wars character’s heigh, can we guess how much they weigh</p>
+</blockquote>
+<p>R plot</p>
+</section></section>
+<section id="data-model-error" class="title-slide slide level1 center">
+<h1>Data = model + error</h1>
+
+</section>
+
+<section>
+<section id="y-fx-epsilon" class="title-slide slide level1 center">
+<h1><span class="math inline">\(y = f(x) + \epsilon\)</span></h1>
+
+</section>
+<section id="simple-linear-regression" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><span class="math display">\[
+y = f(x) + \epsilon
+\]</span></p>
+</section>
+<section id="simple-linear-regression-1" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><span class="math display">\[
+y = f(x) + \epsilon
+\]</span></p>
+<p>Continuous (dependent) variable.</p>
+</section>
+<section id="simple-linear-regression-2" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><span class="math display">\[
+y = f(x) + \epsilon
+\]</span></p>
+<p>Continuous (independent) variable</p>
+</section>
+<section id="simple-linear-regression-3" class="slide level2">
+<h2>Simple linear regression</h2>
+<p><span class="math display">\[
+y = f(x) + \epsilon
+\]</span></p>
+<p>A function that gives the mean value of <span class="math inline">\(y\)</span> at any value of <span class="math inline">\(x\)</span>.</p>
+</section>
+<section id="what-function-do-you-think-we-are-using-to-get-the-mean-value-of-y-with-simple-linear-regression" class="slide level2">
+<h2>What function do you think we are using to get the mean value of <span class="math inline">\(y\)</span> with simple linear regression?</h2>
+<p>Relationship between mass and height for Star Wars characters.</p>
+</section></section>
+<section>
+<section id="we-express-the-mean-mass-of-the-star-wars-character-as-a-linear-function-of-their-height" class="title-slide slide level1 center">
+<h1>We express the mean mass of the Star Wars character as a <em>linear function</em> of their height</h1>
+
+</section>
+<section id="what-is-the-equation-that-represents-this-line" class="slide level2">
+<h2>What is the equation that represents this line?</h2>
+<p>Relationship between mass and height for Star Wars characters.</p>
+<p>[R PLOT]</p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p><span class="math display">\[
+y = \beta_0 + \beta_1 x
+\]</span></p>
+<p>Relationship between mass and height for Star Wars characters.</p>
+<p>[R PLOT]</p>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p><span class="math display">\[
+\text{mass} = \beta_0 + \beta_1 (\text{height})
+\]</span></p>
+<p>Relationship between mass and height for Star Wars characters.</p>
+<p>[R PLOT]</p>
+</section>
+<section id="model-interpretation" class="slide level2">
+<h2>Model interpretation</h2>
+<blockquote>
+<p>What is <span class="math inline">\(\beta_0\)</span>?</p>
+</blockquote>
+<p>[PLOT]</p>
+<p><span class="math inline">\(\beta_0\)</span> is the average value of the response when <span class="math inline">\(x\)</span> is 0.</p>
+</section>
+<section id="model-interpretation-1" class="slide level2">
+<h2>Model interpretation</h2>
+<blockquote>
+<p>Is <span class="math inline">\(\beta_0\)</span> meaningful?</p>
+</blockquote>
+<p>[PLOT]</p>
+</section>
+<section id="model-interpretation-2" class="slide level2">
+<h2>Model interpretation</h2>
+<blockquote>
+<p>What is <span class="math inline">\(\beta_1\)</span>?</p>
+</blockquote>
+<p>[PLOT]</p>
+<p><span class="math inline">\(\beta_1\)</span> is the average change in the response when increasing <span class="math inline">\(x\)</span> by one unit.</p>
+</section></section>
+<section>
+<section id="do-all-points-fall-exactly-on-the-line" class="title-slide slide level1 center">
+<h1>Do all points fall exactly on the line?</h1>
+<p>No!</p>
+<p><span class="math display">\[
+y = \beta_0 + \beta_1 x + \epsilon
+\]</span></p>
+<p>Show errors in plot</p>
+</section>
+<section id="the-true-model" class="slide level2">
+<h2>The true model</h2>
+<p><span class="math display">\[
+y = \beta_0 + \beta_1 x + \epsilon
+\]</span></p>
+<ul>
+<li>If we had the whole population of the Star Wars universe, we could quantify the exact relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</li>
+</ul>
+</section>
+<section id="the-reality" class="slide level2">
+<h2>The reality</h2>
+<p><span class="math display">\[
+\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x
+\]</span></p>
+<ul>
+<li><p>In reality, we have a sample of Star Wars characters to estimate the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> (height and mass).</p></li>
+<li><p>The “hats” represent the estimated (fitted) values.</p></li>
+</ul>
+</section></section>
+<section>
+<section id="lets-do-this-in-r" class="title-slide slide level1 center">
+<h1>Let’s do this in R</h1>
+
+</section>
+<section id="simple-linear-regression-in-r" class="slide level2">
+<h2>Simple linear regression in R</h2>
+<p>show code</p>
+</section>
+<section id="interpretation" class="slide level2">
+<h2>Interpretation</h2>
+<p>Show code</p>
+<p>For every <strong>one centimeter</strong> increase in height, a Star Wars characters weight <strong>on average</strong> increases by 0.62.</p>
+</section></section>
+<section>
+<section id="for-every-one-unit-increase-in-x-the-expected-change-in-y-is-hatbeta_1" class="title-slide slide level1 center">
+<h1>For every one unit increase in <span class="math inline">\(x\)</span>, the expected change in <span class="math inline">\(y\)</span> is <span class="math inline">\(\hat{\beta}_1\)</span></h1>
+
+</section>
+<section id="why-do-we-fit-a-linear-model" class="slide level2">
+<h2>Why do we fit a linear model?</h2>
+<ul>
+<li><p>It reduces the dimensionality of the data (from an <span class="math inline">\(n\)</span> by 2 table to only two numbers).</p></li>
+<li><p>To get a sense of the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> for a “typical observation.</p>
+<ul>
+<li>When is this an accurate representation?</li>
+</ul></li>
+</ul>
+</section></section>
+<section>
+<section id="where-did-these-haty-values-come-from" class="title-slide slide level1 center">
+<h1>Where did these <span class="math inline">\(\hat{y}\)</span> values come from?</h1>
+
+<img data-src="images/Screenshot%202024-01-30%20at%204.08.35%20p.m..png" class="r-stretch"></section>
+<section id="how-did-we-choose-this-line" class="slide level2">
+<h2>How did we choose this line?</h2>
+<p>Show line</p>
+</section>
+<section id="minimize-the-residuals" class="slide level2">
+<h2>Minimize the residuals</h2>
+<p>Show residuals</p>
+</section>
+<section id="minimize-the-least-squares" class="slide level2">
+<h2>Minimize the least squares</h2>
+<p>Plot with least squares.</p>
+</section>
+<section id="residuals-are-important" class="slide level2">
+<h2>Residuals are important</h2>
+<p>Technically, a residual is calculated as</p>
+<p><span class="math display">\[
+e_i = y_i - \hat{y}_i
+\]</span></p>
+<p>The behaviour of the residuals tells you whether your model is correct or not.</p>
+</section>
+<section id="residual-analysis" class="slide level2">
+<h2>Residual analysis</h2>
+<p>Two important assumptions of the residuals</p>
+<ol type="1">
+<li>Constant Variance</li>
+<li>Independence</li>
+</ol>
+</section>
+<section id="constant-variance" class="slide level2">
+<h2>Constant Variance</h2>
+<p>Plot as in our course.</p>
+</section>
+<section id="independence" class="slide level2">
+<h2>Independence</h2>
+<p>Plot as in our course</p>
+</section></section>
+<section>
+<section id="actividad" class="title-slide slide level1 center">
+<h1>Actividad</h1>
+
+</section>
+<section id="application-excercise" class="slide level2">
+<h2>Application Excercise</h2>
+<ol type="1">
+<li><p>Go to <a href="https://lucy.shinyapps.io/least-squares/">lucy.shinyapps.io/least-squares/</a></p></li>
+<li><p>This shows a scatter plot of 10 data points with a line estimating the relationship between <code>x</code> and <code>y</code>. Drag the blue points to change the line.</p></li>
+<li><p>See if you can find a line that minimizes the sum of square errors</p></li>
+</ol>
+
+<img src="IN2039_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -578,44 +782,6 @@ Alan R. Vázquez
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

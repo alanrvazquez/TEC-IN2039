@@ -1,7 +1,7 @@
 ---
 title: |
    | Sesión 8: 
-   | Introducción a la Regresión Lineal  
+   | Introducción a la Regresión Lineal Simple 
 author: 
   - name: Alan R. Vázquez
     email: alanrvazquez@tec.mx
@@ -14,21 +14,211 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Quarto
+# Relationship between two continuous variables
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+## Principio 1: Formula la pregunta.
 
-## Bullets
+Preguntas que podemos contestar con la regression linear simple
 
-When you click the **Render** button a document will be generated that includes:
+-   Is there a relationship between a response variable and predictors?
 
--   Content authored with markdown
--   Output from executable code
+-   How strong is the relationship?
 
-## Code
+-   What is the uncertainty?
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+-   How accurately can we predict a future outcome?
 
-```{r}
-1 + 1
-```
+## Example
+
+> If we know a Star Wars character's heigh, can we guess how much they weigh
+
+R plot
+
+# Data = model + error
+
+# $y = f(x) + \epsilon$
+
+## Simple linear regression
+
+$$
+y = f(x) + \epsilon
+$$
+
+## Simple linear regression
+
+$$
+y = f(x) + \epsilon
+$$
+
+Continuous (dependent) variable.
+
+## Simple linear regression
+
+$$
+y = f(x) + \epsilon
+$$
+
+Continuous (independent) variable
+
+## Simple linear regression
+
+$$
+y = f(x) + \epsilon
+$$
+
+A function that gives the mean value of $y$ at any value of $x$.
+
+## What function do you think we are using to get the mean value of $y$ with simple linear regression?
+
+Relationship between mass and height for Star Wars characters.
+
+# We express the mean mass of the Star Wars character as a *linear function* of their height
+
+## What is the equation that represents this line?
+
+Relationship between mass and height for Star Wars characters.
+
+\[R PLOT\]
+
+## 
+
+$$
+y = \beta_0 + \beta_1 x
+$$
+
+Relationship between mass and height for Star Wars characters.
+
+\[R PLOT\]
+
+## 
+
+$$
+\text{mass} = \beta_0 + \beta_1 (\text{height})
+$$
+
+Relationship between mass and height for Star Wars characters.
+
+\[R PLOT\]
+
+## Model interpretation
+
+> What is $\beta_0$?
+
+\[PLOT\]
+
+$\beta_0$ is the average value of the response when $x$ is 0.
+
+## Model interpretation
+
+> Is $\beta_0$ meaningful?
+
+\[PLOT\]
+
+## Model interpretation
+
+> What is $\beta_1$?
+
+\[PLOT\]
+
+$\beta_1$ is the average change in the response when increasing $x$ by one unit.
+
+# Do all points fall exactly on the line?
+
+No!
+
+$$
+y = \beta_0 + \beta_1 x + \epsilon
+$$
+
+Show errors in plot
+
+## The true model
+
+$$
+y = \beta_0 + \beta_1 x + \epsilon
+$$
+
+-   If we had the whole population of the Star Wars universe, we could quantify the exact relationship between $x$ and $y$.
+
+## The reality
+
+$$
+\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x 
+$$
+
+-   In reality, we have a sample of Star Wars characters to estimate the relationship between $x$ and $y$ (height and mass).
+
+-   The "hats" represent the estimated (fitted) values.
+
+# Let's do this in R
+
+## Simple linear regression in R
+
+show code
+
+## Interpretation
+
+Show code
+
+For every **one centimeter** increase in height, a Star Wars characters weight **on average** increases by 0.62.
+
+# For every one unit increase in $x$, the expected change in $y$ is $\hat{\beta}_1$
+
+## Why do we fit a linear model?
+
+-   It reduces the dimensionality of the data (from an $n$ by 2 table to only two numbers).
+
+-   To get a sense of the relationship between $x$ and $y$ for a "typical observation.
+
+    -   When is this an accurate representation?
+
+# Where did these $\hat{y}$ values come from?
+
+![](images/Screenshot 2024-01-30 at 4.08.35 p.m..png)
+
+## How did we choose this line?
+
+Show line
+
+## Minimize the residuals
+
+Show residuals
+
+## Minimize the least squares
+
+Plot with least squares.
+
+## Residuals are important
+
+Technically, a residual is calculated as
+
+$$
+e_i = y_i - \hat{y}_i
+$$
+
+The behaviour of the residuals tells you whether your model is correct or not.
+
+## Residual analysis
+
+Two important assumptions of the residuals
+
+1.  Constant Variance
+2.  Independence
+
+## Constant Variance
+
+Plot as in our course.
+
+## Independence
+
+Plot as in our course
+
+# Actividad
+
+## Application Excercise
+
+1.  Go to [lucy.shinyapps.io/least-squares/](https://lucy.shinyapps.io/least-squares/)
+
+2.  This shows a scatter plot of 10 data points with a line estimating the relationship between `x` and `y`. Drag the blue points to change the line.
+
+3.  See if you can find a line that minimizes the sum of square errors
