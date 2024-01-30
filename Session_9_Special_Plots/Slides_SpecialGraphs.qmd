@@ -14,21 +14,12 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Quarto
+## Dashboards
 
-Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+Dashboards are a useful way to communicate large amounts of information visually and quickly. Create one with the `flexdashboard::flex_dashboard` output format, as in the .Rmd file below (available [here](https://posit.cloud/content/181966) on RStudio Cloud):
 
-## Bullets
+## Creating a dashboard
 
-When you click the **Render** button a document will be generated that includes:
+Summarize the material here
 
--   Content authored with markdown
--   Output from executable code
-
-## Code
-
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
+<https://epirhandbook.com/en/dashboards-with-r-markdown.html>
