@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-inputfa754c80</title>
+  <title>quarto-input0d363882</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -31,6 +31,7 @@
     }
   </style>
   <link rel="stylesheet" href="Slides_Multivariate_files/libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="style.css">
   <link href="Slides_Multivariate_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Slides_Multivariate_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="Slides_Multivariate_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -343,30 +344,285 @@ Alan R. Vázquez
 </div>
 
 </section>
-<section id="quarto" class="slide level2">
-<h2>Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a>.</p>
-</section>
-<section id="bullets" class="slide level2">
-<h2>Bullets</h2>
-<p>When you click the <strong>Render</strong> button a document will be generated that includes:</p>
+<section id="principle-2-for-multivariate-data" class="slide level2">
+<h2>Principle 2 for multivariate data</h2>
+<p>Overall:</p>
 <ul>
-<li>Content authored with markdown</li>
-<li>Output from executable code</li>
+<li><p>Are there any potentially important features to create comparisons with/against?</p></li>
+<li><p>What additional comparison might bring added value to the investigation?</p></li>
+</ul>
+<p>Translation into statistics.</p>
+<ul>
+<li><p>How do Feature X and Feature Y relate to each other?</p></li>
+<li><p>Is the distribution of Feature X the same across subgroups defined by Feature Z?</p></li>
+<li><p>Are there any unusual observations In the combination of (X,Y)? In X for a subgroup of Z?</p></li>
 </ul>
 </section>
-<section id="code" class="slide level2">
-<h2>Code</h2>
-<p>When you click the <strong>Render</strong> button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
-</div>
-</div>
-<div class="footer footer-default">
+<section id="what-to-look-for-in-a-relationship" class="slide level2">
+<h2>¿What to look for in a relationship?</h2>
+<p>When we investigate multiple variables, we examine the relationships between them, in addition to their distributions.</p>
+<p>Here, we consider pairs of features and describe what to look for.</p>
+<table>
+<colgroup>
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: left;">Número</th>
+<th style="text-align: left;">Gráfica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Quantitativa</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Categórica</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Side-by-side bar plots, mosaic plot, overlaid lines</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mixta</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>For two features, the combination of types (both quantitative, both qualitative, or a mix) matters.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section>
+<section id="two-quantitative-features" class="title-slide slide level1 center">
+<h1>Two quantitative features</h1>
+
+</section>
+<section id="scatter-plots" class="slide level2">
+<h2>Scatter plots</h2>
+<p>If both features are quantitative, then we often examine their relationship with a <strong><em>scatter plot</em></strong>. Each point in a scatter plot marks the position of a pair of values for an observation.</p>
+<p>With scatter plots, we look for linear and simple nonlinear relationships, and we examine the strength of the relationships.</p>
+<p>[INSERT R CODE]</p>
+</section>
+<section id="transformations" class="slide level2">
+<h2>Transformations</h2>
+<p>We also look to see if a transformation of one or the other or both features leads to a linear relationship.</p>
+<p>[R CODE WITH TRANSFORMATION]</p>
+</section>
+<section id="what-about-to-individual-plots" class="slide level2">
+<h2>What about to individual plots?</h2>
+<p>It’s important to note that two univariate plots are missing information found in a bivariate plot—information about how the two features vary together. Practically, histograms for two quantitative features do not contain enough information to create a scatter plot of the features.</p>
+<p>[r code with separate histograms]</p>
+</section></section>
+<section>
+<section id="one-categorical-and-one-quantitative-variable" class="title-slide slide level1 center">
+<h1>One categorical and one quantitative variable</h1>
+
+</section>
+<section id="divide-the-data-into-groups" class="slide level2">
+<h2>Divide the data into groups!</h2>
+<p>To examine the relationship between a quantitative and a qualitative feature, we often use the qualitative feature to divide the data into groups and compare the distribution of the quantitative feature across these groups.</p>
+<p>For example, we can compare the distribution of height for small, medium, and large dog breeds with three overlaid density curves:</p>
+<p>[R CODE WITH PLOT]</p>
+</section>
+<section id="box-plots-by-group" class="slide level2">
+<h2>Box plots by group</h2>
+<p>Side-by-side box plots offer a similar comparison of distributions across groups. The box plot offers a simpler approach that can give a crude understanding of a distribution.</p>
+<p>[R code with boxplot]</p>
+</section>
+<section id="violin-plots-by-group" class="slide level2">
+<h2>Violin plots by group</h2>
+<p>Likewise, violin plots sketch density curves along an axis for each group. The curve is flipped to create a symmetric “violin” shape.</p>
+</section></section>
+<section>
+<section id="two-categorical-features" class="title-slide slide level1 center">
+<h1>Two Categorical Features</h1>
+
+</section>
+<section id="divide-the-data-into-groups-according-to-one-variable" class="slide level2">
+<h2>Divide the data into groups according to one variable</h2>
+<p>With two qualitative features, we often compare the distribution of one feature across subgroups defined by the other feature.</p>
+<p>In effect, we hold one feature constant and plot the distribution of the other one.</p>
+<p>To do this, we can use some of the same plots we used to display the distribution of one qualitative feature, such as a line plot or bar plot.</p>
+</section>
+<section id="we-need-to-pre-process-the-data" class="slide level2">
+<h2>We need to pre-process the data</h2>
+<p>To examine the relationship between these two qualitative features, we calculate three sets of proportions (one each for low, medium, and high suitability).</p>
+<p>Within each suitability category, we find the proportion of small, medium, and large dogs. These proportions are displayed in the following table.</p>
+<p>[R CODE TO ILLUSTRATE THIS]</p>
+</section>
+<section id="line-plot-by-group" class="slide level2">
+<h2>Line plot by group</h2>
+<p>Group by line.</p>
+</section>
+<section id="mosaic-plot" class="slide level2">
+<h2>Mosaic Plot</h2>
+<p>Explain and R code.</p>
+</section></section>
+<section>
+<section id="what-about-more-than-one-variable" class="title-slide slide level1 center">
+<h1>What about more than one variable?</h1>
+<p>When we examine a distribution or relationship, we often want to compare it across subgroups of the data. This process of conditioning on additional factors often leads to visualizations that involve three or more variables.</p>
+<p>Here, we explain how to read plots that are commonly used to visualize multiple variables.</p>
+</section>
+<section id="facet-or-trellis-plot" class="slide level2">
+<h2>Facet or trellis plot</h2>
+<p>Facet plots allow you to display these three features.</p>
+<p>[R code with facet plot or trellis]</p>
+</section>
+<section id="two-quantitative-and-one-qualitative" class="slide level2">
+<h2>Two quantitative and one qualitative</h2>
+<p>R code</p>
+</section>
+<section id="two-qualitative-and-one-quantitative-variable" class="slide level2">
+<h2>Two qualitative and one quantitative variable</h2>
+<p>a</p>
+</section>
+<section id="three-quantitative-variables" class="slide level2">
+<h2>Three quantitative variables</h2>
+<p>aa</p>
+</section>
+<section id="three-categorical-variables" class="slide level2">
+<h2>Three categorical variables</h2>
+</section></section>
+<section>
+<section id="actividad" class="title-slide slide level1 center">
+<h1>Actividad</h1>
+
+</section>
+<section id="emphasize-the-important-difference" class="slide level2">
+<h2>Emphasize the important difference</h2>
+<p>The activity may be about selecting the best graphs among two possibilities. When we show the answer we can include the code to generate the plot.</p>
+<ul>
+<li><p>Emphasize</p></li>
+<li><p>Ordering</p></li>
+<li><p>Stacking</p></li>
+</ul>
+<p><a href="https://learningds.org/ch/11/viz_comparisons.html" class="uri">https://learningds.org/ch/11/viz_comparisons.html</a></p>
+</section></section>
+<section>
+<section id="applying-principle-3" class="title-slide slide level1 center">
+<h1>Applying principle 3</h1>
+
+</section>
+<section id="adding-context" class="slide level2">
+<h2>Adding context</h2>
+<p>We have used text in our graphs throughout this chapter to provide meaningful axis labels that include units of measurement, tick-mark labels for categories, and titles</p>
+<p>A good goal is to include enough context in a plot so that it can stand alone—a reader should be able to get the gist of the plot without needing to search for explanation elsewhere.</p>
+<p>That said, every element of a statistical graph should have a purpose.</p>
+</section>
+<section id="labels-and-captions" class="slide level2">
+<h2>Labels and captions</h2>
+<p>Text context includes <em>labels</em> and <em>captions</em>. It is a good practice to consistently use informative labels on tick marks and axes.</p>
+<p>Example of bad and good labels</p>
+<p>Informative labels are especially important for plots that other people will see and interpret.</p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p>Captions serve several purposes. They describe what has been plotted and orient the reader. Captions also point out important features of the plot and comment on their implications.</p>
+<p>[Examples of good and bad captions]</p>
+<aside class="notes">
+<p>Readers often skim a publication and focus on section headings and visualizations, so plot captions should be self-contained.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="reference-markers" class="slide level2">
+<h2>Reference Markers</h2>
+<p><em>Reference markers</em> bring additional context to the plotting region. Reference points and lines that provide benchmarks, historical values, and other external information help form comparisons and interpretations.</p>
+<p>[EXAMPLES OF LABELING MARKERS]</p>
+<aside class="notes">
+<p>For example, we often add a reference line with slope 1 to a quantile-quantile plot. We might also add a vertical line on a time-series plot to mark a special event, like a natural disaster.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ajustando-los-tick-marks" class="slide level2">
+<h2>Ajustando los tick marks</h2>
+<p>¿Es apropiado incluir el zero o no?</p>
+<p>Ejemplo de histograma sin zero y con zero.</p>
+</section>
+<section id="transformaciones" class="slide level2">
+<h2>Transformaciones</h2>
+<p>Another common way to adjust scale is to transform the data or the plot’s axes. We use transformations for skewed data so that it is easier to inspect the distribution.</p>
+<p>And when the transformation produces a symmetric distribution, the symmetry carries with it useful properties for modeling (which we will see later).</p>
+<p>There are multiple ways to transform data, but the log transformation tends to be especially useful.</p>
+</section>
+<section id="the-log-transformation" class="slide level2">
+<h2>The log transformation</h2>
+<p>The log transform can reveal several common types of relationships. Because of this, the log transform is considered the jackknife of transformations.</p>
+
+<img data-src="images/Screenshot%202024-01-30%20at%201.32.44%20p.m..png" class="r-stretch quarto-figure-center"></section>
+<section id="what-do-you-see" class="slide level2">
+<h2>What do you see?</h2>
+<p>Show image in r</p>
+<p>This is <em>overplotting</em>, where we have overlapping points because of a large dataset.</p>
+</section>
+<section id="smoothing" class="slide level2">
+<h2>Smoothing</h2>
+<p>We can find high-density regions of a scatter plot by binning data, like in a histogram. The following plot, remakes the earlier scatter plot of the Cherry Blossom race times against age. This plot uses hexagonal bins to aggregate points together, and then shades the hexagons based on how many points fall in them:</p>
+<p>[SHOW PLOT WITH AND WITHOUT SMOOTHING]</p>
+</section>
+<section id="another-important-application" class="slide level2">
+<h2>Another important application</h2>
+<p>Another smoothing approach that is often more informative smooths the y-values for points with a similar x-value. To explain, let’s group together runners with similar ages; we use five-year increments: 20–25, 25–30, 30–35, and so on. Then, for each five-year bin of runners, we average their race times, plot the average time for each group, and connect the points to form a “curve”:</p>
+<p>[SHOW PLOT WITH AND WITHOUT SMOOTHING]</p>
+</section>
+<section id="when-not-to-smooth" class="slide level2">
+<h2>When not to smooth</h2>
+<p>Smoothing and aggregating can help us see important features and relationships, but when we have only a handful of observations, smoothing techniques can be misleading.</p>
+<p>With just a few observations, we prefer rug plots over histograms, box plots, and density curves, and we use scatter plots rather than smooth curves and density contours.</p>
+<p>[SHOW R CODE WITH BOXPLOT AND STRIPLOT]</p>
+<aside class="notes">
+<p>One of the most common misuses of smoothing happens with box plots. As an example, here is a collection of seven box plots of longevity, one for each of seven types of dog breed:</p>
+<p>Some of these box plots have as few as two or three observations. The strip plot that follows is a preferable visualization:</p>
+<p>In this plot, we can still compare the groups, but we also see the exact values in each group. Now we can tell that there are only three breeds in the non-sporting group; the impression of a skewed distribution, based on the box plot, reads too much into the shape of the box.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+<img src="IN2039_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
@@ -419,7 +675,7 @@ Alan R. Vázquez
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -578,44 +834,6 @@ Alan R. Vázquez
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
