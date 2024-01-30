@@ -56,11 +56,7 @@ As data scientists, we create data visualizations in order to understand our dat
 
 # Los 3 principios de la visualización de datos
 
-## ***Principio 1*****: *Transforma los datos en información.***
-
-Tu gráfica debe de transformar los datos en información.Para esto, debe de tener los elementos indicados contar una historia.
-
-## ***Principio 2*****:** Contesta la pregunta de interés.
+## ***Principio 1*****:** Formula la pregunta de interés.
 
 Tu gráfica debe de contestar las preguntas:
 
@@ -68,7 +64,9 @@ Tu gráfica debe de contestar las preguntas:
 
 -   ¿Cómo la enfatizamos?
 
-::: notes
+```{=html}
+<!-- -->
+```
 -   Do you have reason to expect that one group/observation might be different?
 
 -   Why might your finding about shape matter?
@@ -76,7 +74,12 @@ Tu gráfica debe de contestar las preguntas:
 -   What additional comparison might bring added value to the investigation?
 
 -   Are there any potentially important features to create comparisons with/against?
-:::
+
+## ***Principio 2*****: *Transforma los datos en información.***
+
+Tu gráfica debe de usar los datos para contestar la pregunta. Es decir, debe de transformar los datos en información.
+
+Para esto, debe de tener los elementos indicados contar una historia.
 
 ## *Principio 3: Enriquece con información adicional*
 
