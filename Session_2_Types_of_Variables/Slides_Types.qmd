@@ -76,10 +76,10 @@ They help specify the operations, visualizations, and models we can meaningfully
 
 Whether the variable(s) are quantitative or qualitative generally determines the set of viable plots to make, although there are exceptions.
 
-| Tipo         | Número  | Gráfica                                                                                         |
-|:-------------|:--------|:------------------------------------------------------------------------------------------------|
-| Quantitativa | 1       | Rug plot, histogram, density curve, box plot, violin plot                                       |
-| Categórica   | 1       | Bar plot, dot plot, line plot, pie chart                                                        |
-| Quantitativa | 2       | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
-| Categórica   | 2       | Side-by-side bar plots, mosaic plot, overlaid lines                                             |
-| Mixta        | 2       | Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot |
+| Tipo         | Número | Gráfica                                                                                         |
+|:-------------|:-------|:------------------------------------------------------------------------------------------------|
+| Quantitativa | 1      | Rug plot, histogram, density curve, box plot, violin plot                                       |
+| Categórica   | 1      | Bar plot, dot plot, line plot, pie chart                                                        |
+| Quantitativa | 2      | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
+| Categórica   | 2      | Side-by-side bar plots, mosaic plot, overlaid lines                                             |
+| Mixta        | 2      | Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot |

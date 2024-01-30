@@ -18,21 +18,21 @@ css: style.css
 
 La última vez, comentamos sobre la correspondencia entre el tipo de variable y el tipo de gráfica.
 
-| Tipo           | Número  | Gráfica                                                                                         |
-|:---------------|:--------|:------------------------------------------------------------------------------------------------|
-| Quantitativa   | 1       | Rug plot, histogram, density curve, box plot, violin plot                                       |
-| **Categórica** | **1**   | **Bar plot, dot plot, line plot, pie chart**                                                    |
-| Quantitativa   | 2       | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
-| Categórica     | 2       | Side-by-side bar plots, mosaic plot, overlaid lines                                             |
-| Mixta          | 2       | Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot |
+| Tipo           | Número | Gráfica                                                                                         |
+|:---------------|:-------|:------------------------------------------------------------------------------------------------|
+| Quantitativa   | 1      | Rug plot, histogram, density curve, box plot, violin plot                                       |
+| **Categórica** | **1**  | **Bar plot, dot plot, line plot, pie chart**                                                    |
+| Quantitativa   | 2      | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
+| Categórica     | 2      | Side-by-side bar plots, mosaic plot, overlaid lines                                             |
+| Mixta          | 2      | Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot |
 
 ## 
 
 Hoy nos encofaremos en una variable categórica.
 
-| Tipo       | Número  | Gráfica                                  |
-|:-----------|:--------|:-----------------------------------------|
-| Categórica | 1       | Bar plot, dot plot, line plot, pie chart |
+| Tipo       | Número | Gráfica                                  |
+|:-----------|:-------|:-----------------------------------------|
+| Categórica | 1      | Bar plot, dot plot, line plot, pie chart |
 
 ## Resumenes Estadísticos
 

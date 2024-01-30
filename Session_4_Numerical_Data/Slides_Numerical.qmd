@@ -172,9 +172,9 @@ La curva se obtiene utilizando un método llamado Kernel Density Estimation.
 
 When interpreting a histogram or density curve, we examine the symmetry and skewness of the distribution; the number, location, and size of high-frequency regions (modes); the length of tails (often in comparison to a bell-shaped curve); gaps where no values are observed; and unusually large or anomalous values.
 
-![](images/Screenshot 2024-01-29 at 10.36.23 a.m..png){fig-align="center"}
+![](images/Screenshot%202024-01-29%20at%2010.36.23%20a.m..png){fig-align="center"}
 
-##  
+## 
 
 ## Gáfica de Cajas
 
