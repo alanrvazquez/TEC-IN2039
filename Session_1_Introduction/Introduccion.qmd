@@ -1,10 +1,9 @@
 ---
 title: |
    | Sesión 1: 
-   | Introducción y Herramientas
+   | ¿Qué es la visualización de datos?
 author: 
   - name: Alan R. Vázquez
-    email: alanrvazquez@tec.mx
     affiliations:
       - name: Tecnológico de Monterrey
 format: revealjs
@@ -14,21 +13,117 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Contenido
+## Los Tópicos de Hoy
 
-1.  Introducción a la ciencia de datos
+1.  Introducción a la ciencia de datos.
 
-2.  Los tres principios de la visualización de datos
+2.  Visualización de datos y sus tres principios.
 
-3.  Actividad
-
-4.  Descripción de la Situación Problema
-
-5.  Herramientas para construir gráficas
+3.  Actividad.
 
 # Introducción a Ciencia de Datos
 
-## CRIS-MD
+## La ciencia de datos es ...
+
+un campo interdisciplinario que utiliza métodos, procesos, algoritmos y sistemas científicos para extraer conocimientos e ideas de muchos datos estructurados y no estructurados.
+
+<br/>
+
+::: center
+::: columns
+::: {.column width="40%"}
+![](images/clipboard-2707460623.png){fig-align="center" width="377"}
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-3242954590.png){fig-align="center" width="485"}
+:::
+:::
+:::
+
+## En el 2004 ...
+
+El huracán Frances estaba arrasando el Caribe y amenazando con golpear directamente la costa atlántica de Florida.
+
+Los residentes se dirigieron a terrenos más altos, pero lejos, en Arkansas, los ejecutivos de las tiendas Wal-Mart decidieron que la situación ofrecía una gran oportunidad para una de sus armas más nuevas basadas en datos: ***la tecnología predictiva***.
+
+::: center
+::: columns
+::: {.column width="30%"}
+![](images/clipboard-123225538.png){width="194"}
+:::
+
+::: {.column width="30%"}
+![](https://c8.alamy.com/compes/ccn9gk/ft-pierce-9-6-04-un-clubouse-danados-por-el-huracan-frances-en-ocean-village-en-hutchinson-island-el-lunes-el-complejo-tambien-recibio-algunos-danos-a-techos-pisos-de-tierra-y-algunas-unidades-fueron-danadas-por-las-tormentas-foto-por-aguas-lannis-el-palm-beach-post-no-para-su-distribucion-fuera-de-cox-ccn9gk.jpg){width="268"}
+:::
+
+::: {.column width="30%"}
+![](images/clipboard-679480994.png){width="280"}
+:::
+:::
+:::
+
+## 
+
+Una semana antes de que la tormenta tocara tierra, Linda M. Dillman, directora de información de Wal-Mart, presionó a su personal para que elaboraran pronósticos basados en lo que había sucedido cuando el huracán Charley azotó varias semanas antes.
+
+Respaldada por billones de bytes de historial de compradores almacenados en el almacén de datos de Wal-Mart, consideró que la empresa podría “empezar a predecir lo que va a suceder, en lugar de esperar a que suceda”, como ella dijo.
+
+::: center
+::: columns
+::: {.column width="50%"}
+![](images/clipboard-4213549697.png){width="461"}
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-3960378011.png){width="265"}
+:::
+:::
+:::
+
+## ¡De hecho, eso es lo que pasó!
+
+::: columns
+::: {.column width="50%"}
+El New York Times informó
+
+::: {style="font-size: 80%;"}
+> *“… los expertos analizaron los datos y descubrieron que las tiendas efectivamente necesitarían ciertos productos, y no sólo las habituales linternas.*"
+:::
+:::
+
+::: {.column width="50%"}
+Dillman dijo
+
+::: {style="font-size: 80%;"}
+> *"No sabíamos en el pasado que las Pop-Tarts de fresa aumentan sus ventas, como siete veces su tasa de ventas normal, antes de un huracán"*
+:::
+:::
+:::
+
+[![](images/clipboard-3670330051.png){fig-align="center" width="529"}](https://www.nytimes.com/2004/11/14/business/yourmoney/what-walmart-knows-about-customers-habits.html)
+
+## El esquema de ciencia de datos
+
+![](images/clipboard-4096324521.png){fig-align="center"}
+
+## Business understanding
+
+-   La comprensión empresarial se refiere a definir el problema empresarial a resolver.
+
+-   El objetivo es reformular el problema empresarial como un problema de ciencia de datos.
+
+-   A menudo, reformular el problema y diseñar una solución es un proceso iterativo.
+
+## Data understanding
+
+-   Si el objetivo es resolver un problema empresarial, los datos que componen la materia prima disponible a partir de la cual se construirá la solución.
+
+-   Los datos disponibles rara vez coinciden con el problema.
+
+-   Por ejemplo, los datos históricos a menudo se recopilan con fines no relacionados con el problema empresarial actual o sin ningún propósito explícito.
+
+> Nuestro objetivo es convertir los datos en información que contesten preguntas útiles.
 
 ## Tipos de datos
 
@@ -41,6 +136,8 @@ css: style.css
 ### Audio
 
 Aqui nos enfocaremos en cosas que ya estan en una tabla.
+
+# Visualización de datos y sus principios
 
 ## ¿Qué es la visualización de datos?
 
@@ -64,9 +161,8 @@ Tu gráfica debe de contestar las preguntas:
 
 -   ¿Cómo la enfatizamos?
 
-```{=html}
 <!-- -->
-```
+
 -   Do you have reason to expect that one group/observation might be different?
 
 -   Why might your finding about shape matter?
