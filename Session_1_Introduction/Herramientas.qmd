@@ -11,6 +11,32 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
+## Los Tópicos de Hoy
+
+::: columns
+::: {.column width="50%"}
+1.  R Software
+
+    ![](images/clipboard-148304512.png){fig-align="center" width="324"}
+:::
+
+::: {.column width="50%"}
+2.  ggplot2
+
+    ![](images/clipboard-4021595969.png){width="324"}
+:::
+:::
+
+::: columns
+::: {.column width="30%"}
+3.  Actividad
+:::
+
+::: {.column width="70%"}
+![](images/clipboard-4224793803.png){fig-align="left" width="341"}
+:::
+:::
+
 ## R software
 
 -   R es un lenguaje de programación estadística de código abierto.
