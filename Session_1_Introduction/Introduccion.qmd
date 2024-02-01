@@ -45,8 +45,6 @@ un campo interdisciplinario que utiliza métodos, procesos, algoritmos y sistema
 
 El huracán Frances estaba arrasando el Caribe y amenazando con golpear directamente la costa atlántica de Florida.
 
-Los residentes se dirigieron a terrenos más altos, pero lejos, en Arkansas, los ejecutivos de las tiendas Wal-Mart decidieron que la situación ofrecía una gran oportunidad para una de sus armas más nuevas basadas en datos: ***la tecnología predictiva***.
-
 ::: center
 ::: columns
 ::: {.column width="30%"}
@@ -63,20 +61,28 @@ Los residentes se dirigieron a terrenos más altos, pero lejos, en Arkansas, los
 :::
 :::
 
+Los residentes se dirigieron a terrenos más altos, pero lejos, en Arkansas, los ejecutivos de las tiendas Wal-Mart decidieron que la situación ofrecía una gran oportunidad para una de sus armas más nuevas basadas en datos: ***la tecnología predictiva***.
+
 ## 
-
-Una semana antes de que la tormenta tocara tierra, Linda M. Dillman, directora de información de Wal-Mart, presionó a su personal para que elaboraran pronósticos basados en lo que había sucedido cuando el huracán Charley azotó varias semanas antes.
-
-Respaldada por billones de bytes de historial de compradores almacenados en el almacén de datos de Wal-Mart, consideró que la empresa podría “empezar a predecir lo que va a suceder, en lugar de esperar a que suceda”, como ella dijo.
 
 ::: center
 ::: columns
-::: {.column width="50%"}
-![](images/clipboard-4213549697.png){width="461"}
+::: {.column width="70%"}
+::: {style="font-size: 90%;"}
+Una semana antes de que la tormenta tocara tierra, Linda M. Dillman, directora de información de Wal-Mart, presionó a su personal para que elaboraran pronósticos basados en lo que había sucedido cuando el huracán Charley azotó varias semanas antes.
+
+<br/>
+
+Respaldada por billones de bytes de historial de compradores almacenados en el almacén de datos de Wal-Mart, consideró que la empresa podría “empezar a predecir lo que va a suceder, en lugar de esperar a que suceda”, como ella dijo.
+:::
 :::
 
-::: {.column width="50%"}
-![](images/clipboard-3960378011.png){width="265"}
+::: {.column width="30%"}
+![](images/clipboard-3960378011.png){width="224"}
+
+<br/>
+
+![](images/clipboard-4213549697.png){width="516"}
 :::
 :::
 :::
@@ -127,15 +133,45 @@ Dillman dijo
 
 ## Tipos de datos
 
-### Numericos
+::: center
+::: columns
+::: {.column width="30%"}
+[**Texto**]{style="color:green;"}
 
-### Texto
+![](images/clipboard-4167942809.png){width="511"}
+:::
 
-### Imágenes
+::: {.column width="30%"}
+[**Imágenes**]{style="color:orange;"}
 
-### Audio
+![](images/clipboard-3296722573.png){width="527"}
 
-Aqui nos enfocaremos en cosas que ya estan en una tabla.
+[**Video**]{style="color:lightblue;"}
+
+![](images/clipboard-2123600827.png){width="401"}
+:::
+
+::: {.column width="30%"}
+[**Audio**]{style="color:green;"}
+
+![](images/clipboard-2206237365.png)
+:::
+:::
+:::
+
+## Datos númericos
+
+La metodología de ciencia de datos esta basada en datos númericos dados en tablas.
+
+![](images/9a292b70-64d7-475e-9ffa-22c019609752_lossy.png){fig-align="center"}
+
+> De hecho, los textos, imágenes, videos o audios son transformados a este formato para procesarlos.
+
+[***En este curso, asumiremos que los datos están en una tabla.***]{style="color:#023562;"}
+
+::: notes
+Mas importante, asumiremos que los datos han sido limpiados y no contienen typos o observaciones extrañas.
+:::
 
 # Visualización de datos y sus principios
 
