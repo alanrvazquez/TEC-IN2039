@@ -173,13 +173,23 @@ La metodología de ciencia de datos esta basada en datos númericos dados en tab
 Mas importante, asumiremos que los datos han sido limpiados y no contienen typos o observaciones extrañas.
 :::
 
+## El reto de este curso
+
+Describir el reto de este curso.
+
 # Visualización de datos y sus principios
 
 ## ¿Qué es la visualización de datos?
 
 > “Una visualización \[de datos\] es cualquier presentación visual destinada a revelar evidencia, haciendo visible lo invisible” Alberto Cairo (2015).
 
-En esencia, una visualización de datos te permite profundizar en conjuntos de datos complejos para obtener información significativa mediante el uso de pantallas gráficas.
+![](images/clipboard-3803538817.png){fig-align="center" width="814"}
+
+## 
+
+En escencia, una visualización de datos te permite profundizar en conjuntos de datos complejos para obtener información significativa mediante el uso de pantallas gráficas.
+
+<br/>
 
 Las visualizaciones de datos se ocupan principalmente de proporcionar evidencia y permitir que la audiencia explore y llegue a sus propias conclusiones sobre lo que las visualizaciones revelan sobre los datos.
 
@@ -189,15 +199,32 @@ As data scientists, we create data visualizations in order to understand our dat
 
 # Los 3 principios de la visualización de datos
 
-## ***Principio 1*****:** Formula la pregunta de interés.
+## ***Principio 1*****:** Formula el mensaje
 
-Tu gráfica debe de contestar las preguntas:
+Muchas veces el mensaje se obtiene al contestar una pregunta de interés.
+
+::: center
+::: columns
+::: {.column width="33%"}
+![](images/clipboard-1758479249.png){width="499"}
+:::
+
+::: {.column width="33%"}
+[![](https://c8.alamy.com/comp/2E5GH3G/be-ready-to-lose-all-your-money-on-bitcoin-fca-tells-consumers-financial-newspaper-headline-in-guardian-12-january-2021-great-britain-uk-europe-2E5GH3G.jpg){alt="Be ready to lose all your money on bitcoin, FCA tells consumers\" Financial newspaper  headline in Guardian 12 January 2021 Great Britain UK Europe Stock Photo -  Alamy"}](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.alamy.com%2Fbe-ready-to-lose-all-your-money-on-bitcoin-fca-tells-consumers-financial-newspaper-headline-in-guardian-12-january-2021-great-britain-uk-europe-image399276404.html&psig=AOvVaw1j_DY1hqJ8N6YDmcJrt7O4&ust=1706894768727000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNiE4-PUioQDFQAAAAAdAAAAABAD)
+:::
+
+::: {.column width="33%"}
+![](images/clipboard-1023529598.png)
+:::
+:::
+:::
+
+::: notes
+El mensaje puede ser una pregunta
 
 -   ¿Cuál es la comparación importante?
 
 -   ¿Cómo la enfatizamos?
-
-<!-- -->
 
 -   Do you have reason to expect that one group/observation might be different?
 
@@ -208,30 +235,64 @@ Tu gráfica debe de contestar las preguntas:
 -   Are there any potentially important features to create comparisons with/against?
 
 \[Incluir noticias del new york times\]
+:::
 
-## ***Principio 2*****: *Transforma los datos en información.***
+## ***Principio 2*****: *Transforma los datos en información***
 
-Tu gráfica debe de usar los datos para contestar la pregunta. Es decir, debe de transformar los datos en información.
+Tu gráfica debe de usar los datos para transmitir el mensaje o contestar la pregunta. Es decir, debe de transformar los datos en información.
 
-Para esto, debe de tener los elementos indicados contar una historia.
+::: center
+::: columns
+::: {.column width="33%"}
+![](images/clipboard-4189732703.png)
+:::
 
-\[Incluir graficas del New York Times\]
+::: {.column width="33%"}
+![](images/clipboard-1399795317.png)
+:::
+
+::: {.column width="33%"}
+![](images/clipboard-2893827168.png)
+:::
+:::
+:::
 
 ## *Principio 3: Enriquece con información adicional*
 
+Enriquece tu gráfica con símbolos de color y texto para transmitir información adicional.
+
+::: center
+::: columns
+::: {.column width="50%"}
+![](images/clipboard-2010705704.png)
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-2746624499.png)
+:::
+:::
+:::
+
+::: notes
 No te limites a cosas simples. Enriquece tu gráfica con símbolos de color para transmitir información adicional. Si es posible, agrega contexto con marcadores y etiquetas de referencia.
 
 También, agrega una leyenda a la grafica que describa las características importantes y resuma sus conclusiones.
+:::
 
 ## 
 
-> "*El mayor valor de una imagen es cuando nos obliga a notar lo que nunca esperábamos ver.*"
->
-> John W. Tukey.
+::: columns
+::: {.column width="70%"}
+> "*El mayor valor de una imagen es cuando nos obliga a notar lo que nunca esperábamos ver.*" John W. Tukey.
+:::
 
+::: {.column width="30%"}
 ![](https://upload.wikimedia.org/wikipedia/en/e/e9/John_Tukey.jpg){alt="John Tukey - Wikipedia"}
+:::
+:::
 
-## Principios del diseño gráfico
+::: notes
+Principios del diseño gráfico
 
 1.  Es más fácil identificar objetos por color que por forma.
 
@@ -244,16 +305,11 @@ También, agrega una leyenda a la grafica que describa las características impo
 5.  Ten cuidado con las opciones predeterminadas del software de visualización.
 
 6.  Utiliza un diseño de cuadrícula para organizar su visualización.
+:::
 
 # Actividad
 
 Criticar una gráfica.
-
-# Situación Problema
-
-Describir situación problema
-
-### 
 
 # Herramientas para construir gráficas
 
