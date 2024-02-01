@@ -15,11 +15,29 @@ css: style.css
 
 ## Los Tópicos de Hoy
 
-1.  Introducción a la ciencia de datos.
+::: columns
+::: {.column width="50%"}
+1.  Ciencia de datos.
 
-2.  Visualización de datos y sus tres principios.
+    ![](images/clipboard-974366284.png){width="320"}
+:::
 
+::: {.column width="50%"}
+2.  Visualización y sus tres principios.
+
+    ![](images/clipboard-1163901538.png){width="345"}
+:::
+:::
+
+::: columns
+::: {.column width="30%"}
 3.  Actividad.
+:::
+
+::: {.column width="70%"}
+![](images/clipboard-4224793803.png){fig-align="left" width="341"}
+:::
+:::
 
 # Introducción a Ciencia de Datos
 
@@ -61,7 +79,7 @@ El huracán Frances estaba arrasando el Caribe y amenazando con golpear directam
 :::
 :::
 
-Los residentes se dirigieron a terrenos más altos, pero lejos, en Arkansas, los ejecutivos de las tiendas Wal-Mart decidieron que la situación ofrecía una gran oportunidad para una de sus armas más nuevas basadas en datos: ***la tecnología predictiva***.
+Los residentes se dirigieron a terrenos más altos, pero en Arkansas, los ejecutivos de Wal-Mart vieron que la situación ofrecía una gran oportunidad para una de sus armas más nuevas basadas en datos: ***la tecnología predictiva***.
 
 ## 
 
@@ -309,52 +327,10 @@ Principios del diseño gráfico
 
 # Actividad
 
-Criticar una gráfica.
+## Actividad (modo coperativo)
 
-# Herramientas para construir gráficas
-
-## R software
-
--   R es un lenguaje de programación estadística de código abierto.
-
--   R también es un entorno para gráficos y computación estadística.
-
--   Es fácilmente extensible con paquetes.
-
-![](images/clipboard-148304512.png){fig-align="center" width="324"}
-
-## Librerías en R
-
--   Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.
-
--   En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)
-
--   ¡Trabajaremos con un pequeño (pero importante) subconjunto de estos!
-
-## R Studio
-
-R Studio es una interfaz conveniente para R llamada IDE (entorno de desarrollo integrado). Comúnmente digo "Escribo código R en RStudio IDE"
-
-R Studio no es un requisito para programar con R, pero los programadores y científicos de datos de R lo utilizan con mucha frecuencia.
-
-![](images/clipboard-3369988845.png){fig-align="center"}
-
-## R Markdown
-
-R Markdown y los diversos paquetes que lo admiten permiten a los usuarios de R escribir su código y su prosa en documentos computacionales reproducibles.
-
-Generalmente nos referiremos a documentos R Markdown (con extensión .Rmd).
-
-Por ejemplo, "Haga esto en su documento R Markdown". Rara vez discutiremos la carga del paquete de rebajas.
-
-![](images/clipboard-2543451120.png){fig-align="center" width="284"}
-
-## 
-
-R Markdown le permite crear informes totalmente reproducibles. Es decir, cada vez que se teje el análisis se ejecuta desde el principio. Sintaxis de rebajas simple para texto.
-
-El código va en fragmentos, definidos por tres comillas invertidas, la narrativa sale de los fragmentos
-
-¡El entorno de su documento R Markdown está separado de la Consola!
-
-Acompañame a ver una demostración de R Markdown utilizando el siguiente archivo “Demo_RMarkdown.Rmd”.
+1.  Júntate con un compañero.
+2.  Encuentren un buen y un mal ejemplo de una visualización (gráficas) en linea.
+3.  Guarden las visualizaciones (por ejemplo, haciendo una captura de pantalla).
+4.  Escriban una crítica breve (3 a 4 enunciados) de cada visualización.
+5.  Suban sus criticas e imagenes en la siguiente liga.
