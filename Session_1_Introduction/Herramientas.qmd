@@ -425,6 +425,15 @@ Hay muchas maneras de cometer pequeños errores en la programación (por ejemplo
 
 A menudo tenemos que encontrar estos errores mediante prueba y error.
 
+## Librerías en R
+
+-   Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.
+
+-   En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)
+
+-   Trabajaremos mayormente con las librerias *readxl* y *ggplot2*.
+
+
 # ¿Cómo cargar datos en R?
 
 ## Organización de datos
@@ -491,49 +500,59 @@ Por lo tanto, los valores en cada fila representan los valores de ese caso parti
 
 ## Cargar datos en R
 
-En este curso, asumiremos que los datos estan almacenados en un archivo Excel con la organización anterior. Por ejemplo, el siguiente archivo muestra .
+En este curso, asumiremos que los datos estan almacenados en un archivo Excel con la organización anterior. Como ejemplo, usemos el archivo `prenguins.xlsx`.
 
-El archivo se llama .
+::: columns
+::: {.column width="50%"}
+![](images/print_excel.png){width="478"}
+:::
 
-Para leerlo, el archivo debe de estar en la misma carpeta que tu codigo.
+::: {.column width="50%"}
+![](images/clipboard-1776523589.png){width="475"}
+:::
+:::
+
+[ ***El archivo debe de estar en la misma carpeta que tu código.*** ]{style="color:red;"}
 
 ## Libreria `readxl`
 
-Para cargar datos en R, utilizaremos la libreria llamada `readxl` .
 
-Primero, debes de instalar esta libreria en R utilizando el siguiente comando.
+::: columns
+::: {.column width="70%"}
+Para cargar datos en R, usaremos la libreria llamada `readxl`. Primero, debes de instalar esta libreria en R utilizando el comando `install.packages("readxl")`
+
+:::
+
+::: {.column width="30%"}
+![](images/clipboard-2627775172.png){fig-align="right" width="244"}
+:::
+:::
+
+<br/>
+Una vez instalada la libreria, la cargamos en R usando el siguiente comando.
 
 ```{r}
-#| output: false
-#| echo: false
+#| echo: true
 
-install.packages("readxl")
+library(readxl)
 ```
-
-![](images/clipboard-2627775172.png){fig-align="right" width="332"}
 
 ## 
 
-El siguiente código muestra como leer los datos en el archivo `alan.xlsx` en R.
+El siguiente código muestra como leer los datos en el archivo `penguins.xlsx` en R.
 
 ```{r}
-#| output: false
+#| output: true
 #| echo: true
 
-datos_alan <- read_excel()
+prenguins_data <- read_excel("penguins.xlsx")
+
+# Imprime las primeras 6 filas de los datos.
+head(prenguins_data)
 ```
 
 # ggplot2
 
-## Librerías en R
-
--   Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.
-
--   En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)
-
--   Trabajaremos con un pequeño subconjunto de estas.
-
--   La más importante es `ggplot2`.
 
 ## ggplot2
 

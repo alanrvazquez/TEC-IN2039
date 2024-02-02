@@ -694,7 +694,7 @@ Alan R. Vázquez
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_4134e5b7" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_427c6a21" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -794,7 +794,7 @@ Alan R. Vázquez
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_02cfe27c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_2341c20b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -817,6 +817,14 @@ Alan R. Vázquez
 <p>La mejor manera de aprender a programar es probar cosas y ver qué sucede. Escribe un código, ejecútalo y piensa por qué no funcionó.</p>
 <p>Hay muchas maneras de cometer pequeños errores en la programación (por ejemplo, escribir una letra mayúscula cuando se necesita una letra minúscula).</p>
 <p>A menudo tenemos que encontrar estos errores mediante prueba y error.</p>
+</section>
+<section id="librerías-en-r" class="slide level2">
+<h2>Librerías en R</h2>
+<ul>
+<li><p>Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.</p></li>
+<li><p>En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)</p></li>
+<li><p>Trabajaremos mayormente con las librerias <em>readxl</em> y <em>ggplot2</em>.</p></li>
+</ul>
 </section>
 <section>
 <section id="cómo-cargar-datos-en-r" class="title-slide slide level1 center">
@@ -881,32 +889,60 @@ Alan R. Vázquez
 </section>
 <section id="cargar-datos-en-r" class="slide level2">
 <h2>Cargar datos en R</h2>
-<p>En este curso, asumiremos que los datos estan almacenados en un archivo Excel con la organización anterior. Por ejemplo, el siguiente archivo muestra .</p>
-<p>El archivo se llama .</p>
-<p>Para leerlo, el archivo debe de estar en la misma carpeta que tu codigo.</p>
+<p>En este curso, asumiremos que los datos estan almacenados en un archivo Excel con la organización anterior. Como ejemplo, usemos el archivo <code>prenguins.xlsx</code>.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="images/print_excel.png" width="478"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/clipboard-1776523589.png" width="475"></p>
+</div>
+</div>
+<p><span style="color:red;"><strong><em>El archivo debe de estar en la misma carpeta que tu código.</em></strong></span></p>
 </section>
 <section id="libreria-readxl" class="slide level2">
 <h2>Libreria <code>readxl</code></h2>
-<p>Para cargar datos en R, utilizaremos la libreria llamada <code>readxl</code> .</p>
-<p>Primero, debes de instalar esta libreria en R utilizando el siguiente comando.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co">#install.packages("readxl")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="columns">
+<div class="column" style="width:70%;">
+<p>Para cargar datos en R, usaremos la libreria llamada <code>readxl</code>. Primero, debes de instalar esta libreria en R utilizando el comando <code>install.packages("readxl")</code></p>
+</div><div class="column" style="width:30%;">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="images/clipboard-2627775172.png" width="244"></p>
+</figure>
 </div>
-
-<img data-src="images/clipboard-2627775172.png" width="447" class="r-stretch quarto-figure-right"></section></section>
+</div>
+</div>
+<p><br> Una vez instalada la libreria, la cargamos en R usando el siguiente comando.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">library</span>(readxl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<p>El siguiente código muestra como leer los datos en el archivo <code>penguins.xlsx</code> en R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>prenguins_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"penguins.xlsx"</span>)</span>
+<span id="cb42-2"><a href="#cb42-2"></a></span>
+<span id="cb42-3"><a href="#cb42-3"></a><span class="co"># Imprime las primeras 6 filas de los datos.</span></span>
+<span id="cb42-4"><a href="#cb42-4"></a><span class="fu">head</span>(prenguins_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 8
+  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+  &lt;chr&gt;   &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+1 Adelie  Torgersen           39.1          18.7               181        3750
+2 Adelie  Torgersen           39.5          17.4               186        3800
+3 Adelie  Torgersen           40.3          18                 195        3250
+4 Adelie  Torgersen           NA            NA                  NA          NA
+5 Adelie  Torgersen           36.7          19.3               193        3450
+6 Adelie  Torgersen           39.3          20.6               190        3650
+# ℹ 2 more variables: sex &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section></section>
 <section>
 <section id="ggplot2" class="title-slide slide level1 center">
 <h1>ggplot2</h1>
 
-</section>
-<section id="librerías-en-r" class="slide level2">
-<h2>Librerías en R</h2>
-<ul>
-<li><p>Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.</p></li>
-<li><p>En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)</p></li>
-<li><p>Trabajaremos con un pequeño subconjunto de estas.</p></li>
-<li><p>La más importante es <code>ggplot2</code>.</p></li>
-</ul>
 </section>
 <section id="ggplot2-1" class="slide level2">
 <h2>ggplot2</h2>
