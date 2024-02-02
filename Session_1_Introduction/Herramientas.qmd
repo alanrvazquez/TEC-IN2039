@@ -37,6 +37,8 @@ css: style.css
 :::
 :::
 
+Estas diapositivas estan basadas en material disponible en <https://coursekata.org/>
+
 ## R software
 
 ::: columns
@@ -423,6 +425,104 @@ Hay muchas maneras de cometer pequeños errores en la programación (por ejemplo
 
 A menudo tenemos que encontrar estos errores mediante prueba y error.
 
+# ¿Cómo cargar datos en R?
+
+## Organización de datos
+
+En estadística, generalmente organizamos los datos en filas y columnas.
+
+```         
+    Condition  Age   Wt    Wt2
+1  Uninformed   35  136  135.8
+2  Uninformed   45  162  161.8
+3    Informed   52  117  116.8
+4    Informed   29  184  182.8
+5  Uninformed   38  134  136.6
+6    Informed   39  189  183.2
+```
+
+Las filas representan los casos muestreados. En este ejemplo, las filas representan amas de llaves de diferentes hoteles. Hay seis filas, por lo que hay seis amas de casa en este conjunto de datos.
+
+Dependiendo del estudio, las filas podrían ser personas, estados, parejas, ratones, cualquier caso del que tomes una muestra para estudiarlo.
+
+## 
+
+::: columns
+::: {.column width="50%"}
+Las columnas representan variables o los atributos de cada caso que se midieron.
+:::
+
+::: {.column width="50%"}
+```         
+    Condition  Age   Wt    Wt2
+1  Uninformed   35  136  135.8
+2  Uninformed   45  162  161.8
+3    Informed   52  117  116.8
+4    Informed   29  184  182.8
+5  Uninformed   38  134  136.6
+6    Informed   39  189  183.2
+```
+:::
+:::
+
+En este estudio, se informó o no a las amas de llaves que su trabajo diario de limpieza de habitaciones de hotel equivalía a hacer ejercicio adecuado para una buena salud.
+
+Entonces una de las variables es `Condution` si fueron informados de este hecho o no.
+
+## 
+
+Existen otras variables como la edad del ama de llaves (`Age`), el peso antes de iniciar el estudio (`Wt`), y su peso al final del estudio (`Wt2`, medido cuatro semanas después).
+
+Por lo tanto, los valores en cada fila representan los valores de ese caso particular en cada una de las variables medidas.
+
+```         
+    Condition  Age   Wt    Wt2
+1  Uninformed   35  136  135.8
+2  Uninformed   45  162  161.8
+3    Informed   52  117  116.8
+4    Informed   29  184  182.8
+5  Uninformed   38  134  136.6
+6    Informed   39  189  183.2
+```
+
+::: notes
+¿Cuántas variables hay en este conjunto de datos?
+:::
+
+## Cargar datos en R
+
+En este curso, asumiremos que los datos estan almacenados en un archivo Excel con la organización anterior. Por ejemplo, el siguiente archivo muestra .
+
+El archivo se llama .
+
+Para leerlo, el archivo debe de estar en la misma carpeta que tu codigo.
+
+## Libreria `readxl`
+
+Para cargar datos en R, utilizaremos la libreria llamada `readxl` .
+
+Primero, debes de instalar esta libreria en R utilizando el siguiente comando.
+
+```{r}
+#| output: false
+#| echo: false
+
+install.packages("readxl")
+```
+
+![](images/clipboard-2627775172.png){fig-align="right" width="332"}
+
+## 
+
+El siguiente código muestra como leer los datos en el archivo `alan.xlsx` en R.
+
+```{r}
+#| output: false
+#| echo: true
+
+datos_alan <- read_excel()
+```
+
 # ggplot2
 
 ## Librerías en R
@@ -431,26 +531,21 @@ A menudo tenemos que encontrar estos errores mediante prueba y error.
 
 -   En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)
 
--   ¡Trabajaremos con un pequeño (pero importante) subconjunto de estos!
+-   Trabajaremos con un pequeño subconjunto de estas.
 
-## 
+-   La más importante es `ggplot2`.
 
-## R Markdown
+## ggplot2
 
-R Markdown y los diversos paquetes que lo admiten permiten a los usuarios de R escribir su código y su prosa en documentos computacionales reproducibles.
+::: columns
+::: {.column width="50%"}
+![](images/tidyverse.png){fig-align="left"}
+:::
 
-Generalmente nos referiremos a documentos R Markdown (con extensión .Rmd).
-
-Por ejemplo, "Haga esto en su documento R Markdown". Rara vez discutiremos la carga del paquete de rebajas.
-
-![](images/clipboard-2543451120.png){fig-align="center" width="284"}
-
-## 
-
-R Markdown le permite crear informes totalmente reproducibles. Es decir, cada vez que se teje el análisis se ejecuta desde el principio. Sintaxis de rebajas simple para texto.
-
-El código va en fragmentos, definidos por tres comillas invertidas, la narrativa sale de los fragmentos
-
-¡El entorno de su documento R Markdown está separado de la Consola!
-
-Acompañame a ver una demostración de R Markdown utilizando el siguiente archivo “Demo_RMarkdown.Rmd”.
+::: {.column width="50%"}
+-   **ggplot2** es uno de los mejores paquetes gratuitos para construir gráficas.
+-   Es parte de una colección de paquetes de ciencia de datos llamado *tidyverse*.
+-   Está basado en la *Gramática de las Gráficas.*
+-   <https://ggplot2-book.org/>
+:::
+:::

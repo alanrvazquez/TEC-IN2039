@@ -439,6 +439,7 @@ Alan R. Vázquez
 </div>
 </div>
 </div>
+<p>Estas diapositivas estan basadas en material disponible en <a href="https://coursekata.org/" class="uri">https://coursekata.org/</a></p>
 </section>
 <section id="r-software" class="slide level2">
 <h2>R software</h2>
@@ -693,7 +694,7 @@ Alan R. Vázquez
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_57155ca9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_4134e5b7" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -793,7 +794,7 @@ Alan R. Vázquez
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_cfc2a728" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_02cfe27c" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -818,6 +819,82 @@ Alan R. Vázquez
 <p>A menudo tenemos que encontrar estos errores mediante prueba y error.</p>
 </section>
 <section>
+<section id="cómo-cargar-datos-en-r" class="title-slide slide level1 center">
+<h1>¿Cómo cargar datos en R?</h1>
+
+</section>
+<section id="organización-de-datos" class="slide level2">
+<h2>Organización de datos</h2>
+<p>En estadística, generalmente organizamos los datos en filas y columnas.</p>
+<pre><code>    Condition  Age   Wt    Wt2
+1  Uninformed   35  136  135.8
+2  Uninformed   45  162  161.8
+3    Informed   52  117  116.8
+4    Informed   29  184  182.8
+5  Uninformed   38  134  136.6
+6    Informed   39  189  183.2</code></pre>
+<p>Las filas representan los casos muestreados. En este ejemplo, las filas representan amas de llaves de diferentes hoteles. Hay seis filas, por lo que hay seis amas de casa en este conjunto de datos.</p>
+<p>Dependiendo del estudio, las filas podrían ser personas, estados, parejas, ratones, cualquier caso del que tomes una muestra para estudiarlo.</p>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Las columnas representan variables o los atributos de cada caso que se midieron.</p>
+</div><div class="column" style="width:50%;">
+<pre><code>    Condition  Age   Wt    Wt2
+1  Uninformed   35  136  135.8
+2  Uninformed   45  162  161.8
+3    Informed   52  117  116.8
+4    Informed   29  184  182.8
+5  Uninformed   38  134  136.6
+6    Informed   39  189  183.2</code></pre>
+</div>
+</div>
+<p>En este estudio, se informó o no a las amas de llaves que su trabajo diario de limpieza de habitaciones de hotel equivalía a hacer ejercicio adecuado para una buena salud.</p>
+<p>Entonces una de las variables es <code>Condution</code> si fueron informados de este hecho o no.</p>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>Existen otras variables como la edad del ama de llaves (<code>Age</code>), el peso antes de iniciar el estudio (<code>Wt</code>), y su peso al final del estudio (<code>Wt2</code>, medido cuatro semanas después).</p>
+<p>Por lo tanto, los valores en cada fila representan los valores de ese caso particular en cada una de las variables medidas.</p>
+<pre><code>    Condition  Age   Wt    Wt2
+1  Uninformed   35  136  135.8
+2  Uninformed   45  162  161.8
+3    Informed   52  117  116.8
+4    Informed   29  184  182.8
+5  Uninformed   38  134  136.6
+6    Informed   39  189  183.2</code></pre>
+<aside class="notes">
+<p>¿Cuántas variables hay en este conjunto de datos?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="cargar-datos-en-r" class="slide level2">
+<h2>Cargar datos en R</h2>
+<p>En este curso, asumiremos que los datos estan almacenados en un archivo Excel con la organización anterior. Por ejemplo, el siguiente archivo muestra .</p>
+<p>El archivo se llama .</p>
+<p>Para leerlo, el archivo debe de estar en la misma carpeta que tu codigo.</p>
+</section>
+<section id="libreria-readxl" class="slide level2">
+<h2>Libreria <code>readxl</code></h2>
+<p>Para cargar datos en R, utilizaremos la libreria llamada <code>readxl</code> .</p>
+<p>Primero, debes de instalar esta libreria en R utilizando el siguiente comando.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co">#install.packages("readxl")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<img data-src="images/clipboard-2627775172.png" width="447" class="r-stretch quarto-figure-right"></section></section>
+<section>
 <section id="ggplot2" class="title-slide slide level1 center">
 <h1>ggplot2</h1>
 
@@ -827,27 +904,30 @@ Alan R. Vázquez
 <ul>
 <li><p>Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.</p></li>
 <li><p>En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)</p></li>
-<li><p>¡Trabajaremos con un pequeño (pero importante) subconjunto de estos!</p></li>
+<li><p>Trabajaremos con un pequeño subconjunto de estas.</p></li>
+<li><p>La más importante es <code>ggplot2</code>.</p></li>
 </ul>
 </section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-</section>
-<section id="r-markdown" class="slide level2">
-<h2>R Markdown</h2>
-<p>R Markdown y los diversos paquetes que lo admiten permiten a los usuarios de R escribir su código y su prosa en documentos computacionales reproducibles.</p>
-<p>Generalmente nos referiremos a documentos R Markdown (con extensión .Rmd).</p>
-<p>Por ejemplo, “Haga esto en su documento R Markdown”. Rara vez discutiremos la carga del paquete de rebajas.</p>
-
-<img data-src="images/clipboard-2543451120.png" width="284" class="r-stretch quarto-figure-center"></section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<p>R Markdown le permite crear informes totalmente reproducibles. Es decir, cada vez que se teje el análisis se ejecuta desde el principio. Sintaxis de rebajas simple para texto.</p>
-<p>El código va en fragmentos, definidos por tres comillas invertidas, la narrativa sale de los fragmentos</p>
-<p>¡El entorno de su documento R Markdown está separado de la Consola!</p>
-<p>Acompañame a ver una demostración de R Markdown utilizando el siguiente archivo “Demo_RMarkdown.Rmd”.</p>
-
-<img src="IN2039_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<section id="ggplot2-1" class="slide level2">
+<h2>ggplot2</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-left">
+<figure>
+<p><img data-src="images/tidyverse.png"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><strong>ggplot2</strong> es uno de los mejores paquetes gratuitos para construir gráficas.</li>
+<li>Es parte de una colección de paquetes de ciencia de datos llamado <em>tidyverse</em>.</li>
+<li>Está basado en la <em>Gramática de las Gráficas.</em></li>
+<li><a href="https://ggplot2-book.org/" class="uri">https://ggplot2-book.org/</a></li>
+</ul>
+</div>
+</div>
+<p><img src="IN2039_logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 
 </div>
 </section></section>
