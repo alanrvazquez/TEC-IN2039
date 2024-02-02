@@ -282,6 +282,10 @@ mi_vector
 2.  Guarda el resultado en un nuevo vector llamado `mi_nuevo_vector`.
 3.  Prueba el siguiente comando `sum(mi_vector_2)`. ¿Qué obtuviste?
 
+```{r}
+countdown::countdown(minutes = 5)
+```
+
 ## Indexación
 
 Podemos indexar una posición en el vector usando corchetes con un número como este: `[1]`.
@@ -391,6 +395,10 @@ my_booleans <- my_numbers >= 5
 my_numbers
 my_booleans
 
+```
+
+```{r}
+countdown::countdown(minutes = 5)
 ```
 
 ## Lista de operadores lógicos comúnes

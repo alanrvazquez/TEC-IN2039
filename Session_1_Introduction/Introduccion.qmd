@@ -327,10 +327,14 @@ Principios del diseño gráfico
 
 # Actividad
 
-## Actividad (modo coperativo)
+## Actividad (*cooperative* mode)
 
 1.  Júntate con un compañero.
 2.  Encuentren un buen y un mal ejemplo de una visualización (gráficas) en linea.
 3.  Guarden las visualizaciones (por ejemplo, haciendo una captura de pantalla).
 4.  Escriban una crítica breve (3 a 4 enunciados) de cada visualización.
 5.  Suban sus criticas e imagenes en la siguiente liga.
+
+```{r}
+countdown::countdown(minutes = 15)
+```
