@@ -433,7 +433,6 @@ A menudo tenemos que encontrar estos errores mediante prueba y error.
 
 -   Trabajaremos mayormente con las librerias *readxl* y *ggplot2*.
 
-
 # ¿Cómo cargar datos en R?
 
 ## Organización de datos
@@ -512,15 +511,13 @@ En este curso, asumiremos que los datos estan almacenados en un archivo Excel co
 :::
 :::
 
-[ ***El archivo debe de estar en la misma carpeta que tu código.*** ]{style="color:red;"}
+[***El archivo debe de estar en la misma carpeta que tu código.***]{style="color:red;"}
 
 ## Libreria `readxl`
-
 
 ::: columns
 ::: {.column width="70%"}
 Para cargar datos en R, usaremos la libreria llamada `readxl`. Primero, debes de instalar esta libreria en R utilizando el comando `install.packages("readxl")`
-
 :::
 
 ::: {.column width="30%"}
@@ -528,8 +525,7 @@ Para cargar datos en R, usaremos la libreria llamada `readxl`. Primero, debes de
 :::
 :::
 
-<br/>
-Una vez instalada la libreria, la cargamos en R usando el siguiente comando.
+<br/> Una vez instalada la libreria, la cargamos en R usando el siguiente comando.
 
 ```{r}
 #| echo: true
@@ -553,7 +549,6 @@ head(prenguins_data)
 
 # ggplot2
 
-
 ## ggplot2
 
 ::: columns
@@ -568,3 +563,14 @@ head(prenguins_data)
 -   <https://ggplot2-book.org/>
 :::
 :::
+
+## El lenguaje de ggplot
+
+ggplot tiene una estructura para crear gráficas por pasos.
+
+```{r}
+#| echo: true
+#| output: true
+
+
+```
