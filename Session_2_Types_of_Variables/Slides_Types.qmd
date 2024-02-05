@@ -7,7 +7,10 @@ author:
     email: alanrvazquez@tec.mx
     affiliations:
       - name: Tecnológico de Monterrey
-format: revealjs
+format: 
+  revealjs:
+    chalkboard: true
+    multiplex: true
 editor: visual
 slide-number: True
 logo: IN2039_logo.png
@@ -77,7 +80,7 @@ They help specify the operations, visualizations, and models we can meaningfully
 Whether the variable(s) are quantitative or qualitative generally determines the set of viable plots to make, although there are exceptions.
 
 | Tipo         | Número | Gráfica                                                                                         |
-|:-------------|:-------|:------------------------------------------------------------------------------------------------|
+|:----------|:----------|:-------------------------------------------------|
 | Quantitativa | 1      | Rug plot, histogram, density curve, box plot, violin plot                                       |
 | Categórica   | 1      | Bar plot, dot plot, line plot, pie chart                                                        |
 | Quantitativa | 2      | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
