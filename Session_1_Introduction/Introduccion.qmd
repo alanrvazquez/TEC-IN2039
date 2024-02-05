@@ -6,7 +6,9 @@ author:
   - name: Alan R. Vázquez
     affiliations:
       - name: Tecnológico de Monterrey
-format: revealjs
+format: 
+  revealjs:
+    multiplex: true
 editor: visual
 slide-number: True
 logo: IN2039_logo.png
