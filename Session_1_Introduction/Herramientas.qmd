@@ -4,7 +4,10 @@ author:
   - name: Alan R. Vázquez
     affiliations:
       - name: Tecnológico de Monterrey
-format: revealjs
+format: 
+  revealjs:
+    chalkboard: true
+    multiplex: true
 editor: visual
 slide-number: True
 logo: IN2039_logo.png
@@ -37,7 +40,9 @@ css: style.css
 :::
 :::
 
+::: {style="font-size: 70%;"}
 Estas diapositivas estan basadas en material disponible en <https://coursekata.org/>
+:::
 
 ## R software
 
@@ -63,7 +68,7 @@ Para hacer graficos o visualizaciones se tiene que usar la computadora y program
 El conocer r te ayudara a tu CV porque, despues de este cusro, puedes poner conocimiento basico de analysis de datos con R.
 :::
 
-## Empezemos con un su instalación
+## Empezemos con su instalación
 
 Ve a la siguiente liga: <https://www.r-project.org/>
 
@@ -129,11 +134,29 @@ También puedes usar R como una calculadora básica.
 
 ```{r}
 #| echo: true
-#| output: false
+#| output: true
 
 5 + 1
+```
+
+```{r}
+#| echo: true
+#| output: true
+
 10 - 3
+```
+
+```{r}
+#| echo: true
+#| output: true
+
 2 * 4
+```
+
+```{r}
+#| echo: true
+#| output: true
+
 9 / 3
 ```
 
@@ -475,7 +498,7 @@ Las columnas representan variables o los atributos de cada caso que se midieron.
 
 En este estudio, se informó o no a las amas de llaves que su trabajo diario de limpieza de habitaciones de hotel equivalía a hacer ejercicio adecuado para una buena salud.
 
-Entonces una de las variables es `Condution` si fueron informados de este hecho o no.
+Entonces una de las variables es `Condition` si fueron informados de este hecho o no.
 
 ## 
 
@@ -541,10 +564,10 @@ El siguiente código muestra como leer los datos en el archivo `penguins.xlsx` e
 #| output: true
 #| echo: true
 
-prenguins_data <- read_excel("penguins.xlsx")
+penguins_data <- read_excel("penguins.xlsx")
 
 # Imprime las primeras 6 filas de los datos.
-head(prenguins_data)
+head(penguins_data)
 ```
 
 # ggplot2
@@ -564,13 +587,88 @@ head(prenguins_data)
 :::
 :::
 
-## El lenguaje de ggplot
+## Instalación
+
+::: columns
+::: {.column width="80%"}
+1.  Instala la libreria usando el comando `install.packages("ggplot2")`
+:::
+
+::: {.column width="20%"}
+![](images/clipboard-4021595969.png){fig-align="right" width="146"}
+:::
+:::
+
+2.  Instala una libreria auxiliar `install.packages("ggformula")`
+
+3\. Carga ambas libreries en R usando el siguiente código.
+
+```{r}
+#| echo: true
+
+library(ggplot2)
+library(ggformula)
+```
+
+## La estructura de ggplot
 
 ggplot tiene una estructura para crear gráficas por pasos.
+
+[`gf_PLOTTYPE(Variable2 ~ Variable1, data = my_data, color = ~Variable3, shape = ~Variable4)`]{style="color:red;"}
+
+[``` + labs(title, subtitle,``caption,``x, y, color, shape) ```]{style="color:blue;"}
+
+[`+ more_options()`]{style="color:lightblue;"}
+
+## Ejemplo
+
+¿Existe alguna diferencia entre la longitud y profundidad del pico de las diferentes especies de pingüinos?
 
 ```{r}
 #| echo: true
 #| output: true
+#| code-overflow: wrap
+#| fig-pos: center
+#| output-location: fragment
 
+gf_point(bill_length_mm ~ bill_depth_mm, data = penguins_data,
+         color = ~species) 
+```
+
+## Ejemplo
+
+```{r}
+#| echo: true
+#| output: true
+#| code-overflow: wrap
+#| fig-pos: center
+#| code-line-numbers: "2-6"
+#| output-location: fragment
+
+gf_point(bill_length_mm ~ bill_depth_mm, data = penguins_data, 
+color = ~species) + labs(title = "Profundidad y longitud del pico", 
+subtitle = "Dimensiones para pingüinos en Adelie,
+         Chinstrap, and Gentoo", 
+x = "Profundidad del pico (mm)", y = "Longitud del pico (mm)",
+color = "Especie")
+```
+
+## Ejemplo
+
+```{r}
+#| echo: true
+#| output: true
+#| code-overflow: wrap
+#| fig-height: 4
+#| fig-pos: center 
+#| code-line-numbers: "6"
+#| output-location: fragment 
+
+gf_point(bill_length_mm ~ bill_depth_mm, data = penguins_data, 
+color = ~species) + labs(title = "Profundidad y longitud del pico", 
+subtitle = "Dimensiones para pingüinos en Adelie,
+         Chinstrap, and Gentoo", 
+x = "Profundidad del pico (mm)", y = "Longitud del pico (mm)",
+color = "Especie") +  scale_color_viridis_d()
 
 ```
