@@ -9,6 +9,8 @@ author:
 format: 
   revealjs:
     multiplex: true
+revealjs-plugins:
+  - pointer    
 editor: visual
 slide-number: True
 logo: IN2039_logo.png
