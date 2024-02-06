@@ -23,35 +23,35 @@ css: style.css
 ::: {.column width="50%"}
 1.  ¿De qué tipo es mi variable?
 
-    ![](images/clipboard-148304512.png){fig-align="center" width="281"}
+    ![](images/clipboard-2750534250.png)
 :::
 
 ::: {.column width="50%"}
 2.  Actividad
 
-    ![](images/clipboard-4224793803.png){fig-align="left" width="224"}\
+    ![](images/clipboard-4224793803.png){width="423"}
 :::
 :::
 
 ::: columns
 ::: {.column width="30%"}
-3.  Definiendo variables en R
+3.  La importancia del tipo de variables
 :::
 
 ::: {.column width="70%"}
-![](images/clipboard-4021595969.png){width="265"}
+![](images/clipboard-1628090285.png){width="254"}
 :::
 :::
 
 ## Tipos de variables
 
-Antes de hacer una gráfica, debemos examinar el tipo de valor en las variables de nuestros datos.
+Antes de hacer una gráfica, debemos examinar el tipo de valor que toman las variables de nuestros datos.
 
 Hay dos tipos principales de variables:
 
--   Variables numéricas.
+-   [Variables numéricas.]{style="color:darkblue;"}
 
--   Variables categóricas.
+-   [Variables categóricas.]{style="color:darkred;"}
 
 ## Variables numéricas
 
@@ -63,58 +63,97 @@ Toman valores que representan medidas numéricas o cantidades.
 
 -   Edad (en años).
 
-Las variables numéricas se dividen en [**discretas**]{style="color:lightblue;"}, lo que significa que la variable tiene un número limitado o pequeño de posibles valores, y [**continuas**]{style="color:darkblue;"}, lo que significa que el numero de valores es muy grande o infinito.
+Las variables numéricas se dividen en [*discretas*]{style="color:lightblue;"}, lo que significa que la variable tiene un número pequeño de posibles valores, y [*continuas*]{style="color:darkblue;"}, lo que significa que el numero de valores es muy grande o infinito.
 
 ## Variables categóricas
 
-Toman valores que se colocan en categorías.
+Toman valores que se colocan en *categorías*.
 
-Una **categoría** es una clase o división de personas o cosas que tienen características particulares compartidas.
+> Una **categoría** es una clase o división de personas o cosas que tienen características particulares compartidas.
 
-|                  |                         |
-|------------------|-------------------------|
-| **Variable**     | **Categorias**          |
-| Color de cabello | Negro, café, rubio      |
-| País de origen   | México, Canadá, EUA     |
-| Código postal    | 72703, 1002, 66444, ... |
+|                  |                                                                 |
+|---------------------------------|---------------------------------------|
+| **Variable**     | **Categorias**                                                  |
+| Reseña en Amazon | 1$\bigstar$, 2$\bigstar$, 3$\bigstar$, 4$\bigstar$, 5$\bigstar$ |
+| País de origen   | México, Canadá, EUA                                             |
+| Código postal    | 72703, 90034, 3000, ...                                         |
 
 Las variables categóricas se dividen en dos tipos importantes:
 
--   [*nominales*]{style="color:darkblue;"}
--   [*ordinales*]{style="color:darkgreen;"}
+-   [*Nominales*]{style="color:darkred;"}
+-   [*Ordinales*]{style="color:darkgreen;"}
 
-## Variables categóricas nominales
+::: notes
+Dependiendo si las categorias tienen orden o no.
+:::
 
-> Una característica que representa categorías "nombradas", donde las categorías no tienen un orden natural, se llama nominal. Los ejemplos incluyen afiliación a partidos políticos (demócrata, republicano, verde, otros); tipo de perro (pastor, sabueso, no deportivo, deportivo, terrier, toy, de trabajo); y sistema operativo de la computadora (Windows, macOS, Linux).
+## Variable categórica nominal
 
-A feature that represents “named” categories, where the categories do not have a natural ordering, is called nominal. Examples include political party affiliation (Democrat, Republican, Green, Other); dog type (herding, hound, non-sporting, sporting, terrier, toy, working); and computer operating system (Windows, macOS, Linux).
+Una variable categórica es nominal si sus categorías **no** tienen orden.
 
-## Variables categóricas ordinales
+Por ejemplo:
 
-Measurements that represent ordered categories are called ordinal. Examples of ordinal features are t-shirt size (small, medium, large); Likert-scale response (disagree, neutral, agree); and level of education (high school, college, graduate school).
+-   Afiliación a partidos políticos (demócrata, republicano, verde, otros).
+-   Tipo de perro (pastor, sabueso, no deportivo, deportivo, terrier, toy, de trabajo).
+-   Sistema operativo de la computadora (Windows, macOS, Linux).
+
+## Variable categórica ordinal
+
+Una variable categórica es ordinal si sus categorías **tienen orden**.
+
+Por ejemplo:
+
+-   Talla de camiseta (pequeña, mediana, grande).
+-   Nivel de educación (secundaria, universidad, posgrado).
+-   Nivel de ingreso (menos de \$50K, \$550k-\$5100K, mas de \$100K).
 
 ::: notes
 It is important to note that with an ordinal feature, the difference between, say, small and medium need not be the same as the difference between medium and large. Also, the differences between consecutive categories may not even be quantifiable. Think of the number of stars in a restaurant review and what one star means in comparison to two stars.
 :::
 
-## Note that...
+## Interesante...
 
-A feature stored as an integer can represent nominal data, strings can be quantitative (like `"$100.00"`), and, in practice, boolean values often represent nominal features that have only two possible values.
+-   Valores enteros (ejemplo, 1, 2, 3, ..., 5) pueden representar categoricas nominales.
+
+    |                    |     |     |      |     |
+    |--------------------|-----|-----|------|-----|
+    |                    | *A* | *B* | *AB* | *O* |
+    | **Tipo de Sangre** | 1   | 2   | 3    | 4   |
+
+<!-- -->
+
+-   En la práctica, los valores booleanos (`TRUE` y `FALSE`) a menudo representan categorías nominales.
 
 # Actividad
 
-# Conclusiones
+## Actividad (*solo* mode)
 
-## La importancia de los typos de variables
+¿Qué tipo de variable es? Ve a la siguiente liga
 
-Feature types guide us in our data analysis.
+\[LINK\]
 
-They help specify the operations, visualizations, and models we can meaningfully apply to the data.
+y contesta las preguntas.
 
-Whether the variable(s) are quantitative or qualitative generally determines the set of viable plots to make, although there are exceptions.
+```{r}
+countdown::countdown(minutes = 10)
+```
+
+## Recuerda
+
+![](images/clipboard-2750534250.png)
+
+# La importancia del tipo de variables
+
+## El tipo de variable define nuestro analysis
+
+Ayudan a especificar las operaciones, visualizaciones y modelos que podemos aplicar a los datos.
+
+El tipo de variable (numérica o categórica) generalmente determina el tipo de gráfica, aunque existen excepciones.
+
+## 
 
 | Tipo         | Número | Gráfica                                                                                         |
-|:---------------|:---------------|:----------------------------------------|
+|:------------------|:------------------|:---------------------------------|
 | Quantitativa | 1      | Rug plot, histogram, density curve, box plot, violin plot                                       |
 | Categórica   | 1      | Bar plot, dot plot, line plot, pie chart                                                        |
 | Quantitativa | 2      | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
