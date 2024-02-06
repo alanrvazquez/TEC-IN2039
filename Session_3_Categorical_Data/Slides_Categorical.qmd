@@ -42,6 +42,23 @@ css: style.css
 :::
 :::
 
+## Primero lo primero
+
+Hoy usaremos R para construir graficas y tablas. Para esto, utilizaremos las librerias que ya vimos antes como `ggplot2`, `ggformula`, y `readxl`.
+
+<br/>
+
+Carguemoslas en R antes de comenzar.
+
+```{r}
+#| echo: true
+#| output: false
+
+library(readxl)
+library(ggplot2)
+library(ggformula)
+```
+
 ## Penguins Dataset
 
 Ilustraremos los conceptos de hoy utlizando el conjunto de datos `penguins.xlsx`.
@@ -55,8 +72,6 @@ Cargalo en R usando el siguiente código.
 #| echo: true
 #| code-overflow: wrap
 
-
-library(readxl)
 penguins_data <- read_excel("penguins.xlsx")
 ```
 :::
@@ -208,41 +223,228 @@ table(penguins_data$species)/n
 La ventaja de la frequencia relativa es que se puede interpretar como una probabilidad. Lo que da mas información.
 :::
 
-## Gráficas de Barras
+## Gráfica de Barras
 
-Los gráficos de barras se utilizan comúnmente para describir datos cualitativos clasificados en varias categorías según el sector, la región, los diferentes períodos de tiempo u otros factores similares.
+Representa visualmente una tabla de frequencias or frequencias relativas.
 
-> Diferentes sectores, diferentes regiones o diferentes períodos de tiempo se etiquetan como categorías específicas.
+La frecuencia (o frequencia relativa) se representa por una barra de altura proporcional.
 
-Un gráfico de barras se construye creando categorías que se representan etiquetando cada categoría y que se representan mediante intervalos de igual longitud en un eje horizontal.
+Puedes construir una grafica de barras usando la funcion `gf_bar()` así:
 
-El recuento o frecuencia dentro de la categoría correspondiente está representado por una barra de altura proporcional a la frecuencia.
+```{r}
+#| echo: true
+#| output: true
+#| fig-align: center
+#| code-overflow: wrap
+#| output-location: slide
 
-## Ejemplo
+gf_bar( ~ species, data = penguins_data)
+```
 
-![](images/clipboard-914413015.png)
+## 
 
-## Gráficos Circulares
+Si quieres graficar la frequencia relativa, usa la función `gf_percents`.
 
-Los gráficos circulares se utilizan comúnmente para describir datos cualitativos de una población.
+```{r}
+#| echo: true
+#| output: true
+#| fig-align: center
+#| code-overflow: wrap
 
-Se construye dividiendo un círculo en varias porciones que representan diferentes categorías de una población.
+gf_percents( ~ species, data = penguins_data)
+```
 
-El gráfico circular nos ayuda a comprender mejor de un vistazo la composición de la población con respecto a la característica de interés.
+## Actividad (*solo* mode)
 
+Usando las herramientas para gráficos en ggplot, modifica el código anterior para que la gráfica se vea asi.
+
+```{r}
+#| echo: false
+#| output: true
+#| fig-height: 4
+#| fig-align: center
+
+gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "Proporciones de pingüinos", subtitle = "Distribución pingüinos en Adelie, Chinstrap, and Gentoo", x = "Tipo de especie", y = "Frecuencia relativa", fill = "Especie") 
+
+```
+
+```{r}
+countdown::countdown(minutes = 10)
+```
+
+## Gráfico circular
+
+::: columns
+::: {.column width="50%"}
+-   Se construye dividiendo un círculo en varias porciones que representan las categorías de la variable.
+
+-   La porción de una categoria es su frequencia relativa.
+
+-   Este gráfico te permite dar un vistazo rápido a las proporciones de cada categoría.
+:::
+
+::: {.column width="50%"}
 ![](images/clipboard-800609446.png)
+:::
+:::
 
-## Transformando Variables Categoricas
+::: notes
+Pie charts versus bar charts.
 
-Whether a feature is nominal or ordinal, we may find it useful to relabel categories so that they are more informative; collapse categories to simplify a visualization; and even convert a numeric feature to ordinal to focus on particular transition points.
+**Bar charts can serve as a good way to show comparisons between categories**. It is generally observed that new trends tend to shy away from using pie charts, as it is difficult for the human eye to judge the exact angle that shows the value of a category in a pie chart.
+:::
 
-We explain when we may want to make each of these transformations and give examples.
+## Actividad (*cooperative* mode)
+
+[Preguntale a ChatGPT]{style="color:darkgreen;"}
+
+1.  Ve ChatGPT en <https://chat.openai.com/>
+2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** en R.
+3.  Adapta tu cógigo para producir una gráfica circular de la variable `island` en `penguin_data`.
+
+```{r}
+countdown::countdown(minutes = 10)
+```
+
+# Transformando variables categóricas
+
+## Aplica el Principio 3
+
+> *Enriquece con información adicional.*
+
+Podemos mejorar gráficas de variables categóricas usando estas técnicas:
+
+-   Re-etiquetar las categorías para que sean más informativas.
+
+-   Re-ordenar las categorías para que sigan su orden natural.
+
+-   Colapsar categorías para simplificar una visualización.
+
+## Ejemplo: Boston Housing Dataset
+
+Este conjunto de datos contiene información recopilada por el Servicio del Censo de EE. UU. sobre viviendas en el área de Boston, Massachusetts.
+
+::: columns
+::: {.column width="60%"}
+![](images/boston_dataset.png)
+:::
+
+::: {.column width="40%"}
+![](images/clipboard-3653087831.png)
+:::
+:::
+
+## 
+
+Los datos estan en el archivo `Boston_dataset.xlsx`. Cargalos en R usando el siguiente comando.
+
+```{r}
+#| echo: true
+#| output: true
+
+Boston_dataset <- read_excel("Boston_dataset.xlsx")
+head(Boston_dataset)
+```
+
+Nos concentraremos en las siguientes variables
+
+-   `chas` : Si la casa limita con el río Charles (1: Si y 0: No)
+
+-   `rad` : Indice de accesibilidad a carreteras radiales (`Low`, `Medium`, `High`).
+
+## Recuerda...
+
+Asegurate de que R sabe que esas variables son categóricas.
+
+```{r}
+#| echo: true
+#| output: true
+
+Boston_dataset$chas <- factor(Boston_dataset$chas)
+Boston_dataset$rad <- factor(Boston_dataset$rad)
+```
 
 ## Re-etiquetado
 
-We can transform `children` by replacing the numbers with their string descriptions. Changing 1, 2, and 3 into high, medium, and low makes it easier to recognize that `children` is categorical.
+Vamos a construir una gráfica de barras de `chas`.
 
-Next, we can compute a bar chart.
+```{r}
+#| echo: true
+#| output: true
+#| fig-pos: center
+
+gf_percents( ~ chas, data = Boston_dataset)
+
+```
+
+Sin embargo, las categorías en la gráfica no son informativas.
+
+## 
+
+Lo mejor es re-nombrar las categorías de la variable `chas` para que la gráfica de barras de mas información al usuario.
+
+1.  Verifica los nombres de las categorías en la variable.
+
+    ```{r}
+    #| echo: true
+    #| output: true
+
+    levels(Boston_dataset$chas)
+    ```
+
+```{=html}
+<!-- -->
+```
+2.  Re-emplaza por nombres apropiados.
+
+    ```{r}
+    #| echo: true
+    #| output: true
+
+    # Usa un vector para denotar los normbres.
+    levels(Boston_dataset$chas) <- c("No", "Si")
+    ```
+
+## Veamos que sucede ahora.
+
+```{r}
+#| echo: true
+#| output: true
+#| fig-pos: center 
+
+gf_percents( ~ chas, data = Boston_dataset)
+```
+
+Mucho mejor 😃
+
+## Re-ordenar categorías
+
+Ahora, construyamos una gráfica de barras de `rad`.
+
+```{r}
+#| echo: true
+#| output: true
+#| fig-pos: center 
+
+gf_percents( ~ rad, data = Boston_dataset)
+```
+
+Las categorías no siguien un orden natural de izquierda a derecha: `Low`, `Medium`, y `High`.
+
+## 
+
+Para tener el orden de las categorías deseado, debemos de ser más explícitos al momento de definir la variable categórica en R.
+
+```{r}
+#| echo: true
+#| output: true
+#| fig-pos: center
+
+Boston_dataset$rad <- factor(Boston_dataset$rad, levels = c("Low", "Medium", "High"))
+gf_percents( ~ rad, data = Boston_dataset)
+```
+
+Mucho mejor 😃
 
 ## Colapsando categorías
 

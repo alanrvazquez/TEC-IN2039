@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-input7b1f27ab</title>
+  <title>quarto-inputcac52b0d</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -387,6 +387,8 @@
       margin-right: 0; 
     }
   </style>
+  <link href="Slides_Categorical_files/libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+  <script src="Slides_Categorical_files/libs/countdown-0.4.0/countdown.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -436,6 +438,17 @@ Alan R. Vázquez
 </div>
 </div>
 </section>
+<section id="primero-lo-primero" class="slide level2">
+<h2>Primero lo primero</h2>
+<p>Hoy usaremos R para construir graficas y tablas. Para esto, utilizaremos las librerias que ya vimos antes como <code>ggplot2</code>, <code>ggformula</code>, y <code>readxl</code>.</p>
+<p><br></p>
+<p>Carguemoslas en R antes de comenzar.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggformula)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 <section id="penguins-dataset" class="slide level2">
 <h2>Penguins Dataset</h2>
 <p>Ilustraremos los conceptos de hoy utlizando el conjunto de datos <code>penguins.xlsx</code>.</p>
@@ -443,8 +456,7 @@ Alan R. Vázquez
 <div class="column" style="width:68%;">
 <p>Cargalo en R usando el siguiente código.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>penguins_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"penguins.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>penguins_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"penguins.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:32%;">
 <div class="quarto-figure quarto-figure-right">
@@ -472,7 +484,7 @@ Alan R. Vázquez
 </blockquote>
 <p>Le puedes pregunar a R por una variable en particular, por ejemplo, <code>species</code>, así:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">is.factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">is.factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
@@ -482,12 +494,12 @@ Alan R. Vázquez
 <h2>R no es inteligente</h2>
 <p>A pesar de que la variable <code>species</code> claramente es categórica, R no reconoce esto. Para asegurarnos que R sepa que la variable es categórica, hacemos lo siguiente</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>penguins_data<span class="sc">$</span>species <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>penguins_data<span class="sc">$</span>species <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <p>Preguntemosle a R el tipo de variable otra vez.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">is.factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">is.factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
@@ -496,9 +508,9 @@ Alan R. Vázquez
 <section id="te-recomiendo-hacer-lo-mismo-para-las-otras-variables-categóricas" class="slide level2">
 <h2>Te recomiendo hacer lo mismo para las otras variables categóricas</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>penguins_data<span class="sc">$</span>island <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>island)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>penguins_data<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>sex)</span>
-<span id="cb7-3"><a href="#cb7-3"></a>penguins_data<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>penguins_data<span class="sc">$</span>island <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>island)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>penguins_data<span class="sc">$</span>sex <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>sex)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>penguins_data<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="resumenes-estadísticos" class="slide level2">
@@ -518,7 +530,7 @@ Alan R. Vázquez
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">table</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">table</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    Adelie Chinstrap    Gentoo 
@@ -583,11 +595,11 @@ Alan R. Vázquez
 <div class="columns">
 <div class="column" style="width:55%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Calcula el número de observaciones.</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(penguins_data) </span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="co"># Calcula la frequencia relativa.</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">table</span>(penguins_data<span class="sc">$</span>species)<span class="sc">/</span>n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Calcula el número de observaciones.</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(penguins_data) </span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># Calcula la frequencia relativa.</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">table</span>(penguins_data<span class="sc">$</span>species)<span class="sc">/</span>n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    Adelie Chinstrap    Gentoo 
@@ -640,35 +652,207 @@ Alan R. Vázquez
           display:block!important;
       }</style></aside>
 </section>
-<section id="gráficas-de-barras" class="slide level2">
-<h2>Gráficas de Barras</h2>
-<p>Los gráficos de barras se utilizan comúnmente para describir datos cualitativos clasificados en varias categorías según el sector, la región, los diferentes períodos de tiempo u otros factores similares.</p>
-<blockquote>
-<p>Diferentes sectores, diferentes regiones o diferentes períodos de tiempo se etiquetan como categorías específicas.</p>
-</blockquote>
-<p>Un gráfico de barras se construye creando categorías que se representan etiquetando cada categoría y que se representan mediante intervalos de igual longitud en un eje horizontal.</p>
-<p>El recuento o frecuencia dentro de la categoría correspondiente está representado por una barra de altura proporcional a la frecuencia.</p>
+<section id="gráfica-de-barras" class="slide level2">
+<h2>Gráfica de Barras</h2>
+<p>Representa visualmente una tabla de frequencias or frequencias relativas.</p>
+<p>La frecuencia (o frequencia relativa) se representa por una barra de altura proporcional.</p>
+<p>Puedes construir una grafica de barras usando la funcion <code>gf_bar()</code> así:</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">gf_bar</span>( <span class="sc">~</span> species, <span class="at">data =</span> penguins_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
 </section>
-<section id="ejemplo" class="slide level2">
-<h2>Ejemplo</h2>
+<section id="gráfica-de-barras-output" class="slide level2 output-location-slide"><h2>Gráfica de Barras</h2><div class="cell output-location-slide" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div></section><section id="section-2" class="slide level2">
+<h2></h2>
+<p>Si quieres graficar la frequencia relativa, usa la función <code>gf_percents</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">gf_percents</span>( <span class="sc">~</span> species, <span class="at">data =</span> penguins_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
-<img data-src="images/clipboard-914413015.png" class="r-stretch"></section>
-<section id="gráficos-circulares" class="slide level2">
-<h2>Gráficos Circulares</h2>
-<p>Los gráficos circulares se utilizan comúnmente para describir datos cualitativos de una población.</p>
-<p>Se construye dividiendo un círculo en varias porciones que representan diferentes categorías de una población.</p>
-<p>El gráfico circular nos ayuda a comprender mejor de un vistazo la composición de la población con respecto a la característica de interés.</p>
+</div>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="actividad-solo-mode" class="slide level2">
+<h2>Actividad (<em>solo</em> mode)</h2>
+<p>Usando las herramientas para gráficos en ggplot, modifica el código anterior para que la gráfica se vea asi.</p>
 
-<img data-src="images/clipboard-800609446.png" class="r-stretch"></section>
-<section id="transformando-variables-categoricas" class="slide level2">
-<h2>Transformando Variables Categoricas</h2>
-<p>Whether a feature is nominal or ordinal, we may find it useful to relabel categories so that they are more informative; collapse categories to simplify a visualization; and even convert a numeric feature to ordinal to focus on particular transition points.</p>
-<p>We explain when we may want to make each of these transformations and give examples.</p>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch quarto-figure-center"><div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_0aa4cbcb" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+<section id="gráfico-circular" class="slide level2">
+<h2>Gráfico circular</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><p>Se construye dividiendo un círculo en varias porciones que representan las categorías de la variable.</p></li>
+<li><p>La porción de una categoria es su frequencia relativa.</p></li>
+<li><p>Este gráfico te permite dar un vistazo rápido a las proporciones de cada categoría.</p></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/clipboard-800609446.png"></p>
+</div>
+</div>
+<aside class="notes">
+<p>Pie charts versus bar charts.</p>
+<p><strong>Bar charts can serve as a good way to show comparisons between categories</strong>. It is generally observed that new trends tend to shy away from using pie charts, as it is difficult for the human eye to judge the exact angle that shows the value of a category in a pie chart.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="actividad-cooperative-mode" class="slide level2">
+<h2>Actividad (<em>cooperative</em> mode)</h2>
+<p><span style="color:darkgreen;">Preguntale a ChatGPT</span></p>
+<ol type="1">
+<li>Ve ChatGPT en <a href="https://chat.openai.com/" class="uri">https://chat.openai.com/</a></li>
+<li>Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de <em>pastel</em>) usando <strong>ggplot2</strong> en R.</li>
+<li>Adapta tu cógigo para producir una gráfica circular de la variable <code>island</code> en <code>penguin_data</code>.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_720a915f" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
+</section>
+<section>
+<section id="transformando-variables-categóricas" class="title-slide slide level1 center">
+<h1>Transformando variables categóricas</h1>
+
+</section>
+<section id="aplica-el-principio-3" class="slide level2">
+<h2>Aplica el Principio 3</h2>
+<blockquote>
+<p><em>Enriquece con información adicional.</em></p>
+</blockquote>
+<p>Podemos mejorar gráficas de variables categóricas usando estas técnicas:</p>
+<ul>
+<li><p>Re-etiquetar las categorías para que sean más informativas.</p></li>
+<li><p>Re-ordenar las categorías para que sigan su orden natural.</p></li>
+<li><p>Colapsar categorías para simplificar una visualización.</p></li>
+</ul>
+</section>
+<section id="ejemplo-boston-housing-dataset" class="slide level2">
+<h2>Ejemplo: Boston Housing Dataset</h2>
+<p>Este conjunto de datos contiene información recopilada por el Servicio del Censo de EE. UU. sobre viviendas en el área de Boston, Massachusetts.</p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="images/boston_dataset.png"></p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/clipboard-3653087831.png"></p>
+</div>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<p>Los datos estan en el archivo <code>Boston_dataset.xlsx</code>. Cargalos en R usando el siguiente comando.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>Boston_dataset <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"Boston_dataset.xlsx"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">head</span>(Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 14
+     crim    zn indus  chas   nox    rm   age   dis rad     tax ptratio black
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 0.00632    18  2.31     0 0.538  6.58  65.2  4.09 Low     296    15.3  397.
+2 0.0273      0  7.07     0 0.469  6.42  78.9  4.97 Low     242    17.8  397.
+3 0.0273      0  7.07     0 0.469  7.18  61.1  4.97 Low     242    17.8  393.
+4 0.0324      0  2.18     0 0.458  7.00  45.8  6.06 Low     222    18.7  395.
+5 0.0690      0  2.18     0 0.458  7.15  54.2  6.06 Low     222    18.7  397.
+6 0.0298      0  2.18     0 0.458  6.43  58.7  6.06 Low     222    18.7  394.
+# ℹ 2 more variables: lstat &lt;dbl&gt;, medv &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>Nos concentraremos en las siguientes variables</p>
+<ul>
+<li><p><code>chas</code> : Si la casa limita con el río Charles (1: Si y 0: No)</p></li>
+<li><p><code>rad</code> : Indice de accesibilidad a carreteras radiales (<code>Low</code>, <code>Medium</code>, <code>High</code>).</p></li>
+</ul>
+</section>
+<section id="recuerda" class="slide level2">
+<h2>Recuerda…</h2>
+<p>Asegurate de que R sabe que esas variables son categóricas.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>Boston_dataset<span class="sc">$</span>chas <span class="ot">&lt;-</span> <span class="fu">factor</span>(Boston_dataset<span class="sc">$</span>chas)</span>
+<span id="cb17-2"><a href="#cb17-2"></a>Boston_dataset<span class="sc">$</span>rad <span class="ot">&lt;-</span> <span class="fu">factor</span>(Boston_dataset<span class="sc">$</span>rad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="re-etiquetado" class="slide level2">
 <h2>Re-etiquetado</h2>
-<p>We can transform&nbsp;<code>children</code> by replacing the numbers with their string descriptions. Changing 1, 2, and 3 into high, medium, and low makes it easier to recognize that <code>children</code> is categorical.</p>
-<p>Next, we can compute a bar chart.</p>
+<p>Vamos a construir una gráfica de barras de <code>chas</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">gf_percents</span>( <span class="sc">~</span> chas, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch quarto-figure-center"><p>Sin embargo, las categorías en la gráfica no son informativas.</p>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<p>Lo mejor es re-nombrar las categorías de la variable <code>chas</code> para que la gráfica de barras de mas información al usuario.</p>
+<ol type="1">
+<li><p>Verifica los nombres de las categorías en la variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">levels</span>(Boston_dataset<span class="sc">$</span>chas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "0" "1"</code></pre>
+</div>
+</div></li>
+</ol>
+<!-- -->
+<ol start="2" type="1">
+<li><p>Re-emplaza por nombres apropiados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Usa un vector para denotar los normbres.</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">levels</span>(Boston_dataset<span class="sc">$</span>chas) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Si"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ol>
+</section>
+<section id="veamos-que-sucede-ahora." class="slide level2">
+<h2>Veamos que sucede ahora.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">gf_percents</span>( <span class="sc">~</span> chas, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch quarto-figure-center"><p>Mucho mejor 😃</p>
+</section>
+<section id="re-ordenar-categorías" class="slide level2">
+<h2>Re-ordenar categorías</h2>
+<p>Ahora, construyamos una gráfica de barras de <code>rad</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">gf_percents</span>( <span class="sc">~</span> rad, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch quarto-figure-center"><p>Las categorías no siguien un orden natural de izquierda a derecha: <code>Low</code>, <code>Medium</code>, y <code>High</code>.</p>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<p>Para tener el orden de las categorías deseado, debemos de ser más explícitos al momento de definir la variable categórica en R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>Boston_dataset<span class="sc">$</span>rad <span class="ot">&lt;-</span> <span class="fu">factor</span>(Boston_dataset<span class="sc">$</span>rad, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">gf_percents</span>( <span class="sc">~</span> rad, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch quarto-figure-center"><p>Mucho mejor 😃</p>
 </section>
 <section id="colapsando-categorías" class="slide level2">
 <h2>Colapsando categorías</h2>
@@ -676,7 +860,7 @@ Alan R. Vázquez
 <p>The new feature, <code>play</code>, is a transformation of the feature <code>group</code> that collapses categories: toy and non-sporting are combined into one category, and the remaining categories are placed in a second, non-play category.</p>
 <p>The boolean (<code>bool</code>) storage type is useful to indicate the presence or absence of this characteristic:</p>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <p>Representing a two-category qualitative feature as a boolean has a few advantages. For example, the mean of <code>play</code> makes sense because it returns the fraction of <code>True</code> values. When booleans are used for numeric calculations, <code>True</code> becomes 1 and <code>False</code> becomes 0:</p>
 </section>
@@ -695,7 +879,7 @@ Alan R. Vázquez
 <img src="IN2039_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
