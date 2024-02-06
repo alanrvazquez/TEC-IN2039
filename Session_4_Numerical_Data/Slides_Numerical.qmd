@@ -7,7 +7,12 @@ author:
     email: alanrvazquez@tec.mx
     affiliations:
       - name: Tecnológico de Monterrey
-format: revealjs
+format: 
+  revealjs:
+    chalkboard: true
+    multiplex: true
+revealjs-plugins:
+  - pointer
 editor: visual
 slide-number: True
 logo: IN2039_logo.png
