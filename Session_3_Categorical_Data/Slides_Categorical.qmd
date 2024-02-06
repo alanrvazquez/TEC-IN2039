@@ -31,13 +31,13 @@ css: style.css
 :::
 
 ::: {.column width="50%"}
-2.  Tipos de gráficas
+2.  Gráfica de barras y circular
 :::
 :::
 
 ::: columns
 ::: {.column width="30%"}
-3.  Actividad
+3.  Transformando variables categóricas
 :::
 
 ::: {.column width="70%"}
@@ -224,6 +224,8 @@ table(penguins_data$species)/n
 ::: notes
 La ventaja de la frequencia relativa es que se puede interpretar como una probabilidad. Lo que da mas información.
 :::
+
+# Gráfica de barras y círcular
 
 ## Gráfica de Barras
 
