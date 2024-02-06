@@ -1,5 +1,7 @@
 ---
-title: "Herramientas para construir gráficas"
+title: |
+   | Sesión 2: 
+   | Herramientas para construir gráficas
 author: 
   - name: Alan R. Vázquez
     affiliations:
@@ -20,13 +22,13 @@ css: style.css
 ::: {.column width="50%"}
 1.  R Software
 
-    ![](images/clipboard-148304512.png){fig-align="center" width="324"}
+    ![](images/clipboard-148304512.png){fig-align="center" width="281"}
 :::
 
 ::: {.column width="50%"}
 2.  ggplot2
 
-    ![](images/clipboard-4021595969.png){width="324"}
+    ![](images/clipboard-4021595969.png){width="265"}
 :::
 :::
 
@@ -36,7 +38,7 @@ css: style.css
 :::
 
 ::: {.column width="70%"}
-![](images/clipboard-4224793803.png){fig-align="left" width="341"}
+![](images/clipboard-4224793803.png){fig-align="left" width="224"}
 :::
 :::
 
