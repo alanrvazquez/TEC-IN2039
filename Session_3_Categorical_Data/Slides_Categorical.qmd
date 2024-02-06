@@ -1,50 +1,212 @@
 ---
 title: |
    | Sesión 3: 
-   | Datos Categóricos  
+   | Variables Categóricas  
 author: 
   - name: Alan R. Vázquez
     email: alanrvazquez@tec.mx
     affiliations:
       - name: Tecnológico de Monterrey
-format: revealjs
+format: 
+  revealjs:
+    chalkboard: true
+    multiplex: true
 editor: visual
 slide-number: True
 logo: IN2039_logo.png
 css: style.css
 ---
 
-## Introducción
+## Los Tópicos de Hoy
 
-La última vez, comentamos sobre la correspondencia entre el tipo de variable y el tipo de gráfica.
+[*Enfocarnos en 1 variable categórica.*]{style="color:darkblue;"}
 
-| Tipo           | Número | Gráfica                                                                                         |
-|:---------------|:-------|:------------------------------------------------------------------------------------------------|
-| Quantitativa   | 1      | Rug plot, histogram, density curve, box plot, violin plot                                       |
-| **Categórica** | **1**  | **Bar plot, dot plot, line plot, pie chart**                                                    |
-| Quantitativa   | 2      | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
-| Categórica     | 2      | Side-by-side bar plots, mosaic plot, overlaid lines                                             |
-| Mixta          | 2      | Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot |
+<br/>
+
+::: columns
+::: {.column width="50%"}
+1.  Resúmenes estadísticos
+:::
+
+::: {.column width="50%"}
+2.  Tipos de gráficas
+:::
+:::
+
+::: columns
+::: {.column width="30%"}
+3.  Actividad
+:::
+
+::: {.column width="70%"}
+:::
+:::
+
+## Penguins Dataset
+
+Ilustraremos los conceptos de hoy utlizando el conjunto de datos `penguins.xlsx`.
+
+::: columns
+::: {.column width="68%"}
+Cargalo en R usando el siguiente código.
+
+```{r}
+#| output: false
+#| echo: true
+#| code-overflow: wrap
+
+
+library(readxl)
+penguins_data <- read_excel("penguins.xlsx")
+```
+:::
+
+::: {.column width="32%"}
+![](images/clipboard-1776523589.png){fig-align="right" width="561"}
+:::
+:::
+
+Recuerda que el archivo debe de estar en la misma carpeta que tu código.
 
 ## 
 
-Hoy nos encofaremos en una variable categórica.
+![](images/clipboard-3758853900.png)
 
-| Tipo       | Número | Gráfica                                  |
-|:-----------|:-------|:-----------------------------------------|
-| Categórica | 1      | Bar plot, dot plot, line plot, pie chart |
+## 
+
+![](images/clipboard-3461599711.png){fig-align="center" width="647"}
+
+## Asegurate que R sabe que la variable es categorica
+
+Antes de comenzar, debemos de checar si R reconoce las variables como categóricas o numéricas.
+
+> En R, las variables categoricas se conocen como `factor` y las variables numéricas como `numeric`.
+
+Le puedes pregunar a R por una variable en particular, por ejemplo, `species`, así:
+
+```{r}
+#| echo: true
+#| output: true
+
+is.factor(penguins_data$species)
+```
+
+## R no es inteligente
+
+A pesar de que la variable `species` claramente es categórica, R no reconoce esto. Para asegurarnos que R sepa que la variable es categórica, hacemos lo siguiente
+
+```{r}
+#| echo: true
+#| output: true
+
+penguins_data$species <- factor(penguins_data$species)
+```
+
+<br/>
+
+Preguntemosle a R el tipo de variable otra vez.
+
+```{r}
+#| echo: true
+#| output: true
+
+is.factor(penguins_data$species)
+```
+
+## Te recomiendo hacer lo mismo para las otras variables categóricas
+
+```{r}
+#| echo: true
+#| output: true
+
+penguins_data$island <- factor(penguins_data$island)
+penguins_data$sex <- factor(penguins_data$sex)
+penguins_data$year <- factor(penguins_data$year)
+```
 
 ## Resumenes Estadísticos
 
-Los dos resúmenes numéricos más utilizados para datos categóricos son las frecuencias y las proporciones muestrales (a veces llamadas frecuencias relativas).
+> Un **resumén estadístico** nos ayuda a resumir un conjunto de observaciones de una manera simple.
 
--   La **frecuencia** de una categoría determinada es simplemente la cantidad de elementos de muestra que caen en esa categoría.
+Los resúmenes numéricos más utilizados para datos categóricos son las frecuencias y las frecuencias relativas.
 
--   La **proporción** muestral es la frecuencia dividida por el tamaño de la muestra.
+-   La [**frecuencia**]{style="color:darkblue;"} de una categoría es la cantidad de elementos de muestra que pertenecen a esa categoría.
 
-## Tablas de Frecuencia
+-   La [**frecuencia relativa**]{style="color:darkblue;"} es la frecuencia dividida por el número total de observaciones.
 
-TBD
+## Tabla de Frecuencia
+
+Resume una variable categorica contando los valores por categoría.
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| output: true
+#| code-overflow: wrap
+
+table(penguins_data$species)
+```
+:::
+
+::: {.column width="50%"}
+| **Especie** | **Frecuencia** |
+|-------------|----------------|
+| Adelie      | 152            |
+| Chinstrap   | 68             |
+| Gentoo      | 124            |
+| **Total**   | **344**        |
+:::
+:::
+
+-   **Frecuencia**: Número de observaciones en cada categoría.
+
+-   **Total**: Suma total de observaciones.
+
+::: notes
+1.  Ventajas de las frequencias.
+
+2.  Resumen claro y conciso de los datos categóricos.
+
+3.  Facilita la identificación de patrones y tendencias.
+
+4.  Ayuda en la toma de decisiones informadas.
+:::
+
+## Tabla de Frecuencia Relativa
+
+Resume una variable categorica calculando la *proporción de valores* por categoría.
+
+::: columns
+::: {.column width="55%"}
+```{r}
+#| echo: true
+#| output: true
+#| code-overflow: wrap
+
+# Calcula el número de observaciones.
+n <- nrow(penguins_data) 
+
+# Calcula la frequencia relativa.
+table(penguins_data$species)/n
+```
+:::
+
+::: {.column width="45%"}
+| **Especie** | **Frecuencia relativa** |
+|-------------|-------------------------|
+| Adelie      | 0.4418605               |
+| Chinstrap   | 0.1976744               |
+| Gentoo      | 0.3604651               |
+| **Suma**    | **1**                   |
+:::
+:::
+
+-   **Frecuencia relativa**: Número de observaciones en cada categoría dividida por el total.
+
+::: notes
+La ventaja de la frequencia relativa es que se puede interpretar como una probabilidad. Lo que da mas información.
+:::
 
 ## Gráficas de Barras
 
