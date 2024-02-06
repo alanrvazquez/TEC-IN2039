@@ -154,17 +154,17 @@ El tipo de variable (numérica o categórica) generalmente determina el tipo de 
 
 ::: center
 | Tipo       | Gráfica                                                                                   |
-|:-------------------|:---------------------------------|
+|:--------------------------|:--------------------------------------------|
 | Categórica | Gráfico de barras, gráfico de puntos, gráfico de líneas, gráfico circular                 |
 | Numérica   | Diagrama de alfombra, histograma, curva de densidad, diagrama de caja, diagrama de violín |
-::: 
+:::
 
 ## Gráficos para 2 variables
 
 ::: center
-| Tipo       | Gráfica                                                                                                                    |
-|:-------------------|:---------------------------------|
+| Tipo        | Gráfica                                                                                                                    |
+|:--------------------------|:--------------------------------------------|
 | Numéricas   | Gráfico de dispersión, curva suave, gráfico de contorno, mapa de calor, gráfico de cuantiles                               |
 | Categóricas | Gráficos de barras lado a lado, gráfico de mosaico, líneas superpuestas                                                    |
-| Mixta      | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, curvas suaves superpuestas, diagrama de cuantiles |
-::: 
+| Mixta       | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, curvas suaves superpuestas, diagrama de cuantiles |
+:::
