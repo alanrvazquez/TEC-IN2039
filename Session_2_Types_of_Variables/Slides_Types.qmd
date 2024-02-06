@@ -150,12 +150,21 @@ Ayudan a especificar las operaciones, visualizaciones y modelos que podemos apli
 
 El tipo de variable (numérica o categórica) generalmente determina el tipo de gráfica, aunque existen excepciones.
 
-## 
+## Gráficos para 1 variable
 
-| Tipo         | Número | Gráfica                                                                                         |
-|:------------------|:------------------|:---------------------------------|
-| Quantitativa | 1      | Rug plot, histogram, density curve, box plot, violin plot                                       |
-| Categórica   | 1      | Bar plot, dot plot, line plot, pie chart                                                        |
-| Quantitativa | 2      | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
-| Categórica   | 2      | Side-by-side bar plots, mosaic plot, overlaid lines                                             |
-| Mixta        | 2      | Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot |
+::: center
+| Tipo       | Gráfica                                                                                   |
+|:-------------------|:---------------------------------|
+| Categórica | Gráfico de barras, gráfico de puntos, gráfico de líneas, gráfico circular                 |
+| Numérica   | Diagrama de alfombra, histograma, curva de densidad, diagrama de caja, diagrama de violín |
+::: 
+
+## Gráficos para 2 variables
+
+::: center
+| Tipo       | Gráfica                                                                                                                    |
+|:-------------------|:---------------------------------|
+| Numéricas   | Gráfico de dispersión, curva suave, gráfico de contorno, mapa de calor, gráfico de cuantiles                               |
+| Categóricas | Gráficos de barras lado a lado, gráfico de mosaico, líneas superpuestas                                                    |
+| Mixta      | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, curvas suaves superpuestas, diagrama de cuantiles |
+::: 
