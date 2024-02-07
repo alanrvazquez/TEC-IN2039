@@ -1,0 +1,19 @@
+## Valores atípicos o *outliers*
+
+-   Los valores atípicos son puntos que son mucho más grandes o más pequeños que el resto de los puntos de muestra.
+
+-   Ellos pueden ser errores de entrada de datos o pueden ser puntos que realmente son diferentes al resto.
+
+-   Los valores atípicos no deben eliminarse descuidadamente sin una razón válida.
+
+## 
+
+![](images/clipboard-239924690.png)
+
+En presencia de valores atípicos, la mediana es una mejor medida de centralidad que la media.
+
+![](images/clipboard-1917186197.png)
+
+La mediana es muy relevante cuando se estudian ingresos y salarios, por ejemplo.
+
+Te invito a conocer más sobre el uso de la mediana en esta liga: <https://blog.datawrapper.de/weekly-chart-income/>
