@@ -145,7 +145,7 @@ penguins_data$year <- factor(penguins_data$year)
 
 > Un **resumén estadístico** nos ayuda a resumir un conjunto de observaciones de una manera simple.
 
-Los resúmenes numéricos más utilizados para datos categóricos son las frecuencias y las frecuencias relativas.
+Los resúmenes estadísticos más utilizados para datos categóricos son las frecuencias y las frecuencias relativas.
 
 -   La [**frecuencia**]{style="color:darkblue;"} de una categoría es la cantidad de elementos de muestra que pertenecen a esa categoría.
 
