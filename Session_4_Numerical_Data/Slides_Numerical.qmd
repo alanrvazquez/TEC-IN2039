@@ -13,119 +13,249 @@ format:
     multiplex: true
 revealjs-plugins:
   - pointer
+execute:
+  echo: true  
 editor: visual
 slide-number: True
 logo: IN2039_logo.png
 css: style.css
 ---
 
-## Introducción
+## Los Tópicos de Hoy
 
-TBD
+[*Enfocarnos en 1 variable numérica.*]{style="color:darkblue;"}
 
-# Estadísticos Descriptivos
+<br/>
+
+::: columns
+::: {.column width="50%"}
+1.  Resúmenes estadísticos
+:::
+
+::: {.column width="50%"}
+2.  Gráfica de barras y circular
+:::
+:::
+
+::: columns
+::: {.column width="30%"}
+3.  Transformando variables categóricas
+:::
+
+::: {.column width="70%"}
+:::
+:::
+
+## Ejemplo
+
+::: columns
+::: {.column width="70%"}
+Un pistón es un dispositivo mecánico que está presente en la mayoría de tipos de motores.
+:::
+
+::: {.column width="30%"}
+![](images/clipboard-545995500.png){width="402"}
+:::
+:::
+
+Una medida del rendimiento de un pistón es el tiempo que lleva en completar un ciclo. A esta medida la llamamos "tiempo de ciclo" y se mide en segundos.
+
+El archivo `CYLT.xlsx` contiene 50 tiempos de ciclo de un pistón operado en condiciones de funcionamiento fijas.
+
+## 
+
+Carguemos los datos en R.
+
+```{r}
+
+library(readxl) # Para leer datos.
+library(ggplot2) # Para visualizar.
+library(ggformula) # Para visualizar.
+
+piston_data <- read_excel("CYCLT.xlsx")
+head(piston_data)
+```
+
+En R, los datos numéricos se llaman `numeric`. Preguntemos si R reconoce nuestros datos correctamente.
+
+```{r}
+#| output: true
+
+is.numeric(piston_data$cycle_time)
+```
 
 ## Resúmenes estadísticos
 
-Una muestra suele ser una larga lista de números. Para ayudar a resaltar las características importantes de una muestra, calculamos estadísticas resumidas. Para datos numéricos, las estadísticas resumidas más populares son:
+> Un **resumén estadístico** nos ayuda a resumir un conjunto de observaciones de una manera simple.
 
--   Muestra promedio.
+Los resúmenes estadísticos más utilizados para datos numéricos son:
 
--   Variación de la muestra.
-
--   Desviación estándar muestral.
+-   [Promedio]{style="color:darkblue;"}
+-   [Varianza]{style="color:darkblue;"}
+-   [Desviación estándar]{style="color:darkblue;"}
 
 ## Promedio
 
-La media muestral da una indicación del centro de los datos.
+> Indica el centro de las observaciones.
 
-Para calcularla, considera $n$ observaciones denotadas usando $y_1, y_2, \ldots, y_n$ .
-
-El promedio es igual a:
+Para calcularlo, considera $n$ observaciones denotadas como $y_1, y_2, \ldots, y_n$. El promedio es igual a:
 
 $$\bar{y} = \frac{1}{n}\sum_{i=1}^{n} y_i$$
 
+## 
+
+En R, el promedio se calcula usando la función `mean`.
+
+```{r}
+#| output: true
+
+mean(piston_data$cycle_time)
+```
+
+<br/>
+
+[*Interpretación:*]{style="color:darkgray;"} En promedio, un pistón tarda 0.65246 segundos en completar un ciclo.
+
 ## Varianza
 
-La varianza muestral es como un promedio de las diferencias al cuadrado entre cada observación y la media muestral.
+> Indica que tan dispersos están las observaciones.
 
-Da una indicación de cuán dispersos están los datos.
-
-Considera $n$ observaciones denotadas usando $y_1, y_2, \ldots, y_n$ . La varianza es igual a:
+Para calcularla, considera $n$ observaciones denotadas usando $y_1, y_2, \ldots, y_n$ . La varianza es igual a:
 
 $$
 s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2
 $$
 
-## Desviación Estándar
+Es como un promedio de las diferencias al cuadrado entre cada observación y el promedio.
 
-Desafortunadamente, la varianza muestral no está en la misma escala que las observaciones, ya que las diferencias entre cada observación y la media muestral se elevan al cuadrado.
+## 
 
-Para obtener una medida de dispersión cuyas unidades sean las mismas que las de la muestra, simplemente tomamos la raíz cuadrada de la varianza muestral.
+En R, la varianza se calcula usando la función `var`.
+
+```{r}
+#| output: true
+
+var(piston_data$cycle_time)
+```
+
+<br/> [*Interpretación:*]{style="color:darkgray;"} La varianza de los tiempos de ciclo de los pistones es 0.1391073.
+
+## Desviación estándar
+
+Desafortunadamente, la varianza no está en la misma escala que las observaciones, ya que las diferencias entre cada observación y la media muestral se elevan al cuadrado.
+
+Para obtener una medida de dispersión cuyas unidades sean las mismas que las de las observaciones, tomamos la raíz cuadrada de la varianza.
 
 $$
 s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 $$
 
-Esta cantidad se conoce como desviación estándar muestral.
+Esta es la desviación estándar.
 
-## Otros estadísticos: Cuartiles
+## 
 
-La mediana de la muestra es el número medio de los valores de datos ordenados. Los cuartiles de muestra dividen los datos lo más cerca posible en cuartos:
+En R, la desviación estándar se calcula usando la función `sd`.
 
--   El primer cuartil ($Q_1$) es la mediana de la mitad inferior de los datos.
+```{r}
+#| output: true
 
--   El segundo cuartil ($Q_2$) es la mediana de los datos.
+sd(piston_data$cycle_time)
+```
 
--   El tercer cuartil ($Q_3$) es la mediana de la mitad superior de los datos.
+<br/>
 
-## Percentiles
+[*Interpretación:*]{style="color:darkgray;"} En promedio, un pistón tarda 0.65246 segundos en completar un ciclo, con una diferencia de mas o menos 0.3729709 segundos.
 
-El p-ésimo percentil de una muestra divide la muestra tal que el $p$% de los valores de la muestra sean menores que el p-ésimo percentil, y ($100 - p$)% sean mayor que este.
+## Otros estadísticos: Mediana y Cuartiles
 
-Para encontrar el percentil de muestra p-ésimo, haz lo siguiente:
+La [mediana]{style="color:darkgreen;"} de la muestra es el número medio de las observaciones ordenadas de menor a mayor.
 
-1.  Ordena los $n$ valores muestrales de menor a mayor.
+Los [cuartiles]{style="color:darkgreen;"} dividen las observaciones en cuatro partes. Existen tres de ellos:
 
-2.  Calcula la cantidad $\left( \frac{p}{100}\right) \left(n+1 \right)$.
+-   El primer cuartil ($Q_1$) es la mediana de la mitad inferior de las observaciones.
 
-3.  Si esta cantidad es un número entero, el valor de la muestra en esta posición es el percentil $p$. De lo contrario, promedia los dos valores de muestra en cada lado.
+-   El segundo cuartil ($Q_2$) es la mediana de las observaciones.
+
+-   El tercer cuartil ($Q_3$) es la mediana de la mitad superior de las observaciones.
 
 ## 
 
 ![](images/clipboard-1950324610.png)
 
-El percentil 0 es el mínimo y el percentil 100 es el máximo.
+## 
+
+En R, la mediana se calcula con la función `median`.
+
+```{r}
+median(piston_data$cycle_time)
+```
+
+[*Interpretación:*]{style="color:darkgray;"} El 50% de los tiempos de ciclo de los pistones es menor que 0.5455 segundos.
+
+Los cuartiles se calculan con la función `quantile`.
+
+```{r}
+quantile(piston_data$cycle_time)
+```
+
+[*Interpretación:*]{style="color:darkgray;"} El 25%, 50% y 75% de los tiempos de ciclo de los pistones es menor que 0.3050, 0.5455 y 1.0690 segundos, respectivamente.
+
+## Máximo y mínimo
+
+Por supuesto que otros estadísticos relevantes son el **máximo** y el **mínimo**, que se calculan con las funciones `max` y `min`, respectivamente.
+
+```{r}
+max(piston_data$cycle_time)
+```
+
+[*Interpretación:*]{style="color:darkgray;"} El tiempo de ciclo máximo de un pistón es 1.141 segundos.
+
+```{r}
+min(piston_data$cycle_time)
+```
+
+[*Interpretación:*]{style="color:darkgray;"} El tiempo de ciclo mínimo de un pistón es 0.175 segundos.
 
 # Gráficas para datos numéricos
 
-## Objetivo
+## Principio 1
 
-Tu objetivo es visualizar la distribución de los datos utilizando una gráfica.
+> Formula la pregunta de interés.
 
-Una gráfica te ayuda a descrubrir patrones en los datos. Son mucho mas efectivas que una examinación de los números.
+Las preguntas típicas sovre una variable numérica son:
 
-Te ayudan a contestar la pregunta:
+-   ¿Cómo se distribuyen los valores de la variable *X*?
 
-> ¿Cómo se distribuyen los valores de la variable *X*?
->
-> ¿Existen observaciones inusiales en la variable *X*?
+-   ¿Existen observaciones inusuales en la variable *X*?
 
-## 
+## Principio 2
 
-Dos tipos comunes de graficas para visualizar la distribución son:
+> Transforma los datos en información.
 
--   histogramas
+Tres tipos comunes de graficas para visualizar una variable numérica son:
 
--   Curvas de densidad
-
+-   Histogramas.
+-   Curvas de densidad.
 -   Gráficas de cajas.
 
-## Histogramas
+Básicamente, son maneras distintas de visualizar la *distribución* o "forma" de la variable.
 
-Visualización gráfica que da una idea de la “forma” de la muestra, indicando regiones donde los puntos de muestra están concentrados y regiones donde son escasos.
+## Histograma
 
+Da una idea de la distribución de las observaciones, indicando regiones donde las observaciones están concentradas y regiones donde son escasas.
+
+En `ggplot2` se construye usando el siguiente comando.
+
+```{r}
+#| fig-pos: center
+
+
+gf_histogram( ~ cycle_time, data = piston_data)
+```
+
+::: notes
 Las barras del histograma se tocan entre sí. Un espacio indica que no hay observaciones en ese intervalo.
+:::
 
 ## Ejemplo
 
