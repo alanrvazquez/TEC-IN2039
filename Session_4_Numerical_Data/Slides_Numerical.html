@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-input09d5b1f9</title>
+  <title>quarto-inputbedd4ede</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -388,6 +388,8 @@
       margin-right: 0; 
     }
   </style>
+  <link href="Slides_Numerical_files/libs/countdown-0.4.0/countdown.css" rel="stylesheet">
+  <script src="Slides_Numerical_files/libs/countdown-0.4.0/countdown.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -395,7 +397,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><p>Sesión 4:<br>
-Datos Numéricos</p></h1>
+Variables Numéricas</p></h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -414,7 +416,7 @@ Alan R. Vázquez
 </section>
 <section id="los-tópicos-de-hoy" class="slide level2">
 <h2>Los Tópicos de Hoy</h2>
-<p><span style="color:darkblue;"><em>Enfocarnos en 1 variable numérica.</em></span></p>
+<p><u><strong>Objetivo:</strong></u> <em>Enfocarnos en 1 variable numérica.</em></p>
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -423,7 +425,7 @@ Alan R. Vázquez
 </ol>
 </div><div class="column" style="width:50%;">
 <ol start="2" type="1">
-<li>Gráfica de barras y circular</li>
+<li>Histogramas y gráficas de caja</li>
 </ol>
 </div>
 </div>
@@ -441,7 +443,7 @@ Alan R. Vázquez
 <h2>Ejemplo</h2>
 <div class="columns">
 <div class="column" style="width:70%;">
-<p>Un pistón es un dispositivo mecánico que está presente en la mayoría de los motores.</p>
+<p>Un pistón es un dispositivo mecánico presente en la mayoría de los motores.</p>
 </div><div class="column" style="width:30%;">
 <p><img data-src="images/clipboard-545995500.png" width="402"></p>
 </div>
@@ -449,12 +451,12 @@ Alan R. Vázquez
 <p>Una medida del rendimiento de un pistón es el tiempo que lleva en completar un ciclo, lo cual llamamos “tiempo de ciclo” y se mide en segundos.</p>
 <p>El archivo <code>CYLT.xlsx</code> contiene 50 tiempos de ciclo de un pistón operado en condiciones de funcionamiento fijas.</p>
 </section>
-<section id="carguemos-los-datos-en-r" class="slide level2">
-<h2>Carguemos los datos en R</h2>
+<section id="primero-carguemos-los-datos-en-r" class="slide level2">
+<h2>Primero, carguemos los datos en R</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(readxl) <span class="co"># Para leer datos.</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggplot2) <span class="co"># Para visualizar.</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggformula) <span class="co"># Para visualizar.</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggformula) <span class="co"># Para usar gáficas.</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a></span>
 <span id="cb1-5"><a href="#cb1-5"></a>piston_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"CYCLT.xlsx"</span>) <span class="co"># Leer los datos.</span></span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="fu">head</span>(piston_data) <span class="co"># Ver las primeras 6 observaciones.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -478,17 +480,17 @@ Alan R. Vázquez
 </div>
 </div>
 </section>
-<section id="resúmenes-estadísticos" class="slide level2">
-<h2>Resúmenes estadísticos</h2>
+<section id="resúmen-estadístico" class="slide level2">
+<h2>Resúmen estadístico</h2>
 <blockquote>
-<p>Un <strong>resumén estadístico</strong> nos ayuda a resumir un conjunto de observaciones de una manera simple.</p>
+<p>Nos ayuda a resumir un conjunto de observaciones de una manera simple.</p>
 </blockquote>
 <p>Los resúmenes estadísticos más utilizados para datos numéricos son:</p>
 <ul>
 <li><span style="color:darkblue;">Promedio</span></li>
 <li><span style="color:darkblue;">Varianza</span> y <span style="color:darkblue;">Desviación estándar</span></li>
-<li><span style="color:darkblue;">Mediana</span> y <span style="color:darkblue;">cuartiles</span></li>
-<li><span style="color:darkblue;">Máximo</span> y <span style="color:darkblue;">mínimo</span></li>
+<li><span style="color:darkgreen;">Mediana</span> y <span style="color:darkgreen;">cuartiles</span></li>
+<li><span style="color:dark;">Máximo</span> y <span style="color:dark;">mínimo</span></li>
 </ul>
 </section>
 <section id="promedio" class="slide level2">
@@ -510,7 +512,7 @@ Alan R. Vázquez
 </div>
 </div>
 <p><br></p>
-<p><span style="color:darkgray;"><em>Interpretación:</em></span> En promedio, un pistón tarda 0.65246 segundos en completar un ciclo.</p>
+<p><span style="color:darkgray;"><em>Interpretación:</em></span> En promedio, el pistón tarda 0.65246 segundos en completar un ciclo.</p>
 </section>
 <section id="varianza" class="slide level2">
 <h2>Varianza</h2>
@@ -521,7 +523,7 @@ Alan R. Vázquez
 <p><span class="math display">\[
 s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2
 \]</span></p>
-<p><em>Es como un promedio de las diferencias al cuadrado entre cada observación y el promedio.</em></p>
+<p><em>Es como un promedio de las diferencias al cuadrado entre las observaciones y el promedio.</em></p>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
@@ -532,18 +534,24 @@ s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2
 <pre><code>[1] 0.1391073</code></pre>
 </div>
 </div>
-<p><br> <span style="color:darkgray;"><em>Interpretación:</em></span> La varianza de los tiempos de ciclo de los pistones es 0.1391073.</p>
+<p><br> <span style="color:darkgray;"><em>Interpretación:</em></span> La varianza de los tiempos de ciclo del pistón es 0.1391073.</p>
+<p><br> <em>Entre mas grande la varianza, mayor la dispersión de los datos alrededor del promedio (centro).</em></p>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p>Desafortunadamente, la varianza no está en las mismas unidades que las observaciones, ya que las diferencias entre cada observación y el promedio se elevan al cuadrado.</p>
+<p><br></p>
+<p>Por ejemplo, el promedio es 0.65246 segundos mientras que la varianza es 0.1391073 segundos<span class="math inline">\(^2\)</span>.</p>
 </section>
 <section id="desviación-estándar" class="slide level2">
 <h2>Desviación estándar</h2>
-<p>Desafortunadamente, la varianza no está en la misma escala que las observaciones, ya que las diferencias entre cada observación y la media muestral se elevan al cuadrado.</p>
 <p>Para obtener una medida de dispersión cuyas unidades sean las mismas que las de las observaciones, tomamos la raíz cuadrada de la varianza.</p>
 <p><span class="math display">\[
 s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 \]</span></p>
-<p>Esta es la desviación estándar.</p>
+<p>Esta es la desviación estándar, que esta en las mismas unidades que las observaciones.</p>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <p>En R, la desviación estándar se calcula usando la función <code>sd</code>.</p>
 <div class="cell">
@@ -565,11 +573,11 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <li><p>El tercer cuartil (<span class="math inline">\(Q_3\)</span>) es la mediana de la mitad superior de las observaciones.</p></li>
 </ul>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 
 <img data-src="images/clipboard-1950324610.png" class="r-stretch"></section>
-<section id="section-4" class="slide level2">
+<section id="section-5" class="slide level2">
 <h2></h2>
 <p>En R, la mediana se calcula con la función <code>median</code>.</p>
 <div class="cell">
@@ -578,7 +586,7 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <pre><code>[1] 0.5455</code></pre>
 </div>
 </div>
-<p><span style="color:darkgray;"><em>Interpretación:</em></span> El 50% de los tiempos de ciclo de los pistones es menor que 0.5455 segundos.</p>
+<p><span style="color:darkgray;"><em>Interpretación:</em></span> El 50% de los tiempos de ciclo del pistón es menor que 0.5455 segundos.</p>
 <p>Los cuartiles se calculan con la función <code>quantile</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">quantile</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -587,25 +595,41 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 0.1750 0.3050 0.5455 1.0690 1.1410 </code></pre>
 </div>
 </div>
-<p><span style="color:darkgray;"><em>Interpretación:</em></span> El 25%, 50% y 75% de los tiempos de ciclo de los pistones es menor que 0.3050, 0.5455 y 1.0690 segundos, respectivamente.</p>
+<p><span style="color:darkgray;"><em>Interpretación:</em></span> El 25%, 50% y 75% de los tiempos de ciclo del pistón es menor que 0.3050, 0.5455 y 1.0690 segundos, respectivamente.</p>
 </section>
 <section id="máximo-y-mínimo" class="slide level2">
 <h2>Máximo y mínimo</h2>
-<p>Por supuesto que otros estadísticos relevantes son el <strong>máximo</strong> y el <strong>mínimo</strong>, que se calculan con las funciones <code>max</code> y <code>min</code>, respectivamente.</p>
+<p>Otros estadísticos relevantes son el <strong>máximo</strong> y el <strong>mínimo</strong>, que se calculan con las funciones <code>max</code> y <code>min</code>, respectivamente.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">max</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.141</code></pre>
 </div>
 </div>
-<p><span style="color:darkgray;"><em>Interpretación:</em></span> El tiempo de ciclo máximo de un pistón es 1.141 segundos.</p>
+<p><span style="color:darkgray;"><em>Interpretación:</em></span> El tiempo de ciclo máximo del pistón es 1.141 segundos.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">min</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.175</code></pre>
 </div>
 </div>
-<p><span style="color:darkgray;"><em>Interpretación:</em></span> El tiempo de ciclo mínimo de un pistón es 0.175 segundos.</p>
+<p><span style="color:darkgray;"><em>Interpretación:</em></span> El tiempo de ciclo mínimo del pistón es 0.175 segundos.</p>
+</section>
+<section id="actividad-solo-mode" class="slide level2">
+<h2>Actividad (<em>solo</em> mode)</h2>
+<p>Una empresa fabricante de pernos de retención de condensadores para motores de automóviles implementó un sistema de control de calidad. Como parte de este sistema de control de calidad, un equipo de ingenieros decidió registrar la cantidad de pernos no conformes producidos en cada turno.</p>
+<p>El archivo <code>bolts.xlsx</code> contiene la cantidad de pernos no conformes durante los últimos 45 turnos.</p>
+<ul>
+<li>Calcula el primedio, varianza, desviación estándard, cuartiles, mínimo y máximo.</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<div class="countdown" id="timer_0fc952d7" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+</div>
+</div>
 </section>
 <section>
 <section id="gráficas-para-datos-numéricos" class="title-slide slide level1 center">
@@ -619,8 +643,9 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 </blockquote>
 <p>Las preguntas típicas sobre una variable numérica son:</p>
 <ul>
-<li><p>¿Cuál es la forma de los datos (observaciones) de la variable <em>X</em>?</p></li>
-<li><p>¿Existen observaciones inusuales en la variable <em>X</em>?</p></li>
+<li><p>¿Cuál es la forma de las observaciones de la variable <em>X</em>?</p></li>
+<li><p>¿Existen observaciones inusuales o atípicas en la variable <em>X</em>?</p></li>
+<li><p>¿La forma de las observaciones de la variable <em>X</em> se parece a una campana?</p></li>
 </ul>
 </section>
 <section id="principio-2" class="slide level2">
@@ -630,45 +655,28 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 </blockquote>
 <p>Tres tipos comunes de graficas para visualizar una variable numérica son:</p>
 <ul>
-<li>Histogramas.</li>
-<li>Curvas de densidad.</li>
-<li>Gráficas de cajas.</li>
+<li>Histograma.</li>
+<li>Curva de densidad.</li>
+<li>Gráfica de cajas.</li>
 </ul>
 <p>Básicamente, son maneras distintas de visualizar la “forma” o <span style="color:darkred;"><em>distribución</em></span> de la variable.</p>
 </section>
 <section id="histograma" class="slide level2">
 <h2>Histograma</h2>
-<p>Da una idea de la distribución de las observaciones, indicando regiones donde las observaciones están concentradas o son escasas.</p>
+<p>Visualiza la distribución de las observaciones, indicando regiones donde las observaciones están concentradas o son escasas.</p>
 <p>Se construye usando una <strong><em>tabla de frecuencia</em></strong>.</p>
 <ol type="1">
-<li>Define un número máximo de categorías o <em>bins</em> (de 5 a 30).</li>
-<li>Define los rangos de las categorías.</li>
-<li>Agrupa las observaciones en sus categorías correspondientes.</li>
+<li>Define un número máximo de intervalos o <em>bins</em> (de 5 a 30).</li>
+<li>Define los rangos de los intervalos.</li>
+<li>Agrupa las observaciones en el intervalo que pertenecen.</li>
 </ol>
+<p>R calcula automáticamente la tabla de frecuencia para datos numéricos. El histograma es una visualización de esta tabla.</p>
 </section>
-<section id="tabla-de-frecuencia" class="slide level2">
-<h2>Tabla de frecuencia</h2>
-<p>R calcula automáticamente la tabla de frecuencia para datos numéricos.</p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-[0.175,0.223] (0.223,0.272]  (0.272,0.32]  (0.32,0.368] (0.368,0.416] 
-            7             2             6             3             0 
-(0.416,0.465] (0.465,0.513] (0.513,0.561]  (0.561,0.61]  (0.61,0.658] 
-            4             2             2             1             1 
-(0.658,0.706] (0.706,0.755] (0.755,0.803] (0.803,0.851] (0.851,0.899] 
-            2             0             0             0             0 
-(0.899,0.948] (0.948,0.996]  (0.996,1.04]   (1.04,1.09]   (1.09,1.14] 
-            0             0             3             9             8 </code></pre>
-</div>
-</div>
-<p>El histograma es una visualización de esta tabla.</p>
-</section>
-<section id="section-5" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <p>En <code>ggplot2</code> puedes construir un histograma usando el siguiente comando.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">13</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch quarto-figure-center"><aside class="notes">
@@ -689,8 +697,8 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <h2>Mejora la gráfica</h2>
 <p>Para transmitir un mejor mensaje, añade las siguientes opciones.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">13</span>, </span>
-<span id="cb21-2"><a href="#cb21-2"></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">13</span>, </span>
+<span id="cb20-2"><a href="#cb20-2"></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch quarto-figure-center"></section>
@@ -700,15 +708,17 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <p>Enriquece la gráfica con información adicional.</p>
 </blockquote>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">13</span>, </span>
-<span id="cb22-2"><a href="#cb22-2"></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">13</span>, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb21-2"><a href="#cb21-2"></a>            <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, </span>
+<span id="cb21-3"><a href="#cb21-3"></a>            <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, </span>
+<span id="cb21-4"><a href="#cb21-4"></a>            <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="no-es-lo-mismo-que-una-gráfica-de-barras" class="slide level2">
 <h2>No es lo mismo que una gráfica de barras</h2>
-<p>Con datos cateóricos, la gráfica de barras se parece al histograma porque presenta la frecuencia de las categorías.</p>
-<p>Sin embargo, no podemos interpretar la forma del diagrama de barras de la misma manera que un histograma.</p>
+<p>Con datos categóricos, la gráfica de barras se parece al histograma porque presenta la frecuencia de las categorías.</p>
+<p>Sin embargo, no podemos interpretar la forma la gráfica de barras igual que un histograma.</p>
 <ol type="1">
 <li><p>La frecuencia de una categoría está representada por la altura de la barra y el ancho no contiene información.</p></li>
 <li><p>Una gráfica de barras no te señalará valores atípicos.</p></li>
@@ -727,12 +737,17 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
           display:block!important;
       }</style></aside>
 </section>
-<section id="cómo-defino-el-número-de-intervalos" class="slide level2">
-<h2>¿Cómo defino el número de intervalos?</h2>
-<p><span style="font-size: 80%;">El número de intervalos afecta el aspecto del histograma. El histograma izquierdo usa <code>bins = 13</code> y el histograma derecho usa <code>bins = 5</code>.</span></p>
+<section id="cómo-fijo-el-número-de-intervalos" class="slide level2">
+<h2>¿Cómo fijo el número de intervalos?</h2>
+<p><span style="font-size: 100%;">El número de intervalos afecta el aspecto del histograma. El histograma izquierdo usa <code>bins = 5</code> y el histograma derecho usa <code>bins = 30</code>.</span></p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">5</span>, </span>
+<span id="cb22-2"><a href="#cb22-2"></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -743,6 +758,11 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">30</span>, </span>
+<span id="cb23-2"><a href="#cb23-2"></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -771,15 +791,16 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <h2>Suavizado</h2>
 <ul>
 <li><p>El histograma es un tipo de gráfico que utiliza <strong><em>suavizado</em></strong>.</p></li>
-<li><p>Es decir, agrega valores de datos colocando puntos en contenedores y trazando una barra para cada contenedor.</p></li>
-<li><p>Suavizar aquí significa que no podemos diferenciar la ubicación de puntos individuales en un contenedor: los puntos se asignan suavemente entre sus contenedores.</p></li>
+<li><p>Es decir, agrega valores de datos colocando observaciones en intervalos y trazando una barra para cada intervalo.</p></li>
+<li><p>Aquí, suavizar significa que no podemos diferenciar la ubicación de puntos individuales en un contenedor: los puntos se asignan suavemente entre sus contenedores.</p></li>
 </ul>
-</section>
-<section id="section-6" class="slide level2">
+
+<img data-src="images/clipboard-2647770017.png" class="r-stretch quarto-figure-right"></section>
+<section id="section-7" class="slide level2">
 <h2></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p>Con pocos intervalos anchos, hemos suavizado demasiado la distribución, lo que hace imposible discernir posibles colas o valores atípicos.</p>
+<p>Con pocos intervalos anchos, suavizamos demasiado la distribución, lo que hace imposible ver si hay valores muy lejos de otros.</p>
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
@@ -821,14 +842,18 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
           display:block!important;
       }</style></aside>
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-8" class="slide level2">
 <h2></h2>
 <ul>
-<li><p>La función <code>gf_histogram</code> elige automáticamente el número de intervalos.</p></li>
-<li><p>Sin embargo, este parámetro (<code>bin</code> en la función) a menudo necesita un poco de modificación para crear el histograma más útil.</p></li>
-<li><p>En presencia de un parámetro de ajuste, es importante probar algunos valores diferentes antes de decidirse por uno.</p></li>
+<li><p>La función <code>gf_histogram</code> fija el número de intervalos usando el parámetri <code>bins</code> que se fija en 30 por default.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">30</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Sin embargo, este parámetro a menudo necesita modificarse para crear el histograma más útil.</p></li>
+<li><p>En presencia de un parámetro de ajuste, es importante probar algunos valores antes de decidirse por uno.</p></li>
 </ul>
-<aside class="notes">
+
+<img data-src="images/clipboard-166552611.png" class="r-stretch quarto-figure-left"><aside class="notes">
 <p>Most histogram and KDE software automatically choose the bin width for the histogram and the bandwidth for the kernel. However, these parameters often need a bit of fiddling to create the most useful plot. When you create visualizations that rely on tuning parameters, it’s important to try a few different values before settling on one.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -845,20 +870,20 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <section id="curva-de-densidad" class="slide level2">
 <h2>Curva de densidad</h2>
 <p>La curva de densidad es una versión extrema pero inteligente de suavizado a un histograma.</p>
-<p>Se basa en la frecuencia relativa (#observaciónes_en_categoria/total), en lugar de la frecuencia</p>
-<p>En R, se obtiene usando la función <code>df_density()</code>.</p>
+<p>Se basa en la frecuencia relativa (#observaciónes_en_categoria/total), en lugar de la frecuencia.</p>
+<p>La obtienes con la función <code>df_density()</code>.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">gf_density</span>(<span class="sc">~</span> cycle_time, </span>
-<span id="cb23-2"><a href="#cb23-2"></a>           <span class="at">data =</span> piston_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">gf_density</span>(<span class="sc">~</span> cycle_time, </span>
+<span id="cb25-2"><a href="#cb25-2"></a>           <span class="at">data =</span> piston_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-19-1.png" width="960"></p>
+<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -866,20 +891,41 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 </div>
 </div>
 </section>
-<section id="section-8" class="slide level2">
+<section id="section-9" class="slide level2">
 <h2></h2>
 
-<img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch quarto-figure-center"><p>La curva es inteligente porque estima la distribución real de la variable númerica usando un método llamado <em>Kernel Density Estimation</em>.</p>
+<img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch quarto-figure-center"><p>La curva es inteligente porque estima la distribución real de la variable númerica usando un método llamado <em>Kernel Density Estimation</em>.</p>
 </section>
 <section id="qué-buscar-en-un-histograma-o-curva-de-densidad" class="slide level2">
 <h2>¿Qué buscar en un histograma o curva de densidad?</h2>
 <ul>
 <li>La simetría y la asimetría de la distribución</li>
-<li>El número, ubicación y tamaño de las regiones (intervalos) de alta frecuencia</li>
-<li>La longitud de las colas (a menudo en comparación con una curva en forma de campana).</li>
-<li>Brechas donde no se observan valores</li>
+<li>El número, ubicación y tamaño de las regiones (intervalos) de alta frecuencia.</li>
+<li>La longitud de las colas.</li>
+<li>Brechas donde no se observan valores.</li>
 <li>Valores inusualmente grandes o anómalos.</li>
 </ul>
+</section>
+<section id="la-obsesión-con-las-campanas" class="slide level2">
+<h2>La obsesión con las campanas</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>La <strong>distribución normal</strong> es una distribución de probabilidad muy importante en estadística.</p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/clipboard-2759719598.png"></p>
+</div>
+</div>
+<p>Se caracteriza por tener una forma de campana simétrica alrededor de su media, con la mayor densidad de probabilidad centrada en la media y disminuyendo simétricamente hacia los extremos.</p>
+</section>
+<section id="section-10" class="slide level2">
+<h2></h2>
+<p>Básicamente, si tus observaciones siguen una distribución normal, puedes utilizar métodos estadísticos para sacar conclusiones fundamentadas por teoría matemática.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/clipboard-983817526.png" width="554" height="278"></p>
+</figure>
+</div>
+<p><span style="color:darkred;">Lo que mucha gente no sabe es que esta condición se necesita solo si tienes pocas observaciones (menos de 50).</span></p>
 </section>
 <section id="gáfica-de-caja" class="slide level2">
 <h2>Gáfica de Caja</h2>
@@ -895,23 +941,23 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <section id="anatomía-de-una-gráfica-de-caja" class="slide level2">
 <h2>Anatomía de una gráfica de Caja</h2>
 
-<img data-src="images/clipboard-84021266.png" class="r-stretch"><p>Te invito a conocer más en esa liga <a href="https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097" class="uri"><strong>https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097</strong></a></p>
+<img data-src="images/clipboard-84021266.png" class="r-stretch quarto-figure-center"><p>Conoce más en esa liga <a href="#/0" class="uri"><strong>https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097</strong></a></p>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <p>Para construir una gráfica de caja, utiliza la función <code>gf_boxplot()</code>.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">gf_boxplot</span>(cycle_time <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb24-2"><a href="#cb24-2"></a>          <span class="at">data =</span> piston_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">gf_boxplot</span>(cycle_time <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb26-2"><a href="#cb26-2"></a>          <span class="at">data =</span> piston_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-22-1.png" width="960"></p>
+<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-23-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -927,18 +973,40 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">gf_violin</span>(cycle_time <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb25-2"><a href="#cb25-2"></a>          <span class="at">data =</span> piston_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">gf_violin</span>(cycle_time <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb27-2"><a href="#cb27-2"></a>          <span class="at">data =</span> piston_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-24-1.png" width="960"></p>
+<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-25-1.png" width="960"></p>
 </figure>
 </div>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section id="gráfica-de-violín-vs-un-violín" class="slide level2">
+<h2>Gráfica de violín vs Un Violín</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-26-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/download.jpeg" width="311"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -950,72 +1018,10 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <li><p>Muestran principalmente simetría y sesgo, colas largas/cortas y valores inusualmente grandes/pequeños (también conocidos como <em>valores atípicos</em>).</p></li>
 <li><p>Las tramas de violín no muestran valores atípicos.</p></li>
 </ul>
-</section></section>
-<section id="actividad" class="title-slide slide level1 center">
-<h1>Actividad</h1>
-
 </section>
-
-<section>
-<section id="applicando-el-principio-3" class="title-slide slide level1 center">
-<h1>Applicando el Principio 3</h1>
-<p>Histograma de precios.</p>
-<p>While this plot accurately displays the data, most of the visible bins are crammed into the left side of the plot. This makes it hard to understand the distribution of prices.</p>
-<aside class="notes">
-<p>Through data visualization, we want to reveal important features of the data, like the shape of a distribution and the relationship between two or more features. As this example shows, after we produce an initial plot, there are still other aspects we need to consider. In this section, we cover <em>principles of scale</em> that help us decide how to adjust the axis limits, place tick marks, and apply transformations. We begin by examining when and how we might adjust a plot to reduce empty space; in other words, we try to fill the data region of our plot with data.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="ajustando-la-escala" class="slide level2">
-<h2>Ajustando la escala</h2>
-<p>Para mejorar la gráfica, puedes ajustar los limites del eje, los tick mars y aplicar transformaciones a la variable.</p>
-</section>
-<section id="ajustando-los-límites" class="slide level2">
-<h2>Ajustando los límites</h2>
-<p>Ejemplo de ajustar los límites en ggplot2.</p>
-</section>
-<section id="ajustando-los-tick-marks" class="slide level2">
-<h2>Ajustando los tick marks</h2>
-<p>¿Es apropiado incluir el zero o no?</p>
-<p>Ejemplo de histograma sin zero y con zero.</p>
-</section>
-<section id="transformaciones" class="slide level2">
-<h2>Transformaciones</h2>
-<p>Another common way to adjust scale is to transform the data or the plot’s axes. We use transformations for skewed data so that it is easier to inspect the distribution.</p>
-<p>And when the transformation produces a symmetric distribution, the symmetry carries with it useful properties for modeling (which we will see later).</p>
-<p>There are multiple ways to transform data, but the log transformation tends to be especially useful.</p>
-</section>
-<section id="ejemplo-1" class="slide level2">
-<h2>Ejemplo</h2>
-<p>Ejemplo de histograma con o sin transformación.</p>
-</section>
-<section id="section-10" class="slide level2">
-<h2></h2>
-<p>The downside of using the log transform is that the actual values aren’t as intuitive—in this example, we needed to convert the values back to dollars to understand the sale price.</p>
-<p>Therefore, we often favor transforming the axis to a log scale, rather than the data.</p>
-<p>R code con grafica</p>
-<aside class="notes">
-<p>This histogram with its log-scaled x-axis essentially shows the same shape as the histogram of the transformed data. But since the axis is displayed in the original units, we can directly read off the location of the modes in dollars. Note that the bins get narrower to the right because the bin widths are equal on the USD scale but plotted on the log USD scale. Also note that � on the y-axis is 10−6.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<section id="actividad" class="slide level2">
+<h2>Actividad</h2>
+<p>Coursekata.</p>
 
 <img src="IN2039_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 

@@ -1,7 +1,7 @@
 ---
 title: |
    | Sesión 4: 
-   | Datos Numéricos  
+   | Variables Numéricas  
 author: 
   - name: Alan R. Vázquez
     email: alanrvazquez@tec.mx
@@ -23,7 +23,7 @@ css: style.css
 
 ## Los Tópicos de Hoy
 
-[*Enfocarnos en 1 variable numérica.*]{style="color:darkblue;"}
+[**Objetivo:**]{.underline} *Enfocarnos en 1 variable numérica.*
 
 <br/>
 
@@ -33,7 +33,7 @@ css: style.css
 :::
 
 ::: {.column width="50%"}
-2.  Gráfica de barras y circular
+2.  Histogramas y gráficas de caja
 :::
 :::
 
@@ -50,7 +50,7 @@ css: style.css
 
 ::: columns
 ::: {.column width="70%"}
-Un pistón es un dispositivo mecánico que está presente en la mayoría de los motores.
+Un pistón es un dispositivo mecánico presente en la mayoría de los motores.
 :::
 
 ::: {.column width="30%"}
@@ -62,13 +62,13 @@ Una medida del rendimiento de un pistón es el tiempo que lleva en completar un 
 
 El archivo `CYLT.xlsx` contiene 50 tiempos de ciclo de un pistón operado en condiciones de funcionamiento fijas.
 
-## Carguemos los datos en R
+## Primero, carguemos los datos en R
 
 ```{r}
 
 library(readxl) # Para leer datos.
 library(ggplot2) # Para visualizar.
-library(ggformula) # Para visualizar.
+library(ggformula) # Para usar gáficas.
 
 piston_data <- read_excel("CYCLT.xlsx") # Leer los datos.
 head(piston_data) # Ver las primeras 6 observaciones.
@@ -82,16 +82,16 @@ En R, los datos numéricos se llaman `numeric`. Preguntemos si R reconoce nuestr
 is.numeric(piston_data$cycle_time)
 ```
 
-## Resúmenes estadísticos
+## Resúmen estadístico
 
-> Un **resumén estadístico** nos ayuda a resumir un conjunto de observaciones de una manera simple.
+> Nos ayuda a resumir un conjunto de observaciones de una manera simple.
 
 Los resúmenes estadísticos más utilizados para datos numéricos son:
 
 -   [Promedio]{style="color:darkblue;"}
 -   [Varianza]{style="color:darkblue;"} y [Desviación estándar]{style="color:darkblue;"}
--   [Mediana]{style="color:darkblue;"} y [cuartiles]{style="color:darkblue;"}
--   [Máximo]{style="color:darkblue;"} y [mínimo]{style="color:darkblue;"}
+-   [Mediana]{style="color:darkgreen;"} y [cuartiles]{style="color:darkgreen;"}
+-   [Máximo]{style="color:dark;"} y [mínimo]{style="color:dark;"}
 
 ## Promedio
 
@@ -115,7 +115,7 @@ mean(piston_data$cycle_time)
 
 <br/>
 
-[*Interpretación:*]{style="color:darkgray;"} En promedio, un pistón tarda 0.65246 segundos en completar un ciclo.
+[*Interpretación:*]{style="color:darkgray;"} En promedio, el pistón tarda 0.65246 segundos en completar un ciclo.
 
 ## Varianza
 
@@ -127,7 +127,7 @@ $$
 s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2
 $$
 
-*Es como un promedio de las diferencias al cuadrado entre cada observación y el promedio.*
+*Es como un promedio de las diferencias al cuadrado entre las observaciones y el promedio.*
 
 ## 
 
@@ -139,11 +139,19 @@ En R, la varianza se calcula usando la función `var`.
 var(piston_data$cycle_time)
 ```
 
-<br/> [*Interpretación:*]{style="color:darkgray;"} La varianza de los tiempos de ciclo de los pistones es 0.1391073.
+<br/> [*Interpretación:*]{style="color:darkgray;"} La varianza de los tiempos de ciclo del pistón es 0.1391073.
+
+<br/> *Entre mas grande la varianza, mayor la dispersión de los datos alrededor del promedio (centro).*
+
+## 
+
+Desafortunadamente, la varianza no está en las mismas unidades que las observaciones, ya que las diferencias entre cada observación y el promedio se elevan al cuadrado.
+
+<br/>
+
+Por ejemplo, el promedio es 0.65246 segundos mientras que la varianza es 0.1391073 segundos$^2$.
 
 ## Desviación estándar
-
-Desafortunadamente, la varianza no está en la misma escala que las observaciones, ya que las diferencias entre cada observación y la media muestral se elevan al cuadrado.
 
 Para obtener una medida de dispersión cuyas unidades sean las mismas que las de las observaciones, tomamos la raíz cuadrada de la varianza.
 
@@ -151,7 +159,7 @@ $$
 s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 $$
 
-Esta es la desviación estándar.
+Esta es la desviación estándar, que esta en las mismas unidades que las observaciones.
 
 ## 
 
@@ -191,7 +199,7 @@ En R, la mediana se calcula con la función `median`.
 median(piston_data$cycle_time)
 ```
 
-[*Interpretación:*]{style="color:darkgray;"} El 50% de los tiempos de ciclo de los pistones es menor que 0.5455 segundos.
+[*Interpretación:*]{style="color:darkgray;"} El 50% de los tiempos de ciclo del pistón es menor que 0.5455 segundos.
 
 Los cuartiles se calculan con la función `quantile`.
 
@@ -199,23 +207,37 @@ Los cuartiles se calculan con la función `quantile`.
 quantile(piston_data$cycle_time)
 ```
 
-[*Interpretación:*]{style="color:darkgray;"} El 25%, 50% y 75% de los tiempos de ciclo de los pistones es menor que 0.3050, 0.5455 y 1.0690 segundos, respectivamente.
+[*Interpretación:*]{style="color:darkgray;"} El 25%, 50% y 75% de los tiempos de ciclo del pistón es menor que 0.3050, 0.5455 y 1.0690 segundos, respectivamente.
 
 ## Máximo y mínimo
 
-Por supuesto que otros estadísticos relevantes son el **máximo** y el **mínimo**, que se calculan con las funciones `max` y `min`, respectivamente.
+Otros estadísticos relevantes son el **máximo** y el **mínimo**, que se calculan con las funciones `max` y `min`, respectivamente.
 
 ```{r}
 max(piston_data$cycle_time)
 ```
 
-[*Interpretación:*]{style="color:darkgray;"} El tiempo de ciclo máximo de un pistón es 1.141 segundos.
+[*Interpretación:*]{style="color:darkgray;"} El tiempo de ciclo máximo del pistón es 1.141 segundos.
 
 ```{r}
 min(piston_data$cycle_time)
 ```
 
-[*Interpretación:*]{style="color:darkgray;"} El tiempo de ciclo mínimo de un pistón es 0.175 segundos.
+[*Interpretación:*]{style="color:darkgray;"} El tiempo de ciclo mínimo del pistón es 0.175 segundos.
+
+## Actividad (*solo* mode)
+
+Una empresa fabricante de pernos de retención de condensadores para motores de automóviles implementó un sistema de control de calidad. Como parte de este sistema de control de calidad, un equipo de ingenieros decidió registrar la cantidad de pernos no conformes producidos en cada turno.
+
+El archivo `bolts.xlsx` contiene la cantidad de pernos no conformes durante los últimos 45 turnos.
+
+-   Calcula el primedio, varianza, desviación estándard, cuartiles, mínimo y máximo.
+
+```{r}
+#| echo: false
+
+countdown::countdown(minutes = 7)
+```
 
 # Gráficas para datos numéricos
 
@@ -225,9 +247,11 @@ min(piston_data$cycle_time)
 
 Las preguntas típicas sobre una variable numérica son:
 
--   ¿Cuál es la forma de los datos (observaciones) de la variable *X*?
+-   ¿Cuál es la forma de las observaciones de la variable *X*?
 
--   ¿Existen observaciones inusuales en la variable *X*?
+-   ¿Existen observaciones inusuales o atípicas en la variable *X*?
+
+-   ¿La forma de las observaciones de la variable *X* se parece a una campana?
 
 ## Principio 2
 
@@ -235,35 +259,23 @@ Las preguntas típicas sobre una variable numérica son:
 
 Tres tipos comunes de graficas para visualizar una variable numérica son:
 
--   Histogramas.
--   Curvas de densidad.
--   Gráficas de cajas.
+-   Histograma.
+-   Curva de densidad.
+-   Gráfica de cajas.
 
 Básicamente, son maneras distintas de visualizar la "forma" o [*distribución*]{style="color:darkred;"} de la variable.
 
 ## Histograma
 
-Da una idea de la distribución de las observaciones, indicando regiones donde las observaciones están concentradas o son escasas.
+Visualiza la distribución de las observaciones, indicando regiones donde las observaciones están concentradas o son escasas.
 
 Se construye usando una ***tabla de frecuencia***.
 
-1.  Define un número máximo de categorías o *bins* (de 5 a 30).
-2.  Define los rangos de las categorías.
-3.  Agrupa las observaciones en sus categorías correspondientes.
+1.  Define un número máximo de intervalos o *bins* (de 5 a 30).
+2.  Define los rangos de los intervalos.
+3.  Agrupa las observaciones en el intervalo que pertenecen.
 
-## Tabla de frecuencia
-
-R calcula automáticamente la tabla de frecuencia para datos numéricos.
-
-```{r}
-#| echo: false
-#| output: true
-
-table(cut_interval(piston_data$cycle_time, 20))
-
-```
-
-El histograma es una visualización de esta tabla.
+R calcula automáticamente la tabla de frecuencia para datos numéricos. El histograma es una visualización de esta tabla.
 
 ## 
 
@@ -272,7 +284,7 @@ En `ggplot2` puedes construir un histograma usando el siguiente comando.
 ```{r}
 #| fig-pos: center
 
-gf_histogram( ~ cycle_time, data = piston_data, bins = 13) 
+gf_histogram( ~ cycle_time, data = piston_data) 
 ```
 
 ::: notes
@@ -287,7 +299,7 @@ Para transmitir un mejor mensaje, añade las siguientes opciones.
 #| fig-pos: center
 
 gf_histogram( ~ cycle_time, data = piston_data, bins = 13, 
-              color = "black", fill = "white")
+              color = "black", fill = "white") 
 ```
 
 ## O mejor aún, aplica el Principio 3
@@ -297,15 +309,17 @@ gf_histogram( ~ cycle_time, data = piston_data, bins = 13,
 ```{r}
 #| fig-pos: center
 
-gf_histogram( ~ cycle_time, data = piston_data, bins = 13, 
-              color = "black", fill = "white") + labs(title = "Histograma de tiempo de ciclo", x = "Tiempo de ciclo (segundos)", y = "Frequencia", caption = "Datos de 50 pistones")
+gf_histogram( ~ cycle_time, data = piston_data, bins = 13, color = "black",
+            fill = "white") + labs(title = "Histograma de tiempo de ciclo", 
+            x = "Tiempo de ciclo (segundos)", y = "Frequencia", 
+            caption = "Datos de 50 pistones")
 ```
 
 ## No es lo mismo que una gráfica de barras
 
-Con datos cateóricos, la gráfica de barras se parece al histograma porque presenta la frecuencia de las categorías.
+Con datos categóricos, la gráfica de barras se parece al histograma porque presenta la frecuencia de las categorías.
 
-Sin embargo, no podemos interpretar la forma del diagrama de barras de la misma manera que un histograma.
+Sin embargo, no podemos interpretar la forma la gráfica de barras igual que un histograma.
 
 1.  La frecuencia de una categoría está representada por la altura de la barra y el ancho no contiene información.
 
@@ -315,15 +329,15 @@ Sin embargo, no podemos interpretar la forma del diagrama de barras de la misma 
 Tails and symmetry do not make sense in this setting.
 :::
 
-## ¿Cómo defino el número de intervalos?
+## ¿Cómo fijo el número de intervalos?
 
-[El número de intervalos afecta el aspecto del histograma. El histograma izquierdo usa `bins = 13` y el histograma derecho usa `bins = 5`.]{style="font-size: 80%;"}
+[El número de intervalos afecta el aspecto del histograma. El histograma izquierdo usa `bins = 5` y el histograma derecho usa `bins = 30`.]{style="font-size: 100%;"}
 
 ::: columns
 ::: {.column width="50%"}
 ```{r}
 #| fig-pos: center
-#| echo: false
+#| code-fold: true
 
 gf_histogram( ~ cycle_time, data = piston_data, bins = 5, 
               color = "black", fill = "white") + labs(title = "Histograma de tiempo de ciclo", x = "Tiempo de ciclo (segundos)", y = "Frequencia", caption = "Datos de 50 pistones")
@@ -333,7 +347,7 @@ gf_histogram( ~ cycle_time, data = piston_data, bins = 5,
 ::: {.column width="50%"}
 ```{r}
 #| fig-pos: center
-#| echo: false
+#| code-fold: true
 
 gf_histogram( ~ cycle_time, data = piston_data, bins = 30, 
               color = "black", fill = "white") + labs(title = "Histograma de tiempo de ciclo", x = "Tiempo de ciclo (segundos)", y = "Frequencia", caption = "Datos de 50 pistones")
@@ -349,16 +363,19 @@ The histogram is a familiar type of plot that uses smoothing. A histogram aggreg
 
 -   El histograma es un tipo de gráfico que utiliza ***suavizado***.
 
--   Es decir, agrega valores de datos colocando puntos en contenedores y trazando una barra para cada contenedor.
+-   Es decir, agrega valores de datos colocando observaciones en intervalos y trazando una barra para cada intervalo.
 
--   Suavizar aquí significa que no podemos diferenciar la ubicación de puntos individuales en un contenedor: los puntos se asignan suavemente entre sus contenedores.
+-   Aquí, suavizar significa que no podemos diferenciar la ubicación de puntos individuales en un contenedor: los puntos se asignan suavemente entre sus contenedores.
+
+![](images/clipboard-2647770017.png){fig-align="right"}
 
 ## 
 
 ::: columns
 ::: {.column width="50%"}
-Con pocos intervalos anchos, hemos suavizado demasiado la distribución, lo que hace imposible discernir posibles colas o valores atípicos.
-::: 
+Con pocos intervalos anchos, suavizamos demasiado la distribución, lo que hace imposible ver si hay valores muy lejos de otros.
+:::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-pos: center
@@ -373,7 +390,8 @@ gf_histogram( ~ cycle_time, data = piston_data, bins = 5,
 ::: columns
 ::: {.column width="50%"}
 Por otro lado, demasiados intervalos dan un gráfico demasiado detallado.
-::: 
+:::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-pos: center
@@ -385,19 +403,26 @@ gf_histogram( ~ cycle_time, data = piston_data, bins = 30,
 :::
 :::
 
-
 ::: notes
 In both histograms, it’s hard to see the shape of the distribution. With a few wide bins (the plot on the left), we have over-smoothed the distribution, which makes it impossible to discern modes and tails. On the other hand, too many bins (the plot on the right) gives a plot that’s little better than a rug plot.
 :::
 
 ## 
 
-- La función `gf_histogram` elige automáticamente el número de intervalos. 
+-   La función `gf_histogram` fija el número de intervalos usando el parámetri `bins` que se fija en 30 por default.
 
-- Sin embargo, este parámetro (`bin` en la función) a menudo necesita un poco de modificación para crear el histograma más útil. 
+    ```{r}
+    #| output: false
 
-- En presencia de un parámetro de ajuste, es importante probar algunos valores diferentes antes de decidirse por uno.
 
+    gf_histogram( ~ cycle_time, data = piston_data, bins = 30) 
+    ```
+
+-   Sin embargo, este parámetro a menudo necesita modificarse para crear el histograma más útil.
+
+-   En presencia de un parámetro de ajuste, es importante probar algunos valores antes de decidirse por uno.
+
+![](images/clipboard-166552611.png){fig-align="left"}
 
 ::: notes
 Most histogram and KDE software automatically choose the bin width for the histogram and the bandwidth for the kernel. However, these parameters often need a bit of fiddling to create the most useful plot. When you create visualizations that rely on tuning parameters, it’s important to try a few different values before settling on one.
@@ -407,9 +432,9 @@ Most histogram and KDE software automatically choose the bin width for the histo
 
 La curva de densidad es una versión extrema pero inteligente de suavizado a un histograma.
 
-Se basa en la frecuencia relativa (#observaciónes_en_categoria/total), en lugar de la frecuencia
+Se basa en la frecuencia relativa (#observaciónes_en_categoria/total), en lugar de la frecuencia.
 
-En R, se obtiene usando la función `df_density()`.
+La obtienes con la función `df_density()`.
 
 ::: columns
 ::: {.column width="50%"}
@@ -420,7 +445,8 @@ En R, se obtiene usando la función `df_density()`.
 gf_density(~ cycle_time, 
            data = piston_data)
 ```
-::: 
+:::
+
 ::: {.column width="50%"}
 ```{r}
 #| echo: false
@@ -431,7 +457,7 @@ gf_density(~ cycle_time, data = piston_data)
 :::
 :::
 
-##
+## 
 
 ```{r}
 #| echo: false
@@ -442,30 +468,51 @@ gf_density(~ cycle_time, data = piston_data)
 
 La curva es inteligente porque estima la distribución real de la variable númerica usando un método llamado *Kernel Density Estimation*.
 
-
 ## ¿Qué buscar en un histograma o curva de densidad?
 
-- La simetría y la asimetría de la distribución
-- El número, ubicación y tamaño de las regiones (intervalos) de alta frecuencia
-- La longitud de las colas (a menudo en comparación con una curva en forma de campana).
-- Brechas donde no se observan valores
-- Valores inusualmente grandes o anómalos.
+-   La simetría y la asimetría de la distribución
+-   El número, ubicación y tamaño de las regiones (intervalos) de alta frecuencia.
+-   La longitud de las colas.
+-   Brechas donde no se observan valores.
+-   Valores inusualmente grandes o anómalos.
+
+## La obsesión con las campanas
+
+::: columns
+::: {.column width="50%"}
+La **distribución normal** es una distribución de probabilidad muy importante en estadística.
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-2759719598.png)
+:::
+:::
+
+Se caracteriza por tener una forma de campana simétrica alrededor de su media, con la mayor densidad de probabilidad centrada en la media y disminuyendo simétricamente hacia los extremos.
+
+## 
+
+Básicamente, si tus observaciones siguen una distribución normal, puedes utilizar métodos estadísticos para sacar conclusiones fundamentadas por teoría matemática.
+
+![](images/clipboard-983817526.png){fig-align="center" width="554" height="278"}
+
+[Lo que mucha gente no sabe es que esta condición se necesita solo si tienes pocas observaciones (menos de 50).]{style="color:darkred;"}
 
 ## Gáfica de Caja
 
 Una gráfica de caja nos ayuda a visualizar la distribución de las observaciones usando cuartiles.
 
-- Es muy efectiva para detectar "valores atípicos".
+-   Es muy efectiva para detectar "valores atípicos".
 
-Un componente importante de la gráfica es el **rango intercuartil** (*IQR*), que es la diferencia entre el tercer cuartil y el primer cuartil ($Q_3 - Q_1$). 
+Un componente importante de la gráfica es el **rango intercuartil** (*IQR*), que es la diferencia entre el tercer cuartil y el primer cuartil ($Q_3 - Q_1$).
 
 > El rango intercuartil es la distancia necesaria para abarcar la mitad media de los datos.
 
 ## Anatomía de una gráfica de Caja
 
-![](images/clipboard-84021266.png)
+![](images/clipboard-84021266.png){fig-align="center"}
 
-Te invito a conocer más en esa liga [**https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097**](https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097){.uri}
+Conoce más en esa liga [**https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097**](#0){.uri}
 
 ## 
 
@@ -480,6 +527,7 @@ gf_boxplot(cycle_time ~ 1,
           data = piston_data)
 ```
 :::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-align: center
@@ -490,7 +538,7 @@ gf_boxplot( cycle_time ~ 1, data = piston_data)
 :::
 :::
 
-Note la sintaxis expecial en este caso `cycle_time ~ 1`. Si usas  `~ cycle_time`, obtendrás la gráfica de caja en horizontal.
+Note la sintaxis expecial en este caso `cycle_time ~ 1`. Si usas `~ cycle_time`, obtendrás la gráfica de caja en horizontal.
 
 ## La gráfica de violín
 
@@ -507,6 +555,7 @@ gf_violin(cycle_time ~ 1,
           data = piston_data)
 ```
 :::
+
 ::: {.column width="50%"}
 ```{r}
 #| fig-align: center
@@ -517,60 +566,33 @@ gf_violin( cycle_time ~ 1, data = piston_data)
 :::
 :::
 
+## Gráfica de violín vs Un Violín
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| fig-align: center
+#| echo: false
+
+
+gf_violin(cycle_time ~ 1, 
+          data = piston_data)
+```
+:::
+
+::: {.column width="50%"}
+![](images/download.jpeg){fig-align="center" width="311"}
+:::
+:::
+
 ## Gráfica de violín vs Gráfica de caja
 
-- La gráfica de caja no revela la forma de la distribución comparada con un histograma o una curva de densidad. 
+-   La gráfica de caja no revela la forma de la distribución comparada con un histograma o una curva de densidad.
 
-- Muestran principalmente simetría y sesgo, colas largas/cortas y valores inusualmente grandes/pequeños (también conocidos como *valores atípicos*).
+-   Muestran principalmente simetría y sesgo, colas largas/cortas y valores inusualmente grandes/pequeños (también conocidos como *valores atípicos*).
 
-- Las tramas de violín no muestran valores atípicos.
+-   Las tramas de violín no muestran valores atípicos.
 
-# Actividad
+## Actividad
 
-# Applicando el Principio 3
-
-Histograma de precios.
-
-While this plot accurately displays the data, most of the visible bins are crammed into the left side of the plot. This makes it hard to understand the distribution of prices.
-
-::: notes
-Through data visualization, we want to reveal important features of the data, like the shape of a distribution and the relationship between two or more features. As this example shows, after we produce an initial plot, there are still other aspects we need to consider. In this section, we cover *principles of scale* that help us decide how to adjust the axis limits, place tick marks, and apply transformations. We begin by examining when and how we might adjust a plot to reduce empty space; in other words, we try to fill the data region of our plot with data.
-:::
-
-## Ajustando la escala
-
-Para mejorar la gráfica, puedes ajustar los limites del eje, los tick mars y aplicar transformaciones a la variable.
-
-## Ajustando los límites
-
-Ejemplo de ajustar los límites en ggplot2.
-
-## Ajustando los tick marks
-
-¿Es apropiado incluir el zero o no?
-
-Ejemplo de histograma sin zero y con zero.
-
-## Transformaciones
-
-Another common way to adjust scale is to transform the data or the plot’s axes. We use transformations for skewed data so that it is easier to inspect the distribution.
-
-And when the transformation produces a symmetric distribution, the symmetry carries with it useful properties for modeling (which we will see later).
-
-There are multiple ways to transform data, but the log transformation tends to be especially useful.
-
-## Ejemplo
-
-Ejemplo de histograma con o sin transformación.
-
-## 
-
-The downside of using the log transform is that the actual values aren’t as intuitive—in this example, we needed to convert the values back to dollars to understand the sale price.
-
-Therefore, we often favor transforming the axis to a log scale, rather than the data.
-
-R code con grafica
-
-::: notes
-This histogram with its log-scaled x-axis essentially shows the same shape as the histogram of the transformed data. But since the axis is displayed in the original units, we can directly read off the location of the modes in dollars. Note that the bins get narrower to the right because the bin widths are equal on the USD scale but plotted on the log USD scale. Also note that � on the y-axis is 10−6.
-:::
+Coursekata.
