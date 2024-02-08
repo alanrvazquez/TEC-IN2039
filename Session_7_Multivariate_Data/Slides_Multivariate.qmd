@@ -37,7 +37,7 @@ When we investigate multiple variables, we examine the relationships between the
 Here, we consider pairs of features and describe what to look for.
 
 | Tipo         | Número | Gráfica                                                                                         |
-|:---------------|:---------------|:----------------------------------------|
+|:-------------|:-------|:------------------------------------------------------------------------------------------------|
 | Quantitativa | 2      | Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot                      |
 | Categórica   | 2      | Side-by-side bar plots, mosaic plot, overlaid lines                                             |
 | Mixta        | 2      | Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot |
