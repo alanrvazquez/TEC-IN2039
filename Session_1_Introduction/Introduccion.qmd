@@ -305,18 +305,27 @@ Tu gráfica debe de usar los datos para transmitir el mensaje o contestar la pre
 :::
 :::
 
-## *Principio 3: Enriquece con información adicional*
-
 Enriquece tu gráfica con símbolos de color y texto para transmitir información adicional.
+
+## *Principio 3: Aplica los principios del diseño gráfico*
 
 ::: center
 ::: columns
-::: {.column width="50%"}
-![](images/clipboard-2010705704.png)
+::: {.column width="60%"}
+::: {style="font-size: 75%;"}
+::: incremental
+1.  Es fácil identificar objetos por color.
+2.  Utiliza etiquetas directas en lugar de una leyenda.
+3.  Elementos como texto, líneas, y formas que tengan la misma naturaleza deben parecerse.
+4.  Equilibra gráficos y texto.
+5.  Ten cuidado con las opciones predeterminadas del software de visualización.
+6.  Usa un diseño de cuadrícula para organizar su visualización.
+:::
+:::
 :::
 
-::: {.column width="50%"}
-![](images/clipboard-2746624499.png)
+::: {.column width="40%"}
+![](images/clipboard-2746624499.png){width="484" height="339"}
 :::
 :::
 :::
@@ -360,11 +369,7 @@ Principios del diseño gráfico
 ## Actividad (*cooperative* mode)
 
 1.  Júntate con un compañero.
-2.  Encuentren un buen y un mal ejemplo de una visualización (gráficas) en linea.
+2.  Encuentren un **buen** y un **mal** ejemplo de una visualización (gráficas) en linea.
 3.  Guarden las visualizaciones (por ejemplo, haciendo una captura de pantalla).
 4.  Escriban una crítica breve (3 a 4 enunciados) de cada visualización.
-5.  Suban sus criticas e imagenes en la siguiente liga.
-
-```{r}
-countdown::countdown(minutes = 15)
-```
+5.  Suban un documento con sus criticas e imagenes en Canvas.

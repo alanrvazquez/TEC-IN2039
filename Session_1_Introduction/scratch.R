@@ -42,3 +42,32 @@ También, agrega una leyenda a la grafica que describa las características impo
 :::
   
   ## 
+  
+  ## 
+  
+  ::: columns
+::: {.column width="70%"}
+> "*El mayor valor de una imagen es cuando nos obliga a notar lo que nunca esperábamos ver.*" John W. Tukey.
+:::
+  
+  ::: {.column width="30%"}
+![](https://upload.wikimedia.org/wikipedia/en/e/e9/John_Tukey.jpg){alt="John Tukey - Wikipedia"}
+:::
+  :::
+  
+  ::: notes
+Principios del diseño gráfico
+
+1.  Es más fácil identificar objetos por color que por forma.
+
+2.  Cuando sea posible, utiliza etiquetas directas en lugar de una leyenda.
+
+3.  Elementos como texto, líneas, formas, etc., que tengan la misma naturaleza deben parecerse.
+
+4.  Haz un esfuerzo por lograr un equilibrio entre gráficos y texto.
+
+5.  Ten cuidado con las opciones predeterminadas del software de visualización.
+
+6.  Utiliza un diseño de cuadrícula para organizar su visualización.
+:::
+  
