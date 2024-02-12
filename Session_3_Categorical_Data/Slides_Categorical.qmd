@@ -304,10 +304,10 @@ Pie charts versus bar charts.
 
 1.  Ve ChatGPT en <https://chat.openai.com/>
 2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** en R.
-3.  Adapta tu cógigo para producir una gráfica circular de la variable `island` en `penguin_data`.
+3.  Adapta tu código para producir una gráfica circular de la variable `island` en `penguin_data`.
 
 ```{r}
-countdown::countdown(minutes = 10)
+countdown::countdown(minutes = 15)
 ```
 
 # Transformando variables categóricas
