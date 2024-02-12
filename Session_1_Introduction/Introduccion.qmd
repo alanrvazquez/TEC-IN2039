@@ -45,18 +45,19 @@ css: style.css
 
 # Introducción a Ciencia de Datos
 
-## La ciencia de datos es ...
+## La ciencia de datos es ... 
 
 un campo interdisciplinario que utiliza métodos, procesos, algoritmos y sistemas científicos para extraer conocimientos e ideas de muchos datos estructurados y no estructurados.
 
 <br/>
+
+. . . 
 
 ::: center
 ::: columns
 ::: {.column width="40%"}
 ![](images/clipboard-2707460623.png){fig-align="center" width="377"}
 :::
-
 ::: {.column width="50%"}
 ![](images/clipboard-3242954590.png){fig-align="center" width="485"}
 :::
@@ -66,6 +67,8 @@ un campo interdisciplinario que utiliza métodos, procesos, algoritmos y sistema
 ## En el 2004 ...
 
 El huracán Frances estaba arrasando el Caribe y amenazando con golpear directamente la costa atlántica de Florida.
+
+. . .
 
 ::: center
 ::: columns
@@ -82,6 +85,8 @@ El huracán Frances estaba arrasando el Caribe y amenazando con golpear directam
 :::
 :::
 :::
+
+. . .
 
 Los residentes se dirigieron a terrenos más altos, pero en Arkansas, los ejecutivos de Wal-Mart vieron que la situación ofrecía una gran oportunidad para una de sus armas más nuevas basadas en datos: ***la tecnología predictiva***.
 
@@ -137,19 +142,26 @@ Dillman dijo
 
 ## Business understanding
 
+
 -   La comprensión empresarial se refiere a definir el problema empresarial a resolver.
 
 -   El objetivo es reformular el problema empresarial como un problema de ciencia de datos.
 
 -   A menudo, reformular el problema y diseñar una solución es un proceso iterativo.
 
+
+
 ## Data understanding
 
+::: {.incremental}
 -   Si el objetivo es resolver un problema empresarial, los datos que componen la materia prima disponible a partir de la cual se construirá la solución.
 
 -   Los datos disponibles rara vez coinciden con el problema.
 
 -   Por ejemplo, los datos históricos a menudo se recopilan con fines no relacionados con el problema empresarial actual o sin ningún propósito explícito.
+::: 
+
+. . .
 
 > Nuestro objetivo es convertir los datos en información que contesten preguntas útiles.
 
@@ -188,6 +200,8 @@ La metodología de ciencia de datos esta basada en datos númericos dados en tab
 ![](images/9a292b70-64d7-475e-9ffa-22c019609752_lossy.png){fig-align="center"}
 
 > De hecho, los textos, imágenes, videos o audios son transformados a este formato para procesarlos.
+
+. . .
 
 [***En este curso, asumiremos que los datos están en una tabla.***]{style="color:#023562;"}
 
