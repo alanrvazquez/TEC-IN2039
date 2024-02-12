@@ -45,19 +45,20 @@ css: style.css
 
 # Introducción a Ciencia de Datos
 
-## La ciencia de datos es ... 
+## La ciencia de datos es ...
 
 un campo interdisciplinario que utiliza métodos, procesos, algoritmos y sistemas científicos para extraer conocimientos e ideas de muchos datos estructurados y no estructurados.
 
 <br/>
 
-. . . 
+. . .
 
 ::: center
 ::: columns
 ::: {.column width="40%"}
 ![](images/clipboard-2707460623.png){fig-align="center" width="377"}
 :::
+
 ::: {.column width="50%"}
 ![](images/clipboard-3242954590.png){fig-align="center" width="485"}
 :::
@@ -142,24 +143,21 @@ Dillman dijo
 
 ## Business understanding
 
-
 -   La comprensión empresarial se refiere a definir el problema empresarial a resolver.
 
 -   El objetivo es reformular el problema empresarial como un problema de ciencia de datos.
 
 -   A menudo, reformular el problema y diseñar una solución es un proceso iterativo.
 
-
-
 ## Data understanding
 
-::: {.incremental}
+::: incremental
 -   Si el objetivo es resolver un problema empresarial, los datos que componen la materia prima disponible a partir de la cual se construirá la solución.
 
 -   Los datos disponibles rara vez coinciden con el problema.
 
 -   Por ejemplo, los datos históricos a menudo se recopilan con fines no relacionados con el problema empresarial actual o sin ningún propósito explícito.
-::: 
+:::
 
 . . .
 
@@ -209,9 +207,23 @@ La metodología de ciencia de datos esta basada en datos númericos dados en tab
 Mas importante, asumiremos que los datos han sido limpiados y no contienen typos o observaciones extrañas.
 :::
 
-## El reto de este curso
+## La Situación Problema
 
-Describir el reto de este curso.
+YouTube es una plataforma para compartir vídeos ampliamente conocida por la diversidad de vídeos subidos por sus usuarios.
+
+El sitio permite a sus usuarios cargar, ver, calificar, compartir y comentar videos.
+
+Un tipo particular de usuario es el *creador de contenido*, quien frecuentemente crea y sube videos entretenidos a la plataforma.
+
+![](images/clipboard-2009057073.png){fig-align="right" width="437"}
+
+## Objetivo de la situación problema
+
+> Esta situación problema concierne la creación de un póster que informe a un creador de contenido de Youtube los aspectos mas importantes del formato miniatura de un video. Es decir, que estén asociadas a un número de vistas grande.
+
+Para esto, tendrás a tu disposición una base de datos con 7242 videos y 51 variables que se encuentra en el archivo “YouTube_Dataset.xlsx.”
+
+Puedes encontrar más información en nuestra página de Canvas.
 
 # Visualización de datos y sus principios
 
