@@ -396,9 +396,8 @@ Lo mejor es re-nombrar las categorías de la variable `chas` para que la gráfic
     levels(Boston_dataset$chas)
     ```
 
-```{=html}
 <!-- -->
-```
+
 2.  Re-emplaza por nombres apropiados.
 
     ```{r}
@@ -449,4 +448,3 @@ gf_percents( ~ rad, data = Boston_dataset)
 ```
 
 Mucho mejor 😃
-
