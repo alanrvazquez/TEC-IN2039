@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-inputa00150d1</title>
+  <title>quarto-input179efdb3</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -480,8 +480,8 @@ Alan R. Vázquez
           display:block!important;
       }</style></aside>
 </section>
-<section id="empezemos-con-su-instalación" class="slide level2">
-<h2>Empezemos con su instalación</h2>
+<section id="instalación-de-r" class="slide level2">
+<h2>Instalación de R</h2>
 <p>Ve a la siguiente liga: <a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a></p>
 
 <img data-src="images/Rsoftware.png" class="r-stretch quarto-figure-center"></section>
@@ -491,12 +491,22 @@ Alan R. Vázquez
 <p>R Studio no es un requisito para programar con R, pero los programadores y científicos de datos de R lo utilizan con mucha frecuencia.</p>
 
 <img data-src="images/clipboard-3369988845.png" class="r-stretch quarto-figure-center"></section>
-<section id="vamos-a-instalar-rstudio" class="slide level2">
-<h2>Vamos a instalar RStudio</h2>
+<section id="instalación-de-rstudio" class="slide level2">
+<h2>Instalación de RStudio</h2>
 <p>Ve a la siguiente liga: <a href="#/0">https://posit.co/</a></p>
 
 <img data-src="images/RStudio.png" width="443" class="r-stretch quarto-figure-center"><p>También puedes ir mas directo a la descarga del programa aquí <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a></p>
 </section>
+<section id="google-colab" class="slide level2">
+<h2>Google Colab</h2>
+<p><em>Plataforma de colaboración en la nube gratuita de Google para la creación de documentos de Python o R.</em></p>
+<ul>
+<li><p>Ejecuta R y colabora en notebooks de Jupyter de forma gratuita.</p></li>
+<li><p>Aprovecha el poder de la GPU de forma gratuita para acelerar tus proyectos de ciencia de datos.</p></li>
+<li><p>Guarda y carga fácilmente tus notebooks en Google Drive.</p></li>
+</ul>
+
+<img data-src="images/Google_Colaboratory_SVG_Logo.svg.png" width="2560" class="r-stretch quarto-figure-right"></section>
 <section id="probemos-un-comando-en-r" class="slide level2">
 <h2>Probemos un comando en R</h2>
 <p>¿Qué crees que suceda si ejecutamos este comando?</p>
@@ -562,6 +572,7 @@ Alan R. Vázquez
 <section id="comentarios" class="slide level2">
 <h2>Comentarios</h2>
 <p>A veces escribimos cosas en la ventana de codificación de R que queremos que R ignore. Estos se llaman comentarios y comienzan con <code>#</code>.</p>
+<div class="fragment">
 <p>R ignorará los comentarios y simplemente ejecutará el código.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># puedes poner lo que sea despues de #</span></span>
@@ -580,15 +591,20 @@ Alan R. Vázquez
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</div>
 </section>
 <section id="introducción-a-funciones-en-r" class="slide level2">
 <h2>Introducción a funciones en R</h2>
-<p>Una de las mejores cosas de R es que hay muchos comandos integrados que puedes usar. Éstas se llaman <em>funciones</em> .</p>
+<p>Una de las mejores cosas de R es que hay muchos comandos integrados que puedes usar. Éstas se llaman <em>funciones</em>.</p>
+<div class="fragment">
 <p>Las funciones tienen dos partes básicas:</p>
+<div>
 <ul>
-<li><p>La primera parte es el nombre de la función (por ejemplo, <code>sum</code>).</p></li>
-<li><p>La segunda parte es la entrada a la función, que va dentro del paréntesis (<code>sum(1+5+15)</code>).</p></li>
+<li class="fragment"><p>La primera parte es el nombre de la función (por ejemplo, <code>sum</code>).</p></li>
+<li class="fragment"><p>La segunda parte es la entrada a la función, que va dentro del paréntesis (<code>sum(1+5+15)</code>).</p></li>
 </ul>
+</div>
+</div>
 </section>
 <section id="r-es-exigente" class="slide level2">
 <h2>R es exigente</h2>
@@ -600,6 +616,7 @@ Alan R. Vázquez
 </div>
 </div>
 <p>te dirá la respuesta, 101.</p>
+<div class="fragment">
 <p>Pero si escribes</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">Sum</span>(<span class="dv">1</span>, <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -621,16 +638,21 @@ Alan R. Vázquez
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</div>
 </section>
 <section id="guarda-tu-trabajo-en-objetos-de-r" class="slide level2">
 <h2>Guarda tu trabajo en objetos de R</h2>
 <p>Prácticamente cualquier cosa, incluidos los resultados de cualquier función de R, se puede guardar en un <em>objeto</em>.</p>
 <p>Esto se logra mediante el uso de un operador de asignación, que se parece a una flecha ( <code>&lt;-</code>).</p>
+<div class="fragment">
 <p>Puede inventar cualquier nombre que desees para un objeto R. Sin embargo, hay dos reglas básicas para esto:</p>
+<div>
 <ol type="1">
-<li>Tiene que ser diferente del nombre de una función en R.</li>
-<li>Tiene que ser lo más específico posible.</li>
+<li class="fragment">Tiene que ser diferente del nombre de una función en R.</li>
+<li class="fragment">Tiene que ser lo más específico posible.</li>
 </ol>
+</div>
+</div>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
@@ -653,8 +675,11 @@ Alan R. Vázquez
 <section id="vectores" class="slide level2">
 <h2>Vectores</h2>
 <p>Hasta ahora hemos utilizado objetos R para almacenar un solo número. Pero en estadística estamos tratando con variación, que por definición significa más de un número.</p>
+<div class="fragment">
 <p>Un objeto R también puede almacenar un conjunto completo de números, llamado <em>vector</em>.</p>
 <p>Puedes pensar en un vector como una lista de números (o valores).</p>
+</div>
+<div class="fragment">
 <p>La función <code>c()</code> se puede utilizar para combinar una lista de valores individuales en un vector.</p>
 <aside class="notes">
 <p>puedes pensar que el c es por combinar</p>
@@ -669,6 +694,7 @@ Alan R. Vázquez
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</div>
 </section>
 <section id="por-ejemplo" class="slide level2">
 <h2>Por ejemplo</h2>
@@ -712,15 +738,15 @@ Alan R. Vázquez
 <section id="mini-actividad-solo-mode" class="slide level2">
 <h2>Mini-actividad (<em>solo</em> mode)</h2>
 <ol type="1">
-<li>Escribe código para devidir el <code>mi_vector</code> por 2.</li>
+<li>Escribe código para dividir el vector <code>mi_vector</code> por 2.</li>
 <li>Guarda el resultado en un nuevo vector llamado <code>mi_nuevo_vector</code>.</li>
 <li>Prueba el siguiente comando <code>sum(mi_vector_2)</code>. ¿Qué obtuviste?</li>
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_13790dce" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_322766b8" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
@@ -738,10 +764,13 @@ Alan R. Vázquez
 </section>
 <section id="un-poco-más-sobre-objetos-en-r" class="slide level2">
 <h2>Un poco más sobre objetos en R</h2>
-<p>Puedes pensar en los objetos R como depósitos que contienen valores. Un objeto R puede contener un solo valor o puede contener un grupo de valores (como en el caso de un vector).</p>
+<p>Puedes pensar en los objetos R como depósitos que contienen valores.</p>
+<p>Un objeto R puede contener un solo valor o puede contener un grupo de valores (como en el caso de un vector).</p>
 <p>Hasta ahora, sólo hemos puesto números en objetos R.</p>
+<div class="fragment">
 <p><br></p>
 <p><strong><em>Los objetos R en realidad pueden contener tres tipos de valores: números, caracteres y valores booleanos.</em></strong></p>
+</div>
 </section>
 <section id="valores-númericos" class="slide level2">
 <h2>Valores númericos</h2>
@@ -767,7 +796,8 @@ Alan R. Vázquez
 </section>
 <section id="valores-de-carácter" class="slide level2">
 <h2>Valores de carácter</h2>
-<p>Los caracteres se componen de texto, como palabras u oraciones. (Los números también se pueden tratar como caracteres, dependiendo del contexto.</p>
+<p>Los caracteres se componen de texto, como palabras u oraciones. (Los números también se pueden tratar como caracteres, dependiendo del contexto.)</p>
+<div class="fragment">
 <p>Por ejemplo, cuando 20 está entre comillas como esta (<code>"20"</code>) se tratará como un valor de carácter, aunque incluya un número). entre comillas, <code>" "</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>muchos_holas <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"hi"</span>, <span class="st">"hello"</span>, <span class="st">"hola"</span>, <span class="st">"bonjour"</span>, <span class="st">"ni hao"</span>, <span class="st">"merhaba"</span>)</span>
@@ -776,29 +806,35 @@ Alan R. Vázquez
 <pre><code>[1] "hi"      "hello"   "hola"    "bonjour" "ni hao"  "merhaba"</code></pre>
 </div>
 </div>
+</div>
 </section>
 <section id="valores-booleanos" class="slide level2">
 <h2>Valores booleanos</h2>
 <p>Los valores booleanos son <code>TRUE</code>o <code>FALSE</code>.</p>
-<p>Quizás tengamos una pregunta como: ¿El primer elemento del vector es <code>muchos_holas</code> <code>"hola"</code>?</p>
-<p>Podemos pedirle a R que averigüe y devuelva la respuesta <code>TRUE</code>o <code>FALSE</code>.</p>
+<p>Quizás tengamos una pregunta como:</p>
+<ul>
+<li>¿El primer elemento del vector es <code>muchos_holas</code> <code>"hola"</code>?</li>
+</ul>
+<div class="fragment">
+<p>Podemos pedirle a R que averigüe y devuelva la respuesta <code>TRUE</code> o <code>FALSE</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a>muchos_holas[<span class="dv">1</span>] <span class="sc">==</span> <span class="st">"hola"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
 </div>
+</div>
 </section>
 <section id="operadores-lógicos" class="slide level2">
 <h2>Operadores lógicos</h2>
-<p>La mayoría de las preguntas que le pedimos a R que responda con a <code>TRUE</code> o <code>FALSE</code> involucran operadores de comparación como <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>y <code>==</code>.</p>
-<p>El doble <code>==</code>signo comprueba si dos valores son iguales. Incluso existe un operador de comparación para comprobar si los valores <em>no</em> son iguales: <code>!=</code>.</p>
-<p>Por ejemplo, <code>5 != 3</code>es una <code>TRUE</code> declaración.</p>
+<p>La mayoría de las preguntas que le pedimos a R que responda con a <code>TRUE</code> o <code>FALSE</code> involucran operadores de comparación como <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code> y <code>==</code>.</p>
+<p>El doble <code>==</code> signo comprueba si dos valores son iguales. Incluso existe un operador de comparación para comprobar si los valores <em>no</em> son iguales: <code>!=</code>.</p>
+<p>Por ejemplo, <code>5 != 3</code> es una declaración <code>TRUE</code>.</p>
 </section>
 <section id="mini-actividad-solo-mode-1" class="slide level2">
 <h2>Mini-actividad (<em>solo</em> mode)</h2>
 <ol type="1">
-<li>Lee este código y predice su respuesta. Después, corre el código en RStudio y valida si estabas en lo correcto.</li>
+<li>Lee este código y predice su respuesta. Después, corre el código en Google Colab y valida si estabas en lo correcto.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>A <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -818,9 +854,9 @@ Alan R. Vázquez
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_17277152" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_08b60889" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">08</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 </div>
 </div>
@@ -846,8 +882,8 @@ Alan R. Vázquez
 <h2>Librerías en R</h2>
 <ul>
 <li><p>Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.</p></li>
-<li><p>En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)</p></li>
-<li><p>Trabajaremos mayormente con las librerias <em>readxl</em> y <em>ggplot2</em>.</p></li>
+<li><p>En septiembre de 2020, hay más de 16, 000 paquetes disponibles en CRAN (la red integral de archivos R)</p></li>
+<li><p>Trabajaremos mayormente con las librerias <strong>readxl</strong>, <strong>ggplot2</strong> y <strong>ggformula</strong>.</p></li>
 </ul>
 </section>
 <section>
@@ -857,7 +893,8 @@ Alan R. Vázquez
 </section>
 <section id="organización-de-datos" class="slide level2">
 <h2>Organización de datos</h2>
-<p>En estadística, generalmente organizamos los datos en filas y columnas.</p>
+<p>En estadística, organizamos los datos en filas y columnas.</p>
+<div class="center">
 <pre><code>    Condition  Age   Wt    Wt2
 1  Uninformed   35  136  135.8
 2  Uninformed   45  162  161.8
@@ -865,8 +902,13 @@ Alan R. Vázquez
 4    Informed   29  184  182.8
 5  Uninformed   38  134  136.6
 6    Informed   39  189  183.2</code></pre>
-<p>Las filas representan los casos muestreados. En este ejemplo, las filas representan amas de llaves de diferentes hoteles. Hay seis filas, por lo que hay seis amas de casa en este conjunto de datos.</p>
+</div>
+<div class="fragment">
+<p>Las filas son los casos muestreados. En este ejemplo, las filas son amas de llaves de diferentes hoteles. Hay seis filas, por lo que hay seis amas de casa en este conjunto de datos.</p>
+</div>
+<div class="fragment">
 <p>Dependiendo del estudio, las filas podrían ser personas, estados, parejas, ratones, cualquier caso del que tomes una muestra para estudiarlo.</p>
+</div>
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
@@ -883,12 +925,15 @@ Alan R. Vázquez
 6    Informed   39  189  183.2</code></pre>
 </div>
 </div>
+<p><br></p>
 <p>En este estudio, se informó o no a las amas de llaves que su trabajo diario de limpieza de habitaciones de hotel equivalía a hacer ejercicio adecuado para una buena salud.</p>
-<p>Entonces una de las variables es <code>Condition</code> si fueron informados de este hecho o no.</p>
+<p><br></p>
+<p>Entonces una de las variables, <code>Condition</code>, indica si fueron informados de este hecho o no.</p>
 </section>
 <section id="section-3" class="slide level2">
 <h2></h2>
 <p>Existen otras variables como la edad del ama de llaves (<code>Age</code>), el peso antes de iniciar el estudio (<code>Wt</code>), y su peso al final del estudio (<code>Wt2</code>, medido cuatro semanas después).</p>
+<p><br></p>
 <p>Por lo tanto, los valores en cada fila representan los valores de ese caso particular en cada una de las variables medidas.</p>
 <pre><code>    Condition  Age   Wt    Wt2
 1  Uninformed   35  136  135.8

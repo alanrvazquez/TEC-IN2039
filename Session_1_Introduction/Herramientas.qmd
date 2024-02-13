@@ -72,7 +72,7 @@ Para hacer graficos o visualizaciones se tiene que usar la computadora y program
 El conocer r te ayudara a tu CV porque, despues de este cusro, puedes poner conocimiento basico de analysis de datos con R.
 :::
 
-## Empezemos con su instalación
+## Instalación de R
 
 Ve a la siguiente liga: <https://www.r-project.org/>
 
@@ -86,13 +86,25 @@ R Studio no es un requisito para programar con R, pero los programadores y cient
 
 ![](images/clipboard-3369988845.png){fig-align="center"}
 
-## Vamos a instalar RStudio
+## Instalación de RStudio
 
 Ve a la siguiente liga: [https://posit.co/](#0)
 
 ![](images/RStudio.png){fig-align="center" width="443"}
 
 También puedes ir mas directo a la descarga del programa aquí <https://posit.co/download/rstudio-desktop/>
+
+## Google Colab
+
+*Plataforma de colaboración en la nube gratuita de Google para la creación de documentos de Python o R.*
+
+-   Ejecuta R y colabora en notebooks de Jupyter de forma gratuita.
+
+-   Aprovecha el poder de la GPU de forma gratuita para acelerar tus proyectos de ciencia de datos.
+
+-   Guarda y carga fácilmente tus notebooks en Google Drive.
+
+![](images/Google_Colaboratory_SVG_Logo.svg.png){fig-align="right" width="2560"}
 
 ## Probemos un comando en R
 
@@ -168,6 +180,8 @@ También puedes usar R como una calculadora básica.
 
 A veces escribimos cosas en la ventana de codificación de R que queremos que R ignore. Estos se llaman comentarios y comienzan con `#`.
 
+. . .
+
 R ignorará los comentarios y simplemente ejecutará el código.
 
 ```{r, echo = TRUE}
@@ -181,13 +195,17 @@ Si desea escribir un comentario que ocupe más de una línea, es una buena idea 
 
 ## Introducción a funciones en R
 
-Una de las mejores cosas de R es que hay muchos comandos integrados que puedes usar. Éstas se llaman *funciones* .
+Una de las mejores cosas de R es que hay muchos comandos integrados que puedes usar. Éstas se llaman *funciones*.
+
+. . .
 
 Las funciones tienen dos partes básicas:
 
+::: {.incremental}
 -   La primera parte es el nombre de la función (por ejemplo, `sum`).
 
 -   La segunda parte es la entrada a la función, que va dentro del paréntesis (`sum(1+5+15)`).
+:::
 
 ## R es exigente
 
@@ -199,6 +217,8 @@ sum(1, 100)
 ```
 
 te dirá la respuesta, 101.
+
+. . .
 
 Pero si escribes
 
@@ -220,10 +240,14 @@ Prácticamente cualquier cosa, incluidos los resultados de cualquier función de
 
 Esto se logra mediante el uso de un operador de asignación, que se parece a una flecha ( `<-`).
 
+. . .
+
 Puede inventar cualquier nombre que desees para un objeto R. Sin embargo, hay dos reglas básicas para esto:
 
+::: {.incremental}
 1.  Tiene que ser diferente del nombre de una función en R.
 2.  Tiene que ser lo más específico posible.
+:::
 
 ## 
 
@@ -253,9 +277,13 @@ También puedes usar `print(mi_numero_favorito)`.
 
 Hasta ahora hemos utilizado objetos R para almacenar un solo número. Pero en estadística estamos tratando con variación, que por definición significa más de un número.
 
+. . .
+
 Un objeto R también puede almacenar un conjunto completo de números, llamado *vector*.
 
 Puedes pensar en un vector como una lista de números (o valores).
+
+. . .
 
 La función `c()` se puede utilizar para combinar una lista de valores individuales en un vector.
 
@@ -307,12 +335,12 @@ mi_vector
 
 ## Mini-actividad (*solo* mode)
 
-1.  Escribe código para devidir el `mi_vector` por 2.
+1.  Escribe código para dividir el vector `mi_vector` por 2.
 2.  Guarda el resultado en un nuevo vector llamado `mi_nuevo_vector`.
 3.  Prueba el siguiente comando `sum(mi_vector_2)`. ¿Qué obtuviste?
 
 ```{r}
-countdown::countdown(minutes = 5)
+countdown::countdown(minutes = 8)
 ```
 
 ## Indexación
@@ -329,9 +357,13 @@ mi_vector[1]
 
 ## Un poco más sobre objetos en R
 
-Puedes pensar en los objetos R como depósitos que contienen valores. Un objeto R puede contener un solo valor o puede contener un grupo de valores (como en el caso de un vector).
+Puedes pensar en los objetos R como depósitos que contienen valores. 
+
+Un objeto R puede contener un solo valor o puede contener un grupo de valores (como en el caso de un vector).
 
 Hasta ahora, sólo hemos puesto números en objetos R.
+
+. . .
 
 <br/>
 
@@ -365,7 +397,9 @@ mi_num_2
 
 ## Valores de carácter
 
-Los caracteres se componen de texto, como palabras u oraciones. (Los números también se pueden tratar como caracteres, dependiendo del contexto.
+Los caracteres se componen de texto, como palabras u oraciones. (Los números también se pueden tratar como caracteres, dependiendo del contexto.)
+
+. . .
 
 Por ejemplo, cuando 20 está entre comillas como esta (`"20"`) se tratará como un valor de carácter, aunque incluya un número). entre comillas, `" "`.
 
@@ -380,9 +414,13 @@ muchos_holas
 
 Los valores booleanos son `TRUE`o `FALSE`.
 
-Quizás tengamos una pregunta como: ¿El primer elemento del vector es `muchos_holas` `"hola"`?
+Quizás tengamos una pregunta como: 
 
-Podemos pedirle a R que averigüe y devuelva la respuesta `TRUE`o `FALSE`.
+- ¿El primer elemento del vector es `muchos_holas` `"hola"`?
+
+. . .
+
+Podemos pedirle a R que averigüe y devuelva la respuesta `TRUE` o `FALSE`.
 
 ```{r}
 #| echo: true
@@ -392,15 +430,15 @@ muchos_holas[1] == "hola"
 
 ## Operadores lógicos
 
-La mayoría de las preguntas que le pedimos a R que responda con a `TRUE` o `FALSE` involucran operadores de comparación como `>`, `<`, `>=`, `<=`y `==`.
+La mayoría de las preguntas que le pedimos a R que responda con a `TRUE` o `FALSE` involucran operadores de comparación como `>`, `<`, `>=`, `<=` y `==`.
 
-El doble `==`signo comprueba si dos valores son iguales. Incluso existe un operador de comparación para comprobar si los valores *no* son iguales: `!=`.
+El doble `==` signo comprueba si dos valores son iguales. Incluso existe un operador de comparación para comprobar si los valores *no* son iguales: `!=`.
 
-Por ejemplo, `5 != 3`es una `TRUE` declaración.
+Por ejemplo, `5 != 3` es una declaración `TRUE`.
 
 ## Mini-actividad (*solo* mode)
 
-1.  Lee este código y predice su respuesta. Después, corre el código en RStudio y valida si estabas en lo correcto.
+1.  Lee este código y predice su respuesta. Después, corre el código en Google Colab y valida si estabas en lo correcto.
 
 ```{r}
 #| echo: true
@@ -427,7 +465,7 @@ my_booleans
 ```
 
 ```{r}
-countdown::countdown(minutes = 5)
+countdown::countdown(minutes = 8)
 ```
 
 ## Lista de operadores lógicos comúnes
@@ -456,16 +494,17 @@ A menudo tenemos que encontrar estos errores mediante prueba y error.
 
 -   Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.
 
--   En septiembre de 2020, hay más de 16 000 paquetes disponibles en CRAN (la red integral de archivos R)
+-   En septiembre de 2020, hay más de 16, 000 paquetes disponibles en CRAN (la red integral de archivos R)
 
--   Trabajaremos mayormente con las librerias *readxl* y *ggplot2*.
+-   Trabajaremos mayormente con las librerias **readxl**, **ggplot2** y **ggformula**.
 
 # ¿Cómo cargar datos en R?
 
 ## Organización de datos
 
-En estadística, generalmente organizamos los datos en filas y columnas.
+En estadística, organizamos los datos en filas y columnas.
 
+::: center
 ```         
     Condition  Age   Wt    Wt2
 1  Uninformed   35  136  135.8
@@ -475,8 +514,13 @@ En estadística, generalmente organizamos los datos en filas y columnas.
 5  Uninformed   38  134  136.6
 6    Informed   39  189  183.2
 ```
+::: 
 
-Las filas representan los casos muestreados. En este ejemplo, las filas representan amas de llaves de diferentes hoteles. Hay seis filas, por lo que hay seis amas de casa en este conjunto de datos.
+. . . 
+
+Las filas son los casos muestreados. En este ejemplo, las filas son amas de llaves de diferentes hoteles. Hay seis filas, por lo que hay seis amas de casa en este conjunto de datos.
+
+. . .
 
 Dependiendo del estudio, las filas podrían ser personas, estados, parejas, ratones, cualquier caso del que tomes una muestra para estudiarlo.
 
@@ -500,13 +544,19 @@ Las columnas representan variables o los atributos de cada caso que se midieron.
 :::
 :::
 
+<br/>
+
 En este estudio, se informó o no a las amas de llaves que su trabajo diario de limpieza de habitaciones de hotel equivalía a hacer ejercicio adecuado para una buena salud.
 
-Entonces una de las variables es `Condition` si fueron informados de este hecho o no.
+<br/>
+
+Entonces una de las variables, `Condition`, indica si fueron informados de este hecho o no.
 
 ## 
 
 Existen otras variables como la edad del ama de llaves (`Age`), el peso antes de iniciar el estudio (`Wt`), y su peso al final del estudio (`Wt2`, medido cuatro semanas después).
+
+<br/>
 
 Por lo tanto, los valores en cada fila representan los valores de ese caso particular en cada una de las variables medidas.
 
