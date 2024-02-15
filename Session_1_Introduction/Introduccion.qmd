@@ -47,7 +47,7 @@ css: style.css
 
 ## La ciencia de datos es ...
 
-un campo interdisciplinario que utiliza métodos, procesos, algoritmos y sistemas científicos para extraer conocimientos e ideas de muchos datos estructurados y no estructurados.
+un campo multidisciplinario que utiliza métodos, procesos, algoritmos y sistemas científicos para extraer conocimientos e ideas de muchos datos estructurados y no estructurados.
 
 <br/>
 
@@ -67,7 +67,7 @@ un campo interdisciplinario que utiliza métodos, procesos, algoritmos y sistema
 
 ## En el 2004 ...
 
-El huracán Frances estaba arrasando el Caribe y amenazando con golpear directamente la costa atlántica de Florida.
+El huracán Francés estaba arrasando el Caribe y amenazando con golpear directamente la costa atlántica de Florida.
 
 . . .
 
@@ -211,9 +211,9 @@ Mas importante, asumiremos que los datos han sido limpiados y no contienen typos
 
 YouTube es una plataforma para compartir vídeos ampliamente conocida por la diversidad de vídeos subidos por sus usuarios.
 
-El sitio permite a sus usuarios cargar, ver, calificar, compartir y comentar videos.
+El sitio permite a sus usuarios cargar, ver, calificar, compartir y comentar vídeos.
 
-Un tipo particular de usuario es el *creador de contenido*, quien frecuentemente crea y sube videos entretenidos a la plataforma.
+Un tipo particular de usuario es el *creador de contenido*, quien frecuentemente crea y sube vídeos entretenidos a la plataforma.
 
 ![](images/clipboard-2009057073.png){fig-align="right" width="437"}
 
@@ -333,7 +333,7 @@ Enriquece tu gráfica con símbolos de color y texto para transmitir informació
 ::: notes
 No te limites a cosas simples. Enriquece tu gráfica con símbolos de color para transmitir información adicional. Si es posible, agrega contexto con marcadores y etiquetas de referencia.
 
-También, agrega una leyenda a la grafica que describa las características importantes y resuma sus conclusiones.
+También, agrega una leyenda a la gráfica que describa las características importantes y resuma sus conclusiones.
 :::
 
 ## 
@@ -372,4 +372,4 @@ Principios del diseño gráfico
 2.  Encuentren un **buen** y un **mal** ejemplo de una visualización (gráficas) en linea.
 3.  Guarden las visualizaciones (por ejemplo, haciendo una captura de pantalla).
 4.  Escriban una crítica breve (3 a 4 enunciados) de cada visualización.
-5.  Suban un documento con sus criticas e imagenes en Canvas.
+5.  Suban un documento con sus criticas e imágenes en Canvas.

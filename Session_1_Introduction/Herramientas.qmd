@@ -34,16 +34,6 @@ css: style.css
 :::
 :::
 
-::: columns
-::: {.column width="30%"}
-3.  Actividad
-:::
-
-::: {.column width="70%"}
-![](images/clipboard-4224793803.png){fig-align="left" width="224"}
-:::
-:::
-
 ::: {style="font-size: 70%;"}
 Estas diapositivas estan basadas en material disponible en <https://coursekata.org/>
 :::
@@ -58,7 +48,7 @@ Estas diapositivas estan basadas en material disponible en <https://coursekata.o
 
 -   Te permite crear gráficos y hacer computación estadística.
 
--   Se puede extender con paquetes (librerias) desarroladas por otros usuarios.
+-   Se puede extender con paquetes (librerías) desarrolladas por otros usuarios.
 :::
 
 ::: {.column width="30%"}
@@ -201,7 +191,7 @@ Una de las mejores cosas de R es que hay muchos comandos integrados que puedes u
 
 Las funciones tienen dos partes básicas:
 
-::: {.incremental}
+::: incremental
 -   La primera parte es el nombre de la función (por ejemplo, `sum`).
 
 -   La segunda parte es la entrada a la función, que va dentro del paréntesis (`sum(1+5+15)`).
@@ -238,13 +228,13 @@ lo mismo si olvidas incluir un parentesis
 
 Prácticamente cualquier cosa, incluidos los resultados de cualquier función de R, se puede guardar en un *objeto*.
 
-Esto se logra mediante el uso de un operador de asignación, que se parece a una flecha ( `<-`).
+Esto se logra mediante el uso de un operador de asignación, que se parece a una flecha (`<-`).
 
 . . .
 
 Puede inventar cualquier nombre que desees para un objeto R. Sin embargo, hay dos reglas básicas para esto:
 
-::: {.incremental}
+::: incremental
 1.  Tiene que ser diferente del nombre de una función en R.
 2.  Tiene que ser lo más específico posible.
 :::
@@ -261,7 +251,7 @@ Por ejemplo,
 mi_numero_favorito <- 18
 ```
 
-Después de ejecutar este código, no susede nada. Pero si lo ejecutamos el objeto por si solo, podrémos ver lo qua hay en el.
+Después de ejecutar este código, no sucede nada. Pero si lo ejecutamos el objeto por si solo, podremos ver lo qua hay en el.
 
 ```{r}
 #| echo: true
@@ -337,7 +327,7 @@ mi_vector
 
 1.  Escribe código para dividir el vector `mi_vector` por 2.
 2.  Guarda el resultado en un nuevo vector llamado `mi_nuevo_vector`.
-3.  Prueba el siguiente comando `sum(mi_vector_2)`. ¿Qué obtuviste?
+3.  Prueba el siguiente comando `sum(mi_nuevo_vector)`. ¿Qué obtuviste?
 
 ```{r}
 countdown::countdown(minutes = 8)
@@ -357,7 +347,7 @@ mi_vector[1]
 
 ## Un poco más sobre objetos en R
 
-Puedes pensar en los objetos R como depósitos que contienen valores. 
+Puedes pensar en los objetos R como depósitos que contienen valores.
 
 Un objeto R puede contener un solo valor o puede contener un grupo de valores (como en el caso de un vector).
 
@@ -414,9 +404,9 @@ muchos_holas
 
 Los valores booleanos son `TRUE`o `FALSE`.
 
-Quizás tengamos una pregunta como: 
+Quizás tengamos una pregunta como:
 
-- ¿El primer elemento del vector es `muchos_holas` `"hola"`?
+-   ¿El primer elemento del vector es `muchos_holas` `"hola"`?
 
 . . .
 
@@ -514,9 +504,9 @@ En estadística, organizamos los datos en filas y columnas.
 5  Uninformed   38  134  136.6
 6    Informed   39  189  183.2
 ```
-::: 
+:::
 
-. . . 
+. . .
 
 Las filas son los casos muestreados. En este ejemplo, las filas son amas de llaves de diferentes hoteles. Hay seis filas, por lo que hay seis amas de casa en este conjunto de datos.
 
