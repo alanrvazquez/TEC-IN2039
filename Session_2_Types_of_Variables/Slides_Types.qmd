@@ -29,27 +29,22 @@ css: style.css
 :::
 
 ::: {.column width="50%"}
-2.  Actividad
-
-    ![](images/clipboard-4224793803.png){width="423"}
-:::
-:::
-
-::: columns
-::: {.column width="30%"}
 3.  La importancia del tipo de variables
+
+    ![](images/clipboard-1628090285.png){width="254"}
+:::
 :::
 
-::: {.column width="70%"}
-![](images/clipboard-1628090285.png){width="254"}
-:::
-:::
 
 ## Tipos de variables
 
 Antes de hacer una gráfica, debemos examinar el tipo de valor que toman las variables de nuestros datos.
 
+. . .
+
 Hay dos tipos principales de variables:
+
+. . .
 
 -   [Variables numéricas.]{style="color:darkblue;"}
 
@@ -59,11 +54,15 @@ Hay dos tipos principales de variables:
 
 Toman valores que representan medidas numéricas o cantidades.
 
+. . .
+
 -   Altura (en centímetros).
 
 -   Peso (en kilogramos).
 
 -   Edad (en años).
+
+. . .
 
 Las variables numéricas se dividen en [*discretas*]{style="color:lightblue;"}, lo que significa que la variable tiene un número pequeño de posibles valores, y [*continuas*]{style="color:darkblue;"}, lo que significa que el numero de valores es muy grande o infinito.
 
@@ -71,14 +70,20 @@ Las variables numéricas se dividen en [*discretas*]{style="color:lightblue;"}, 
 
 Toman valores que se colocan en *categorías*.
 
+. . .
+
 > Una **categoría** es una clase o división de personas o cosas que tienen características particulares compartidas.
 
+. . .
+
 |                  |                                                                 |
-|------------------|-----------------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | **Variable**     | **Categorias**                                                  |
 | Reseña en Amazon | 1$\bigstar$, 2$\bigstar$, 3$\bigstar$, 4$\bigstar$, 5$\bigstar$ |
 | País de origen   | México, Canadá, EUA                                             |
 | Código postal    | 72703, 90034, 3000, ...                                         |
+
+## Clasificación de variables categóricas
 
 Las variables categóricas se dividen en dos tipos importantes:
 
@@ -93,21 +98,31 @@ Dependiendo si las categorias tienen orden o no.
 
 Una variable categórica es nominal si sus categorías **no** tienen orden.
 
+. . .
+
+
 Por ejemplo:
 
+::: incremental
 -   Afiliación a partidos políticos (demócrata, republicano, verde, otros).
 -   Tipo de perro (pastor, sabueso, no deportivo, deportivo, terrier, toy, de trabajo).
 -   Sistema operativo de la computadora (Windows, macOS, Linux).
+:::
 
 ## Variable categórica ordinal
 
 Una variable categórica es ordinal si sus categorías **tienen orden**.
 
+. . .
+
 Por ejemplo:
 
+::: incremental
 -   Talla de camiseta (pequeña, mediana, grande).
 -   Nivel de educación (secundaria, universidad, posgrado).
 -   Nivel de ingreso (menos de \$50K, \$550k-\$5100K, mas de \$100K).
+:::
+
 
 ::: notes
 It is important to note that with an ordinal feature, the difference between, say, small and medium need not be the same as the difference between medium and large. Also, the differences between consecutive categories may not even be quantifiable. Think of the number of stars in a restaurant review and what one star means in comparison to two stars.
@@ -115,7 +130,7 @@ It is important to note that with an ordinal feature, the difference between, sa
 
 ## Interesante...
 
--   Valores enteros (ejemplo, 1, 2, 3, ..., 5) pueden representar categoricas nominales.
+-   Valores enteros (por ejemplo, 1, 2, 3, ..., 5) pueden representar categoricas nominales.
 
     |                    |     |     |      |     |
     |--------------------|-----|-----|------|-----|
@@ -125,8 +140,6 @@ It is important to note that with an ordinal feature, the difference between, sa
 <!-- -->
 
 -   En la práctica, los valores booleanos (`TRUE` y `FALSE`) a menudo representan categorías nominales.
-
-# Actividad
 
 ## Actividad (*solo* mode)
 
@@ -156,7 +169,7 @@ El tipo de variable (numérica o categórica) generalmente determina el tipo de 
 
 ::: center
 | Tipo       | Gráfica                                                                                   |
-|:-----------|:------------------------------------------------------------------------------------------|
+|:-------------|:---------------------------------------------------------|
 | Categórica | Gráfico de barras, gráfico de puntos, gráfico de líneas, gráfico circular                 |
 | Numérica   | Diagrama de alfombra, histograma, curva de densidad, diagrama de caja, diagrama de violín |
 :::
@@ -165,7 +178,7 @@ El tipo de variable (numérica o categórica) generalmente determina el tipo de 
 
 ::: center
 | Tipo        | Gráfica                                                                                                                    |
-|:------------|:---------------------------------------------------------------------------------------------------------------------------|
+|:------------|:----------------------------------------------------------|
 | Numéricas   | Gráfico de dispersión, curva suave, gráfico de contorno, mapa de calor, gráfico de cuantiles                               |
 | Categóricas | Gráficos de barras lado a lado, gráfico de mosaico, líneas superpuestas                                                    |
 | Mixta       | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, curvas suaves superpuestas, diagrama de cuantiles |
