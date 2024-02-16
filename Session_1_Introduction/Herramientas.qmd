@@ -35,7 +35,7 @@ css: style.css
 :::
 
 ::: {style="font-size: 70%;"}
-Estas diapositivas estan basadas en material disponible en <https://coursekata.org/>
+Estas diapositivas están basadas en material disponible en <https://coursekata.org/>
 :::
 
 ## R software
@@ -57,9 +57,9 @@ Estas diapositivas estan basadas en material disponible en <https://coursekata.o
 :::
 
 ::: notes
-Para hacer graficos o visualizaciones se tiene que usar la computadora y programas especiales. Hay muchos como Python tableu, o incluso, excel. Sin embargo los mas bonitos son los de R.
+Para hacer gráficos o visualizaciones se tiene que usar la computadora y programas especiales. Hay muchos como Python tableu, o incluso, excel. Sin embargo los mas bonitos son los de R.
 
-El conocer r te ayudara a tu CV porque, despues de este cusro, puedes poner conocimiento basico de analysis de datos con R.
+El conocer r te ayudara a tu CV porque, después de este curso, puedes poner conocimiento básico de analysis de datos con R.
 :::
 
 ## Instalación de R
@@ -359,14 +359,15 @@ Hasta ahora, sólo hemos puesto números en objetos R.
 
 ***Los objetos R en realidad pueden contener tres tipos de valores: números, caracteres y valores booleanos.***
 
-## Valores númericos
+## Valores numéricos
 
 Si R sabe que estás usando números, puede hacer muchas cosas con ellos. Hemos visto, por ejemplo, que R puede realizar operaciones aritméticas con números: suma, resta, multiplicación y división.
 
 ```{r}
 #| echo: true
 
-# Aquí hay dos formas de crear un vector númerico con los numeros del 1 al 10.
+# Aquí hay dos formas de crear un vector numérico con los 
+# números del 1 al 10.
 mi_num_1 <- c(1,2,3,4,5,6,7,8,9,10)
 mi_num_2 <- 1:10
 ```
@@ -387,11 +388,9 @@ mi_num_2
 
 ## Valores de carácter
 
-Los caracteres se componen de texto, como palabras u oraciones. (Los números también se pueden tratar como caracteres, dependiendo del contexto.)
+Los caracteres se componen de texto, como palabras u oraciones. Un ejemplo de un vector con caracteres como elementos es:
 
 . . .
-
-Por ejemplo, cuando 20 está entre comillas como esta (`"20"`) se tratará como un valor de carácter, aunque incluya un número). entre comillas, `" "`.
 
 ```{r}
 #| echo: true
@@ -400,13 +399,19 @@ muchos_holas <- c("hi", "hello", "hola", "bonjour", "ni hao", "merhaba")
 muchos_holas
 ```
 
+. . .
+
+Es importante saber que los números también se pueden tratar como caracteres, dependiendo del contexto.
+
+Por ejemplo, cuando 20 está entre comillas (`"20"`) se tratará como un valor de carácter, aunque incluya un número entre comillas.
+
 ## Valores booleanos
 
-Los valores booleanos son `TRUE`o `FALSE`.
+Los valores booleanos son `TRUE` o `FALSE`.
 
 Quizás tengamos una pregunta como:
 
--   ¿El primer elemento del vector es `muchos_holas` `"hola"`?
+-   ¿El primer elemento del vector `muchos_holas` es `"hola"`?
 
 . . .
 
@@ -440,25 +445,25 @@ compare <- A > B
 compare
 ```
 
-2.  Repite lo mismo con el siguiente codigo.
+2.  Repite lo mismo con el siguiente código.
 
 ```{r}
 #| echo: true
 #| output: false
 
-my_numbers <- 1:10
-my_booleans <- my_numbers >= 5
+mis_numeros <- 1:10
+mis_booleanos <- mis_numeros >= 5
 
-my_numbers
-my_booleans
+mis_numeros
+mis_booleanos
 
 ```
 
 ```{r}
-countdown::countdown(minutes = 8)
+countdown::countdown(minutes = 10)
 ```
 
-## Lista de operadores lógicos comúnes
+## Lista de operadores lógicos comunes
 
 -   `>` (*mayor que*)
 
@@ -482,11 +487,11 @@ A menudo tenemos que encontrar estos errores mediante prueba y error.
 
 ## Librerías en R
 
--   Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R reutilizables, la documentación que describe cómo usarlas y datos de muestra.
+-   Los paquetes son las unidades fundamentales del código R reproducible. Incluyen funciones R re-utilizables, la documentación que describe cómo usarlas y datos de muestra.
 
 -   En septiembre de 2020, hay más de 16, 000 paquetes disponibles en CRAN (la red integral de archivos R)
 
--   Trabajaremos mayormente con las librerias **readxl**, **ggplot2** y **ggformula**.
+-   Trabajaremos mayormente con las librerías **readxl**, **ggplot2** y **ggformula**.
 
 # ¿Cómo cargar datos en R?
 
@@ -534,9 +539,13 @@ Las columnas representan variables o los atributos de cada caso que se midieron.
 :::
 :::
 
+. . .
+
 <br/>
 
 En este estudio, se informó o no a las amas de llaves que su trabajo diario de limpieza de habitaciones de hotel equivalía a hacer ejercicio adecuado para una buena salud.
+
+. . .
 
 <br/>
 
@@ -566,7 +575,7 @@ Por lo tanto, los valores en cada fila representan los valores de ese caso parti
 
 ## Cargar datos en R
 
-En este curso, asumiremos que los datos estan almacenados en un archivo Excel con la organización anterior. Como ejemplo, usemos el archivo `prenguins.xlsx`.
+En este curso, asumiremos que los datos están almacenados en un archivo Excel con la organización anterior. Como ejemplo, usemos el archivo `prenguins.xlsx`.
 
 ::: columns
 ::: {.column width="50%"}
@@ -578,13 +587,13 @@ En este curso, asumiremos que los datos estan almacenados en un archivo Excel co
 :::
 :::
 
-[***El archivo debe de estar en la misma carpeta que tu código.***]{style="color:red;"}
+[***El archivo debe de ser previamente cargado en Google Colab.***]{style="color:red;"}
 
-## Libreria `readxl`
+## Librería `readxl`
 
 ::: columns
 ::: {.column width="70%"}
-Para cargar datos en R, usaremos la libreria llamada `readxl`. Primero, debes de instalar esta libreria en R utilizando el comando `install.packages("readxl")`
+Para cargar datos en R, usaremos la librería llamada `readxl`. Primero, debes de instalar esta librería en R utilizando el comando `install.packages("readxl")`
 :::
 
 ::: {.column width="30%"}
@@ -592,7 +601,7 @@ Para cargar datos en R, usaremos la libreria llamada `readxl`. Primero, debes de
 :::
 :::
 
-<br/> Una vez instalada la libreria, la cargamos en R usando el siguiente comando.
+<br/> Una vez instalada la librería, la cargamos en R usando el siguiente comando.
 
 ```{r}
 #| echo: true
@@ -635,7 +644,7 @@ head(penguins_data)
 
 ::: columns
 ::: {.column width="80%"}
-1.  Instala la libreria usando el comando `install.packages("ggplot2")`
+1.  Instala la librería usando el comando `install.packages("ggplot2")`
 :::
 
 ::: {.column width="20%"}
@@ -643,9 +652,9 @@ head(penguins_data)
 :::
 :::
 
-2.  Instala una libreria auxiliar `install.packages("ggformula")`
+2.  Instala una librería auxiliar `install.packages("ggformula")`
 
-3\. Carga ambas libreries en R usando el siguiente código.
+3\. Carga ambas librerías en R usando el siguiente código.
 
 ```{r}
 #| echo: true
@@ -660,9 +669,15 @@ ggplot tiene una estructura para crear gráficas por pasos.
 
 [`gf_PLOTTYPE(Variable2 ~ Variable1, data = my_data, color = ~Variable3, shape = ~Variable4)`]{style="color:red;"}
 
-[``` + labs(title, subtitle,``caption,``x, y, color, shape) ```]{style="color:blue;"}
+[`+ labs(title, subtitle, caption, x, y, color, shape)`]{style="color:blue;"}
 
 [`+ more_options()`]{style="color:lightblue;"}
+
+## Ejemplo
+
+¿Existe alguna diferencia entre la longitud y profundidad del pico de las diferentes especies de pingüinos?
+
+![](images/penguins_bill.png){fig-align="center"}
 
 ## Ejemplo
 
@@ -706,7 +721,6 @@ color = "Especie")
 #| fig-height: 4
 #| fig-pos: center 
 #| code-line-numbers: "6"
-#| output-location: fragment 
 
 gf_point(bill_length_mm ~ bill_depth_mm, data = penguins_data, 
 color = ~species) + labs(title = "Profundidad y longitud del pico", 
