@@ -730,3 +730,13 @@ x = "Profundidad del pico (mm)", y = "Longitud del pico (mm)",
 color = "Especie") +  scale_color_viridis_d()
 
 ```
+
+## Mini-actividad (*solo* mode)
+
+1.  Accede a la siguiente liga:
+
+    <https://colab.research.google.com/drive/1EQE35cyZTE3ZEj5AETiftJkFT7HZH0Vy?usp=sharing>
+
+2.  Copia el archivo Google Colab en tu drive.
+
+3.  Contesta las preguntas.
