@@ -171,6 +171,22 @@ En la práctica, los valores booleanos (`TRUE` y `FALSE`) a menudo representan c
 
 ![](images/clipboard-2750534250.png)
 
+## ¿Cómo checar el tipo de variable en R?
+
+R tiene varias funciones para checar el tipo de variable que se está usando. Por ejemplo, consideremos el siguiente conjunto de datos:
+
+```{r}
+mediciones <- c(10,5, 10.2, 25, 23.036)
+```
+
+Es evidente que la variable `medicion` es una variable numérica porque contiene números que tienen decimales. Para asegurarnos que R sabe que esa variable es numérica usamos la función `is.numeric()`.
+
+```{r}
+is.numeric(mediciones)
+```
+
+La función arroja un valor booleano según sea el caso. Arroja `TRUE` si el vector es numérico y `FALSE` si no lo es.
+
 ## Actividad (*solo* mode)
 
 ¿Qué tipo de variable es? Ve a la siguiente liga
@@ -185,7 +201,7 @@ countdown::countdown(minutes = 20)
 
 # La importancia del tipo de variables
 
-## El tipo de variable define nuestro analysis
+## Los tipos de variable definen nuestro análisis
 
 Ayudan a especificar las operaciones, visualizaciones y modelos que podemos aplicar a los datos.
 
