@@ -173,19 +173,81 @@ En la práctica, los valores booleanos (`TRUE` y `FALSE`) a menudo representan c
 
 ## ¿Cómo checar el tipo de variable en R?
 
-R tiene varias funciones para checar el tipo de variable que se está usando. Por ejemplo, consideremos el siguiente conjunto de datos:
+En R, podemos varias funciones para revisar el tipo de objeto que se está usando. Por ejemplo, consideremos el siguiente conjunto de datos:
 
 ```{r}
+#| eval: true
+#| echo: true
+
 mediciones <- c(10,5, 10.2, 25, 23.036)
 ```
 
-Es evidente que la variable `medicion` es una variable numérica porque contiene números que tienen decimales. Para asegurarnos que R sabe que esa variable es numérica usamos la función `is.numeric()`.
+Es evidente que la variable `medicion` es una variable numérica porque contiene números que tienen decimales. La función `is.numeric()` nos permite preguntarle a R si esta reconociendo esta variable como numerica.
 
 ```{r}
+#| eval: true
+#| echo: true
+
 is.numeric(mediciones)
 ```
 
-La función arroja un valor booleano según sea el caso. Arroja `TRUE` si el vector es numérico y `FALSE` si no lo es.
+## Otros tipos de objetos
+
+Como sabemos, en R hay tres tipos de objetos: numérico, carácter, y lógico. La función `is.character()` nos ayuda a saber si el objeto es de tipo carácter.
+
+```{r}
+#| eval: true
+#| echo: true
+
+niveles <- c("Bajo", "Medio", "Alto", "Alto", "Medio")
+is.character(niveles)
+```
+
+La función `is.logical()` nos ayuda a saber si el objeto es de tipo lógico o booleano.
+
+```{r}
+#| eval: true
+#| echo: true
+
+mi_respuesta <- c(TRUE, TRUE, FALSE)
+is.logical(mi_respuesta)
+```
+
+## Definiendo variables categóricas
+
+En R, necesitamos de una función especial para decirle al sistema que cierta variable es categórica. Por ejemplo, consideremos una variable llamada `niveles` que contiene niveles de percepción de 5 clientes sobre la calidad de un producto.
+
+Los niveles posibles son: bajo, medio alto.
+
+```{r}
+#| eval: true
+#| echo: true
+
+niveles <- c("Bajo", "Medio", "Alto", "Alto", "Medio")
+```
+
+## 
+
+Para que R entienda que estos datos siguen las tres categorías con un orden específico usamos la función `factor`.
+
+```{r}
+#| eval: true
+#| echo: true
+
+mi_variable_ordinal <- factor(niveles, levels = c("Bajo", "Medio", "Alto"))
+mi_variable_ordinal
+```
+
+Note que al imprimir la variable, se imprimen los niveles especificados. En R, una variable categórica se llama `factor`.
+
+Ahora, podemos usar la función `mode` para asegurarnos que si es un factor.
+
+```{r}
+#| eval: true
+#| echo: true
+
+is.factor(mi_variable_ordinal)
+```
 
 ## Actividad (*solo* mode)
 
