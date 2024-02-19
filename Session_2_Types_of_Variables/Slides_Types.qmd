@@ -373,16 +373,3 @@ countdown::countdown(minutes = 30)
 ![](images/201-levelplot-with-latticeextra.png){fig-align="center"}
 :::
 :::
-
-## Actividad (*solo* mode)
-
-¿Qué tipo de variable es?
-
-1.  Ve al Modulo 2 y accede a la **Actividad 2.1**.
-2.  Contesta las preguntas.
-
-Esta actividad tiene un valor de **2** puntos sobre promedio.
-
-```{r}
-countdown::countdown(minutes = 20)
-```
