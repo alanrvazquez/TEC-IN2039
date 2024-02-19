@@ -28,7 +28,7 @@ css: style.css
 :::
 
 ::: {.column width="50%"}
-3.  La importancia del tipo de variables
+2.  La importancia del tipo de variables
 
     ![](images/clipboard-1628090285.png){width="254"}
 :::
@@ -42,11 +42,11 @@ Antes de hacer una gráfica, debemos examinar el tipo de valor que toman las var
 
 Hay dos tipos principales de variables:
 
-. . .
-
+::: incremental
 -   [Variables numéricas.]{style="color:darkblue;"}
 
 -   [Variables categóricas.]{style="color:darkred;"}
+:::
 
 ## Variables numéricas
 
@@ -63,14 +63,14 @@ Toman valores que representan medidas numéricas o cantidades.
 
 -   Tiempo (en horas o segundos).
 
--   Puntuación en un examen (numero de puntos de 100).
+-   Puntuación en un examen (número de puntos en base de 100).
 :::
 
 ## Tipos de variables numéricas
 
 Las variables numéricas se dividen en dos tipos:
 
--   [*discretas*]{style="color:darkblue;"}: variables con un número pequeño de valores diferentes.
+-   [*Discretas*]{style="color:darkblue;"}: variables que toman valores enteros.
 
 . . .
 
@@ -82,7 +82,7 @@ Por ejemplo:
 
 ## 
 
--   [*continuas*]{style="color:darkblue;"}: variables con un numero de valores diferentes es infinito (o muy muy grande).
+-   [*Continuas*]{style="color:darkblue;"}: variables con un número de valores diferentes infinito (o muy muy grande).
 
 . . .
 
@@ -103,7 +103,7 @@ Toman valores que se colocan en *categorías*.
 . . .
 
 |                  |                                                                 |
-|----------------------|-------------------------------------------------|
+|-----------------------|------------------------------------------------|
 | **Variable**     | **Categorias**                                                  |
 | Reseña en Amazon | 1$\bigstar$, 2$\bigstar$, 3$\bigstar$, 4$\bigstar$, 5$\bigstar$ |
 | País de origen   | México, Canadá, EUA                                             |
@@ -129,8 +129,8 @@ Una variable categórica es nominal si sus categorías **no** tienen orden.
 Por ejemplo:
 
 ::: incremental
--   Afiliación a partidos políticos (demócrata, republicano, verde, otros).
--   Tipo de perro (pastor, sabueso, no deportivo, deportivo, terrier, toy, de trabajo).
+-   Afiliación a partidos políticos (demócrata o republicano).
+-   Tipo de perro (pastor, sabueso, terrier, otro).
 -   Sistema operativo de la computadora (Windows, macOS, Linux).
 :::
 
@@ -154,12 +154,13 @@ It is important to note that with an ordinal feature, the difference between, sa
 
 ## Interesante...
 
-Valores enteros (por ejemplo, 1, 2, 3, ..., 5) pueden representar categóricas nominales.
+Valores enteros (por ejemplo, 1, 2, 3, ..., 5) pueden representar categóricas nominales u ordinales.
 
-|                    |     |     |      |     |
-|--------------------|-----|-----|------|-----|
-| Etiqueta           | 1   | 2   | 3    | 4   |
-| **Tipo de Sangre** | *A* | *B* | *AB* | *O* |
+|                    |        |           |         |             |
+|--------------------|--------|-----------|---------|-------------|
+| Representación     | 1      | 2         | 3       | 4           |
+| **Tipo de Sangre** | *A*    | *B*       | *AB*    | *O*         |
+| **Reseña**         | *Mala* | *Regular* | *Buena* | *Muy Buena* |
 
 <!-- -->
 
@@ -170,6 +171,12 @@ En la práctica, los valores booleanos (`TRUE` y `FALSE`) a menudo representan c
 ## Recuerda
 
 ![](images/clipboard-2750534250.png)
+
+## Un a diferencia general es ...
+
+-   Variables cuantitativas (discretas o continuas) son en las cuales la suma o resta de sus valores tiene sentido.
+
+-   Variables categóricas (nominales u ordinales) son en las cuales la suma o resta de sus valores **no** tiene sentido.
 
 ## ¿Cómo checar el tipo de variable en R?
 
@@ -182,7 +189,13 @@ En R, podemos varias funciones para revisar el tipo de objeto que se está usand
 mediciones <- c(10,5, 10.2, 25, 23.036)
 ```
 
-Es evidente que la variable `medicion` es una variable numérica porque contiene números que tienen decimales. La función `is.numeric()` nos permite preguntarle a R si esta reconociendo esta variable como numerica.
+. . .
+
+Es evidente que la variable `medicion` es una variable numérica porque contiene números que tienen decimales.
+
+. . .
+
+La función `is.numeric()` nos permite preguntarle a R si esta reconociendo esta variable como numérica.
 
 ```{r}
 #| eval: true
@@ -193,7 +206,11 @@ is.numeric(mediciones)
 
 ## Otros tipos de objetos
 
-Como sabemos, en R hay tres tipos de objetos: numérico, carácter, y lógico. La función `is.character()` nos ayuda a saber si el objeto es de tipo carácter.
+Como sabemos, en R hay tres tipos de objetos: numérico, carácter, y lógico.
+
+. . .
+
+La función `is.character()` nos ayuda a saber si el objeto es de tipo carácter.
 
 ```{r}
 #| eval: true
@@ -203,21 +220,27 @@ niveles <- c("Bajo", "Medio", "Alto", "Alto", "Medio")
 is.character(niveles)
 ```
 
+. . .
+
 La función `is.logical()` nos ayuda a saber si el objeto es de tipo lógico o booleano.
 
 ```{r}
 #| eval: true
 #| echo: true
 
-mi_respuesta <- c(TRUE, TRUE, FALSE)
-is.logical(mi_respuesta)
+estas_deacuerdo <- c(TRUE, TRUE, FALSE)
+is.logical(estas_deacuerdo)
 ```
 
 ## Definiendo variables categóricas
 
-En R, necesitamos de una función especial para decirle al sistema que cierta variable es categórica. Por ejemplo, consideremos una variable llamada `niveles` que contiene niveles de percepción de 5 clientes sobre la calidad de un producto.
+En R, necesitamos de una función especial para decirle al sistema que cierta variable es categórica.
 
-Los niveles posibles son: bajo, medio alto.
+. . .
+
+Por ejemplo, consideremos una variable llamada `niveles` que contiene niveles de percepción de 5 clientes sobre la calidad de un producto. Los niveles son: bajo, medio alto.
+
+. . .
 
 ```{r}
 #| eval: true
@@ -238,9 +261,13 @@ mi_variable_ordinal <- factor(niveles, levels = c("Bajo", "Medio", "Alto"))
 mi_variable_ordinal
 ```
 
-Note que al imprimir la variable, se imprimen los niveles especificados. En R, una variable categórica se llama `factor`.
+. . .
 
-Ahora, podemos usar la función `mode` para asegurarnos que si es un factor.
+Nota que al imprimir la variable, se imprimen los niveles especificados. En R, una variable categórica se llama `factor`.
+
+. . .
+
+Ahora, podemos usar la función `is.factor()` para asegurarnos que `mi_variable_ordinal` es un factor.
 
 ```{r}
 #| eval: true
@@ -249,25 +276,29 @@ Ahora, podemos usar la función `mode` para asegurarnos que si es un factor.
 is.factor(mi_variable_ordinal)
 ```
 
-## Actividad (*solo* mode)
+## Mini-actividad (*cooperative* mode)
 
-¿Qué tipo de variable es? Ve a la siguiente liga
+1.  Ve al repositorio de conjuntos de datos de la Universidad de California en Irvine: <https://archive.ics.uci.edu/>
 
-\[LINK\]
+2.  Explora el sitio y busca un conjunto de datos que incluya al menos una variable numérica y una categórica.
 
-y contesta las preguntas.
+3.  Descarga los datos y transforma el archivo en un archivo de excel (.xlsx) si es necesario.
+
+4.  Sube los datos a un archivo de Google Colab y cárgalos en R usando las funciones antes vistas.
+
+5.  Describe el tipo de variables en el conjunto de datos.
 
 ```{r}
-countdown::countdown(minutes = 20)
+countdown::countdown(minutes = 30)
 ```
 
 # La importancia del tipo de variables
 
 ## Los tipos de variable definen nuestro análisis
 
-Ayudan a especificar las operaciones, visualizaciones y modelos que podemos aplicar a los datos.
+-   Ayudan a especificar las operaciones, visualizaciones y modelos que podemos aplicar a los datos.
 
-El tipo de variable (numérica o categórica) generalmente determina el tipo de gráfica, aunque existen excepciones.
+-   Existen gráficas apropiadas o diseñadas para visualizar variables númericas o categóricas.
 
 ## Gráficos para 1 variable
 
@@ -283,7 +314,7 @@ El tipo de variable (numérica o categórica) generalmente determina el tipo de 
 
 ::: center
 | Tipo     | Gráfica                                                           |
-|:--------------------|:--------------------------------------------------|
+|:----------------------|:------------------------------------------------|
 | Numérica | Histograma, gráfica de caja, gráfica de violín, curva de densidad |
 :::
 
@@ -303,7 +334,7 @@ El tipo de variable (numérica o categórica) generalmente determina el tipo de 
 
 ::: center
 | Tipo        | Gráfica                                                                       |
-|:--------------------|:--------------------------------------------------|
+|:----------------------|:------------------------------------------------|
 | Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico |
 :::
 
@@ -325,13 +356,13 @@ El tipo de variable (numérica o categórica) generalmente determina el tipo de 
 
 ::: center
 | Tipo  | Gráfica                                                                                       |
-|:--------------------|:--------------------------------------------------|
+|:----------------------|:------------------------------------------------|
 | Mixta | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de controno |
 :::
 
 ::: columns
 ::: {.column width="33%"}
-![](images/cool mix plot.png){fig-align="center"}
+![](images/cool%20mix%20plot.png){fig-align="center"}
 :::
 
 ::: {.column width="33%"}
@@ -342,3 +373,16 @@ El tipo de variable (numérica o categórica) generalmente determina el tipo de 
 ![](images/201-levelplot-with-latticeextra.png){fig-align="center"}
 :::
 :::
+
+## Actividad (*solo* mode)
+
+¿Qué tipo de variable es?
+
+1.  Ve al Modulo 2 y accede a la **Actividad 2.1**.
+2.  Contesta las preguntas.
+
+Esta actividad tiene un valor de **2** puntos sobre promedio.
+
+```{r}
+countdown::countdown(minutes = 20)
+```
