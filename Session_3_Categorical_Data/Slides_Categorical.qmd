@@ -79,13 +79,9 @@ En Google Colab, el archivo debe de estar en la carpeta llamada "content" o "con
 
 ## 
 
+Hoy nos enfocaremos en visualizar las variables categóricas: `species`, `island` y `sex`.
+
 ![](images/clipboard-3758853900.png)
-
-## 
-
-Hoy nos enfocaremos en visualizar las variables categóricas.
-
-![](images/clipboard-3461599711.png){fig-align="center" width="647"}
 
 ## Asegúrate que R sabe que la variable es categórica
 
@@ -134,7 +130,7 @@ Te recomiendo hacer lo mismo para las otras variables categóricas
 
 penguins_data$island <- factor(penguins_data$island)
 penguins_data$sex <- factor(penguins_data$sex)
-penguins_data$year <- factor(penguins_data$year)
+penguins_data$species <- factor(penguins_data$species)
 ```
 
 # Resúmenes Estadísticos
