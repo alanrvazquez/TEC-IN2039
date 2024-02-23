@@ -1,6 +1,6 @@
 ---
 title: |
-   | Sesión 3: 
+   | Sesión 4: 
    | Variables Categóricas  
 author: 
   - name: Alan R. Vázquez
@@ -25,37 +25,28 @@ css: style.css
 
 <br/>
 
-::: columns
-::: {.column width="50%"}
-1.  Resúmenes estadísticos
-:::
+1.  Introducción
 
-::: {.column width="50%"}
-2.  Gráfica de barras y circular
-:::
-:::
+2.  Resúmenes estadísticos
 
-::: columns
-::: {.column width="30%"}
-3.  Transformando variables categóricas
-:::
+3.  Gráfica de barras y circular
 
-::: {.column width="70%"}
-:::
-:::
+4.  Transformando variables categóricas
 
 ## Primero lo primero
 
-Hoy usaremos R para construir graficas y tablas. Para esto, utilizaremos las librerias que ya vimos antes como `ggplot2`, `ggformula`, y `readxl`.
+Hoy usaremos R para construir gráficas y tablas. Para esto, usaremos las librerías que ya vimos antes como `ggplot2`, `ggformula`, y `readxl`.
 
 <br/>
 
-Carguemoslas en R antes de comenzar.
+Carguémoslas en R antes de comenzar.
 
 ```{r}
 #| echo: true
 #| output: false
 
+# Nos se te olvide instalar la librería "ggformula" en Google Colab.
+# install.packages(ggformula)
 library(readxl)
 library(ggplot2)
 library(ggformula)
@@ -63,11 +54,11 @@ library(ggformula)
 
 ## Penguins Dataset
 
-Ilustraremos los conceptos de hoy utlizando el conjunto de datos `penguins.xlsx`.
+Ilustraremos los conceptos de hoy sando el conjunto de datos `penguins.xlsx`.
 
 ::: columns
 ::: {.column width="68%"}
-Cargalo en R usando el siguiente código.
+Súbelo a Google Colab y cárgalo en R usando el siguiente código.
 
 ```{r}
 #| output: false
@@ -83,7 +74,7 @@ penguins_data <- read_excel("penguins.xlsx")
 :::
 :::
 
-Recuerda que el archivo debe de estar en la misma carpeta que tu código.
+En Google Colab, el archivo debe de estar en la carpeta llamada "content" o "contenido."
 
 ## 
 
@@ -91,15 +82,17 @@ Recuerda que el archivo debe de estar en la misma carpeta que tu código.
 
 ## 
 
+Hoy nos enfocaremos en visualizar las variables categóricas.
+
 ![](images/clipboard-3461599711.png){fig-align="center" width="647"}
 
-## Asegurate que R sabe que la variable es categorica
+## Asegúrate que R sabe que la variable es categórica
 
-Antes de comenzar, debemos de checar si R reconoce las variables como categóricas o numéricas.
+Antes de comenzar, debemos de revisar si R reconoce estas variables como categóricas.
 
-> En R, las variables categoricas se conocen como `factor` y las variables numéricas como `numeric`.
+> Recuerda que las variables categóricas se conocen como `factor`.
 
-Le puedes pregunar a R por una variable en particular, por ejemplo, `species`, así:
+Le puedes preguntar a R por una variable en particular, por ejemplo, `species`, así:
 
 ```{r}
 #| echo: true
@@ -130,7 +123,9 @@ Preguntemosle a R el tipo de variable otra vez.
 is.factor(penguins_data$species)
 ```
 
-## Te recomiendo hacer lo mismo para las otras variables categóricas
+## 
+
+Te recomiendo hacer lo mismo para las otras variables categóricas
 
 ```{r}
 #| echo: true
@@ -141,19 +136,26 @@ penguins_data$sex <- factor(penguins_data$sex)
 penguins_data$year <- factor(penguins_data$year)
 ```
 
-## Resumenes Estadísticos
+# Resúmenes Estadísticos
 
-> Un **resumén estadístico** nos ayuda a resumir un conjunto de observaciones de una manera simple.
+## Resúmenes Estadísticos
 
-Los resúmenes estadísticos más utilizados para datos categóricos son las frecuencias y las frecuencias relativas.
+. . .
 
--   La [**frecuencia**]{style="color:darkblue;"} de una categoría es la cantidad de elementos de muestra que pertenecen a esa categoría.
+> Un **resumen estadístico** nos ayuda a resumir un conjunto de observaciones de una manera simple.
+
+. . .
+
+Los resúmenes estadísticos más utilizados para datos categóricos son:
+
+-   La [**frecuencia**]{style="color:darkblue;"} de una categoría es el número de observaciones que pertenecen a esa categoría.
 
 -   La [**frecuencia relativa**]{style="color:darkblue;"} es la frecuencia dividida por el número total de observaciones.
 
+
 ## Tabla de Frecuencia
 
-Resume una variable categorica contando los valores por categoría.
+Resume una variable categórica contando los valores por categoría.
 
 ::: columns
 ::: {.column width="50%"}
@@ -192,7 +194,7 @@ table(penguins_data$species)
 
 ## Tabla de Frecuencia Relativa
 
-Resume una variable categorica calculando la *proporción de valores* por categoría.
+Resume una variable categórica calculando la *proporción de valores* por categoría.
 
 ::: columns
 ::: {.column width="55%"}
@@ -204,7 +206,7 @@ Resume una variable categorica calculando la *proporción de valores* por catego
 # Calcula el número de observaciones.
 n <- nrow(penguins_data) 
 
-# Calcula la frequencia relativa.
+# Calcula la frecuencia relativa.
 table(penguins_data$species)/n
 ```
 :::
@@ -229,11 +231,13 @@ La ventaja de la frequencia relativa es que se puede interpretar como una probab
 
 ## Gráfica de Barras
 
-Representa visualmente una tabla de frequencias or frequencias relativas.
+> Representa visualmente una tabla de frecuencias o frecuencias relativas.
 
-La frecuencia (o frequencia relativa) se representa por una barra de altura proporcional.
+La frecuencia (o frecuencia relativa) se representa por una barra de altura proporcional.
 
-Puedes construir una grafica de barras usando la funcion `gf_bar()` así:
+. . .
+
+Puedes construir una gráfica de barras usando la función `gf_bar()` así:
 
 ```{r}
 #| echo: true
@@ -247,7 +251,7 @@ gf_bar( ~ species, data = penguins_data)
 
 ## 
 
-Si quieres graficar la frequencia relativa, usa la función `gf_percents`.
+Si quieres graficar la frecuencia relativa, usa la función `gf_percents`.
 
 ```{r}
 #| echo: true
@@ -260,7 +264,7 @@ gf_percents( ~ species, data = penguins_data)
 
 ## Actividad (*solo* mode)
 
-Usando las herramientas para gráficos en ggplot, modifica el código anterior para que la gráfica se vea asi.
+Usando las herramientas para gráficos en ggplot, modifica el código anterior para que la gráfica se vea así.
 
 ```{r}
 #| echo: false
@@ -276,15 +280,19 @@ gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "P
 countdown::countdown(minutes = 10)
 ```
 
-## Gráfico circular
+## Gráfica circular o de pastel
 
 ::: columns
 ::: {.column width="50%"}
+
+::: incremental
 -   Se construye dividiendo un círculo en varias porciones que representan las categorías de la variable.
 
--   La porción de una categoria es su frequencia relativa.
+-   El diámetro del círculo comprendido por una categoría es su frecuencia relativa.
 
--   Este gráfico te permite dar un vistazo rápido a las proporciones de cada categoría.
+-   Permite dar un vistazo rápido a las proporciones de cada categoría.
+:::
+
 :::
 
 ::: {.column width="50%"}
@@ -314,15 +322,20 @@ countdown::countdown(minutes = 15)
 
 ## Aplica el Principio 3
 
-> *Enriquece con información adicional.*
+> *Aplica los principios del diseño gráfico.*
+
+. . .
 
 Podemos mejorar gráficas de variables categóricas usando estas técnicas:
 
+::: incremental
 -   Re-etiquetar las categorías para que sean más informativas.
 
 -   Re-ordenar las categorías para que sigan su orden natural.
 
--   Colapsar categorías para simplificar una visualización.
+-   Colapsar categorías para simplificar la gráfica.
+::: 
+
 
 ## Ejemplo: Boston Housing Dataset
 
@@ -340,7 +353,7 @@ Este conjunto de datos contiene información recopilada por el Servicio del Cens
 
 ## 
 
-Los datos estan en el archivo `Boston_dataset.xlsx`. Cargalos en R usando el siguiente comando.
+Los datos están en el archivo `Boston_dataset.xlsx`. Súbelos a Google Colab y cárgalos en R usando el siguiente comando.
 
 ```{r}
 #| echo: true
@@ -358,7 +371,7 @@ Nos concentraremos en las siguientes variables
 
 ## Recuerda...
 
-Asegurate de que R sabe que esas variables son categóricas.
+Asegúrate de que R sabe que esas variables son categóricas.
 
 ```{r}
 #| echo: true
@@ -432,7 +445,7 @@ Ahora, construyamos una gráfica de barras de `rad`.
 gf_percents( ~ rad, data = Boston_dataset)
 ```
 
-Las categorías no siguien un orden natural de izquierda a derecha: `Low`, `Medium`, y `High`.
+Las categorías no siguen un orden natural de izquierda a derecha: `Low`, `Medium`, y `High`.
 
 ## 
 
@@ -448,3 +461,32 @@ gf_percents( ~ rad, data = Boston_dataset)
 ```
 
 Mucho mejor 😃
+
+## Guardando gráficas en ggplot2
+
+Para guardar una gráfica de ggplot2, primero guardamos la gráfica en un objeto de R. 
+
+```{r}
+#| echo: true
+#| output: true
+
+mi_grafica_de_barras <- gf_percents( ~ rad, data = Boston_dataset)
+```
+
+Luego, usamos la función `ggsave()`.
+
+```{r}
+#| echo: true
+#| output: true
+#| fig-pos: center
+
+ggsave(filename = "Mi_grafica.jpg", plot = mi_grafica_de_barras, 
+       width = NA, height = NA, units = "cm", dpi = 300)
+```
+
+Algunos de los argumentos arriba son:
+
+- `width`: ancho del gráfico.
+- `height`: altura del gráfico.
+- `units`: unidades de medición.
+- `dpi`: resolución del gráfico.
