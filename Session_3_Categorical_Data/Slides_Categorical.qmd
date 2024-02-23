@@ -28,9 +28,11 @@ css: style.css
 
 2.  Resúmenes estadísticos
 
-3.  Gráfica de barras y circular
+3.  Gráfica de barras
 
 4.  Transformando variables categóricas
+
+5.  Actividad: Gráfica circular
 
 ## Primero lo primero
 
@@ -225,7 +227,7 @@ table(penguins_data$species)/n
 La ventaja de la frequencia relativa es que se puede interpretar como una probabilidad. Lo que da mas información.
 :::
 
-# Gráfica de barras y círcular
+# Gráfica de barras
 
 ## Gráfica de Barras
 
@@ -260,13 +262,14 @@ Si quieres graficar la frecuencia relativa, usa la función `gf_percents`.
 gf_percents( ~ species, data = penguins_data)
 ```
 
-## Actividad (*solo* mode)
+## Ejemplo: Mejorando la gráfica
 
-Usando las herramientas para gráficos en ggplot, modifica el código anterior para que la gráfica se vea así.
+Usando las herramientas para gráficos en ggplot, podemos mejorar el código anterior para que la gráfica se vea así.
 
 ```{r}
 #| echo: false
 #| output: true
+#| code-fold: true
 #| fig-height: 4
 #| fig-align: center
 
@@ -274,45 +277,6 @@ gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "P
 
 ```
 
-```{r}
-countdown::countdown(minutes = 10)
-```
-
-## Gráfica circular o de pastel
-
-::: columns
-::: {.column width="50%"}
-::: incremental
--   Se construye dividiendo un círculo en varias porciones que representan las categorías de la variable.
-
--   El diámetro del círculo comprendido por una categoría es su frecuencia relativa.
-
--   Permite dar un vistazo rápido a las proporciones de cada categoría.
-:::
-:::
-
-::: {.column width="50%"}
-![](images/clipboard-800609446.png)
-:::
-:::
-
-::: notes
-Pie charts versus bar charts.
-
-**Bar charts can serve as a good way to show comparisons between categories**. It is generally observed that new trends tend to shy away from using pie charts, as it is difficult for the human eye to judge the exact angle that shows the value of a category in a pie chart.
-:::
-
-## Actividad (*cooperative* mode)
-
-[Preguntale a ChatGPT]{style="color:darkgreen;"}
-
-1.  Ve ChatGPT en <https://chat.openai.com/>
-2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** en R.
-3.  Adapta tu código para producir una gráfica circular de la variable `island` en `penguin_data`.
-
-```{r}
-countdown::countdown(minutes = 15)
-```
 
 # Transformando variables categóricas
 
@@ -485,3 +449,41 @@ Algunos de los argumentos arriba son:
 -   `height`: altura del gráfico.
 -   `units`: unidades de medición.
 -   `dpi`: resolución del gráfico.
+
+# Gráfica circular 
+
+## Gráfica circular o de pastel
+
+::: columns
+::: {.column width="50%"}
+::: incremental
+-   Se construye dividiendo un círculo en varias porciones que representan las categorías de la variable.
+
+-   El diámetro del círculo comprendido por una categoría es su frecuencia relativa.
+
+-   Permite dar un vistazo rápido a las proporciones de cada categoría.
+:::
+:::
+
+::: {.column width="50%"}
+![](images/clipboard-800609446.png)
+:::
+:::
+
+::: notes
+Pie charts versus bar charts.
+
+**Bar charts can serve as a good way to show comparisons between categories**. It is generally observed that new trends tend to shy away from using pie charts, as it is difficult for the human eye to judge the exact angle that shows the value of a category in a pie chart.
+:::
+
+
+## Actividad (*solo* mode)
+
+[Preguntale a ChatGPT]{style="color:darkgreen;"}
+
+1.  Ve ChatGPT en <https://chat.openai.com/>
+2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** en R.
+3.  Adapta tu código para producir una gráfica circular de la variable `island` en `penguin_data`.
+
+
+
