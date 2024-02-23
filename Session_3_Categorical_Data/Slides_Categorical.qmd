@@ -4,7 +4,6 @@ title: |
    | Variables Categóricas  
 author: 
   - name: Alan R. Vázquez
-    email: alanrvazquez@tec.mx
     affiliations:
       - name: Tecnológico de Monterrey
 format: 
@@ -152,7 +151,6 @@ Los resúmenes estadísticos más utilizados para datos categóricos son:
 
 -   La [**frecuencia relativa**]{style="color:darkblue;"} es la frecuencia dividida por el número total de observaciones.
 
-
 ## Tabla de Frecuencia
 
 Resume una variable categórica contando los valores por categoría.
@@ -284,7 +282,6 @@ countdown::countdown(minutes = 10)
 
 ::: columns
 ::: {.column width="50%"}
-
 ::: incremental
 -   Se construye dividiendo un círculo en varias porciones que representan las categorías de la variable.
 
@@ -292,7 +289,6 @@ countdown::countdown(minutes = 10)
 
 -   Permite dar un vistazo rápido a las proporciones de cada categoría.
 :::
-
 :::
 
 ::: {.column width="50%"}
@@ -334,8 +330,7 @@ Podemos mejorar gráficas de variables categóricas usando estas técnicas:
 -   Re-ordenar las categorías para que sigan su orden natural.
 
 -   Colapsar categorías para simplificar la gráfica.
-::: 
-
+:::
 
 ## Ejemplo: Boston Housing Dataset
 
@@ -464,7 +459,7 @@ Mucho mejor 😃
 
 ## Guardando gráficas en ggplot2
 
-Para guardar una gráfica de ggplot2, primero guardamos la gráfica en un objeto de R. 
+Para guardar una gráfica de ggplot2, primero guardamos la gráfica en un objeto de R.
 
 ```{r}
 #| echo: true
@@ -486,7 +481,7 @@ ggsave(filename = "Mi_grafica.jpg", plot = mi_grafica_de_barras,
 
 Algunos de los argumentos arriba son:
 
-- `width`: ancho del gráfico.
-- `height`: altura del gráfico.
-- `units`: unidades de medición.
-- `dpi`: resolución del gráfico.
+-   `width`: ancho del gráfico.
+-   `height`: altura del gráfico.
+-   `units`: unidades de medición.
+-   `dpi`: resolución del gráfico.
