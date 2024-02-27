@@ -30,9 +30,7 @@ css: style.css
 
 2.  Resúmenes estadísticos
 
-3.  Histogramas y gráficas de caja
-
-4.  Transformando variables numéricas
+3.  Gráficas de variables numéricas
 
 
 ## Ejemplo
@@ -477,7 +475,7 @@ Se basa en la frecuencia relativa (#observaciónes_en_categoria/total), en lugar
 
 . . . 
 
-La obtienes con la función `df_density()`.
+La obtienes con la función `gf_density()`.
 
 ::: columns
 ::: {.column width="50%"}
