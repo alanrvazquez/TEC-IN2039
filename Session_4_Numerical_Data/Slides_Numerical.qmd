@@ -1,10 +1,9 @@
 ---
 title: |
-   | Sesión 4: 
+   | Sesión 5: 
    | Variables Numéricas  
 author: 
   - name: Alan R. Vázquez
-    email: alanrvazquez@tec.mx
     affiliations:
       - name: Tecnológico de Monterrey
 format: 
@@ -23,28 +22,18 @@ css: style.css
 
 ## Los Tópicos de Hoy
 
-[**Objetivo:**]{.underline} *Enfocarnos en 1 variable numérica.*
+[*Enfocarnos en 1 variable numérica.*]{style="color:darkblue;"}
 
 <br/>
 
-::: columns
-::: {.column width="50%"}
-1.  Resúmenes estadísticos
-:::
+1.  Introducción al ejemplo
 
-::: {.column width="50%"}
-2.  Histogramas y gráficas de caja
-:::
-:::
+2.  Resúmenes estadísticos
 
-::: columns
-::: {.column width="30%"}
-3.  Transformando variables categóricas
-:::
+3.  Histogramas y gráficas de caja
 
-::: {.column width="70%"}
-:::
-:::
+4.  Transformando variables numéricas
+
 
 ## Ejemplo
 
@@ -60,19 +49,39 @@ Un pistón es un dispositivo mecánico presente en la mayoría de los motores.
 
 Una medida del rendimiento de un pistón es el tiempo que lleva en completar un ciclo, lo cual llamamos "tiempo de ciclo" y se mide en segundos.
 
-El archivo `CYLT.xlsx` contiene 50 tiempos de ciclo de un pistón operado en condiciones de funcionamiento fijas.
+El archivo "CYLT.xlsx" contiene 50 tiempos de ciclo de un pistón operado en condiciones de funcionamiento fijas.
 
-## Primero, carguemos los datos en R
+## Recuerda cargar las librerías
+
+Aquí usaremos las librerías `ggplot2`, `ggformula`, y `readxl`. 
+
+Carguémoslas en Google Colab y R antes de comenzar.
 
 ```{r}
+#| echo: true
+#| output: false
 
-library(readxl) # Para leer datos.
-library(ggplot2) # Para visualizar.
-library(ggformula) # Para usar gáficas.
+# Nos se te olvide instalar la librería "ggformula" en Google Colab.
+# install.packages("ggformula")
+library(readxl)
+library(ggplot2)
+library(ggformula)
+```
 
+## Carga los datos
+
+En Google Colab, el archivo "CYLT.xlsx" debe de estar en la carpeta llamada "content" o "contenido." 
+
+Ahora carguemos los datos R.  
+
+```{r}
 piston_data <- read_excel("CYCLT.xlsx") # Leer los datos.
 head(piston_data) # Ver las primeras 6 observaciones.
 ```
+
+
+
+## Tipo de variable
 
 En R, los datos numéricos se llaman `numeric`. Preguntemos si R reconoce nuestros datos correctamente.
 
@@ -86,12 +95,16 @@ is.numeric(piston_data$cycle_time)
 
 > Nos ayuda a resumir un conjunto de observaciones de una manera simple.
 
+. . .
+
 Los resúmenes estadísticos más utilizados para datos numéricos son:
 
+::: incremental
 -   [Promedio]{style="color:darkblue;"}
--   [Varianza]{style="color:darkblue;"} y [Desviación estándar]{style="color:darkblue;"}
+-   [Varianza]{style="color:darkblue;"} y [desviación estándar]{style="color:darkblue;"}
 -   [Mediana]{style="color:darkgreen;"} y [cuartiles]{style="color:darkgreen;"}
 -   [Máximo]{style="color:dark;"} y [mínimo]{style="color:dark;"}
+:::
 
 ## Promedio
 
@@ -101,11 +114,11 @@ Para calcularlo, considera $n$ observaciones denotadas como $y_1, y_2, \ldots, y
 
 El promedio es
 
-$$\bar{y} = \frac{1}{n}\sum_{i=1}^{n} y_i$$
+$$\bar{y} = \frac{1}{n}\sum_{i=1}^{n} y_i = \frac{y_1 + y_2 + \cdots + y_n}{n}.$$
 
 ## 
 
-En R, el promedio se calcula usando la función `mean`.
+En R, el promedio se calcula usando la función `mean()`.
 
 ```{r}
 #| output: true
@@ -114,6 +127,8 @@ mean(piston_data$cycle_time)
 ```
 
 <br/>
+
+. . .
 
 [*Interpretación:*]{style="color:darkgray;"} En promedio, el pistón tarda 0.65246 segundos en completar un ciclo.
 
@@ -124,20 +139,24 @@ mean(piston_data$cycle_time)
 Para calcularla, considera $n$ observaciones denotadas usando $y_1, y_2, \ldots, y_n$ . La varianza es
 
 $$
-s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2
+s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 = \frac{(y_1 - \bar{y})^2  + \cdots + (y_n - \bar{y})^2}{n-1}
 $$
+
+. . .
 
 *Es como un promedio de las diferencias al cuadrado entre las observaciones y el promedio.*
 
 ## 
 
-En R, la varianza se calcula usando la función `var`.
+En R, la varianza se calcula usando la función `var()`.
 
 ```{r}
 #| output: true
 
 var(piston_data$cycle_time)
 ```
+
+. . .
 
 <br/> [*Interpretación:*]{style="color:darkgray;"} La varianza de los tiempos de ciclo del pistón es 0.1391073.
 
@@ -163,7 +182,7 @@ Esta es la desviación estándar, que esta en las mismas unidades que las observ
 
 ## 
 
-En R, la desviación estándar se calcula usando la función `sd`.
+En R, la desviación estándar se calcula usando la función `sd()`.
 
 ```{r}
 #| output: true
@@ -171,21 +190,25 @@ En R, la desviación estándar se calcula usando la función `sd`.
 sd(piston_data$cycle_time)
 ```
 
-<br/>
+. . . 
 
-[*Interpretación:*]{style="color:darkgray;"} En promedio, un pistón tarda 0.65246 segundos en completar un ciclo, con una diferencia de mas o menos 0.3729709 segundos.
+<br/> [*Interpretación:*]{style="color:darkgray;"} En promedio, un pistón tarda 0.65246 segundos en completar un ciclo, con una diferencia de mas o menos 0.3729709 segundos.
 
 ## Mediana y Cuartiles
 
-La [**mediana**]{style="color:darkgreen;"} de la muestra es el número medio de las observaciones ordenadas de menor a mayor.
+La [**mediana**]{style="color:darkgreen;"} es el número medio de las observaciones ordenadas de menor a mayor.
+
+. . . 
 
 Los [**cuartiles**]{style="color:darkgreen;"} dividen las observaciones en cuatro partes. Existen tres de ellos:
 
+::: incremental
 -   El primer cuartil ($Q_1$) es la mediana de la mitad inferior de las observaciones.
 
 -   El segundo cuartil ($Q_2$) es la mediana de las observaciones.
 
 -   El tercer cuartil ($Q_3$) es la mediana de la mitad superior de las observaciones.
+::: 
 
 ## 
 
@@ -193,7 +216,7 @@ Los [**cuartiles**]{style="color:darkgreen;"} dividen las observaciones en cuatr
 
 ## 
 
-En R, la mediana se calcula con la función `median`.
+En R, la mediana se calcula con la función `median()`.
 
 ```{r}
 median(piston_data$cycle_time)
@@ -201,7 +224,9 @@ median(piston_data$cycle_time)
 
 [*Interpretación:*]{style="color:darkgray;"} El 50% de los tiempos de ciclo del pistón es menor que 0.5455 segundos.
 
-Los cuartiles se calculan con la función `quantile`.
+. . .
+
+Los cuartiles se calculan con la función `quantile()`.
 
 ```{r}
 quantile(piston_data$cycle_time)
@@ -211,7 +236,7 @@ quantile(piston_data$cycle_time)
 
 ## Máximo y mínimo
 
-Otros estadísticos relevantes son el **máximo** y el **mínimo**, que se calculan con las funciones `max` y `min`, respectivamente.
+Otros estadísticos relevantes son el **máximo** y el **mínimo**, que se calculan con las funciones `max()` y `min()`, respectivamente.
 
 ```{r}
 max(piston_data$cycle_time)
@@ -225,18 +250,18 @@ min(piston_data$cycle_time)
 
 [*Interpretación:*]{style="color:darkgray;"} El tiempo de ciclo mínimo del pistón es 0.175 segundos.
 
-## Actividad (*solo* mode)
+## Actividad (*solo* mode) Parte 1
 
 Una empresa fabricante de pernos de retención de condensadores para motores de automóviles implementó un sistema de control de calidad. Como parte de este sistema de control de calidad, un equipo de ingenieros decidió registrar la cantidad de pernos no conformes producidos en cada turno.
 
 El archivo `bolts.xlsx` contiene la cantidad de pernos no conformes durante los últimos 45 turnos.
 
--   Calcula el primedio, varianza, desviación estándard, cuartiles, mínimo y máximo.
+-   Calcula el promedio, varianza, desviación estándar, cuartiles, mínimo y máximo.
 
 ```{r}
 #| echo: false
 
-countdown::countdown(minutes = 7)
+countdown::countdown(minutes = 10)
 ```
 
 # Gráficas para datos numéricos
@@ -245,23 +270,31 @@ countdown::countdown(minutes = 7)
 
 > Formula la pregunta de interés.
 
-Las preguntas típicas sobre una variable numérica son:
+. . .
 
--   ¿Cuál es la forma de las observaciones de la variable *X*?
+Las preguntas típicas sobre una variable numérica $X$ son:
 
--   ¿Existen observaciones inusuales o atípicas en la variable *X*?
+::: incremental
+-   ¿Cuál es la forma de las observaciones de la variable $X$?
 
--   ¿La forma de las observaciones de la variable *X* se parece a una campana?
+-   ¿Existen observaciones inusuales o atípicas en la variable $X$?
+
+-   ¿La forma de las observaciones de la variable $X$ se parece a una campana?
+::: 
 
 ## Principio 2
 
 > Transforma los datos en información.
 
-Tres tipos comunes de graficas para visualizar una variable numérica son:
+. . .
+
+Tres tipos comunes de gráficas para visualizar una variable numérica son:
 
 -   Histograma.
 -   Curva de densidad.
 -   Gráfica de cajas.
+
+. . .
 
 Básicamente, son maneras distintas de visualizar la "forma" o [*distribución*]{style="color:darkred;"} de la variable.
 
@@ -269,17 +302,21 @@ Básicamente, son maneras distintas de visualizar la "forma" o [*distribución*]
 
 Visualiza la distribución de las observaciones, indicando regiones donde las observaciones están concentradas o son escasas.
 
+. . . 
+
 Se construye usando una ***tabla de frecuencia***.
 
 1.  Define un número máximo de intervalos o *bins* (de 5 a 30).
 2.  Define los rangos de los intervalos.
 3.  Agrupa las observaciones en el intervalo que pertenecen.
 
+. . .
+
 R calcula automáticamente la tabla de frecuencia para datos numéricos. El histograma es una visualización de esta tabla.
 
 ## 
 
-En `ggplot2` puedes construir un histograma usando el siguiente comando.
+En `ggplot2`, puedes construir un histograma usando el siguiente comando.
 
 ```{r}
 #| fig-pos: center
@@ -293,23 +330,12 @@ Las barras del histograma se tocan entre sí. Un espacio indica que no hay obser
 
 ## Mejora la gráfica
 
-Para transmitir un mejor mensaje, añade las siguientes opciones.
+Para transmitir un mejor mensaje, aplicamos el *Principio 3: Aplica los principios de diseño gráfico.*
 
 ```{r}
 #| fig-pos: center
 
-gf_histogram( ~ cycle_time, data = piston_data, bins = 13, 
-              color = "black", fill = "white") 
-```
-
-## O mejor aún, aplica el Principio 3
-
-> Enriquece la gráfica con información adicional.
-
-```{r}
-#| fig-pos: center
-
-gf_histogram( ~ cycle_time, data = piston_data, bins = 13, color = "black",
+gf_histogram( ~ cycle_time, data = piston_data, color = "black",
             fill = "white") + labs(title = "Histograma de tiempo de ciclo", 
             x = "Tiempo de ciclo (segundos)", y = "Frequencia", 
             caption = "Datos de 50 pistones")
@@ -329,9 +355,22 @@ Sin embargo, no podemos interpretar la forma la gráfica de barras igual que un 
 Tails and symmetry do not make sense in this setting.
 :::
 
-## ¿Cómo fijo el número de intervalos?
+## Número de intervalos
 
-[El número de intervalos afecta el aspecto del histograma. El histograma izquierdo usa `bins = 5` y el histograma derecho usa `bins = 30`.]{style="font-size: 100%;"}
+- El número de intervalos es un parámetro del histograma que afecta su aspecto.
+
+Este se fija usando el argumento `bins` en la función `gf_histogram()`.
+
+```{r}
+#| fig-pos: center
+
+gf_histogram( ~ cycle_time, data = piston_data, bins = 5, 
+              color = "black", fill = "white")
+```
+
+## 
+
+[El histograma izquierdo usa `bins = 5` y el histograma derecho usa `bins = 30`.]{style="font-size: 100%;"}
 
 ::: columns
 ::: {.column width="50%"}
@@ -409,7 +448,7 @@ In both histograms, it’s hard to see the shape of the distribution. With a few
 
 ## 
 
--   La función `gf_histogram` fija el número de intervalos usando el parámetri `bins` que se fija en 30 por default.
+-   La función `gf_histogram` fija el número de intervalos en 30 por default.
 
     ```{r}
     #| output: false
@@ -432,7 +471,11 @@ Most histogram and KDE software automatically choose the bin width for the histo
 
 La curva de densidad es una versión extrema pero inteligente de suavizado a un histograma.
 
+. . .
+
 Se basa en la frecuencia relativa (#observaciónes_en_categoria/total), en lugar de la frecuencia.
+
+. . . 
 
 La obtienes con la función `df_density()`.
 
@@ -475,6 +518,7 @@ La curva es inteligente porque estima la distribución real de la variable núme
 -   La longitud de las colas.
 -   Brechas donde no se observan valores.
 -   Valores inusualmente grandes o anómalos.
+-   Una forma de campana.
 
 ## La obsesión con las campanas
 
@@ -496,15 +540,21 @@ Básicamente, si tus observaciones siguen una distribución normal, puedes utili
 
 ![](images/clipboard-983817526.png){fig-align="center" width="554" height="278"}
 
-[Lo que mucha gente no sabe es que esta condición se necesita solo si tienes pocas observaciones (menos de 50).]{style="color:darkred;"}
+[*Lo que mucha gente no sabe es que esta condición se necesita solo si tienes pocas observaciones (menos de 50).*]{style="color:darkred;"}
 
-## Gáfica de Caja
+## Gáfica de caja
 
 Una gráfica de caja nos ayuda a visualizar la distribución de las observaciones usando cuartiles.
 
+. . .
+
 -   Es muy efectiva para detectar "valores atípicos".
 
+. . .
+
 Un componente importante de la gráfica es el **rango intercuartil** (*IQR*), que es la diferencia entre el tercer cuartil y el primer cuartil ($Q_3 - Q_1$).
+
+. . .
 
 > El rango intercuartil es la distancia necesaria para abarcar la mitad media de los datos.
 
@@ -538,11 +588,13 @@ gf_boxplot( cycle_time ~ 1, data = piston_data)
 :::
 :::
 
-Note la sintaxis expecial en este caso `cycle_time ~ 1`. Si usas `~ cycle_time`, obtendrás la gráfica de caja en horizontal.
+Tiene la syntaxis especial: `cycle_time ~ 1`. Si usas `~ cycle_time`, obtendrás la gráfica de caja en horizontal.
 
 ## La gráfica de violín
 
 La gráfica de violín combina la curva de densidad con la gráfica de caja. Los trazados de violín dibujan curvas de densidad a lo largo de un eje. La curva se invierte para crear una forma simétrica de "violín".
+
+. . . 
 
 En R, usa la función `gf_violin()`.
 
@@ -589,10 +641,17 @@ gf_violin(cycle_time ~ 1,
 
 -   La gráfica de caja no revela la forma de la distribución comparada con un histograma o una curva de densidad.
 
--   Muestran principalmente simetría y sesgo, colas largas/cortas y valores inusualmente grandes/pequeños (también conocidos como *valores atípicos*).
+-   La gráfica de caja muestra simetría y sesgo, colas largas/cortas y valores inusualmente grandes/pequeños (también conocidos como *valores atípicos*).
 
--   Las tramas de violín no muestran valores atípicos.
+-   Las gráfica de violín no muestran valores atípicos.
 
-## Actividad
+-   Ambas gráficas incrementan su utilidad al comparar dos o mas distribuciones.
 
-Coursekata.
+## Actividad (*solo* mode) Parte 2
+
+El archivo `bolts.xlsx` contiene la cantidad de pernos no conformes durante los últimos 45 turnos. Usando R, crea las siguientes gráficas
+
+-   Histograma
+-   Curva de densidad
+-   Gráfica de caja
+-   Gráfica de violin

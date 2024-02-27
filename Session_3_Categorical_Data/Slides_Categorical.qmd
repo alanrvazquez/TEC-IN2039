@@ -20,7 +20,7 @@ css: style.css
 
 ## Los Tópicos de Hoy
 
-[*Enfocarnos en 1 variable categórica.*]{style="color:darkblue;"}
+[*Enfocarnos en 1 variable categórica.*]{style="color:darkgreen;"}
 
 <br/>
 
@@ -55,7 +55,7 @@ library(ggformula)
 
 ## Penguins Dataset
 
-Ilustraremos los conceptos de hoy sando el conjunto de datos `penguins.xlsx`.
+Ilustraremos los conceptos de hoy usando el conjunto de datos `penguins.xlsx`.
 
 ::: columns
 ::: {.column width="68%"}
@@ -273,7 +273,6 @@ gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "P
 
 ```
 
-
 # Transformando variables categóricas
 
 ## Aplica el Principio 3
@@ -446,7 +445,7 @@ Algunos de los argumentos arriba son:
 -   `units`: unidades de medición.
 -   `dpi`: resolución del gráfico.
 
-# Gráfica circular 
+# Gráfica circular
 
 ## Gráfica circular o de pastel
 
@@ -472,7 +471,6 @@ Pie charts versus bar charts.
 **Bar charts can serve as a good way to show comparisons between categories**. It is generally observed that new trends tend to shy away from using pie charts, as it is difficult for the human eye to judge the exact angle that shows the value of a category in a pie chart.
 :::
 
-
 ## Actividad (*solo* mode)
 
 [Preguntale a ChatGPT]{style="color:darkgreen;"}
@@ -480,6 +478,3 @@ Pie charts versus bar charts.
 1.  Ve ChatGPT en <https://chat.openai.com/>
 2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** en R.
 3.  Adapta tu código para producir una gráfica circular de la variable `island` en `penguin_data`.
-
-
-
