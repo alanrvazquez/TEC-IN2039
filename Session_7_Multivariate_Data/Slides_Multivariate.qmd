@@ -214,8 +214,21 @@ En la gráfica anterior, el valor mínimo del eje vertical está alrededor de 10
 #| fig-pos: center
 #| echo: true
 
-mi_diagrama + scale_y_continuous(limits = c(0, 50))
+mi_diagrama <- mi_diagrama + scale_y_continuous(limits = c(0, 50))
+mi_diagrama
 ```
+
+##
+
+De ser necesario, también podemos ajustar el eje horizontal para mostrar el 0.
+
+```{r}
+#| fig-pos: center
+#| echo: true
+
+mi_diagrama + scale_x_continuous(limits = c(0, 5500))
+```
+
 
 ## Gráficas individuales
 
