@@ -156,20 +156,30 @@ Para construir gráficas de dispersión, usamos la función `gf_point(Y ~ X, dat
 
 Por ejemplo, construyamos una gráfica para explorar la relación entre el peso de un auto (`weight`) y sus rendimiento en millas por galón (`mpg`)
 
-. . .
-
 ```{r}
 #| fig-pos: center
 #| echo: true
+#| output: false
+
 
 gf_point(mpg ~ weight, data = auto_data)
 ```
 
+##
+
+```{r}
+#| fig-pos: center
+#| echo: true
+#| output: false
+
+
+gf_point(mpg ~ weight, data = auto_data)
+```
+
+
 ## Aplicando el principio 3
 
 Siguiendo el principio 3, podemos cambiar los valores pre-establecidos de la función para definir colores o formas diferentes de los puntos de la gráfica.
-
-</br>
 
 Específicamente, puedes cambiar el color, la forma, y el tamaño de los puntos usando los argumentos `color`, `shape` y `size`, respectivamente.
 
@@ -220,7 +230,7 @@ mi_diagrama
 
 ##
 
-De ser necesario, también podemos ajustar el eje horizontal para mostrar el 0.
+De ser necesario, también podemos ajustar el eje horizontal para mostrar el 0 también.
 
 ```{r}
 #| fig-pos: center
@@ -278,7 +288,7 @@ En este contexto:
 
 . . .
 
-La gráfica más efectiva para estudiar la relación entre una variable categórica y una numérica es la [gráfica de cajas lado al lado]{style="color:darkblue;"}.
+La [gráfica de cajas lado al lado]{style="color:darkblue;"} es la más efectiva para estudiar la relación entre una variable categórica y una numérica.
 
 ## Gráfica de cajas por grupos
 
@@ -307,9 +317,26 @@ bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), ax
 bp_mpg_by_origin
 ```
 
+##
+
+También podemos cambiar el formato de los puntos atípicos usando los argumentos `outlier.color`,  `outlier.shape`, y `outlier.size`.
+
+```{r}
+#| fig-pos: center
+#| echo: true
+#| code-fold: true
+
+bp_mpg_by_origin <- gf_boxplot(mpg ~ origin, data = auto_data, fill = "lightblue", 
+                               color = "black", outlier.color = "red",
+                               outlier.shape = 4, outlier.size = 4) 
+bp_mpg_by_origin <- bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen")
+bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
+bp_mpg_by_origin
+```
+
 ## Gráfica de violín por grupo
 
-Los diagramas de violín también se pueden usar para dibujar curvas de densidad a lo largo de un eje para cada grupo.
+Los diagramas de violín se pueden usar para dibujar curvas de densidad a lo largo de un eje para cada grupo.
 
 El comando básico para generar está gráfica es `gf_violin(Y ~ X, data = dataset)`.
 
@@ -326,7 +353,7 @@ violin_mpg_by_origin
 
 ## Gráfica de densidad por grupo
 
-También, podemos gráficar una curva de densidad de la variable $Y$ para cada subgrupo definido por $Z$. Para esto, usamos el argumento `fill` igual a la variable $Z$. 
+También, podemos graficar una curva de densidad de la variable $Y$ para cada subgrupo definido por $X$. Para esto, usamos el argumento `fill` igual a la variable $X$. 
 
 ```{r}
 #| fig-pos: center
@@ -393,7 +420,7 @@ sum_data <- auto_data %>% group_by(origin) %>%
   summarize("Promedio" = mean(mpg), "Maximo" = max(mpg), 
             "Minimo" = min(mpg))
 
-gf_point(Promedio ~ origin, data = sum_data, shape = 4, size = 5)
+gf_point(Promedio ~ origin, data = sum_data, shape = 5, size = 7)
 ```
 
 # Dos variables categóricas
