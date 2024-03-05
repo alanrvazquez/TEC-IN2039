@@ -299,30 +299,56 @@ violin_mpg_by_origin
 
 En muchos casos, es útil calcular resúmenes estadísticos de la variable numérica $Y$ para cada categórica de la variable categórica $X$.
 
-Para hacer esto, debemos usar la librería `library(dplyr)`. Esta librería contiene muchas funciones útiles. Aquí usaremos dos `group_by()` y `summarize()` para agrupar y resumir datos, respectivamente.
+Para hacer esto, usamos la librería `library(dplyr)`. 
+
+Aquí usaremos dos de sus funciones más útiles, `group_by()` y `summarize()`, para agrupar y resumir datos.
+
+##
+
+Las funciones se usan con una sintaxis especial que usa el operador `%>%` para indicas el orden entre las operaciones. 
 
 ```{r}
 #| fig-pos: center
 #| echo: true
-#| code-fold: true
+#| output: false
 
 auto_data %>% group_by(origin) %>% 
   summarize("mean" = mean(mpg), "max" = max(mpg), "min" = min(mpg))
 ```
 
-## 
+</br>
 
-Puedes guardar la tabla en un nuevo objeto que puedes utilizar para visualizar.
+El código se lee:
+
+"Del objeto `auto_data`, agrupa los datos por la variable `origin`, y resume los datos usando el promedio (`mean`), el mínimo (`min`), y el máximo (`max`)."
+
+##
+
+El resultado es una nueva tabla con el resumen de los datos.
 
 ```{r}
 #| fig-pos: center
 #| echo: true
-#| code-fold: true
+#| output: true
+
+auto_data %>% group_by(origin) %>% 
+  summarize("mean" = mean(mpg), "max" = max(mpg), "min" = min(mpg))
+```
+
+
+## 
+
+Puedes guardar la tabla en un nuevo objeto y usar las mismas funciones que hemos visto para visualizar los resúmenes estadísticos en lugar de los datos originales.
+
+```{r}
+#| fig-pos: center
+#| echo: true
 
 sum_data <- auto_data %>% group_by(origin) %>% 
-  summarize("Promedio" = mean(mpg), "Maximo" = max(mpg), "Minimo" = min(mpg))
+  summarize("Promedio" = mean(mpg), "Maximo" = max(mpg), 
+            "Minimo" = min(mpg))
 
-gf_point(Promedio ~ origin, data = sum_data, size = 5) + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
+gf_point(Promedio ~ origin, data = sum_data, size = 5)
 ```
 
 
@@ -330,11 +356,25 @@ gf_point(Promedio ~ origin, data = sum_data, size = 5) + theme(axis.text=element
 
 ## Dividir los datos en grupos según una variable.
 
-Con dos variables categóricas, a menudo comparamos la distribución de una variable entre subgrupos definidos por la otra variale.
+Con dos variables categóricas, comparamos la distribución de una variable entre subgrupos definidos por la otra variable.
 
 De hecho, mantenemos constante una variable y trazamos la distribución de la otra.
 
-Para hacer esto, podemos usar algunos de los mismos gráficos que usamos para mostrar la distribución de una variable categórica, como un gráfico de barras.
+Para hacer esto, los gráficos más populares son una extensión de las gráficas de barras: 
+
+- Gráficas de barras lado al lado
+- Gráficas de barras apiladas
+
+## Gráfica de barras lado al lado
+
+```{r}
+#| fig-pos: center
+#| echo: true
+
+auto_data$year <- factor(auto_data$year)
+
+gf_bar( ~ origin, data = auto_data, fill = ~year, position = position_dodge())
+```
 
 ## We need to pre-process the data
 
