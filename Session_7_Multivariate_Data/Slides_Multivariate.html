@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-input3b9dd00b</title>
+  <title>quarto-input943d7bfb</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -392,7 +392,7 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><p>Sesión 7:<br>
-Datos con múltiples variables</p></h1>
+Datos de múltiples variables</p></h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -409,31 +409,62 @@ Alan R. Vázquez
 <section id="los-tópicos-de-hoy" class="slide level2">
 <h2>Los Tópicos de Hoy</h2>
 <ol type="1">
-<li><p>Datos con mas de una variable</p></li>
+<li><p>Datos de más de una variable</p></li>
 <li><p>Dos variables numéricas</p></li>
 <li><p>Una variable numérica y una categórica</p></li>
 <li><p>Dos variables categóricas</p></li>
 <li><p>Tres o más variables</p></li>
 </ol>
 </section>
-<section id="recuerda-cargar-las-librerías" class="slide level2">
-<h2>Recuerda cargar las librerías</h2>
-<p>Aquí usaremos las librerías <code>ggplot2</code>, <code>ggformula</code>, y <code>readxl</code>.</p>
-<p>Carguémoslas en Google Colab y R antes de comenzar.</p>
+<section id="carguemos-las-librerías" class="slide level2">
+<h2>Carguemos las librerías</h2>
+<p>Carguémos las librerías <code>ggplot2</code>, <code>ggformula</code>, y <code>readxl</code> en Google Colab y R antes de comenzar.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Nos se te olvide instalar la librería "ggformula" en Google Colab.</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="co"># install.packages("ggformula")</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(ggformula)</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(dplyr) <span class="co"># Nueva librería.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(ggformula)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="carga-los-datos" class="slide level2">
-<h2>Carga los datos</h2>
-<p>En Google Colab, el archivo “auto_dataset.xlsx” debe de estar en la carpeta llamada “content” o “contenido.”</p>
-<p>Ahora carguemos los datos R.</p>
+<section id="una-nueva-librería" class="slide level2">
+<h2>Una nueva librería</h2>
+<p>Hoy, utilizaremos una librería llamada <strong>dplyr</strong> para generar resúmenes estadísticos cuando tenemos más de una variable.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/tidyverse.jpeg"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><p>La librería <strong>dplyr</strong> es una herramienta para la manipulación y transformación de datos.</p></li>
+<li><p>Es parte del <em>tidyverse</em>.</p></li>
+</ul>
+</div>
+</div>
+<p>Cárgala en Google Colab con el siguiente código.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="datos-multivariados" class="slide level2">
+<h2>Datos multivariados</h2>
+<p>Los datos multivariados son conjunto de datos que contienen observaciones de dos o más variables.</p>
+<ul>
+<li><p>Las variables pueden ser numéricas o categóricas.</p></li>
+<li><p>Las variables pueden o no depender las unas de las otras.</p></li>
+</ul>
+<p>De hecho, el <strong>objetivo</strong> es establecer si hay alguna relación entre las variables, así como el tipo de relación.</p>
+</section>
+<section id="ejemplo" class="slide level2">
+<h2>Ejemplo</h2>
+<p>Consideremos datos de 392 autos sobre sus millas por galón, número de cilindros, caballos de fuerza, peso, aceleración, año, origen, entre otras variables.</p>
+<p>Los datos están en el archivo “auto_dataset.xlsx”.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>auto_data <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"auto_dataset.xlsx"</span>) <span class="co"># Leer los datos.</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">head</span>(auto_data) <span class="co"># Ver las primeras 6 observaciones.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 9
     mpg cylinders displacement horsepower weight acceleration `model year`
@@ -448,42 +479,26 @@ Alan R. Vázquez
 </div>
 </div>
 </section>
-<section id="datos-multivariados" class="slide level2">
-<h2>Datos multivariados</h2>
-<p>Los datos multivariados son conjunto de datos que contienen observaciones de dos o más variables.</p>
-<ul>
-<li><p>Las variables pueden ser numéricas o categóricas.</p></li>
-<li><p>Las variables pueden o no depender las unas de las otras.</p></li>
-</ul>
-</section>
 <section id="principio-1" class="slide level2">
 <h2>Principio 1</h2>
-<p>En el contexto de múltiples variables, las preguntas típicas a estudiar son</p>
+<p>En el contexto de datos de múltiples variables, las preguntas típicas a estudiar son:</p>
 <div>
 <ul>
-<li class="fragment"><p>¿Existen características potencialmente importantes con las que crear comparaciones?</p></li>
-<li class="fragment"><p>¿Qué comparación adicional podría aportar valor añadido a la investigación?</p></li>
 <li class="fragment"><p>¿Cómo se relacionan entre sí la variable <span class="math inline">\(X\)</span> y la variable <span class="math inline">\(Y\)</span>?</p></li>
 <li class="fragment"><p>¿Es la distribución de la variable <span class="math inline">\(X\)</span> la misma en todos los subgrupos definidos por la variable <span class="math inline">\(Z\)</span>?</p></li>
-<li class="fragment"><p>¿Hay alguna observación inusual en la combinación de valores de las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>? ¿En <span class="math inline">\(X\)</span> para un subgrupo de <span class="math inline">\(Z\)</span>?</p></li>
+<li class="fragment"><p>¿Hay alguna observación inusual en la combinación de valores de las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>?</p></li>
+<li class="fragment"><p>¿Hay alguna observación inusual en <span class="math inline">\(X\)</span> para un subgrupo de la variable <span class="math inline">\(Z\)</span>?</p></li>
 </ul>
 </div>
 </section>
-<section id="qué-buscar-en-una-relación" class="slide level2">
-<h2>¿Qué buscar en una relación?</h2>
-<p>Cuando investigamos múltiples variables, examinamos las relaciones entre ellas, además de sus distribuciones.</p>
-<p>Usualmente denominamos a una variable como la variable dependiente o de respuesta. A ella la denotamos con el símbolo <span class="math inline">\(Y\)</span>.</p>
-<p>La otra variable la llamamos variable independendiente o predictor. A ella la denotamos con el símbolo <span class="math inline">\(X\)</span>.</p>
-<p><em>Nuestro objetivo es saber si cambios en la variable</em> <span class="math inline">\(X\)</span> están asociados a cambios en la variable <span class="math inline">\(Y\)</span>, y el tipo de asociación.</p>
-</section>
 <section id="tipos-de-gráficas" class="slide level2">
 <h2>Tipos de gráficas</h2>
-<p>Primero nos enfocamos en estudiar la relación entre dos variables.</p>
+<p>Existen varios tipos de gráficas que nos ayudan a explorar relaciones entre dos o más variables.</p>
 <div class="center">
 <table>
 <colgroup>
-<col style="width: 33%">
-<col style="width: 66%">
+<col style="width: 19%">
+<col style="width: 80%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -526,80 +541,87 @@ Alan R. Vázquez
 <h1>Dos variables numéricas</h1>
 
 </section>
+<section id="variable-independiente-y-dependiente" class="slide level2">
+<h2>Variable independiente y dependiente</h2>
+<p>Cuando investigamos la relación entre dos variables (numéricas o categóricas), tenemos una nomenclatura específica para cada una de ellas.</p>
+<p>Usualmente llamamos a una variable como la <em>variable dependiente</em> o de <em>respuesta</em>. A ella la denotamos con el símbolo <span class="math inline">\(Y\)</span>.</p>
+<p>La otra variable la llamamos variable <em>independendiente</em> o <em>predictor</em>. A ella la denotamos con el símbolo <span class="math inline">\(X\)</span>.</p>
+<blockquote>
+<p>Nuestro objetivo es saber si cambios en la variable <span class="math inline">\(X\)</span> están asociados a cambios en la variable <span class="math inline">\(Y\)</span>, y el tipo de asociación.</p>
+</blockquote>
+</section>
 <section id="gráfica-de-dispersión" class="slide level2">
 <h2>Gráfica de dispersión</h2>
-<p>Si ambas variables son numéricas, es común examinar su relación con un <strong><em>diagrama de dispersión</em></strong>. Cada punto en un diagrama de dispersión marca la posición de un par de valores para una observación.</p>
+<p>La gráfica mas común para examinar la relación entre dos variables numéricas es la <strong><em>gráfica de dispersión</em></strong>.</p>
+<p>Las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span> se colocan en el eje horizontal y vertical, respectivamente. Cada punto en la gráfica marca la posición de un par de valores de <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>.</p>
 <p>Con los diagramas de dispersión, buscamos relaciones lineales y no lineales, y examinamos el nivel de las relaciones.</p>
-<p>En la</p>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<p>Para construir gráficas de dispersión usamos la función <code>gf_point(Y ~ X, data = data_set)</code>.</p>
+<p>Para construir gráficas de dispersión, usamos la función <code>gf_point(Y ~ X, data = data_set)</code>.</p>
+<p>Por ejemplo, construyamos una gráfica para explorar la relación entre el peso de un auto (<code>weight</code>) y sus rendimiento en millas por galón (<code>mpg</code>)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-</div>
-<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="aplicando-el-principio-3" class="slide level2">
-<h2>Aplicando el principio 3</h2>
-<p>Recuerda aplicar el principio 3 para mejorar la gráfica.</p>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>mi_diagrama <span class="ot">&lt;-</span> <span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relación de peso y millas por galón en autos"</span>, <span class="at">x =</span> <span class="st">"Peso (lb)"</span>, <span class="at">y =</span> <span class="st">"Millas por galón"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>mi_diagrama <span class="ot">&lt;-</span> mi_diagrama <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>),</span>
-<span id="cb4-3"><a href="#cb4-3"></a>                                   <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
-<span id="cb4-4"><a href="#cb4-4"></a>mi_diagrama</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="aplicando-el-principio-3" class="slide level2">
+<h2>Aplicando el principio 3</h2>
+<p>Siguiendo el principio 3, podemos cambiar los valores pre-establecidos de la función para definir colores o formas diferentes de los puntos de la gráfica.</p>
+<p><br></p>
+<p>Específicamente, puedes cambiar el color, la forma, y el tamaño de los puntos usando los argumentos <code>color</code>, <code>shape</code> y <code>size</code>, respectivamente.</p>
+</section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<p>También puedes cambiar la forma y el tamaño de los puntos usando los argumentos <code>shape</code> y <code>size</code>, respectivamente.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">shape =</span> <span class="dv">4</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<p>Lista de posibles formas de los puntos.</p>
+<section id="posibles-formas-de-los-puntos" class="slide level2">
+<h2>Posibles formas de los puntos</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="images/FIG-SCATTER-SHAPES-CHART-1.png" width="530" height="344"></p>
 </figure>
 </div>
 </section>
-<section id="transformaciones" class="slide level2">
-<h2>Transformaciones</h2>
-<p>También buscamos ver si una transformación de una u otra característica o de ambas conduce a una relación lineal.</p>
-<p>Esto se puede hacer aplicando la función <code>log()</code> a una de las variables.</p>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p>Siguiendo con el principio 3, puedes usar funciones antes vistas para mejorar aún más la apariencia del gráfico.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>mi_diagrama <span class="ot">&lt;-</span> <span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relación de peso y millas por galón en autos"</span>, <span class="at">x =</span> <span class="st">"Peso (lb)"</span>, <span class="at">y =</span> <span class="st">"Millas por galón"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>mi_diagrama <span class="ot">&lt;-</span> mi_diagrama <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb7-3"><a href="#cb7-3"></a>                                   <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
+<span id="cb7-4"><a href="#cb7-4"></a>mi_diagrama</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
+</div>
 <img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="el-efecto-de-una-transformación" class="slide level2">
-<h2>El efecto de una transformación</h2>
-<p>El efecto de una transformación es “linealizar” la relación entre las variables.</p>
+<section id="incluir-el-cero" class="slide level2">
+<h2>Incluir el cero</h2>
+<p>En la gráfica anterior, el valor mínimo del eje vertical es alrededor de 10. Para ajustar el valor mínimo en ese eje a 0 usamos el comando adicional mostrado abajo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mi_diagrama <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="gráficas-individuales" class="slide level2">
+<h2>Gráficas individuales</h2>
+<p>Las gráficas individuales de variables ( como el histograma) no permiten estudiar la relación entre dos variables. Solo dan información de la <em>distribución</em> cada variable.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, </span>
-<span id="cb6-2"><a href="#cb6-2"></a>         <span class="at">data =</span> auto_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">gf_point</span>(<span class="fu">log</span>(mpg) <span class="sc">~</span> weight, </span>
-<span id="cb7-2"><a href="#cb7-2"></a>         <span class="at">data =</span> auto_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>histogram_mpg <span class="ot">&lt;-</span> <span class="fu">gf_histogram</span>( <span class="sc">~</span> mpg, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb9-2"><a href="#cb9-2"></a>histogram_mpg <span class="ot">&lt;-</span> histogram_mpg <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de milas por galón"</span>, <span class="at">x =</span> <span class="st">"Millas por galón"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>histogram_mpg <span class="ot">&lt;-</span> histogram_mpg <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb9-4"><a href="#cb9-4"></a>                                       <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
+<span id="cb9-5"><a href="#cb9-5"></a>histogram_mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -608,52 +630,19 @@ Alan R. Vázquez
 </div>
 </div>
 </div>
-</div>
-</div>
-<p>El diagrama de dispersión de la derecha explora la relación <span class="math inline">\(log(Y) = X\)</span>. O , qeuivalentemente, la relación <span class="math inline">\(Y = e^X\)</span>.</p>
-</section>
-<section id="qué-pasa-con-las-gráficas-individuales" class="slide level2">
-<h2>¿Qué pasa con las gráficas individuales?</h2>
-<p>Es importante tener en cuenta que a dos gráficos univariados les falta información que se encuentra en un gráfico bivariado.</p>
-<ul>
-<li>Información sobre cómo las dos características varían juntas.</li>
-</ul>
-<p>En la práctica, los histogramas de dos variables numéricas no contienen suficiente información para crear un diagrama de dispersión de las características.</p>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<div class="columns">
-<div class="column" style="width:50%;">
+</div><div class="column" style="width:50%;">
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>histogram_mpg <span class="ot">&lt;-</span> <span class="fu">gf_histogram</span>( <span class="sc">~</span> mpg, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
-<span id="cb8-2"><a href="#cb8-2"></a>histogram_mpg <span class="ot">&lt;-</span> histogram_mpg <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de milas por galón"</span>, <span class="at">x =</span> <span class="st">"Millas por galón"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span>
-<span id="cb8-3"><a href="#cb8-3"></a>histogram_mpg <span class="ot">&lt;-</span> histogram_mpg <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>),</span>
-<span id="cb8-4"><a href="#cb8-4"></a>                                       <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
-<span id="cb8-5"><a href="#cb8-5"></a>histogram_mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>histogram_weight <span class="ot">&lt;-</span> <span class="fu">gf_histogram</span>( <span class="sc">~</span> weight, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb10-2"><a href="#cb10-2"></a>histogram_weight <span class="ot">&lt;-</span> histogram_weight <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de peso"</span>, <span class="at">x =</span> <span class="st">"Peso (lb)"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>histogram_weight <span class="ot">&lt;-</span> histogram_weight <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
+<span id="cb10-4"><a href="#cb10-4"></a>histogram_weight</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <p><img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>histogram_weight <span class="ot">&lt;-</span> <span class="fu">gf_histogram</span>( <span class="sc">~</span> weight, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
-<span id="cb9-2"><a href="#cb9-2"></a>histogram_weight <span class="ot">&lt;-</span> histogram_weight <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de peso"</span>, <span class="at">x =</span> <span class="st">"Peso (lb)"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>histogram_weight <span class="ot">&lt;-</span> histogram_weight <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
-<span id="cb9-4"><a href="#cb9-4"></a>histogram_mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -668,57 +657,52 @@ Alan R. Vázquez
 </section>
 <section id="divide-los-datos-en-grupos" class="slide level2">
 <h2>!Divide los datos en grupos!</h2>
-<p>Para examinar la relación entre una variable numérica y una categórica, a menudo utilizamos la variable categórica para dividir los datos en grupos y comparar la distribución de la variable numérica entre estos grupos.</p>
-<p>En exte contexto:</p>
+<p>Para examinar la relación entre una variable numérica y una categórica, usamos la variable categórica para dividir los datos en grupos. Así comparamos la distribución de la variable numérica entre estos grupos.</p>
+<p>En este contexto:</p>
 <ul>
 <li><span class="math inline">\(X\)</span> es la variable categórica.</li>
 <li><span class="math inline">\(Y\)</span> es la variable numérica.</li>
 </ul>
+<p>La gráfica más efectiva para estudiar la relación entre una variable categórica y una numérica es la gráfica de caja.</p>
 </section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-<p>Por ejemplo, podemos comparar la distribución de las millas por galón en los diferentes lugares de donde provienen los autos.</p>
+<section id="gráfica-de-cajas-por-grupos" class="slide level2">
+<h2>Gráfica de cajas por grupos</h2>
+<p>La gráfica de cajas lado a lado nos permite comparar la distribución de una variable en diferentes grupos.</p>
+<p>Para generar la gráfica, usamos la función</p>
+<p><code>gf_boxplot(Y ~ X, data = dataset)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">gf_boxplot</span>( mpg <span class="sc">~</span> origin, <span class="at">data =</span> auto_data) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="mejorando-la-gráfica" class="slide level2">
+<h2>Mejorando la gráfica</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>hist_mpg_by_origin <span class="ot">&lt;-</span> <span class="fu">gf_histogram</span>( origin <span class="sc">~</span> mpg, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
-<span id="cb10-2"><a href="#cb10-2"></a>hist_mpg_by_origin <span class="ot">&lt;-</span> hist_mpg_by_origin <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de peso"</span>, <span class="at">x =</span> <span class="st">"Peso (lb)"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a>hist_mpg_by_origin <span class="ot">&lt;-</span> hist_mpg_by_origin <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
-<span id="cb10-4"><a href="#cb10-4"></a>histogram_mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>bp_mpg_by_origin <span class="ot">&lt;-</span> <span class="fu">gf_boxplot</span>( mpg <span class="sc">~</span> origin, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb12-2"><a href="#cb12-2"></a>bp_mpg_by_origin <span class="ot">&lt;-</span> bp_mpg_by_origin <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Millas por galón"</span>, <span class="at">x =</span> <span class="st">"Origen"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3"></a>bp_mpg_by_origin <span class="ot">&lt;-</span> bp_mpg_by_origin <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span>
+<span id="cb12-4"><a href="#cb12-4"></a>bp_mpg_by_origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
 <img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="gráfica-de-cajas-por-grupos" class="slide level2">
-<h2>Gráfica de cajas por grupos</h2>
-<p>Los diagramas de caja uno al lado del otro ofrecen una comparación similar de distribuciones entre grupos.</p>
-<p>El diagrama de caja ofrece un enfoque más simple que puede brindar una comprensión aproximada de una distribución.</p>
+<section id="gráfica-de-violín-por-grupo" class="slide level2">
+<h2>Gráfica de violín por grupo</h2>
+<p>Los diagramas de violín también se pueden usar para dibujar curvas de densidad a lo largo de un eje para cada grupo.</p>
+<p>El comando básico para generar está gráfica es <code>gf_violin(Y ~ X, data = dataset)</code>.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>bp_mpg_by_origin <span class="ot">&lt;-</span> <span class="fu">gf_boxplot</span>( mpg <span class="sc">~</span> origin, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
-<span id="cb11-2"><a href="#cb11-2"></a>bp_mpg_by_origin <span class="ot">&lt;-</span> bp_mpg_by_origin <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Millas por galón"</span>, <span class="at">x =</span> <span class="st">"Origen"</span>)</span>
-<span id="cb11-3"><a href="#cb11-3"></a>bp_mpg_by_origin <span class="ot">&lt;-</span> bp_mpg_by_origin <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span>
-<span id="cb11-4"><a href="#cb11-4"></a>bp_mpg_by_origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>violin_mpg_by_origin <span class="ot">&lt;-</span> <span class="fu">gf_violin</span>( mpg <span class="sc">~</span> origin, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"orange"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb13-2"><a href="#cb13-2"></a>violin_mpg_by_origin <span class="ot">&lt;-</span> violin_mpg_by_origin <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Millas por galón"</span>, <span class="at">x =</span> <span class="st">"Origen"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>violin_mpg_by_origin <span class="ot">&lt;-</span> violin_mpg_by_origin <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span>
+<span id="cb13-4"><a href="#cb13-4"></a>violin_mpg_by_origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
 <img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="violin-plots-by-group" class="slide level2">
-<h2>Violin plots by group</h2>
-<p>Del mismo modo, los diagramas de violín dibujan curvas de densidad a lo largo de un eje para cada grupo.</p>
-<p>La curva se invierte para crear una forma simétrica de “violín”.</p>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>violin_mpg_by_origin <span class="ot">&lt;-</span> <span class="fu">gf_violin</span>( mpg <span class="sc">~</span> origin, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"orange"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
-<span id="cb12-2"><a href="#cb12-2"></a>violin_mpg_by_origin <span class="ot">&lt;-</span> violin_mpg_by_origin <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Millas por galón"</span>, <span class="at">x =</span> <span class="st">"Origen"</span>)</span>
-<span id="cb12-3"><a href="#cb12-3"></a>violin_mpg_by_origin <span class="ot">&lt;-</span> violin_mpg_by_origin <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span>
-<span id="cb12-4"><a href="#cb12-4"></a>violin_mpg_by_origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="resúmenes-estadísticos" class="slide level2">
 <h2>Resúmenes estadísticos</h2>
 <p>En muchos casos, es útil calcular resúmenes estadísticos de la variable numérica <span class="math inline">\(Y\)</span> para cada categórica de la variable categórica <span class="math inline">\(X\)</span>.</p>
@@ -726,8 +710,8 @@ Alan R. Vázquez
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>auto_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">summarize</span>(<span class="st">"mean"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg), <span class="st">"max"</span> <span class="ot">=</span> <span class="fu">max</span>(mpg), <span class="st">"min"</span> <span class="ot">=</span> <span class="fu">min</span>(mpg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>auto_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">summarize</span>(<span class="st">"mean"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg), <span class="st">"max"</span> <span class="ot">=</span> <span class="fu">max</span>(mpg), <span class="st">"min"</span> <span class="ot">=</span> <span class="fu">min</span>(mpg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
@@ -739,30 +723,20 @@ Alan R. Vázquez
 </div>
 </div>
 </section>
-<section id="section-5" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <p>Puedes guardar la tabla en un nuevo objeto que puedes utilizar para visualizar.</p>
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>sum_data <span class="ot">&lt;-</span> auto_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">summarize</span>(<span class="st">"Promedio"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg), <span class="st">"Maximo"</span> <span class="ot">=</span> <span class="fu">max</span>(mpg), <span class="st">"Minimo"</span> <span class="ot">=</span> <span class="fu">min</span>(mpg))</span>
-<span id="cb15-3"><a href="#cb15-3"></a></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="fu">gf_point</span>(Promedio <span class="sc">~</span> origin, <span class="at">data =</span> sum_data, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>sum_data <span class="ot">&lt;-</span> auto_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">summarize</span>(<span class="st">"Promedio"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg), <span class="st">"Maximo"</span> <span class="ot">=</span> <span class="fu">max</span>(mpg), <span class="st">"Minimo"</span> <span class="ot">=</span> <span class="fu">min</span>(mpg))</span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="fu">gf_point</span>(Promedio <span class="sc">~</span> origin, <span class="at">data =</span> sum_data, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 
 </div>
-<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="incluir-el-cero" class="slide level2">
-<h2>Incluir el cero</h2>
-<div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">gf_point</span>(Promedio <span class="sc">~</span> origin, <span class="at">data =</span> sum_data, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">35</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-
-</div>
-<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section>
 <section id="dos-variables-categóricas" class="title-slide slide level1 center">
 <h1>Dos variables categóricas</h1>
@@ -806,7 +780,7 @@ Alan R. Vázquez
 </details>
 
 </div>
-<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="gráfico-de-facetas-o-enrejado" class="slide level2">
 <h2>Gráfico de facetas o enrejado</h2>
 <p>Para dos variables numéricas (o categóricas) y una categórica.</p>
@@ -817,22 +791,7 @@ Alan R. Vázquez
 </details>
 
 </div>
-<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch quarto-figure-center"></section>
-<section id="two-quantitative-and-one-qualitative" class="slide level2">
-<h2>Two quantitative and one qualitative</h2>
-<p>R code</p>
-</section>
-<section id="two-qualitative-and-one-quantitative-variable" class="slide level2">
-<h2>Two qualitative and one quantitative variable</h2>
-<p>a</p>
-</section>
-<section id="three-quantitative-variables" class="slide level2">
-<h2>Three quantitative variables</h2>
-<p>aa</p>
-</section>
-<section id="three-categorical-variables" class="slide level2">
-<h2>Three categorical variables</h2>
-</section></section>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section>
 <section id="actividad" class="title-slide slide level1 center">
 <h1>Actividad</h1>
@@ -849,25 +808,25 @@ Alan R. Vázquez
 <p><a href="https://learningds.org/ch/11/viz_comparisons.html" class="uri">https://learningds.org/ch/11/viz_comparisons.html</a></p>
 </section></section>
 <section>
-<section id="applying-principle-3" class="title-slide slide level1 center">
-<h1>Applying principle 3</h1>
+<section id="aplicando-el-principio-3-1" class="title-slide slide level1 center">
+<h1>Aplicando el principio 3</h1>
 
 </section>
-<section id="adding-context" class="slide level2">
-<h2>Adding context</h2>
-<p>We have used text in our graphs throughout this chapter to provide meaningful axis labels that include units of measurement, tick-mark labels for categories, and titles</p>
-<p>A good goal is to include enough context in a plot so that it can stand alone—a reader should be able to get the gist of the plot without needing to search for explanation elsewhere.</p>
-<p>That said, every element of a statistical graph should have a purpose.</p>
+<section id="agregar-contexto" class="slide level2">
+<h2>Agregar contexto</h2>
+<p>Hemos utilizado texto en nuestros gráficos a lo largo de este capítulo para proporcionar etiquetas de eje significativas que incluyen unidades de medida, etiquetas de marcas para categorías y títulos.</p>
+<p>Un buen objetivo es incluir suficiente contexto en una trama para que pueda ser independiente: el lector debería poder captar la esencia de la trama sin necesidad de buscar una explicación en otra parte.</p>
+<p>Dicho esto, cada elemento de un gráfico estadístico debe tener un propósito.</p>
 </section>
-<section id="labels-and-captions" class="slide level2">
-<h2>Labels and captions</h2>
-<p>Text context includes <em>labels</em> and <em>captions</em>. It is a good practice to consistently use informative labels on tick marks and axes.</p>
-<p>Example of bad and good labels</p>
-<p>Informative labels are especially important for plots that other people will see and interpret.</p>
+<section id="etiquetas-y-subtítulos" class="slide level2">
+<h2>Etiquetas y subtítulos</h2>
+<p>El contexto del texto incluye <em>etiquetas</em> y <em>títulos</em>. Es una buena práctica utilizar constantemente etiquetas informativas en las marcas y los ejes.</p>
+<p>Ejemplo de etiquetas malas y buenas</p>
+<p>Las etiquetas informativas son especialmente importantes para las tramas que otras personas verán e interpretarán.</p>
 </section>
-<section id="section-6" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
-<p>Captions serve several purposes. They describe what has been plotted and orient the reader. Captions also point out important features of the plot and comment on their implications.</p>
+<p>Los subtítulos sirven para varios propósitos. Describen lo que se ha tramado y orientan al lector. Los subtítulos también señalan características importantes de la trama y comentan sus implicaciones.</p>
 <p>[Examples of good and bad captions]</p>
 <aside class="notes">
 <p>Readers often skim a publication and focus on section headings and visualizations, so plot captions should be self-contained.</p>
@@ -883,64 +842,12 @@ Alan R. Vázquez
           display:block!important;
       }</style></aside>
 </section>
-<section id="reference-markers" class="slide level2">
-<h2>Reference Markers</h2>
-<p><em>Reference markers</em> bring additional context to the plotting region. Reference points and lines that provide benchmarks, historical values, and other external information help form comparisons and interpretations.</p>
+<section id="marcadores-de-referencia" class="slide level2">
+<h2>Marcadores de referencia</h2>
+<p><em>Marcadores de referencia</em> aportan contexto adicional a la región de trazado. Los puntos y líneas de referencia que proporcionan puntos de referencia, valores históricos y otra información externa ayudan a formar comparaciones e interpretaciones.</p>
 <p>[EXAMPLES OF LABELING MARKERS]</p>
 <aside class="notes">
 <p>For example, we often add a reference line with slope 1 to a quantile-quantile plot. We might also add a vertical line on a time-series plot to mark a special event, like a natural disaster.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="ajustando-los-tick-marks" class="slide level2">
-<h2>Ajustando los tick marks</h2>
-<p>¿Es apropiado incluir el zero o no?</p>
-<p>Ejemplo de histograma sin zero y con zero.</p>
-</section>
-<section id="transformaciones-1" class="slide level2">
-<h2>Transformaciones</h2>
-<p>Another common way to adjust scale is to transform the data or the plot’s axes. We use transformations for skewed data so that it is easier to inspect the distribution.</p>
-<p>And when the transformation produces a symmetric distribution, the symmetry carries with it useful properties for modeling (which we will see later).</p>
-<p>There are multiple ways to transform data, but the log transformation tends to be especially useful.</p>
-</section>
-<section id="the-log-transformation" class="slide level2">
-<h2>The log transformation</h2>
-<p>The log transform can reveal several common types of relationships. Because of this, the log transform is considered the jackknife of transformations.</p>
-
-<img data-src="images/Screenshot%202024-01-30%20at%201.32.44%20p.m..png" class="r-stretch quarto-figure-center"></section>
-<section id="what-do-you-see" class="slide level2">
-<h2>What do you see?</h2>
-<p>Show image in r</p>
-<p>This is <em>overplotting</em>, where we have overlapping points because of a large dataset.</p>
-</section>
-<section id="smoothing" class="slide level2">
-<h2>Smoothing</h2>
-<p>We can find high-density regions of a scatter plot by binning data, like in a histogram. The following plot, remakes the earlier scatter plot of the Cherry Blossom race times against age. This plot uses hexagonal bins to aggregate points together, and then shades the hexagons based on how many points fall in them:</p>
-<p>[SHOW PLOT WITH AND WITHOUT SMOOTHING]</p>
-</section>
-<section id="another-important-application" class="slide level2">
-<h2>Another important application</h2>
-<p>Another smoothing approach that is often more informative smooths the y-values for points with a similar x-value. To explain, let’s group together runners with similar ages; we use five-year increments: 20–25, 25–30, 30–35, and so on. Then, for each five-year bin of runners, we average their race times, plot the average time for each group, and connect the points to form a “curve”:</p>
-<p>[SHOW PLOT WITH AND WITHOUT SMOOTHING]</p>
-</section>
-<section id="when-not-to-smooth" class="slide level2">
-<h2>When not to smooth</h2>
-<p>Smoothing and aggregating can help us see important features and relationships, but when we have only a handful of observations, smoothing techniques can be misleading.</p>
-<p>With just a few observations, we prefer rug plots over histograms, box plots, and density curves, and we use scatter plots rather than smooth curves and density contours.</p>
-<p>[SHOW R CODE WITH BOXPLOT AND STRIPLOT]</p>
-<aside class="notes">
-<p>One of the most common misuses of smoothing happens with box plots. As an example, here is a collection of seven box plots of longevity, one for each of seven types of dog breed:</p>
-<p>Some of these box plots have as few as two or three observations. The strip plot that follows is a preferable visualization:</p>
-<p>In this plot, we can still compare the groups, but we also see the exact values in each group. Now we can tell that there are only three breeds in the non-sporting group; the impression of a skewed distribution, based on the box plot, reads too much into the shape of the box.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;

@@ -1,7 +1,7 @@
 ---
 title: |
    | Sesión 7: 
-   | Datos con múltiples variables  
+   | Datos de múltiples variables  
 author: 
   - name: Alan R. Vázquez
     affiliations:
@@ -15,7 +15,7 @@ css: style.css
 
 ## Los Tópicos de Hoy
 
-1.  Datos con mas de una variable
+1.  Datos de más de una variable
 
 2.  Dos variables numéricas
 
@@ -25,11 +25,9 @@ css: style.css
 
 5.  Tres o más variables
 
-## Recuerda cargar las librerías
+## Carguemos las librerías
 
-Aquí usaremos las librerías `ggplot2`, `ggformula`, y `readxl`.
-
-Carguémoslas en Google Colab y R antes de comenzar.
+Carguémos las librerías `ggplot2`, `ggformula`, y `readxl` en Google Colab y R antes de comenzar.
 
 ```{r}
 #| echo: true
@@ -40,18 +38,30 @@ Carguémoslas en Google Colab y R antes de comenzar.
 library(readxl)
 library(ggplot2)
 library(ggformula)
-library(dplyr) # Nueva librería.
 ```
 
-## Carga los datos
+## Una nueva librería
 
-En Google Colab, el archivo "auto_dataset.xlsx" debe de estar en la carpeta llamada "content" o "contenido."
+Hoy, utilizaremos una librería llamada **dplyr** para generar resúmenes estadísticos cuando tenemos más de una variable.
 
-Ahora carguemos los datos R.
+::: columns
+::: {.column width="50%"}
+![](images/tidyverse.jpeg){fig-align="center"}
+:::
 
+::: {.column width="50%"}
+-   La librería **dplyr** es una herramienta para la manipulación y transformación de datos.
+
+-   Es parte del *tidyverse*.
+:::
+:::
+
+Cárgala en Google Colab con el siguiente código.
 ```{r}
-auto_data <- read_excel("auto_dataset.xlsx") # Leer los datos.
-head(auto_data) # Ver las primeras 6 observaciones.
+#| echo: true
+#| output: false
+
+library(dplyr)
 ```
 
 ## Datos multivariados
@@ -62,39 +72,44 @@ Los datos multivariados son conjunto de datos que contienen observaciones de dos
 
 -   Las variables pueden o no depender las unas de las otras.
 
+De hecho, el **objetivo** es establecer si hay alguna relación entre las variables, así como el tipo de relación.
+
+## Ejemplo
+
+Consideremos datos de 392 autos sobre sus millas por galón, número de cilindros, caballos de fuerza, peso, aceleración, año, origen, entre otras variables.
+
+Los datos están en el archivo "auto_dataset.xlsx".
+
+```{r}
+#| echo: true
+
+
+auto_data <- read_excel("auto_dataset.xlsx") # Leer los datos.
+head(auto_data) # Ver las primeras 6 observaciones.
+```
+
+
 ## Principio 1
 
-En el contexto de múltiples variables, las preguntas típicas a estudiar son
+En el contexto de datos de múltiples variables, las preguntas típicas a estudiar son:
 
 ::: incremental
--   ¿Existen características potencialmente importantes con las que crear comparaciones?
-
--   ¿Qué comparación adicional podría aportar valor añadido a la investigación?
-
 -   ¿Cómo se relacionan entre sí la variable $X$ y la variable $Y$?
 
 -   ¿Es la distribución de la variable $X$ la misma en todos los subgrupos definidos por la variable $Z$?
 
--   ¿Hay alguna observación inusual en la combinación de valores de las variables $X$ y $Y$? ¿En $X$ para un subgrupo de $Z$?
+-   ¿Hay alguna observación inusual en la combinación de valores de las variables $X$ y $Y$? 
+
+-   ¿Hay alguna observación inusual en $X$ para un subgrupo de la variable $Z$?
 :::
-
-## ¿Qué buscar en una relación?
-
-Cuando investigamos múltiples variables, examinamos las relaciones entre ellas, además de sus distribuciones.
-
-Usualmente denominamos a una variable como la variable dependiente o de respuesta. A ella la denotamos con el símbolo $Y$.
-
-La otra variable la llamamos variable independendiente o predictor. A ella la denotamos con el símbolo $X$.
-
-*Nuestro objetivo es saber si cambios en la variable* $X$ están asociados a cambios en la variable $Y$, y el tipo de asociación.
 
 ## Tipos de gráficas
 
-Primero nos enfocamos en estudiar la relación entre dos variables.
+Existen varios tipos de gráficas que nos ayudan a explorar relaciones entre dos o más variables.
 
 ::: center
 | Tipo        | Gráfica                                                                                       |
-|:-----------------------|:----------------------------------------------|
+|:-------------|:---------------------------------------------------------|
 | Numéricas   | Gráfico de dispersión                                                                         |
 | Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico                 |
 | Mixta       | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |
@@ -106,17 +121,29 @@ For two features, the combination of types (both quantitative, both qualitative,
 
 # Dos variables numéricas
 
+## Variable independiente y dependiente
+
+Cuando investigamos la relación entre dos variables (numéricas o categóricas), tenemos una nomenclatura específica para cada una de ellas.
+
+Usualmente llamamos a una variable como la *variable dependiente* o de *respuesta*. A ella la denotamos con el símbolo $Y$.
+
+La otra variable la llamamos variable *independendiente* o *predictor*. A ella la denotamos con el símbolo $X$.
+
+> Nuestro objetivo es saber si cambios en la variable $X$ están asociados a cambios en la variable $Y$, y el tipo de asociación.
+
 ## Gráfica de dispersión
 
-Si ambas variables son numéricas, es común examinar su relación con un ***diagrama de dispersión***. Cada punto en un diagrama de dispersión marca la posición de un par de valores para una observación.
+La gráfica mas común para examinar la relación entre dos variables numéricas es la ***gráfica de dispersión***. 
+
+Las variables $X$ y $Y$ se colocan en el eje horizontal y vertical, respectivamente. Cada punto en la gráfica marca la posición de un par de valores de $X$ y $Y$.
 
 Con los diagramas de dispersión, buscamos relaciones lineales y no lineales, y examinamos el nivel de las relaciones.
 
-En la
-
 ## 
 
-Para construir gráficas de dispersión usamos la función `gf_point(Y ~ X, data = data_set)`.
+Para construir gráficas de dispersión, usamos la función `gf_point(Y ~ X, data = data_set)`.
+
+Por ejemplo, construyamos una gráfica para explorar la relación entre el peso de un auto (`weight`) y sus rendimiento en millas por galón (`mpg`)
 
 ```{r}
 #| fig-pos: center
@@ -127,87 +154,56 @@ gf_point(mpg ~ weight, data = auto_data)
 
 ## Aplicando el principio 3
 
-Recuerda aplicar el principio 3 para mejorar la gráfica.
+Siguiendo el principio 3, podemos cambiar los valores pre-establecidos de la función para definir colores o formas diferentes de los puntos de la gráfica.
+
+</br>
+
+Específicamente, puedes cambiar el color, la forma, y el tamaño de los puntos usando los argumentos `color`, `shape` y `size`, respectivamente.
+
+## 
+
+```{r}
+#| fig-pos: center
+#| echo: true
+
+gf_point(mpg ~ weight, data = auto_data, color = "blue", shape = 4, size = 5)
+```
+
+## Posibles formas de los puntos
+
+![](images/FIG-SCATTER-SHAPES-CHART-1.png){fig-align="center" width="530" height="344"}
+
+
+##
+
+Siguiendo con el principio 3, puedes usar funciones antes vistas para mejorar aún más la apariencia del gráfico.
 
 ```{r}
 #| fig-pos: center
 #| echo: true
 #| code-fold: true
 
-mi_diagrama <- gf_point(mpg ~ weight, data = auto_data, color = "darkblue") + labs(title = "Relación de peso y millas por galón en autos", x = "Peso (lb)", y = "Millas por galón")
+mi_diagrama <- gf_point(mpg ~ weight, data = auto_data, color = "darkblue", size = 2) + labs(title = "Relación de peso y millas por galón en autos", x = "Peso (lb)", y = "Millas por galón")
 mi_diagrama <- mi_diagrama + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
                                    plot.title=element_text(size=25))
 mi_diagrama
 ```
 
-## 
+## Incluir el cero
 
-También puedes cambiar la forma y el tamaño de los puntos usando los argumentos `shape` y `size`, respectivamente.
+En la gráfica anterior, el valor mínimo del eje vertical es alrededor de 10. Para ajustar el valor mínimo en ese eje a 0 usamos el comando adicional mostrado abajo.
 
 ```{r}
 #| fig-pos: center
 #| echo: true
-#| code-fold: true
 
-gf_point(mpg ~ weight, data = auto_data, color = "darkblue", shape = 1, size = 5)
+mi_diagrama + scale_y_continuous(limits = c(0, 50))
 ```
 
-## 
 
-Lista de posibles formas de los puntos.
+## Gráficas individuales
 
-![](images/FIG-SCATTER-SHAPES-CHART-1.png){fig-align="center" width="530" height="344"}
-
-## Transformaciones
-
-También buscamos ver si una transformación de una u otra característica o de ambas conduce a una relación lineal.
-
-Esto se puede hacer aplicando la función `log()` a una de las variables.
-
-```{r}
-#| fig-pos: center
-#| echo: false
-
-gf_point(log(mpg) ~ weight, data = auto_data)
-```
-
-## El efecto de una transformación
-
-El efecto de una transformación es "linealizar" la relación entre las variables.
-
-::: columns
-::: {.column width="50%"}
-```{r}
-#| fig-pos: center
-#| echo: true
-
-gf_point(mpg ~ weight, 
-         data = auto_data)
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-#| fig-pos: center
-#| echo: true
-
-gf_point(log(mpg) ~ weight, 
-         data = auto_data)
-```
-:::
-:::
-
-El diagrama de dispersión de la derecha explora la relación $log(Y) = X$. O , qeuivalentemente, la relación $Y = e^X$.
-
-## ¿Qué pasa con las gráficas individuales?
-
-Es importante tener en cuenta que a dos gráficos univariados les falta información que se encuentra en un gráfico bivariado.
-
--   Información sobre cómo las dos características varían juntas.
-
-En la práctica, los histogramas de dos variables numéricas no contienen suficiente información para crear un diagrama de dispersión de las características.
-
-## 
+Las gráficas individuales de variables ( como el histograma) no permiten estudiar la relación entre dos variables. Solo dan información de la *distribución* cada variable.
 
 ::: columns
 ::: {.column width="50%"}
@@ -233,42 +229,42 @@ histogram_mpg
 histogram_weight <- gf_histogram( ~ weight, data = auto_data, fill = "darkblue", color = "black") 
 histogram_weight <- histogram_weight + labs(title = "Distribución de peso", x = "Peso (lb)", y = "Frecuencia")
 histogram_weight <- histogram_weight + theme(axis.text=element_text(size=20), axis.title=element_text(size=20), plot.title=element_text(size=25))
-histogram_mpg
+histogram_weight
 ```
 :::
 :::
+
 
 # Una variable categórica y una numérica
 
 ## !Divide los datos en grupos!
 
-Para examinar la relación entre una variable numérica y una categórica, a menudo utilizamos la variable categórica para dividir los datos en grupos y comparar la distribución de la variable numérica entre estos grupos.
+Para examinar la relación entre una variable numérica y una categórica, usamos la variable categórica para dividir los datos en grupos. Así comparamos la distribución de la variable numérica entre estos grupos.
 
-En exte contexto:
+
+En este contexto:
 
 -   $X$ es la variable categórica.
 -   $Y$ es la variable numérica.
 
-## 
+La gráfica más efectiva para estudiar la relación entre una variable categórica y una numérica es la gráfica de caja.
 
-Por ejemplo, podemos comparar la distribución de las millas por galón en los diferentes lugares de donde provienen los autos.
+## Gráfica de cajas por grupos
+
+La gráfica de cajas lado a lado nos permite comparar la distribución de una variable en diferentes grupos.
+
+Para generar la gráfica, usamos la función 
+
+`gf_boxplot(Y ~ X, data = dataset)`.
 
 ```{r}
 #| fig-pos: center
 #| echo: true
-#| code-fold: true
 
-hist_mpg_by_origin <- gf_histogram( origin ~ mpg, data = auto_data, fill = "darkblue", color = "black") 
-hist_mpg_by_origin <- hist_mpg_by_origin + labs(title = "Distribución de peso", x = "Peso (lb)", y = "Frecuencia")
-hist_mpg_by_origin <- hist_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20), plot.title=element_text(size=25))
-histogram_mpg
+gf_boxplot( mpg ~ origin, data = auto_data) 
 ```
 
-## Gráfica de cajas por grupos
-
-Los diagramas de caja uno al lado del otro ofrecen una comparación similar de distribuciones entre grupos.
-
-El diagrama de caja ofrece un enfoque más simple que puede brindar una comprensión aproximada de una distribución.
+## Mejorando la gráfica
 
 ```{r}
 #| fig-pos: center
@@ -281,11 +277,12 @@ bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), ax
 bp_mpg_by_origin
 ```
 
-## Violin plots by group
 
-Del mismo modo, los diagramas de violín dibujan curvas de densidad a lo largo de un eje para cada grupo.
+## Gráfica de violín por grupo
 
-La curva se invierte para crear una forma simétrica de "violín".
+Los diagramas de violín también se pueden usar para dibujar curvas de densidad a lo largo de un eje para cada grupo.
+
+El comando básico para generar está gráfica es `gf_violin(Y ~ X, data = dataset)`.
 
 ```{r}
 #| fig-pos: center
@@ -328,16 +325,6 @@ sum_data <- auto_data %>% group_by(origin) %>%
 gf_point(Promedio ~ origin, data = sum_data, size = 5) + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
 ```
 
-## Incluir el cero
-
-```{r}
-#| fig-pos: center
-#| echo: true
-#| code-fold: true
-
-gf_point(Promedio ~ origin, data = sum_data, size = 5) + scale_y_continuous(limits = c(0, 35))
-```
-
 
 # Dos variables categóricas
 
@@ -359,12 +346,7 @@ Within each suitability category, we find the proportion of small, medium, and l
 
 ## Gráfico de barras lado a lado
 
-
-
 ## Gráfico de barras apliadas
-
-
-
 
 # Más de una variable
 
@@ -398,20 +380,6 @@ Para dos variables numéricas (o categóricas) y una categórica.
 gf_point(mpg ~ weight, data = auto_data) %>% gf_facet_grid(origin ~ .)
 ```
 
-## Two quantitative and one qualitative
-
-R code
-
-## Two qualitative and one quantitative variable
-
-a
-
-## Three quantitative variables
-
-aa
-
-## Three categorical variables
-
 # Actividad
 
 ## Emphasize the important difference
@@ -426,27 +394,27 @@ The activity may be about selecting the best graphs among two possibilities. Whe
 
 <https://learningds.org/ch/11/viz_comparisons.html>
 
-# Applying principle 3
+# Aplicando el principio 3
 
-## Adding context
+## Agregar contexto
 
-We have used text in our graphs throughout this chapter to provide meaningful axis labels that include units of measurement, tick-mark labels for categories, and titles
+Hemos utilizado texto en nuestros gráficos a lo largo de este capítulo para proporcionar etiquetas de eje significativas que incluyen unidades de medida, etiquetas de marcas para categorías y títulos.
 
-A good goal is to include enough context in a plot so that it can stand alone—a reader should be able to get the gist of the plot without needing to search for explanation elsewhere.
+Un buen objetivo es incluir suficiente contexto en una trama para que pueda ser independiente: el lector debería poder captar la esencia de la trama sin necesidad de buscar una explicación en otra parte.
 
-That said, every element of a statistical graph should have a purpose.
+Dicho esto, cada elemento de un gráfico estadístico debe tener un propósito.
 
-## Labels and captions
+## Etiquetas y subtítulos
 
-Text context includes *labels* and *captions*. It is a good practice to consistently use informative labels on tick marks and axes.
+El contexto del texto incluye *etiquetas* y *títulos*. Es una buena práctica utilizar constantemente etiquetas informativas en las marcas y los ejes.
 
-Example of bad and good labels
+Ejemplo de etiquetas malas y buenas
 
-Informative labels are especially important for plots that other people will see and interpret.
+Las etiquetas informativas son especialmente importantes para las tramas que otras personas verán e interpretarán.
 
 ## 
 
-Captions serve several purposes. They describe what has been plotted and orient the reader. Captions also point out important features of the plot and comment on their implications.
+Los subtítulos sirven para varios propósitos. Describen lo que se ha tramado y orientan al lector. Los subtítulos también señalan características importantes de la trama y comentan sus implicaciones.
 
 \[Examples of good and bad captions\]
 
@@ -454,66 +422,12 @@ Captions serve several purposes. They describe what has been plotted and orient 
 Readers often skim a publication and focus on section headings and visualizations, so plot captions should be self-contained.
 :::
 
-## Reference Markers
+## Marcadores de referencia
 
-*Reference markers* bring additional context to the plotting region. Reference points and lines that provide benchmarks, historical values, and other external information help form comparisons and interpretations.
+*Marcadores de referencia* aportan contexto adicional a la región de trazado. Los puntos y líneas de referencia que proporcionan puntos de referencia, valores históricos y otra información externa ayudan a formar comparaciones e interpretaciones.
 
 \[EXAMPLES OF LABELING MARKERS\]
 
 ::: notes
 For example, we often add a reference line with slope 1 to a quantile-quantile plot. We might also add a vertical line on a time-series plot to mark a special event, like a natural disaster.
-:::
-
-## Ajustando los tick marks
-
-¿Es apropiado incluir el zero o no?
-
-Ejemplo de histograma sin zero y con zero.
-
-## Transformaciones
-
-Another common way to adjust scale is to transform the data or the plot’s axes. We use transformations for skewed data so that it is easier to inspect the distribution.
-
-And when the transformation produces a symmetric distribution, the symmetry carries with it useful properties for modeling (which we will see later).
-
-There are multiple ways to transform data, but the log transformation tends to be especially useful.
-
-## The log transformation
-
-The log transform can reveal several common types of relationships. Because of this, the log transform is considered the jackknife of transformations.
-
-![](images/Screenshot%202024-01-30%20at%201.32.44%20p.m..png){fig-align="center"}
-
-## What do you see?
-
-Show image in r
-
-This is *overplotting*, where we have overlapping points because of a large dataset.
-
-## Smoothing
-
-We can find high-density regions of a scatter plot by binning data, like in a histogram. The following plot, remakes the earlier scatter plot of the Cherry Blossom race times against age. This plot uses hexagonal bins to aggregate points together, and then shades the hexagons based on how many points fall in them:
-
-\[SHOW PLOT WITH AND WITHOUT SMOOTHING\]
-
-## Another important application
-
-Another smoothing approach that is often more informative smooths the y-values for points with a similar x-value. To explain, let’s group together runners with similar ages; we use five-year increments: 20–25, 25–30, 30–35, and so on. Then, for each five-year bin of runners, we average their race times, plot the average time for each group, and connect the points to form a “curve”:
-
-\[SHOW PLOT WITH AND WITHOUT SMOOTHING\]
-
-## When not to smooth
-
-Smoothing and aggregating can help us see important features and relationships, but when we have only a handful of observations, smoothing techniques can be misleading.
-
-With just a few observations, we prefer rug plots over histograms, box plots, and density curves, and we use scatter plots rather than smooth curves and density contours.
-
-\[SHOW R CODE WITH BOXPLOT AND STRIPLOT\]
-
-::: notes
-One of the most common misuses of smoothing happens with box plots. As an example, here is a collection of seven box plots of longevity, one for each of seven types of dog breed:
-
-Some of these box plots have as few as two or three observations. The strip plot that follows is a preferable visualization:
-
-In this plot, we can still compare the groups, but we also see the exact values in each group. Now we can tell that there are only three breeds in the non-sporting group; the impression of a skewed distribution, based on the box plot, reads too much into the shape of the box.
 :::
