@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-input0d363882</title>
+  <title>quarto-input3b9dd00b</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="Slides_Multivariate_files/libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="style.css">
@@ -327,15 +392,12 @@
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title"><p>Sesión 7:<br>
-Datos Multivariantes</p></h1>
+Datos con múltiples variables</p></h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
 Alan R. Vázquez 
-</div>
-<div class="quarto-title-author-email">
-<a href="mailto:alanrvazquez@tec.mx">alanrvazquez@tec.mx</a>
 </div>
         <p class="quarto-title-affiliation">
             Tecnológico de Monterrey
@@ -344,55 +406,107 @@ Alan R. Vázquez
 </div>
 
 </section>
-<section id="principle-2-for-multivariate-data" class="slide level2">
-<h2>Principle 2 for multivariate data</h2>
-<p>Overall:</p>
+<section id="los-tópicos-de-hoy" class="slide level2">
+<h2>Los Tópicos de Hoy</h2>
+<ol type="1">
+<li><p>Datos con mas de una variable</p></li>
+<li><p>Dos variables numéricas</p></li>
+<li><p>Una variable numérica y una categórica</p></li>
+<li><p>Dos variables categóricas</p></li>
+<li><p>Tres o más variables</p></li>
+</ol>
+</section>
+<section id="recuerda-cargar-las-librerías" class="slide level2">
+<h2>Recuerda cargar las librerías</h2>
+<p>Aquí usaremos las librerías <code>ggplot2</code>, <code>ggformula</code>, y <code>readxl</code>.</p>
+<p>Carguémoslas en Google Colab y R antes de comenzar.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Nos se te olvide instalar la librería "ggformula" en Google Colab.</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># install.packages("ggformula")</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(ggformula)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(dplyr) <span class="co"># Nueva librería.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="carga-los-datos" class="slide level2">
+<h2>Carga los datos</h2>
+<p>En Google Colab, el archivo “auto_dataset.xlsx” debe de estar en la carpeta llamada “content” o “contenido.”</p>
+<p>Ahora carguemos los datos R.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+    mpg cylinders displacement horsepower weight acceleration `model year`
+  &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+1    18         8          307 130          3504         12             70
+2    15         8          350 165          3693         11.5           70
+3    18         8          318 150          3436         11             70
+4    16         8          304 150          3433         12             70
+5    17         8          302 140          3449         10.5           70
+6    15         8          429 198          4341         10             70
+# ℹ 2 more variables: origin &lt;chr&gt;, `car name` &lt;chr&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="datos-multivariados" class="slide level2">
+<h2>Datos multivariados</h2>
+<p>Los datos multivariados son conjunto de datos que contienen observaciones de dos o más variables.</p>
 <ul>
-<li><p>Are there any potentially important features to create comparisons with/against?</p></li>
-<li><p>What additional comparison might bring added value to the investigation?</p></li>
-</ul>
-<p>Translation into statistics.</p>
-<ul>
-<li><p>How do Feature X and Feature Y relate to each other?</p></li>
-<li><p>Is the distribution of Feature X the same across subgroups defined by Feature Z?</p></li>
-<li><p>Are there any unusual observations In the combination of (X,Y)? In X for a subgroup of Z?</p></li>
+<li><p>Las variables pueden ser numéricas o categóricas.</p></li>
+<li><p>Las variables pueden o no depender las unas de las otras.</p></li>
 </ul>
 </section>
-<section id="what-to-look-for-in-a-relationship" class="slide level2">
-<h2>¿What to look for in a relationship?</h2>
-<p>When we investigate multiple variables, we examine the relationships between them, in addition to their distributions.</p>
-<p>Here, we consider pairs of features and describe what to look for.</p>
+<section id="principio-1" class="slide level2">
+<h2>Principio 1</h2>
+<p>En el contexto de múltiples variables, las preguntas típicas a estudiar son</p>
+<div>
+<ul>
+<li class="fragment"><p>¿Existen características potencialmente importantes con las que crear comparaciones?</p></li>
+<li class="fragment"><p>¿Qué comparación adicional podría aportar valor añadido a la investigación?</p></li>
+<li class="fragment"><p>¿Cómo se relacionan entre sí la variable <span class="math inline">\(X\)</span> y la variable <span class="math inline">\(Y\)</span>?</p></li>
+<li class="fragment"><p>¿Es la distribución de la variable <span class="math inline">\(X\)</span> la misma en todos los subgrupos definidos por la variable <span class="math inline">\(Z\)</span>?</p></li>
+<li class="fragment"><p>¿Hay alguna observación inusual en la combinación de valores de las variables <span class="math inline">\(X\)</span> y <span class="math inline">\(Y\)</span>? ¿En <span class="math inline">\(X\)</span> para un subgrupo de <span class="math inline">\(Z\)</span>?</p></li>
+</ul>
+</div>
+</section>
+<section id="qué-buscar-en-una-relación" class="slide level2">
+<h2>¿Qué buscar en una relación?</h2>
+<p>Cuando investigamos múltiples variables, examinamos las relaciones entre ellas, además de sus distribuciones.</p>
+<p>Usualmente denominamos a una variable como la variable dependiente o de respuesta. A ella la denotamos con el símbolo <span class="math inline">\(Y\)</span>.</p>
+<p>La otra variable la llamamos variable independendiente o predictor. A ella la denotamos con el símbolo <span class="math inline">\(X\)</span>.</p>
+<p><em>Nuestro objetivo es saber si cambios en la variable</em> <span class="math inline">\(X\)</span> están asociados a cambios en la variable <span class="math inline">\(Y\)</span>, y el tipo de asociación.</p>
+</section>
+<section id="tipos-de-gráficas" class="slide level2">
+<h2>Tipos de gráficas</h2>
+<p>Primero nos enfocamos en estudiar la relación entre dos variables.</p>
+<div class="center">
 <table>
 <colgroup>
-<col style="width: 21%">
-<col style="width: 21%">
-<col style="width: 56%">
+<col style="width: 33%">
+<col style="width: 66%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Tipo</th>
-<th style="text-align: left;">Número</th>
 <th style="text-align: left;">Gráfica</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Quantitativa</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">Scatter plot, smooth curve, contour plot, heat map, quantile quantile plot</td>
+<td style="text-align: left;">Numéricas</td>
+<td style="text-align: left;">Gráfico de dispersión</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Categórica</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">Side-by-side bar plots, mosaic plot, overlaid lines</td>
+<td style="text-align: left;">Categóricas</td>
+<td style="text-align: left;">Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Mixta</td>
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">Overlaid density curves, side-by-side box plots, overlaid smooth curves, quantile quantile plot</td>
+<td style="text-align: left;">Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno</td>
 </tr>
 </tbody>
 </table>
+</div>
 <aside class="notes">
 <p>For two features, the combination of types (both quantitative, both qualitative, or a mix) matters.</p>
 <style type="text/css">
@@ -408,56 +522,257 @@ Alan R. Vázquez
       }</style></aside>
 </section>
 <section>
-<section id="two-quantitative-features" class="title-slide slide level1 center">
-<h1>Two quantitative features</h1>
+<section id="dos-variables-numéricas" class="title-slide slide level1 center">
+<h1>Dos variables numéricas</h1>
 
 </section>
-<section id="scatter-plots" class="slide level2">
-<h2>Scatter plots</h2>
-<p>If both features are quantitative, then we often examine their relationship with a <strong><em>scatter plot</em></strong>. Each point in a scatter plot marks the position of a pair of values for an observation.</p>
-<p>With scatter plots, we look for linear and simple nonlinear relationships, and we examine the strength of the relationships.</p>
-<p>[INSERT R CODE]</p>
+<section id="gráfica-de-dispersión" class="slide level2">
+<h2>Gráfica de dispersión</h2>
+<p>Si ambas variables son numéricas, es común examinar su relación con un <strong><em>diagrama de dispersión</em></strong>. Cada punto en un diagrama de dispersión marca la posición de un par de valores para una observación.</p>
+<p>Con los diagramas de dispersión, buscamos relaciones lineales y no lineales, y examinamos el nivel de las relaciones.</p>
+<p>En la</p>
 </section>
-<section id="transformations" class="slide level2">
-<h2>Transformations</h2>
-<p>We also look to see if a transformation of one or the other or both features leads to a linear relationship.</p>
-<p>[R CODE WITH TRANSFORMATION]</p>
+<section id="section" class="slide level2">
+<h2></h2>
+<p>Para construir gráficas de dispersión usamos la función <code>gf_point(Y ~ X, data = data_set)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="aplicando-el-principio-3" class="slide level2">
+<h2>Aplicando el principio 3</h2>
+<p>Recuerda aplicar el principio 3 para mejorar la gráfica.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>mi_diagrama <span class="ot">&lt;-</span> <span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relación de peso y millas por galón en autos"</span>, <span class="at">x =</span> <span class="st">"Peso (lb)"</span>, <span class="at">y =</span> <span class="st">"Millas por galón"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>mi_diagrama <span class="ot">&lt;-</span> mi_diagrama <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>                                   <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
+<span id="cb4-4"><a href="#cb4-4"></a>mi_diagrama</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<p>También puedes cambiar la forma y el tamaño de los puntos usando los argumentos <code>shape</code> y <code>size</code>, respectivamente.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">shape =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<p>Lista de posibles formas de los puntos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/FIG-SCATTER-SHAPES-CHART-1.png" width="530" height="344"></p>
+</figure>
+</div>
 </section>
-<section id="what-about-to-individual-plots" class="slide level2">
-<h2>What about to individual plots?</h2>
-<p>It’s important to note that two univariate plots are missing information found in a bivariate plot—information about how the two features vary together. Practically, histograms for two quantitative features do not contain enough information to create a scatter plot of the features.</p>
-<p>[r code with separate histograms]</p>
+<section id="transformaciones" class="slide level2">
+<h2>Transformaciones</h2>
+<p>También buscamos ver si una transformación de una u otra característica o de ambas conduce a una relación lineal.</p>
+<p>Esto se puede hacer aplicando la función <code>log()</code> a una de las variables.</p>
+
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="el-efecto-de-una-transformación" class="slide level2">
+<h2>El efecto de una transformación</h2>
+<p>El efecto de una transformación es “linealizar” la relación entre las variables.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, </span>
+<span id="cb6-2"><a href="#cb6-2"></a>         <span class="at">data =</span> auto_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">gf_point</span>(<span class="fu">log</span>(mpg) <span class="sc">~</span> weight, </span>
+<span id="cb7-2"><a href="#cb7-2"></a>         <span class="at">data =</span> auto_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>El diagrama de dispersión de la derecha explora la relación <span class="math inline">\(log(Y) = X\)</span>. O , qeuivalentemente, la relación <span class="math inline">\(Y = e^X\)</span>.</p>
+</section>
+<section id="qué-pasa-con-las-gráficas-individuales" class="slide level2">
+<h2>¿Qué pasa con las gráficas individuales?</h2>
+<p>Es importante tener en cuenta que a dos gráficos univariados les falta información que se encuentra en un gráfico bivariado.</p>
+<ul>
+<li>Información sobre cómo las dos características varían juntas.</li>
+</ul>
+<p>En la práctica, los histogramas de dos variables numéricas no contienen suficiente información para crear un diagrama de dispersión de las características.</p>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>histogram_mpg <span class="ot">&lt;-</span> <span class="fu">gf_histogram</span>( <span class="sc">~</span> mpg, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb8-2"><a href="#cb8-2"></a>histogram_mpg <span class="ot">&lt;-</span> histogram_mpg <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de milas por galón"</span>, <span class="at">x =</span> <span class="st">"Millas por galón"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a>histogram_mpg <span class="ot">&lt;-</span> histogram_mpg <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>),</span>
+<span id="cb8-4"><a href="#cb8-4"></a>                                       <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
+<span id="cb8-5"><a href="#cb8-5"></a>histogram_mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>histogram_weight <span class="ot">&lt;-</span> <span class="fu">gf_histogram</span>( <span class="sc">~</span> weight, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb9-2"><a href="#cb9-2"></a>histogram_weight <span class="ot">&lt;-</span> histogram_weight <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de peso"</span>, <span class="at">x =</span> <span class="st">"Peso (lb)"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>histogram_weight <span class="ot">&lt;-</span> histogram_weight <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
+<span id="cb9-4"><a href="#cb9-4"></a>histogram_mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-10-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section>
-<section id="one-categorical-and-one-quantitative-variable" class="title-slide slide level1 center">
-<h1>One categorical and one quantitative variable</h1>
+<section id="una-variable-categórica-y-una-numérica" class="title-slide slide level1 center">
+<h1>Una variable categórica y una numérica</h1>
 
 </section>
-<section id="divide-the-data-into-groups" class="slide level2">
-<h2>Divide the data into groups!</h2>
-<p>To examine the relationship between a quantitative and a qualitative feature, we often use the qualitative feature to divide the data into groups and compare the distribution of the quantitative feature across these groups.</p>
-<p>For example, we can compare the distribution of height for small, medium, and large dog breeds with three overlaid density curves:</p>
-<p>[R CODE WITH PLOT]</p>
+<section id="divide-los-datos-en-grupos" class="slide level2">
+<h2>!Divide los datos en grupos!</h2>
+<p>Para examinar la relación entre una variable numérica y una categórica, a menudo utilizamos la variable categórica para dividir los datos en grupos y comparar la distribución de la variable numérica entre estos grupos.</p>
+<p>En exte contexto:</p>
+<ul>
+<li><span class="math inline">\(X\)</span> es la variable categórica.</li>
+<li><span class="math inline">\(Y\)</span> es la variable numérica.</li>
+</ul>
 </section>
-<section id="box-plots-by-group" class="slide level2">
-<h2>Box plots by group</h2>
-<p>Side-by-side box plots offer a similar comparison of distributions across groups. The box plot offers a simpler approach that can give a crude understanding of a distribution.</p>
-<p>[R code with boxplot]</p>
-</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<p>Por ejemplo, podemos comparar la distribución de las millas por galón en los diferentes lugares de donde provienen los autos.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>hist_mpg_by_origin <span class="ot">&lt;-</span> <span class="fu">gf_histogram</span>( origin <span class="sc">~</span> mpg, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"darkblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb10-2"><a href="#cb10-2"></a>hist_mpg_by_origin <span class="ot">&lt;-</span> hist_mpg_by_origin <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribución de peso"</span>, <span class="at">x =</span> <span class="st">"Peso (lb)"</span>, <span class="at">y =</span> <span class="st">"Frecuencia"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a>hist_mpg_by_origin <span class="ot">&lt;-</span> hist_mpg_by_origin <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">25</span>))</span>
+<span id="cb10-4"><a href="#cb10-4"></a>histogram_mpg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="gráfica-de-cajas-por-grupos" class="slide level2">
+<h2>Gráfica de cajas por grupos</h2>
+<p>Los diagramas de caja uno al lado del otro ofrecen una comparación similar de distribuciones entre grupos.</p>
+<p>El diagrama de caja ofrece un enfoque más simple que puede brindar una comprensión aproximada de una distribución.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>bp_mpg_by_origin <span class="ot">&lt;-</span> <span class="fu">gf_boxplot</span>( mpg <span class="sc">~</span> origin, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb11-2"><a href="#cb11-2"></a>bp_mpg_by_origin <span class="ot">&lt;-</span> bp_mpg_by_origin <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Millas por galón"</span>, <span class="at">x =</span> <span class="st">"Origen"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a>bp_mpg_by_origin <span class="ot">&lt;-</span> bp_mpg_by_origin <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span>
+<span id="cb11-4"><a href="#cb11-4"></a>bp_mpg_by_origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="violin-plots-by-group" class="slide level2">
 <h2>Violin plots by group</h2>
-<p>Likewise, violin plots sketch density curves along an axis for each group. The curve is flipped to create a symmetric “violin” shape.</p>
-</section></section>
+<p>Del mismo modo, los diagramas de violín dibujan curvas de densidad a lo largo de un eje para cada grupo.</p>
+<p>La curva se invierte para crear una forma simétrica de “violín”.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>violin_mpg_by_origin <span class="ot">&lt;-</span> <span class="fu">gf_violin</span>( mpg <span class="sc">~</span> origin, <span class="at">data =</span> auto_data, <span class="at">fill =</span> <span class="st">"orange"</span>, <span class="at">color =</span> <span class="st">"black"</span>) </span>
+<span id="cb12-2"><a href="#cb12-2"></a>violin_mpg_by_origin <span class="ot">&lt;-</span> violin_mpg_by_origin <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"Millas por galón"</span>, <span class="at">x =</span> <span class="st">"Origen"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3"></a>violin_mpg_by_origin <span class="ot">&lt;-</span> violin_mpg_by_origin <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span>
+<span id="cb12-4"><a href="#cb12-4"></a>violin_mpg_by_origin</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="resúmenes-estadísticos" class="slide level2">
+<h2>Resúmenes estadísticos</h2>
+<p>En muchos casos, es útil calcular resúmenes estadísticos de la variable numérica <span class="math inline">\(Y\)</span> para cada categórica de la variable categórica <span class="math inline">\(X\)</span>.</p>
+<p>Para hacer esto, debemos usar la librería <code>library(dplyr)</code>. Esta librería contiene muchas funciones útiles. Aquí usaremos dos <code>group_by()</code> y <code>summarize()</code> para agrupar y resumir datos, respectivamente.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>auto_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">summarize</span>(<span class="st">"mean"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg), <span class="st">"max"</span> <span class="ot">=</span> <span class="fu">max</span>(mpg), <span class="st">"min"</span> <span class="ot">=</span> <span class="fu">min</span>(mpg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 4
+  origin    mean   max   min
+  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 American  20.1  39     9  
+2 European  27.9  44.3  16.2
+3 Japanese  30.5  46.6  18  </code></pre>
+</div>
+</div>
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
+<p>Puedes guardar la tabla en un nuevo objeto que puedes utilizar para visualizar.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>sum_data <span class="ot">&lt;-</span> auto_data <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(origin) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">summarize</span>(<span class="st">"Promedio"</span> <span class="ot">=</span> <span class="fu">mean</span>(mpg), <span class="st">"Maximo"</span> <span class="ot">=</span> <span class="fu">max</span>(mpg), <span class="st">"Minimo"</span> <span class="ot">=</span> <span class="fu">min</span>(mpg))</span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="fu">gf_point</span>(Promedio <span class="sc">~</span> origin, <span class="at">data =</span> sum_data, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="incluir-el-cero" class="slide level2">
+<h2>Incluir el cero</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">gf_point</span>(Promedio <span class="sc">~</span> origin, <span class="at">data =</span> sum_data, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">35</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section>
-<section id="two-categorical-features" class="title-slide slide level1 center">
-<h1>Two Categorical Features</h1>
+<section id="dos-variables-categóricas" class="title-slide slide level1 center">
+<h1>Dos variables categóricas</h1>
 
 </section>
-<section id="divide-the-data-into-groups-according-to-one-variable" class="slide level2">
-<h2>Divide the data into groups according to one variable</h2>
-<p>With two qualitative features, we often compare the distribution of one feature across subgroups defined by the other feature.</p>
-<p>In effect, we hold one feature constant and plot the distribution of the other one.</p>
-<p>To do this, we can use some of the same plots we used to display the distribution of one qualitative feature, such as a line plot or bar plot.</p>
+<section id="dividir-los-datos-en-grupos-según-una-variable." class="slide level2">
+<h2>Dividir los datos en grupos según una variable.</h2>
+<p>Con dos variables categóricas, a menudo comparamos la distribución de una variable entre subgrupos definidos por la otra variale.</p>
+<p>De hecho, mantenemos constante una variable y trazamos la distribución de la otra.</p>
+<p>Para hacer esto, podemos usar algunos de los mismos gráficos que usamos para mostrar la distribución de una variable categórica, como un gráfico de barras.</p>
 </section>
 <section id="we-need-to-pre-process-the-data" class="slide level2">
 <h2>We need to pre-process the data</h2>
@@ -465,25 +780,44 @@ Alan R. Vázquez
 <p>Within each suitability category, we find the proportion of small, medium, and large dogs. These proportions are displayed in the following table.</p>
 <p>[R CODE TO ILLUSTRATE THIS]</p>
 </section>
-<section id="line-plot-by-group" class="slide level2">
-<h2>Line plot by group</h2>
-<p>Group by line.</p>
+<section id="gráfico-de-barras-lado-a-lado" class="slide level2">
+<h2>Gráfico de barras lado a lado</h2>
 </section>
-<section id="mosaic-plot" class="slide level2">
-<h2>Mosaic Plot</h2>
-<p>Explain and R code.</p>
+<section id="gráfico-de-barras-apliadas" class="slide level2">
+<h2>Gráfico de barras apliadas</h2>
 </section></section>
 <section>
-<section id="what-about-more-than-one-variable" class="title-slide slide level1 center">
-<h1>What about more than one variable?</h1>
-<p>When we examine a distribution or relationship, we often want to compare it across subgroups of the data. This process of conditioning on additional factors often leads to visualizations that involve three or more variables.</p>
-<p>Here, we explain how to read plots that are commonly used to visualize multiple variables.</p>
+<section id="más-de-una-variable" class="title-slide slide level1 center">
+<h1>Más de una variable</h1>
+
 </section>
-<section id="facet-or-trellis-plot" class="slide level2">
-<h2>Facet or trellis plot</h2>
-<p>Facet plots allow you to display these three features.</p>
-<p>[R code with facet plot or trellis]</p>
+<section id="gráficas-para-tres-variables" class="slide level2">
+<h2>Gráficas para tres variables</h2>
+<p>Cuando examinamos una distribución o relación, a menudo queremos compararla entre subgrupos de datos. Este proceso de condicionamiento sobre factores adicionales a menudo conduce a visualizaciones que involucran tres o más variables.</p>
+<p>Aquí explicamos cómo leer gráficos que se usan comúnmente para visualizar múltiples variables.</p>
 </section>
+<section id="gráfica-de-dispersión-por-color" class="slide level2">
+<h2>Gráfica de dispersión por color</h2>
+<p>Para dos variables numéricas y una categórica.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">color =</span> <span class="sc">~</span>origin, <span class="at">data =</span> auto_data) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch quarto-figure-center"></section>
+<section id="gráfico-de-facetas-o-enrejado" class="slide level2">
+<h2>Gráfico de facetas o enrejado</h2>
+<p>Para dos variables numéricas (o categóricas) y una categórica.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data) <span class="sc">%&gt;%</span> <span class="fu">gf_facet_grid</span>(origin <span class="sc">~</span> .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+
+</div>
+<img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="two-quantitative-and-one-qualitative" class="slide level2">
 <h2>Two quantitative and one qualitative</h2>
 <p>R code</p>
@@ -531,7 +865,7 @@ Alan R. Vázquez
 <p>Example of bad and good labels</p>
 <p>Informative labels are especially important for plots that other people will see and interpret.</p>
 </section>
-<section id="section" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <p>Captions serve several purposes. They describe what has been plotted and orient the reader. Captions also point out important features of the plot and comment on their implications.</p>
 <p>[Examples of good and bad captions]</p>
@@ -572,7 +906,7 @@ Alan R. Vázquez
 <p>¿Es apropiado incluir el zero o no?</p>
 <p>Ejemplo de histograma sin zero y con zero.</p>
 </section>
-<section id="transformaciones" class="slide level2">
+<section id="transformaciones-1" class="slide level2">
 <h2>Transformaciones</h2>
 <p>Another common way to adjust scale is to transform the data or the plot’s axes. We use transformations for skewed data so that it is easier to inspect the distribution.</p>
 <p>And when the transformation produces a symmetric distribution, the symmetry carries with it useful properties for modeling (which we will see later).</p>
@@ -834,6 +1168,44 @@ Alan R. Vázquez
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

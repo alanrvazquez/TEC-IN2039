@@ -32,7 +32,6 @@ css: style.css
 
 3.  Gráficas de variables numéricas
 
-
 ## Ejemplo
 
 ::: columns
@@ -51,7 +50,7 @@ El archivo "CYLT.xlsx" contiene 50 tiempos de ciclo de un pistón operado en con
 
 ## Recuerda cargar las librerías
 
-Aquí usaremos las librerías `ggplot2`, `ggformula`, y `readxl`. 
+Aquí usaremos las librerías `ggplot2`, `ggformula`, y `readxl`.
 
 Carguémoslas en Google Colab y R antes de comenzar.
 
@@ -68,16 +67,14 @@ library(ggformula)
 
 ## Carga los datos
 
-En Google Colab, el archivo "CYLT.xlsx" debe de estar en la carpeta llamada "content" o "contenido." 
+En Google Colab, el archivo "CYLT.xlsx" debe de estar en la carpeta llamada "content" o "contenido."
 
-Ahora carguemos los datos R.  
+Ahora carguemos los datos R.
 
 ```{r}
 piston_data <- read_excel("CYCLT.xlsx") # Leer los datos.
 head(piston_data) # Ver las primeras 6 observaciones.
 ```
-
-
 
 ## Tipo de variable
 
@@ -188,7 +185,7 @@ En R, la desviación estándar se calcula usando la función `sd()`.
 sd(piston_data$cycle_time)
 ```
 
-. . . 
+. . .
 
 <br/> [*Interpretación:*]{style="color:darkgray;"} En promedio, un pistón tarda 0.65246 segundos en completar un ciclo, con una diferencia de mas o menos 0.3729709 segundos.
 
@@ -196,7 +193,7 @@ sd(piston_data$cycle_time)
 
 La [**mediana**]{style="color:darkgreen;"} es el número medio de las observaciones ordenadas de menor a mayor.
 
-. . . 
+. . .
 
 Los [**cuartiles**]{style="color:darkgreen;"} dividen las observaciones en cuatro partes. Existen tres de ellos:
 
@@ -206,7 +203,7 @@ Los [**cuartiles**]{style="color:darkgreen;"} dividen las observaciones en cuatr
 -   El segundo cuartil ($Q_2$) es la mediana de las observaciones.
 
 -   El tercer cuartil ($Q_3$) es la mediana de la mitad superior de las observaciones.
-::: 
+:::
 
 ## 
 
@@ -278,7 +275,7 @@ Las preguntas típicas sobre una variable numérica $X$ son:
 -   ¿Existen observaciones inusuales o atípicas en la variable $X$?
 
 -   ¿La forma de las observaciones de la variable $X$ se parece a una campana?
-::: 
+:::
 
 ## Principio 2
 
@@ -300,7 +297,7 @@ Básicamente, son maneras distintas de visualizar la "forma" o [*distribución*]
 
 Visualiza la distribución de las observaciones, indicando regiones donde las observaciones están concentradas o son escasas.
 
-. . . 
+. . .
 
 Se construye usando una ***tabla de frecuencia***.
 
@@ -355,7 +352,7 @@ Tails and symmetry do not make sense in this setting.
 
 ## Número de intervalos
 
-- El número de intervalos es un parámetro del histograma que afecta su aspecto.
+-   El número de intervalos es un parámetro del histograma que afecta su aspecto.
 
 Este se fija usando el argumento `bins` en la función `gf_histogram()`.
 
@@ -473,7 +470,7 @@ La curva de densidad es una versión extrema pero inteligente de suavizado a un 
 
 Se basa en la frecuencia relativa (#observaciónes_en_categoria/total), en lugar de la frecuencia.
 
-. . . 
+. . .
 
 La obtienes con la función `gf_density()`.
 
@@ -592,7 +589,7 @@ Tiene la syntaxis especial: `cycle_time ~ 1`. Si usas `~ cycle_time`, obtendrás
 
 La gráfica de violín combina la curva de densidad con la gráfica de caja. Los trazados de violín dibujan curvas de densidad a lo largo de un eje. La curva se invierte para crear una forma simétrica de "violín".
 
-. . . 
+. . .
 
 En R, usa la función `gf_violin()`.
 

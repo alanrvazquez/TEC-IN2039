@@ -103,7 +103,7 @@ Toman valores que se colocan en *categorías*.
 . . .
 
 |                  |                                                                 |
-|------------------|-----------------------------------------------------------------|
+|------------------|------------------------------------------------------|
 | **Variable**     | **Categorias**                                                  |
 | Reseña en Amazon | 1$\bigstar$, 2$\bigstar$, 3$\bigstar$, 4$\bigstar$, 5$\bigstar$ |
 | País de origen   | México, Canadá, EUA                                             |
@@ -314,7 +314,7 @@ countdown::countdown(minutes = 30)
 
 ::: center
 | Tipo     | Gráfica                                                           |
-|:---------|:------------------------------------------------------------------|
+|:--------------|:--------------------------------------------------------|
 | Numérica | Histograma, gráfica de caja, gráfica de violín, curva de densidad |
 :::
 
@@ -334,7 +334,7 @@ countdown::countdown(minutes = 30)
 
 ::: center
 | Tipo        | Gráfica                                                                       |
-|:------------|:------------------------------------------------------------------------------|
+|:--------------|:--------------------------------------------------------|
 | Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico |
 :::
 
@@ -356,8 +356,8 @@ countdown::countdown(minutes = 30)
 
 ::: center
 | Tipo  | Gráfica                                                                                       |
-|:------|:----------------------------------------------------------------------------------------------|
-| Mixta | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de controno |
+|:-----------|:----------------------------------------------------------|
+| Mixta | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |
 :::
 
 ::: columns
