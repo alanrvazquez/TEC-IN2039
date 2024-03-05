@@ -119,3 +119,30 @@ One of the most common misuses of smoothing happens with box plots. As an exampl
   In this plot, we can still compare the groups, but we also see the exact values in each group. Now we can tell that there are only three breeds in the non-sporting group; the impression of a skewed distribution, based on the box plot, reads too much into the shape of the box.
 :::
   
+  
+  ## Histograma por grupo
+  
+  La gráfica de facetas se puede usar para crear otro tipo de gráficas por grupo. 
+
+Por ejemplo, si queremos visualizar la distribución de la masa corporal de los pingüinos (`body_mass_g`) por especie hacemos lo siguiente:
+  
+  ```{r}
+#| fig-pos: center
+#| echo: true
+
+gf_histogram( ~ body_mass_g, data = penguins_data) %>% gf_facet_grid(species ~ .) 
+```
+
+## Aplicando el principio 3
+
+```{r}
+#| fig-pos: center
+#| echo: true
+#| code-fold: true
+
+
+mi_hist_facetas <- gf_histogram( ~ body_mass_g, data = penguins_data, color = "black", fill = "darkblue") %>% gf_facet_grid(species ~ .) 
+mi_hist_facetas <- mi_hist_facetas + labs(x = "Masa corporal (g)", y = "Frecuencia")
+mi_hist_facetas <- mi_hist_facetas + theme(axis.text=element_text(size=18), axis.title=element_text(size=18))
+mi_hist_facetas
+```
