@@ -4,7 +4,6 @@ title: |
    | Introducción a la Regresión Lineal Simple 
 author: 
   - name: Alan R. Vázquez
-    email: alanrvazquez@tec.mx
     affiliations:
       - name: Tecnológico de Monterrey
 format: revealjs
