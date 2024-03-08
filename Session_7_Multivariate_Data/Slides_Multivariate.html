@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-inpute00add5c</title>
+  <title>quarto-input517ecaba</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -501,8 +501,8 @@ Alan R. Vázquez
 <div class="center">
 <table>
 <colgroup>
-<col style="width: 23%">
-<col style="width: 76%">
+<col style="width: 26%">
+<col style="width: 73%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -852,7 +852,7 @@ Alan R. Vázquez
 <li>La especie de pingüinos (<code>species</code>).</li>
 <li>La isla de donde provienen (<code>island</code>).</li>
 </ul>
-<p>Asegurate que sean especificados como <code>factor</code> en R.</p>
+<p>Asegúrate que sean especificados como <code>factor</code> en R.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>penguins_data<span class="sc">$</span>island <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>island)</span>
 <span id="cb24-2"><a href="#cb24-2"></a>penguins_data<span class="sc">$</span>species <span class="ot">&lt;-</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -860,16 +860,16 @@ Alan R. Vázquez
 </section>
 <section id="gráfica-de-barras-apiladas" class="slide level2">
 <h2>Gráfica de barras apiladas</h2>
-<p>La gráfica de barras lado al lado se genera con la función <code>gf_bar()</code>, asignando la variable <span class="math inline">\(X\)</span> al argumento <code>fill</code>.</p>
+<p>La gráfica de barras lado al lado se genera con la función <code>gf_bar()</code>, asignando la variable <span class="math inline">\(X\)</span> al argumento <code>fill</code>. El nombre de la variable debe de estar precedido por una tilde <code>~X</code>.</p>
 <p><br></p>
-<p>Por ejemplo, para estudiar la distribución de las especies de pinguinos en las tres diferentes islas usamos lo siguiente:</p>
+<p>Por ejemplo, para estudiar la distribución de las especies de pingüinos en las tres diferentes islas usamos lo siguiente:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">gf_bar</span>( <span class="sc">~</span> species, <span class="at">data =</span> penguins_data, <span class="at">fill =</span> <span class="sc">~</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-10" class="slide level2">
 <h2></h2>
-<p>La gráfica muestra el la frecuencia de cada especie, separada por el nombre de la isla.</p>
+<p>La gráfica muestra la frecuencia de cada especie, separada por el nombre de la isla.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">gf_bar</span>( <span class="sc">~</span> species, <span class="at">data =</span> penguins_data, <span class="at">fill =</span> <span class="sc">~</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
@@ -898,7 +898,7 @@ Alan R. Vázquez
 <p>Ventajas de barras apiladas:</p>
 <ul>
 <li><p>Es más fácil entender qué proporciones de un todo se dividen entre segmentos.</p></li>
-<li><p>Agrega visualmente cada proporción. Ventajas de los gráficos de barras lado a lado:</p></li>
+<li><p>Agrega visualmente cada proporción.</p></li>
 </ul>
 </section>
 <section id="section-12" class="slide level2">
@@ -911,8 +911,8 @@ Alan R. Vázquez
 </section>
 <section id="resúmenes-estadísticos-1" class="slide level2">
 <h2>Resúmenes estadísticos</h2>
-<p>Para variables categóricas, los resúmenes estadísticos más comunes son la frequencia y la frecuencia relativa.</p>
-<p>El siguiente código muestra como calcular la frecuencia (<code>n</code>) y la frecuencia relativa (<code>Proporción</code>) usando funciones de la libreria <code>dplyr</code>.</p>
+<p>Para variables categóricas, los resúmenes estadísticos más comunes son la frecuencia y la frecuencia relativa.</p>
+<p>Este código muestra como calcular la frecuencia (<code>n</code>) y la frecuencia relativa (<code>Proporción</code>) usando funciones de la librería <code>dplyr</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>penguins_data <span class="sc">%&gt;%</span> <span class="fu">count</span>(island, species) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(island) <span class="sc">%&gt;%</span> </span>
 <span id="cb29-2"><a href="#cb29-2"></a>  <span class="fu">mutate</span>(<span class="st">"Proporción"</span> <span class="ot">=</span> <span class="fu">prop.table</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -953,15 +953,15 @@ Alan R. Vázquez
 <section id="gráfica-de-facetas-o-enrejado" class="slide level2">
 <h2>Gráfica de facetas o enrejado</h2>
 <p>La gráfica de facetas visualiza la relación o distribución de una o dos variables para cada subgrupo definido por una tercera variable <span class="math inline">\(Z\)</span>.</p>
-<p>Crea una gráfica para cada subgrupo de <span class="math inline">\(Z\)</span>.</p>
-<p>La gráfica se crea usando la función <code>gf_facet_grid</code> con la sintaxis <code>%&gt;%</code> de <code>dplyr</code>.</p>
+<p><strong>Idea:</strong> Crear una gráfica para cada subgrupo de <span class="math inline">\(Z\)</span>.</p>
+<p>Para hacer la gráfica, usa la función <code>gf_facet_grid</code> con la sintaxis <code>%&gt;%</code> de <code>dplyr</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data) <span class="sc">%&gt;%</span> <span class="fu">gf_facet_grid</span>(origin <span class="sc">~</span> .) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-13" class="slide level2">
 <h2></h2>
-<p>La función produce una rejilla con una columna y tres filas de gráficas.</p>
+<p>La función produce una rejilla con 1 columna y 3 filas de gráficas. Cada fila acomoda una categoría de <code>origin</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">gf_point</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data) <span class="sc">%&gt;%</span> <span class="fu">gf_facet_grid</span>(origin <span class="sc">~</span> .) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
@@ -977,7 +977,7 @@ Alan R. Vázquez
 <img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch quarto-figure-center"></section>
 <section id="gráficas-para-cuatro-variables" class="slide level2">
 <h2>Gráficas para cuatro variables</h2>
-<p>Una gráfica común para cuatro variables es la gráfica de dispersión donde el color y el tamaño de los símbolos dependen de dos variables adicionales <strong>categóricas</strong>.</p>
+<p>Una gráfica común para 4 variables es la gráfica de dispersión, donde el color y el tamaño de los símbolos dependen de dos variables adicionales <strong>categóricas</strong>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">gf_point</span>(bill_length_mm <span class="sc">~</span> bill_depth_mm, <span class="at">size =</span> <span class="sc">~</span>island, </span>
 <span id="cb35-2"><a href="#cb35-2"></a><span class="at">color =</span> <span class="sc">~</span>species, <span class="at">data =</span> penguins_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -986,7 +986,7 @@ Alan R. Vázquez
 <img data-src="Slides_Multivariate_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch quarto-figure-center"></section></section>
 <section id="más-gráficas" class="title-slide slide level1 center">
 <h1>Más gráficas</h1>
-<p>https://www.mosaic-web.org/ggformula/articles/pkgdown/ggformula-long.html</p>
+<p><a href="https://www.mosaic-web.org/ggformula/articles/pkgdown/ggformula-long.html" class="uri">https://www.mosaic-web.org/ggformula/articles/pkgdown/ggformula-long.html</a></p>
 
 <img src="IN2039_logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 

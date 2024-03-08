@@ -14,265 +14,244 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-# Relationship between two continuous variables
+## Los Tópicos de Hoy
 
-## Principio 1: Formula la pregunta.
+1.  Introducción
 
-Preguntas que podemos contestar con la regression linear simple
+2.  Relación entre dos variables numéricas
 
--   Is there a relationship between a response variable and predictors?
+3.  Regresión lineal simple
 
--   How strong is the relationship?
 
--   What is the uncertainty?
+## Carguemos las librerías
 
--   How accurately can we predict a future outcome?
+Carguemos las librerías `ggplot2`, `ggformula`, `readxl` y `dplyr` en Google Colab y R antes de comenzar.
 
-## Example
+```{r}
+#| echo: true
+#| output: false
 
-> If we know a Star Wars character's heigh, can we guess how much they weigh
+# Nos se te olvide instalar la librería "ggformula" en Google Colab.
+# install.packages("ggformula")
+library(readxl)
+library(ggplot2)
+library(ggformula)
+library(dplyr)
+```
 
-R plot
 
-# Data = model + error
+## Ejemplo
 
-# $y = f(x) + \epsilon$
+Usemos datos de 392 autos sobre sus millas por galón, número de cilindros, caballos de fuerza, peso, aceleración, año, origen, entre otras variables.
 
-## Simple linear regression
+Los datos están en el archivo "auto_dataset.xlsx".
 
-$$
-y = f(x) + \epsilon
-$$
+```{r}
+#| echo: true
 
-## Simple linear regression
+auto_data <- read_excel("auto_dataset.xlsx") # Leer los datos.
+head(auto_data) # Ver las primeras 6 observaciones.
+```
 
-$$
-y = f(x) + \epsilon
-$$
+# Relación entre dos variables numéricas
 
-Continuous (dependent) variable.
+## Principio 1: Formula el mensaje
 
-## Simple linear regression
+Preguntas que podemos contestar con la regresión lineal simple
 
-$$
-y = f(x) + \epsilon
-$$
+::: incremental
+- ¿Existe una relación entre una variable de respuesta y los predictores?
 
-Continuous (independent) variable
+- ¿Qué tan fuerte es la relación?
 
-## Simple linear regression
+- ¿Cuál es la incertidumbre?
 
-$$
-y = f(x) + \epsilon
-$$
-
-A function that gives the mean value of $y$ at any value of $x$.
-
-## What function do you think we are using to get the mean value of $y$ with simple linear regression?
-
-Relationship between mass and height for Star Wars characters.
-
-# We express the mean mass of the Star Wars character as a *linear function* of their height
-
-## What is the equation that represents this line?
-
-Relationship between mass and height for Star Wars characters.
-
-\[R PLOT\]
+- ¿Con qué precisión podemos predecir un resultado futuro?
+:::
 
 ## 
 
-$$
-y = \beta_0 + \beta_1 x
-$$
+¿Hay una relación entre el peso de un auto y sus millas por galón?
 
-Relationship between mass and height for Star Wars characters.
+```{r}
+#| fig-pos: center
+#| echo: false
+#| code-fold: true
 
-\[R PLOT\]
+mi_diagrama <- gf_point(mpg ~ weight, data = auto_data, color = "darkblue", size = 2) + labs(x = "Peso (lb)", y = "Millas por galón")
+mi_diagrama <- mi_diagrama + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
+                                   plot.title=element_text(size=25))
+mi_diagrama
+```
 
-## 
+## Problema de regresión
 
-$$
-\text{mass} = \beta_0 + \beta_1 (\text{height})
-$$
+**Objetivo**: encontrar la mejor función $f(X)$ del predictor $X$ que describa la respuesta $Y$.
 
-Relationship between mass and height for Star Wars characters.
+. . .
 
-\[R PLOT\]
-
-## Model interpretation
-
-> What is $\beta_0$?
-
-\[PLOT\]
-
-$\beta_0$ is the average value of the response when $x$ is 0.
-
-## Model interpretation
-
-> Is $\beta_0$ meaningful?
-
-\[PLOT\]
-
-## Model interpretation
-
-> What is $\beta_1$?
-
-\[PLOT\]
-
-$\beta_1$ is the average change in the response when increasing $x$ by one unit.
-
-# Do all points fall exactly on the line?
-
-No!
+En términos matemáticos, queremos establecer la siguiente relación
 
 $$
-y = \beta_0 + \beta_1 x + \epsilon
+Y = f(X) + \epsilon,
 $$
 
-Show errors in plot
+donde $\epsilon$ es un error natural (aleatorio). 
 
-## The true model
+##
 
-$$
-y = \beta_0 + \beta_1 x + \epsilon
-$$
 
--   If we had the whole population of the Star Wars universe, we could quantify the exact relationship between $x$ and $y$.
+- En la práctica es muy difícil saber la verdadera estructura de la función $f(X)$.
 
-## The reality
+::: incremental
 
-$$
-\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x 
-$$
+- Lo mejor que podemos hacer es construir una aproximación (función) $\hat{f}(X)$.
 
--   In reality, we have a sample of Star Wars characters to estimate the relationship between $x$ and $y$ (height and mass).
+- Hay varias estrategias para construir $\hat{f}(X)$, una de las más utilizadas es:
 
--   The "hats" represent the estimated (fitted) values.
+  1. Definir una "estructura" o "fórmula" simple. 
+  2. Estimar los elementos de la "fórmula" usando los datos.
+:::
 
-# Let's do this in R
+# Regresión lineal simple
 
-## Simple linear regression in R
+## Modelo de regresión lineal
 
-show code
+Una función $f(X)$ muy común para predecir una respuesta ($Y$) es el **modelo de regresión lineal**.
 
-## Interpretation
-
-Show code
-
-For every **one centimeter** increase in height, a Star Wars characters weight **on average** increases by 0.62.
-
-# For every one unit increase in $x$, the expected change in $y$ is $\hat{\beta}_1$
-
-## Why do we fit a linear model?
-
--   It reduces the dimensionality of the data (from an $n$ by 2 table to only two numbers).
-
--   To get a sense of the relationship between $x$ and $y$ for a "typical observation.
-
-    -   When is this an accurate representation?
-
-# Where did these $\hat{y}$ values come from?
-
-![](images/Screenshot%202024-01-30%20at%204.08.35%20p.m..png)
-
-## How did we choose this line?
-
-Show line
-
-## Minimize the residuals
-
-Show residuals
-
-## Minimize the least squares
-
-Plot with least squares.
-
-## Residuals are important
-
-Technically, a residual is calculated as
+Tiene la forma matemática:
 
 $$
-e_i = y_i - \hat{y}_i
+\hat{Y}_i = \hat{\beta}_0 + \hat{\beta}_1 X_i,
 $$
 
-The behaviour of the residuals tells you whether your model is correct or not.
+::: incremental
+- Donde $i$ es el indice de los $n$ datos de entrenamiento, y
+- $\hat{Y}_i$ es la predicción del valor real de la respuesta $Y$ asociada a un valor del predictor igual a $X_i$.
+- Los valores $\hat{\beta}_0$ y $\hat{\beta}_1$ se llaman [coeficientes]{style="color:darkblue;"} del modelo.
+::: 
 
-## Residual analysis
+## Para nuestro ejemplo
 
-Two important assumptions of the residuals
-
-1.  Constant Variance
-2.  Independence
-
-## Constant Variance
-
-Plot as in our course.
-
-## Independence
-
-Plot as in our course
-
-## Transformaciones
-
-También buscamos ver si una transformación de una u otra característica o de ambas conduce a una relación lineal.
-
-Esto se puede hacer aplicando la función `log()` a una de las variables.
+$\hat{Y}_i = 46.32 -0.0076 X_i$
 
 ```{r}
 #| fig-pos: center
 #| echo: false
 
-gf_point(log(mpg) ~ weight, data = auto_data)
+grafica_modelo <- mi_diagrama %>% gf_lm(color = "red", lty = 1, size = 2)
+grafica_modelo
 ```
 
-## El efecto de una transformación
+## La fórmula
 
-El efecto de una transformación es "linealizar" la relación entre las variables.
+$\text{mpg}_i = 46.32 - 0.0076 \times \text{peso}_i$
 
-::: columns
-::: {.column width="50%"}
 ```{r}
 #| fig-pos: center
-#| echo: true
+#| echo: false
 
-gf_point(mpg ~ weight, 
-         data = auto_data)
+grafica_modelo
 ```
-:::
 
-::: {.column width="50%"}
+## Interpretación de los coefficientes
+
+> ¿Qué significa $\hat{\beta}_0 = 46.32$?
+
+. . .
+
+$\hat{\beta}_0$ es el valor promedio de la respuesta cuando $X_i = 0$.
+
 ```{r}
 #| fig-pos: center
-#| echo: true
+#| echo: false
 
-gf_point(log(mpg) ~ weight, 
-         data = auto_data)
+grafica_intercepto <- grafica_modelo + scale_y_continuous(limits = c(0, 50)) + scale_x_continuous(limits = c(0, 5500))
+grafica_intercepto %>% gf_hline(yintercept = 46.317364, lty = 2) %>% gf_vline(xintercept = 0, lty = 2)
 ```
-:::
-:::
 
-El diagrama de dispersión de la derecha explora la relación $log(Y) = X$. O , qeuivalentemente, la relación $Y = e^X$.
+## 
 
-## Transformaciones
+¿Tiene sentido $\hat{\beta}_0 = 46.32$?
 
-Otra forma común de ajustar la escala es transformar los datos o los ejes del gráfico. Usamos transformaciones para datos sesgados para que sea más fácil inspeccionar la distribución.
+```{r}
+#| fig-pos: center
+#| echo: false
 
-Y cuando la transformación produce una distribución simétrica, la simetría conlleva propiedades útiles para el modelado (que veremos más adelante).
+grafica_intercepto <- grafica_modelo + scale_y_continuous(limits = c(0, 50)) + scale_x_continuous(limits = c(0, 5500))
+grafica_intercepto %>% gf_hline(yintercept = 46.317364, lty = 2) %>% gf_vline(xintercept = 0, lty = 2)
+```
 
-Hay varias formas de transformar datos, pero la transformación de registros tiende a ser especialmente útil.
+. . .
 
-## La transformación del registro
+No! Porque no hay autos con un peso igual a 0.
 
-La transformación logarítmica puede revelar varios tipos comunes de relaciones. Debido a esto, la transformación logarítmica se considera la navaja de las transformaciones.
+## 
+
+> ¿Qué significa $\hat{\beta}_1 = - 0.0076$?
+
+. . .
+
+$\hat{\beta}_1$ es el cambio promedio en la respuesta al aumentar $X_i$ en una unidad.
+
+```{r}
+#| fig-pos: center
+#| echo: false
+
+grafica_modelo
+```
+
+## Interpretación
+
+*Por cada libra extra en el peso de un auto, el auto tiene una reducción promedio de 0.0076 millas por galón.*
 
 
-# Actividad
+## ¿Caen todos los puntos exactamente sobre la linea?
 
-## Application Excercise
+. . .
 
-1.  Go to [lucy.shinyapps.io/least-squares/](https://lucy.shinyapps.io/least-squares/)
+No! El modelo tiene [errores]{style="color:darkgreen;"}.
 
-2.  This shows a scatter plot of 10 data points with a line estimating the relationship between `x` and `y`. Drag the blue points to change the line.
+. . .
 
-3.  See if you can find a line that minimizes the sum of square errors
+Técnicamente, el error de la *i*-ésima observación es $e_i = Y_i - \hat{Y}_i = Y_i - \hat{\beta}_0 - \hat{\beta}_1 X_i$.
+
+# De hecho ...
+
+Los coeficientes $\hat{\beta}_0$ y $\hat{\beta}_1$ se obtienen al minimizar la suma de cuadrados de los errores.
+
+En otras palabras, $\hat{\beta}_0$ y $\hat{\beta}_1$ son los valores que minimizan la siguiente expresión:
+
+$$
+(Y_1 - (\hat{\beta}_0 + \hat{\beta}_1 X_1 ))^2 + (Y_2 - (\hat{\beta}_0 + \hat{\beta}_1 X_2 ))^2 + \cdots + (Y_{n} - (\hat{\beta}_0 + \hat{\beta}_1 X_{n} ))^2 
+$$
+
+para las $n$ observaciones.
+
+## Inspeccionar los errores
+
+El comportamiento de los errores indica si el modelo esta correcto o no. Si el modelo es correcto, los errores se deben de comportar como sigue:
+
+1. En promedio, deben de estar alrededor de 0 para cada valor predecido $\hat{Y}_i$.
+2. Tener una dispersión constante alrededor de cada valor predecido $\hat{Y}_i$.
+3. Ser independientes los unos de los otros. Es decir, no estar relacionados.
+
+## 
+
+Para evaluar estos comportamientos, usamos dos gráficas de errores.
+
+Aquí solo mostraremos una gráfica sencilla sobre los valores predecidos y los errores.
+
+## Dispersión constante
+
+```{r}
+mi_modelo <- lm(mpg ~ weight, data = auto_data)
+datos_modelo <- data.frame("Predicciones" = mi_modelo$fitted, 
+                           "Errores" = mi_modelo$residuals)
+
+mi_diagrama_residuos <- gf_point(Errores ~ Predicciones, data = datos_modelo, color = "darkblue", size = 2) 
+mi_diagrama_residuos <- mi_diagrama_residuos + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
+mi_diagrama_residuos <- mi_diagrama_residuos %>% gf_hline(yintercept = 0, lty = 2)
+mi_diagrama_residuos
+```
+
