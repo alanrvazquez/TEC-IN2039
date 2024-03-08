@@ -130,7 +130,7 @@ $$
 $$
 
 ::: incremental
-- Donde $i$ es el indice de los $n$ datos de entrenamiento, y
+- Donde $i$ es el indice de las $n$ observaciones, y
 - $\hat{Y}_i$ es la predicción del valor real de la respuesta $Y$ asociada a un valor del predictor igual a $X_i$.
 - Los valores $\hat{\beta}_0$ y $\hat{\beta}_1$ se llaman [coeficientes]{style="color:darkblue;"} del modelo.
 ::: 
@@ -249,6 +249,10 @@ Aquí solo mostraremos una gráfica sencilla sobre los valores predecidos y los 
 ## Dispersión constante
 
 ```{r}
+#| echo: true
+#| code-fold: true
+
+
 mi_modelo <- lm(mpg ~ weight, data = auto_data)
 datos_modelo <- data.frame("Predicciones" = mi_modelo$fitted, 
                            "Errores" = mi_modelo$residuals)

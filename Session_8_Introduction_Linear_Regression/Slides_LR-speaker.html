@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.450">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-inputc766de9f</title>
+  <title>quarto-inputecc1e13d</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -512,7 +512,7 @@ Y = f(X) + \epsilon,
 \]</span></p>
 <div>
 <ul>
-<li class="fragment">Donde <span class="math inline">\(i\)</span> es el indice de los <span class="math inline">\(n\)</span> datos de entrenamiento, y</li>
+<li class="fragment">Donde <span class="math inline">\(i\)</span> es el indice de las <span class="math inline">\(n\)</span> observaciones, y</li>
 <li class="fragment"><span class="math inline">\(\hat{Y}_i\)</span> es la predicción del valor real de la respuesta <span class="math inline">\(Y\)</span> asociada a un valor del predictor igual a <span class="math inline">\(X_i\)</span>.</li>
 <li class="fragment">Los valores <span class="math inline">\(\hat{\beta}_0\)</span> y <span class="math inline">\(\hat{\beta}_1\)</span> se llaman <span style="color:darkblue;">coeficientes</span> del modelo.</li>
 </ul>
@@ -612,6 +612,8 @@ Y = f(X) + \epsilon,
 <section id="dispersión-constante" class="slide level2">
 <h2>Dispersión constante</h2>
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>mi_modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> weight, <span class="at">data =</span> auto_data)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>datos_modelo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Predicciones"</span> <span class="ot">=</span> mi_modelo<span class="sc">$</span>fitted, </span>
 <span id="cb4-3"><a href="#cb4-3"></a>                           <span class="st">"Errores"</span> <span class="ot">=</span> mi_modelo<span class="sc">$</span>residuals)</span>
@@ -620,6 +622,7 @@ Y = f(X) + \epsilon,
 <span id="cb4-6"><a href="#cb4-6"></a>mi_diagrama_residuos <span class="ot">&lt;-</span> mi_diagrama_residuos <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>), <span class="at">axis.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">20</span>))</span>
 <span id="cb4-7"><a href="#cb4-7"></a>mi_diagrama_residuos <span class="ot">&lt;-</span> mi_diagrama_residuos <span class="sc">%&gt;%</span> <span class="fu">gf_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
 <span id="cb4-8"><a href="#cb4-8"></a>mi_diagrama_residuos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img data-src="Slides_LR_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
 </div>
