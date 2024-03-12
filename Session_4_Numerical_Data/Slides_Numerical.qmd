@@ -86,7 +86,7 @@ En R, los datos numéricos se llaman `numeric`. Preguntemos si R reconoce nuestr
 is.numeric(piston_data$cycle_time)
 ```
 
-## Resúmen estadístico
+## Resumen estadístico
 
 > Nos ayuda a resumir un conjunto de observaciones de una manera simple.
 

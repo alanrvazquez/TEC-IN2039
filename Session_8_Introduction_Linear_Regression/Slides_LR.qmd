@@ -26,7 +26,6 @@ css: style.css
 
 3.  Regresión lineal simple
 
-
 ## Carguemos las librerías
 
 Carguemos las librerías `ggplot2`, `ggformula`, `readxl` y `dplyr` en Google Colab y R antes de comenzar.
@@ -42,7 +41,6 @@ library(ggplot2)
 library(ggformula)
 library(dplyr)
 ```
-
 
 ## Ejemplo
 
@@ -64,13 +62,13 @@ head(auto_data) # Ver las primeras 6 observaciones.
 Preguntas que podemos contestar con la regresión lineal simple
 
 ::: incremental
-- ¿Existe una relación entre una variable de respuesta y los predictores?
+-   ¿Existe una relación entre una variable de respuesta y los predictores?
 
-- ¿Qué tan fuerte es la relación?
+-   ¿Qué tan fuerte es la relación?
 
-- ¿Cuál es la incertidumbre?
+-   ¿Cuál es la incertidumbre?
 
-- ¿Con qué precisión podemos predecir un resultado futuro?
+-   ¿Con qué precisión podemos predecir un resultado futuro?
 :::
 
 ## 
@@ -100,21 +98,19 @@ $$
 Y = f(X) + \epsilon,
 $$
 
-donde $\epsilon$ es un error natural (aleatorio). 
+donde $\epsilon$ es un error natural (aleatorio).
 
-##
+## 
 
-
-- En la práctica es muy difícil saber la verdadera estructura de la función $f(X)$.
+-   En la práctica es muy difícil saber la verdadera estructura de la función $f(X)$.
 
 ::: incremental
+-   Lo mejor que podemos hacer es construir una aproximación (función) $\hat{f}(X)$.
 
-- Lo mejor que podemos hacer es construir una aproximación (función) $\hat{f}(X)$.
+-   Hay varias estrategias para construir $\hat{f}(X)$, una de las más utilizadas es:
 
-- Hay varias estrategias para construir $\hat{f}(X)$, una de las más utilizadas es:
-
-  1. Definir una "estructura" o "fórmula" simple. 
-  2. Estimar los elementos de la "fórmula" usando los datos.
+    1.  Definir una "estructura" o "fórmula" simple.
+    2.  Estimar los elementos de la "fórmula" usando los datos.
 :::
 
 # Regresión lineal simple
@@ -130,10 +126,10 @@ $$
 $$
 
 ::: incremental
-- Donde $i$ es el indice de las $n$ observaciones, y
-- $\hat{Y}_i$ es la predicción del valor real de la respuesta $Y$ asociada a un valor del predictor igual a $X_i$.
-- Los valores $\hat{\beta}_0$ y $\hat{\beta}_1$ se llaman [coeficientes]{style="color:darkblue;"} del modelo.
-::: 
+-   Donde $i$ es el indice de las $n$ observaciones, y
+-   $\hat{Y}_i$ es la predicción del valor real de la respuesta $Y$ asociada a un valor del predictor igual a $X_i$.
+-   Los valores $\hat{\beta}_0$ y $\hat{\beta}_1$ se llaman [coeficientes]{style="color:darkblue;"} del modelo.
+:::
 
 ## Para nuestro ejemplo
 
@@ -209,7 +205,6 @@ grafica_modelo
 
 *Por cada libra extra en el peso de un auto, el auto tiene una reducción promedio de 0.0076 millas por galón.*
 
-
 ## ¿Caen todos los puntos exactamente sobre la linea?
 
 . . .
@@ -236,9 +231,9 @@ para las $n$ observaciones.
 
 El comportamiento de los errores indica si el modelo esta correcto o no. Si el modelo es correcto, los errores se deben de comportar como sigue:
 
-1. En promedio, deben de estar alrededor de 0 para cada valor predecido $\hat{Y}_i$.
-2. Tener una dispersión constante alrededor de cada valor predecido $\hat{Y}_i$.
-3. Ser independientes los unos de los otros. Es decir, no estar relacionados.
+1.  En promedio, deben de estar alrededor de 0 para cada valor predecido $\hat{Y}_i$.
+2.  Tener una dispersión constante alrededor de cada valor predecido $\hat{Y}_i$.
+3.  Ser independientes los unos de los otros. Es decir, no estar relacionados.
 
 ## 
 
@@ -262,4 +257,3 @@ mi_diagrama_residuos <- mi_diagrama_residuos + theme(axis.text=element_text(size
 mi_diagrama_residuos <- mi_diagrama_residuos %>% gf_hline(yintercept = 0, lty = 2)
 mi_diagrama_residuos
 ```
-

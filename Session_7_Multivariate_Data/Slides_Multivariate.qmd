@@ -117,7 +117,7 @@ Existen varios tipos de gráficas que nos ayudan a explorar relaciones entre dos
 
 ::: center
 | Tipo        | Gráfica                                                                                       |
-|:------------------|:----------------------------------------------------|
+|:------------|:----------------------------------------------------------------------------------------------|
 | Numéricas   | Gráfico de dispersión                                                                         |
 | Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico                 |
 | Mixta       | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |

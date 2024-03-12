@@ -235,7 +235,7 @@ Puedes encontrar más información en nuestra página de Canvas.
 
 ## 
 
-En escencia, una visualización de datos te permite profundizar en conjuntos de datos complejos para obtener información significativa mediante el uso de pantallas gráficas.
+En esencia, una visualización de datos te permite profundizar en conjuntos de datos complejos para obtener información significativa mediante el uso de pantallas gráficas.
 
 <br/>
 
