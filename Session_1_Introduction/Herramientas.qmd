@@ -1,6 +1,5 @@
 ---
 title: |
-   | Sesión 2: 
    | Herramientas para construir gráficas
 author: 
   - name: Alan R. Vázquez
@@ -228,7 +227,7 @@ lo mismo si olvidas incluir un parentesis
 
 Prácticamente cualquier cosa, incluidos los resultados de cualquier función de R, se puede guardar en un *objeto*.
 
-Esto se logra mediante el uso de un operador de asignación, que se parece a una flecha (`<-`).
+Esto se logra mediante el uso de un operador de asignación, que se parece a una flecha (`<-` o `=`).
 
 . . .
 
@@ -248,7 +247,7 @@ Por ejemplo,
 
 # Este código asignará el numero 18 al objeto llamado mi_numero_favorito
 
-mi_numero_favorito <- 18
+mi_numero_favorito = 18
 ```
 
 Después de ejecutar este código, no sucede nada. Pero si lo ejecutamos el objeto por si solo, podremos ver lo qua hay en el.
@@ -256,7 +255,7 @@ Después de ejecutar este código, no sucede nada. Pero si lo ejecutamos el obje
 ```{r}
 #| echo: true
 
-mi_numero_favorito <- 18
+mi_numero_favorito = 18
 mi_numero_favorito
 
 ```
@@ -288,8 +287,8 @@ Este código crea dos vectores
 ```{r}
 #| echo: true
 
-mi_vector <- c(1,2,3,4,5)
-mi_vector_2 <- c(10,10,10,10,10)
+mi_vector = c(1,2,3,4,5)
+mi_vector_2 = c(10,10,10,10,10)
 ```
 
 Veamos su contenido
@@ -311,7 +310,7 @@ Podemos hacer operaciones simples con vectores. Por ejemplo, podemos multiplicar
 ```{r}
 #| echo: true
 
-mi_vector <- c(1, 2, 3, 4, 5)
+mi_vector = c(1, 2, 3, 4, 5)
 100*mi_vector
 ```
 
@@ -368,8 +367,8 @@ Si R sabe que estás usando números, puede hacer muchas cosas con ellos. Hemos 
 
 # Aquí hay dos formas de crear un vector numérico con los 
 # números del 1 al 10.
-mi_num_1 <- c(1,2,3,4,5,6,7,8,9,10)
-mi_num_2 <- 1:10
+mi_num_1 = c(1,2,3,4,5,6,7,8,9,10)
+mi_num_2 = 1:10
 ```
 
 Obtenemos lo mismo.
@@ -395,7 +394,7 @@ Los caracteres se componen de texto, como palabras u oraciones. Un ejemplo de un
 ```{r}
 #| echo: true
 
-muchos_holas <- c("hi", "hello", "hola", "bonjour", "ni hao", "merhaba")
+muchos_holas = c("hi", "hello", "hola", "bonjour", "ni hao", "merhaba")
 muchos_holas
 ```
 
@@ -439,9 +438,9 @@ Por ejemplo, `5 != 3` es una declaración `TRUE`.
 #| echo: true
 #| output: false
 
-A <- 1
-B <- 5
-compare <- A > B
+A = 1
+B = 5
+compare = A > B
 compare
 ```
 
@@ -451,8 +450,8 @@ compare
 #| echo: true
 #| output: false
 
-mis_numeros <- 1:10
-mis_booleanos <- mis_numeros >= 5
+mis_numeros = 1:10
+mis_booleanos = mis_numeros >= 5
 
 mis_numeros
 mis_booleanos
@@ -729,6 +728,65 @@ subtitle = "Dimensiones para pingüinos en Adelie,
 x = "Profundidad del pico (mm)", y = "Longitud del pico (mm)",
 color = "Especie") +  scale_color_viridis_d()
 
+```
+
+## Plotly
+
+**Plotly** es una biblioteca de visualización de datos que permite crear gráficos interactivos y atractivos de manera fácil y eficiente. Plotly se destaca por su capacidad para generar gráficos que pueden interactuar con el usuario final, lo que resulta ideal para aplicaciones web y dashboards.
+
+Algunas de sus características principales son:
+
+-   Interactividad.
+
+-   Variedad de gráficos.
+
+-   Compatibilidad con Python, R y ggplot2.
+
+-   Integración con Dash para crear dashboards.
+
+## Plotly en ggplot2
+
+Las gráficas de `ggplot2` son estáticas porque no permiten interacción con el usuario. Para hacerlas más interactivas, podemos utilizar la librería `library(plotly)` en R.
+
+Para esto, primero guardamos la gráfica de ggplot a un objeto llamado `my_plot` y usamos la función `ggplotly(my_plot)` de la libreria `plotly`.
+
+```{r}
+#| echo: true
+#| output: false
+#| fig-height: 4
+#| fig-pos: center 
+
+# install.packages("plotly)
+library(plotly)
+my_plot = gf_point(bill_length_mm ~ bill_depth_mm, data = penguins_data, 
+color = ~species) + labs(title = "Profundidad y longitud del pico", 
+subtitle = "Dimensiones para pingüinos en Adelie,
+         Chinstrap, and Gentoo", 
+x = "Profundidad del pico (mm)", y = "Longitud del pico (mm)",
+color = "Especie") +  scale_color_viridis_d()
+
+ggplotly(my_plot)
+
+```
+
+## 
+
+```{r}
+#| echo: false
+#| output: true
+#| fig-height: 4
+#| fig-pos: center 
+
+# install.packages("plotly)
+library(plotly)
+my_plot = gf_point(bill_length_mm ~ bill_depth_mm, data = penguins_data, 
+color = ~species) + labs(title = "Profundidad y longitud del pico", 
+subtitle = "Dimensiones para pingüinos en Adelie,
+         Chinstrap, and Gentoo", 
+x = "Profundidad del pico (mm)", y = "Longitud del pico (mm)",
+color = "Especie") +  scale_color_viridis_d()
+
+ggplotly(my_plot)
 ```
 
 ## Mini-actividad (*solo* mode)

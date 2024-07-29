@@ -1,6 +1,5 @@
 ---
 title: |
-   | Sesión 3: 
    | Tipos de Variables  
 author: 
   - name: Alan R. Vázquez
@@ -103,7 +102,7 @@ Toman valores que se colocan en *categorías*.
 . . .
 
 |                  |                                                                 |
-|-------------------|-----------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | **Variable**     | **Categorias**                                                  |
 | Reseña en Amazon | 1$\bigstar$, 2$\bigstar$, 3$\bigstar$, 4$\bigstar$, 5$\bigstar$ |
 | País de origen   | México, Canadá, EUA                                             |
@@ -216,7 +215,7 @@ La función `is.character()` nos ayuda a saber si el objeto es de tipo carácter
 #| eval: true
 #| echo: true
 
-niveles <- c("Bajo", "Medio", "Alto", "Alto", "Medio")
+niveles = c("Bajo", "Medio", "Alto", "Alto", "Medio")
 is.character(niveles)
 ```
 
@@ -228,7 +227,7 @@ La función `is.logical()` nos ayuda a saber si el objeto es de tipo lógico o b
 #| eval: true
 #| echo: true
 
-estas_deacuerdo <- c(TRUE, TRUE, FALSE)
+estas_deacuerdo = c(TRUE, TRUE, FALSE)
 is.logical(estas_deacuerdo)
 ```
 
@@ -246,7 +245,7 @@ Por ejemplo, consideremos una variable llamada `niveles` que contiene niveles de
 #| eval: true
 #| echo: true
 
-niveles <- c("Bajo", "Medio", "Alto", "Alto", "Medio")
+niveles = c("Bajo", "Medio", "Alto", "Alto", "Medio")
 ```
 
 ## 
@@ -257,7 +256,7 @@ Para que R entienda que estos datos siguen las tres categorías con un orden esp
 #| eval: true
 #| echo: true
 
-mi_variable_ordinal <- factor(niveles, levels = c("Bajo", "Medio", "Alto"))
+mi_variable_ordinal = factor(niveles, levels = c("Bajo", "Medio", "Alto"))
 mi_variable_ordinal
 ```
 
@@ -314,7 +313,7 @@ countdown::countdown(minutes = 30)
 
 ::: center
 | Tipo     | Gráfica                                                           |
-|:----------------|:------------------------------------------------------|
+|:-----------------|:-----------------------------------------------------|
 | Numérica | Histograma, gráfica de caja, gráfica de violín, curva de densidad |
 :::
 
@@ -334,7 +333,7 @@ countdown::countdown(minutes = 30)
 
 ::: center
 | Tipo        | Gráfica                                                                       |
-|:----------------|:------------------------------------------------------|
+|:-----------------|:-----------------------------------------------------|
 | Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico |
 :::
 
@@ -356,7 +355,7 @@ countdown::countdown(minutes = 30)
 
 ::: center
 | Tipo  | Gráfica                                                                                       |
-|:---------------|:-------------------------------------------------------|
+|:-----------------|:-----------------------------------------------------|
 | Mixta | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |
 :::
 

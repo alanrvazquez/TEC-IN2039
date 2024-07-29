@@ -1,6 +1,5 @@
 ---
 title: |
-   | Sesión 1: 
    | ¿Qué es la visualización de datos?
 author: 
   - name: Alan R. Vázquez
