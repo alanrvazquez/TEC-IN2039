@@ -179,7 +179,7 @@ Las funciones tienen dos partes básicas:
 ::: incremental
 -   La primera parte es el nombre de la función (por ejemplo, `sum`).
 
--   La segunda parte es la entrada a la función, que va dentro del paréntesis (`sum(1+5+15)`).
+-   La segunda parte es la entrada a la función, que va dentro del paréntesis (`sum(1, 5, 15)`).
 :::
 
 ## R es exigente
@@ -476,7 +476,7 @@ A menudo tenemos que encontrar estos errores mediante prueba y error.
 
 -   En septiembre de 2020, hay más de 16, 000 paquetes disponibles en CRAN (la red integral de archivos R)
 
--   Trabajaremos mayormente con las librerías **readxl**, **ggplot2** y **ggformula**.
+-   Trabajaremos mayormente con las librerías `readxl`, `dplyr`,  `ggplot2`, `ggformula`, y `plotly`.
 
 # ¿Cómo cargar datos en R?
 
@@ -571,7 +571,6 @@ En este curso, asumiremos que los datos están almacenados en un archivo Excel c
 ![](images/clipboard-1776523589.png){width="475"}
 :::
 :::
-
 [***El archivo debe de ser previamente cargado en Google Colab.***]{style="color:red;"}
 
 ## Librería `readxl`
@@ -610,7 +609,7 @@ head(penguins_data)
 
 # ggplot2
 
-## ggplot2
+## `ggplot2`
 
 ::: columns
 ::: {.column width="50%"}
@@ -652,11 +651,11 @@ library(ggformula)
 
 ggplot tiene una estructura para crear gráficas por pasos.
 
-[`gf_PLOTTYPE(Variable2 ~ Variable1, data = my_data, color = ~Variable3, shape = ~Variable4)`]{style="color:red;"}
+[gf_PLOTTYPE(Variable2 ~ Variable1, data = my_data, color = ~Variable3, shape = ~Variable4)]{style="color:#619CFF;"}
 
-[`+ labs(title, subtitle, caption, x, y, color, shape)`]{style="color:blue;"}
+[+ labs(title, subtitle, caption, x, y, color, shape)]{style="color:#F8766D;"}
 
-[`+ more_options()`]{style="color:lightblue;"}
+[+ more_options()]{style="color:#00BA38;"}
 
 ## Ejemplo
 
@@ -716,70 +715,11 @@ color = "Especie") +  scale_color_viridis_d()
 
 ```
 
-## Plotly
-
-**Plotly** es una biblioteca de visualización de datos que permite crear gráficos interactivos y atractivos de manera fácil y eficiente. Plotly se destaca por su capacidad para generar gráficos que pueden interactuar con el usuario final, lo que resulta ideal para aplicaciones web y dashboards.
-
-Algunas de sus características principales son:
-
--   Interactividad.
-
--   Variedad de gráficos.
-
--   Compatibilidad con Python, R y ggplot2.
-
--   Integración con Dash para crear dashboards.
-
-## Plotly en ggplot2
-
-Las gráficas de `ggplot2` son estáticas porque no permiten interacción con el usuario. Para hacerlas más interactivas, podemos utilizar la librería `library(plotly)` en R.
-
-Para esto, primero guardamos la gráfica de ggplot a un objeto llamado `my_plot` y usamos la función `ggplotly(my_plot)` de la libreria `plotly`.
-
-```{r}
-#| echo: true
-#| output: false
-#| fig-height: 4
-#| fig-pos: center 
-
-# install.packages("plotly)
-library(plotly)
-my_plot = gf_point(bill_length_mm ~ bill_depth_mm, data = penguins_data, 
-color = ~species) + labs(title = "Profundidad y longitud del pico", 
-subtitle = "Dimensiones para pingüinos en Adelie,
-         Chinstrap, and Gentoo", 
-x = "Profundidad del pico (mm)", y = "Longitud del pico (mm)",
-color = "Especie") +  scale_color_viridis_d()
-
-ggplotly(my_plot)
-
-```
-
-## 
-
-```{r}
-#| echo: false
-#| output: true
-#| fig-height: 4
-#| fig-pos: center 
-
-# install.packages("plotly)
-library(plotly)
-my_plot = gf_point(bill_length_mm ~ bill_depth_mm, data = penguins_data, 
-color = ~species) + labs(title = "Profundidad y longitud del pico", 
-subtitle = "Dimensiones para pingüinos en Adelie,
-         Chinstrap, and Gentoo", 
-x = "Profundidad del pico (mm)", y = "Longitud del pico (mm)",
-color = "Especie") +  scale_color_viridis_d()
-
-ggplotly(my_plot)
-```
-
 ## Mini-actividad (*solo* mode)
 
 1.  Accede a la siguiente liga:
 
-    <https://colab.research.google.com/drive/1EQE35cyZTE3ZEj5AETiftJkFT7HZH0Vy?usp=sharing>
+    <https://colab.research.google.com/drive/1c-sy5yQY1DwgaZAI6YnDLMTEYMpLCWyX?usp=sharing>
 
 2.  Copia el archivo Google Colab en tu drive.
 
