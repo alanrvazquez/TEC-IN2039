@@ -31,7 +31,7 @@ css: style.css
 
 ## Carguemos las librerías
 
-Carguémos las librerías `readxl`, `ggplot2`, `ggformula`, y `plotly` en Google Colab y R antes de comenzar.
+Carguémos las librerías `readxl`, `ggplot2`, y `ggformula` en Google Colab y R antes de comenzar.
 
 ```{r}
 #| echo: true
@@ -42,7 +42,6 @@ Carguémos las librerías `readxl`, `ggplot2`, `ggformula`, y `plotly` en Google
 library(readxl)
 library(ggplot2)
 library(ggformula)
-library(plotly)
 ```
 
 ## Una nueva librería
@@ -117,7 +116,7 @@ Existen varios tipos de gráficas que nos ayudan a explorar relaciones entre dos
 
 ::: center
 | Tipo        | Gráfica                                                                                       |
-|:-------------|:---------------------------------------------------------|
+|:----------------|:------------------------------------------------------|
 | Numéricas   | Gráfico de dispersión, gráfico de lineas                                                      |
 | Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico                 |
 | Mixta       | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |
@@ -204,21 +203,6 @@ gf_point(mpg ~ weight, data = auto_data, color = "blue",
 ## Posibles formas de los puntos
 
 ![](images/FIG-SCATTER-SHAPES-CHART-1.png){fig-align="center" width="530" height="344"}
-
-## 
-
-Siguiendo con el principio 3, puedes usar funciones antes vistas para mejorar aún más la apariencia del gráfico.
-
-```{r}
-#| fig-pos: center
-#| echo: true
-#| code-fold: true
-
-mi_diagrama <- gf_point(mpg ~ weight, data = auto_data, color = "darkblue", size = 2) + labs(title = "Relación de peso y millas por galón en autos", x = "Peso (lb)", y = "Millas por galón")
-mi_diagrama <- mi_diagrama + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
-                                   plot.title=element_text(size=25))
-ggplotly(mi_diagrama)
-```
 
 ## Incluir el cero
 
@@ -316,7 +300,7 @@ gf_boxplot(mpg ~ origin, data = auto_data)
 bp_mpg_by_origin <- gf_boxplot(mpg ~ origin, data = auto_data, fill = "lightblue", color = "black") 
 bp_mpg_by_origin <- bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen")
 bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
-ggplotly(bp_mpg_by_origin)
+bp_mpg_by_origin
 ```
 
 ## 
@@ -335,7 +319,6 @@ bp_mpg_by_origin <- bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen
 bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
 bp_mpg_by_origin
 ```
-
 
 ## Resúmenes estadísticos
 
@@ -546,7 +529,7 @@ Para dos variables numéricas y una categórica.
 #| echo: true
 
 my_scatter = gf_point(mpg ~ weight, color = ~origin, data = auto_data) 
-ggplotly(my_scatter)
+my_scatter
 ```
 
 ## Gráfica de facetas o enrejado
@@ -586,7 +569,7 @@ Si cambiamos el orden de la variable `origin` en la función `gf_facet_grid`, ob
 #| echo: true
 
 my_facet = gf_point(mpg ~ weight, data = auto_data) %>% gf_facet_grid( ~ origin)
-ggplotly(my_facet)
+my_facet
 ```
 
 ## Gráficas para cuatro variables

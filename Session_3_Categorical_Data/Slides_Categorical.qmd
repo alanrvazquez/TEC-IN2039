@@ -35,7 +35,7 @@ css: style.css
 
 ## Primero lo primero
 
-Hoy usaremos R para construir gráficas y tablas. Para esto, usaremos las librerías que ya vimos antes como `readxl`, `ggplot2`, `ggformula`, y `plotly`.
+Hoy usaremos R para construir gráficas y tablas. Para esto, usaremos las librerías que ya vimos antes como `readxl`, `ggplot2`, y `ggformula`
 
 <br/>
 
@@ -50,7 +50,6 @@ Carguémoslas en R antes de comenzar.
 library(readxl)
 library(ggplot2)
 library(ggformula)
-library(plotly)
 ```
 
 ## Penguins Dataset
@@ -270,22 +269,6 @@ Usando las herramientas para gráficos en ggplot, podemos mejorar el código ant
 #| fig-align: center
 
 gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "Proporciones de pingüinos", subtitle = "Distribución pingüinos en Adelie, Chinstrap, and Gentoo", x = "Tipo de especie", y = "Frecuencia relativa", fill = "Especie") 
-
-```
-
-## Aplicando plotly
-
-Y si queremos hacer la gráfica más interactiva, podemos usar `plotly`.
-
-```{r}
-#| echo: false
-#| output: true
-#| code-fold: true
-#| fig-height: 4
-#| fig-align: center
-
-my_plot = gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "Proporciones de pingüinos", subtitle = "Distribución pingüinos en Adelie, Chinstrap, and Gentoo", x = "Tipo de especie", y = "Frecuencia relativa", fill = "Especie") 
-ggplotly(my_plot)
 ```
 
 # Transformando variables categóricas
@@ -492,5 +475,5 @@ Pie charts versus bar charts.
 [Preguntale a ChatGPT]{style="color:darkgreen;"}
 
 1.  Ve ChatGPT en <https://chat.openai.com/>
-2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** o **plotly** en R.
+2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** en R.
 3.  Adapta tu código para producir una gráfica circular de la variable `island` en `penguin_data`.

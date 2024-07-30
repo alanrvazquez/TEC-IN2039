@@ -96,7 +96,7 @@ Toman valores que se colocan en *categorías*.
 . . .
 
 |                  |                                                                 |
-|--------------------|----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | **Variable**     | **Categorias**                                                  |
 | Reseña en Amazon | 1$\bigstar$, 2$\bigstar$, 3$\bigstar$, 4$\bigstar$, 5$\bigstar$ |
 | País de origen   | México, Canadá, EUA                                             |
@@ -288,9 +288,9 @@ countdown::countdown(minutes = 30)
 ## Comentarios finales
 
 -   Los tipos de variable definen nuestro análisis
+
 -   Ayudan a especificar las operaciones, visualizaciones y modelos que podemos aplicar a los datos.
 
 -   Existen gráficas apropiadas o diseñadas para visualizar variables númericas o categóricas.
 
 -   En este curso, veremos varias gráficas para cada tipo de variable y sus combinaciones.
-

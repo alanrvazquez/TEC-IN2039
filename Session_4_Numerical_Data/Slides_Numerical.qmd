@@ -62,7 +62,6 @@ Carguémoslas en Google Colab y R antes de comenzar.
 library(readxl)
 library(ggplot2)
 library(ggformula)
-library(plotly)
 ```
 
 ## Carga los datos
@@ -336,20 +335,6 @@ gf_histogram( ~ cycle_time, data = piston_data, color = "black",
             caption = "Datos de 50 pistones")
 ```
 
-## 
-
-También, podemos hacer la gráfica interactiva con la función `ggplotly()` de `plotly`.
-
-```{r}
-#| fig-pos: center
-
-my_hist = gf_histogram( ~ cycle_time, data = piston_data, color = "black",
-            fill = "white") + labs(title = "Histograma de tiempo de ciclo", 
-            x = "Tiempo de ciclo (segundos)", y = "Frequencia", 
-            caption = "Datos de 50 pistones")
-ggplotly(my_hist)
-```
-
 ## No es lo mismo que una gráfica de barras
 
 Con datos categóricos, la gráfica de barras se parece al histograma porque presenta la frecuencia de las categorías.
@@ -406,7 +391,6 @@ gf_histogram( ~ cycle_time, data = piston_data, bins = 30,
 ::: notes
 The histogram is a familiar type of plot that uses smoothing. A histogram aggregates data values by putting points into bins and plotting one bar for each bin. Smoothing here means that we cannot differentiate the location of individual points in a bin: the points are smoothly allocated across their bins.
 :::
-
 
 ## ¿Qué buscar en un histograma?
 
