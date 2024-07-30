@@ -25,12 +25,6 @@ css: style.css
 
     ![](images/clipboard-2750534250.png)
 :::
-
-::: {.column width="50%"}
-2.  La importancia del tipo de variables
-
-    ![](images/clipboard-1628090285.png){width="254"}
-:::
 :::
 
 ## Tipos de variables
@@ -291,84 +285,12 @@ is.factor(mi_variable_ordinal)
 countdown::countdown(minutes = 30)
 ```
 
-# La importancia del tipo de variables
+## Comentarios finales
 
-## Los tipos de variable definen nuestro análisis
-
+-   Los tipos de variable definen nuestro análisis
 -   Ayudan a especificar las operaciones, visualizaciones y modelos que podemos aplicar a los datos.
 
 -   Existen gráficas apropiadas o diseñadas para visualizar variables númericas o categóricas.
 
-## Gráficos para 1 variable
+-   En este curso, veremos varias gráficas para cada tipo de variable y sus combinaciones.
 
-::: center
-| Tipo       | Gráfica                                                |
-|:-----------|:-------------------------------------------------------|
-| Categórica | Gráfica de barras, gráfico circular, gráfica de puntos |
-:::
-
-![](images/pie-vs-bar-compare.png){fig-align="center"}
-
-## Gráficos para 1 variable
-
-::: center
-| Tipo     | Gráfica                                                           |
-|:-----------------|:-----------------------------------------------------|
-| Numérica | Histograma, gráfica de caja, gráfica de violín, curva de densidad |
-:::
-
-![](images/Box-plot-violin-plot-histogram-and-kernel-density-plot-of-the-Blood-Cancer-dataset.ppm){fig-align="center"}
-
-## Gráficos para 2 variables
-
-::: center
-| Tipo      | Gráfica               |
-|:----------|:----------------------|
-| Numéricas | Gráfico de dispersión |
-:::
-
-![](images/unnamed-chunk-30-1.png){fig-align="center"}
-
-## Gráficos para 2 variables
-
-::: center
-| Tipo        | Gráfica                                                                       |
-|:-----------------|:-----------------------------------------------------|
-| Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico |
-:::
-
-::: columns
-::: {.column width="33%"}
-![](images/unnamed-chunk-2-1.png){fig-align="center"}
-:::
-
-::: {.column width="33%"}
-![](images/stacked-bar-options-1.png){fig-align="center"}
-:::
-
-::: {.column width="33%"}
-![](images/1597771822281.webp){fig-align="center"}
-:::
-:::
-
-## Gráficos para 2 o más variables
-
-::: center
-| Tipo  | Gráfica                                                                                       |
-|:-----------------|:-----------------------------------------------------|
-| Mixta | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |
-:::
-
-::: columns
-::: {.column width="33%"}
-![](images/cool%20mix%20plot.png){fig-align="center"}
-:::
-
-::: {.column width="33%"}
-![](images/unnamed-chunk-4-1.png){fig-align="center"}
-:::
-
-::: {.column width="33%"}
-![](images/201-levelplot-with-latticeextra.png){fig-align="center"}
-:::
-:::

@@ -1,6 +1,5 @@
 ---
 title: |
-   | Sesión 7: 
    | Datos de múltiples variables  
 author: 
   - name: Alan R. Vázquez
@@ -32,7 +31,7 @@ css: style.css
 
 ## Carguemos las librerías
 
-Carguémos las librerías `ggplot2`, `ggformula`, y `readxl` en Google Colab y R antes de comenzar.
+Carguémos las librerías `readxl`, `ggplot2`, `ggformula`, y `plotly` en Google Colab y R antes de comenzar.
 
 ```{r}
 #| echo: true
@@ -43,6 +42,7 @@ Carguémos las librerías `ggplot2`, `ggformula`, y `readxl` en Google Colab y R
 library(readxl)
 library(ggplot2)
 library(ggformula)
+library(plotly)
 ```
 
 ## Una nueva librería
@@ -93,7 +93,7 @@ Los datos están en el archivo "auto_dataset.xlsx".
 ```{r}
 #| echo: true
 
-auto_data <- read_excel("auto_dataset.xlsx") # Leer los datos.
+auto_data = read_excel("auto_dataset.xlsx") # Leer los datos.
 head(auto_data) # Ver las primeras 6 observaciones.
 ```
 
@@ -117,8 +117,8 @@ Existen varios tipos de gráficas que nos ayudan a explorar relaciones entre dos
 
 ::: center
 | Tipo        | Gráfica                                                                                       |
-|:------------|:----------------------------------------------------------------------------------------------|
-| Numéricas   | Gráfico de dispersión                                                                         |
+|:-------------|:---------------------------------------------------------|
+| Numéricas   | Gráfico de dispersión, gráfico de lineas                                                      |
 | Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico                 |
 | Mixta       | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |
 :::
@@ -217,7 +217,7 @@ Siguiendo con el principio 3, puedes usar funciones antes vistas para mejorar a�
 mi_diagrama <- gf_point(mpg ~ weight, data = auto_data, color = "darkblue", size = 2) + labs(title = "Relación de peso y millas por galón en autos", x = "Peso (lb)", y = "Millas por galón")
 mi_diagrama <- mi_diagrama + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
                                    plot.title=element_text(size=25))
-mi_diagrama
+ggplotly(mi_diagrama)
 ```
 
 ## Incluir el cero
@@ -316,7 +316,7 @@ gf_boxplot(mpg ~ origin, data = auto_data)
 bp_mpg_by_origin <- gf_boxplot(mpg ~ origin, data = auto_data, fill = "lightblue", color = "black") 
 bp_mpg_by_origin <- bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen")
 bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
-bp_mpg_by_origin
+ggplotly(bp_mpg_by_origin)
 ```
 
 ## 
@@ -336,33 +336,6 @@ bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), ax
 bp_mpg_by_origin
 ```
 
-## Gráfica de violín por grupo
-
-Los diagramas de violín se pueden usar para dibujar curvas de densidad a lo largo de un eje para cada grupo.
-
-El comando básico para generar está gráfica es `gf_violin(Y ~ X, data = dataset)`.
-
-```{r}
-#| fig-pos: center
-#| echo: true
-#| code-fold: true
-
-violin_mpg_by_origin <- gf_violin( mpg ~ origin, data = auto_data, fill = "orange", color = "black") 
-violin_mpg_by_origin <- violin_mpg_by_origin + labs(y = "Millas por galón", x = "Origen")
-violin_mpg_by_origin <- violin_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
-violin_mpg_by_origin
-```
-
-## Gráfica de densidad por grupo
-
-También, podemos graficar una curva de densidad de la variable $Y$ para cada subgrupo definido por $X$. Para esto, usamos el argumento `fill` igual a la variable $X$.
-
-```{r}
-#| fig-pos: center
-#| echo: true
-
-gf_density( ~ mpg, fill = ~origin, data = auto_data) 
-```
 
 ## Resúmenes estadísticos
 
@@ -418,7 +391,7 @@ Puedes guardar la tabla en un nuevo objeto y usar las mismas funciones de antes 
 #| fig-pos: center
 #| echo: true
 
-sum_data <- auto_data %>% group_by(origin) %>% 
+sum_data = auto_data %>% group_by(origin) %>% 
   summarize("Promedio" = mean(mpg), "Maximo" = max(mpg), 
             "Minimo" = min(mpg))
 
@@ -447,7 +420,7 @@ Como ejemplo, consideremos los datos en el archivo "penguins.xlsx".
 ```{r}
 #| echo: true
 
-penguins_data <- read_excel("penguins.xlsx")
+penguins_data = read_excel("penguins.xlsx")
 
 # Imprime las primeras 6 filas de los datos.
 head(penguins_data)
@@ -465,8 +438,8 @@ Asegúrate que sean especificados como `factor` en R.
 ```{r}
 #| echo: true
 
-penguins_data$island <- factor(penguins_data$island)
-penguins_data$species <- factor(penguins_data$species)
+penguins_data$island = factor(penguins_data$island)
+penguins_data$species = factor(penguins_data$species)
 ```
 
 ## Gráfica de barras apiladas
@@ -572,7 +545,8 @@ Para dos variables numéricas y una categórica.
 #| fig-pos: center
 #| echo: true
 
-gf_point(mpg ~ weight, color = ~origin, data = auto_data) 
+my_scatter = gf_point(mpg ~ weight, color = ~origin, data = auto_data) 
+ggplotly(my_scatter)
 ```
 
 ## Gráfica de facetas o enrejado
@@ -611,7 +585,8 @@ Si cambiamos el orden de la variable `origin` en la función `gf_facet_grid`, ob
 #| fig-pos: center
 #| echo: true
 
-gf_point(mpg ~ weight, data = auto_data) %>% gf_facet_grid( ~ origin) 
+my_facet = gf_point(mpg ~ weight, data = auto_data) %>% gf_facet_grid( ~ origin)
+ggplotly(my_facet)
 ```
 
 ## Gráficas para cuatro variables

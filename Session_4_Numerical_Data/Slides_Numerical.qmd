@@ -1,6 +1,5 @@
 ---
 title: |
-   | Sesión 5: 
    | Variables Numéricas  
 author: 
   - name: Alan R. Vázquez
@@ -63,6 +62,7 @@ Carguémoslas en Google Colab y R antes de comenzar.
 library(readxl)
 library(ggplot2)
 library(ggformula)
+library(plotly)
 ```
 
 ## Carga los datos
@@ -72,7 +72,7 @@ En Google Colab, el archivo "CYLT.xlsx" debe de estar en la carpeta llamada "con
 Ahora carguemos los datos R.
 
 ```{r}
-piston_data <- read_excel("CYCLT.xlsx") # Leer los datos.
+piston_data = read_excel("CYCLT.xlsx") # Leer los datos.
 head(piston_data) # Ver las primeras 6 observaciones.
 ```
 
@@ -336,6 +336,20 @@ gf_histogram( ~ cycle_time, data = piston_data, color = "black",
             caption = "Datos de 50 pistones")
 ```
 
+## 
+
+También, podemos hacer la gráfica interactiva con la función `ggplotly()` de `plotly`.
+
+```{r}
+#| fig-pos: center
+
+my_hist = gf_histogram( ~ cycle_time, data = piston_data, color = "black",
+            fill = "white") + labs(title = "Histograma de tiempo de ciclo", 
+            x = "Tiempo de ciclo (segundos)", y = "Frequencia", 
+            caption = "Datos de 50 pistones")
+ggplotly(my_hist)
+```
+
 ## No es lo mismo que una gráfica de barras
 
 Con datos categóricos, la gráfica de barras se parece al histograma porque presenta la frecuencia de las categorías.
@@ -393,120 +407,8 @@ gf_histogram( ~ cycle_time, data = piston_data, bins = 30,
 The histogram is a familiar type of plot that uses smoothing. A histogram aggregates data values by putting points into bins and plotting one bar for each bin. Smoothing here means that we cannot differentiate the location of individual points in a bin: the points are smoothly allocated across their bins.
 :::
 
-## Suavizado
 
--   El histograma es un tipo de gráfico que utiliza ***suavizado***.
-
--   Es decir, agrega valores de datos colocando observaciones en intervalos y trazando una barra para cada intervalo.
-
--   Aquí, suavizar significa que no podemos diferenciar la ubicación de puntos individuales en un contenedor: los puntos se asignan suavemente entre sus contenedores.
-
-![](images/clipboard-2647770017.png){fig-align="right"}
-
-## 
-
-::: columns
-::: {.column width="50%"}
-Con pocos intervalos anchos, suavizamos demasiado la distribución, lo que hace imposible ver si hay valores muy lejos de otros.
-:::
-
-::: {.column width="50%"}
-```{r}
-#| fig-pos: center
-#| echo: false
-
-gf_histogram( ~ cycle_time, data = piston_data, bins = 5, 
-              color = "black", fill = "white") + labs(title = "Histograma de tiempo de ciclo", x = "Tiempo de ciclo (segundos)", y = "Frequencia", caption = "Datos de 50 pistones")
-```
-:::
-:::
-
-::: columns
-::: {.column width="50%"}
-Por otro lado, demasiados intervalos dan un gráfico demasiado detallado.
-:::
-
-::: {.column width="50%"}
-```{r}
-#| fig-pos: center
-#| echo: false
-
-gf_histogram( ~ cycle_time, data = piston_data, bins = 30, 
-              color = "black", fill = "white") + labs(title = "Histograma de tiempo de ciclo", x = "Tiempo de ciclo (segundos)", y = "Frequencia", caption = "Datos de 50 pistones")
-```
-:::
-:::
-
-::: notes
-In both histograms, it’s hard to see the shape of the distribution. With a few wide bins (the plot on the left), we have over-smoothed the distribution, which makes it impossible to discern modes and tails. On the other hand, too many bins (the plot on the right) gives a plot that’s little better than a rug plot.
-:::
-
-## 
-
--   La función `gf_histogram` fija el número de intervalos en 30 por default.
-
-    ```{r}
-    #| output: false
-
-
-    gf_histogram( ~ cycle_time, data = piston_data, bins = 30) 
-    ```
-
--   Sin embargo, este parámetro a menudo necesita modificarse para crear el histograma más útil.
-
--   En presencia de un parámetro de ajuste, es importante probar algunos valores antes de decidirse por uno.
-
-![](images/clipboard-166552611.png){fig-align="left"}
-
-::: notes
-Most histogram and KDE software automatically choose the bin width for the histogram and the bandwidth for the kernel. However, these parameters often need a bit of fiddling to create the most useful plot. When you create visualizations that rely on tuning parameters, it’s important to try a few different values before settling on one.
-:::
-
-## Curva de densidad
-
-La curva de densidad es una versión extrema pero inteligente de suavizado a un histograma.
-
-. . .
-
-Se basa en la frecuencia relativa (#observaciónes_en_categoria/total), en lugar de la frecuencia.
-
-. . .
-
-La obtienes con la función `gf_density()`.
-
-::: columns
-::: {.column width="50%"}
-```{r}
-#| output: false
-#| fig-pos: center
-
-gf_density(~ cycle_time, 
-           data = piston_data)
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-#| echo: false
-#| fig-pos: center
-
-gf_density(~ cycle_time, data = piston_data)
-```
-:::
-:::
-
-## 
-
-```{r}
-#| echo: false
-#| fig-pos: center
-
-gf_density(~ cycle_time, data = piston_data)
-```
-
-La curva es inteligente porque estima la distribución real de la variable númerica usando un método llamado *Kernel Density Estimation*.
-
-## ¿Qué buscar en un histograma o curva de densidad?
+## ¿Qué buscar en un histograma?
 
 -   La simetría y la asimetría de la distribución
 -   El número, ubicación y tamaño de las regiones (intervalos) de alta frecuencia.
@@ -584,63 +486,6 @@ gf_boxplot( cycle_time ~ 1, data = piston_data)
 :::
 
 Tiene la syntaxis especial: `cycle_time ~ 1`. Si usas `~ cycle_time`, obtendrás la gráfica de caja en horizontal.
-
-## La gráfica de violín
-
-La gráfica de violín combina la curva de densidad con la gráfica de caja. Los trazados de violín dibujan curvas de densidad a lo largo de un eje. La curva se invierte para crear una forma simétrica de "violín".
-
-. . .
-
-En R, usa la función `gf_violin()`.
-
-::: columns
-::: {.column width="50%"}
-```{r}
-#| fig-align: center
-#| output: false
-gf_violin(cycle_time ~ 1, 
-          data = piston_data)
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-#| fig-align: center
-#| echo: false
-
-gf_violin( cycle_time ~ 1, data = piston_data)
-```
-:::
-:::
-
-## Gráfica de violín vs Un Violín
-
-::: columns
-::: {.column width="50%"}
-```{r}
-#| fig-align: center
-#| echo: false
-
-
-gf_violin(cycle_time ~ 1, 
-          data = piston_data)
-```
-:::
-
-::: {.column width="50%"}
-![](images/download.jpeg){fig-align="center" width="311"}
-:::
-:::
-
-## Gráfica de violín vs Gráfica de caja
-
--   La gráfica de caja no revela la forma de la distribución comparada con un histograma o una curva de densidad.
-
--   La gráfica de caja muestra simetría y sesgo, colas largas/cortas y valores inusualmente grandes/pequeños (también conocidos como *valores atípicos*).
-
--   Las gráfica de violín no muestran valores atípicos.
-
--   Ambas gráficas incrementan su utilidad al comparar dos o mas distribuciones.
 
 ## Actividad (*solo* mode) Parte 2
 

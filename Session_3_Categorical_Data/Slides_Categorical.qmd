@@ -1,6 +1,5 @@
 ---
 title: |
-   | Sesión 4: 
    | Variables Categóricas  
 author: 
   - name: Alan R. Vázquez
@@ -36,7 +35,7 @@ css: style.css
 
 ## Primero lo primero
 
-Hoy usaremos R para construir gráficas y tablas. Para esto, usaremos las librerías que ya vimos antes como `ggplot2`, `ggformula`, y `readxl`.
+Hoy usaremos R para construir gráficas y tablas. Para esto, usaremos las librerías que ya vimos antes como `readxl`, `ggplot2`, `ggformula`, y `plotly`.
 
 <br/>
 
@@ -51,6 +50,7 @@ Carguémoslas en R antes de comenzar.
 library(readxl)
 library(ggplot2)
 library(ggformula)
+library(plotly)
 ```
 
 ## Penguins Dataset
@@ -66,7 +66,7 @@ Súbelo a Google Colab y cárgalo en R usando el siguiente código.
 #| echo: true
 #| code-overflow: wrap
 
-penguins_data <- read_excel("penguins.xlsx")
+penguins_data = read_excel("penguins.xlsx")
 ```
 :::
 
@@ -106,7 +106,7 @@ A pesar de que la variable `species` claramente es categórica, R no reconoce es
 #| echo: true
 #| output: true
 
-penguins_data$species <- factor(penguins_data$species)
+penguins_data$species = factor(penguins_data$species)
 ```
 
 <br/>
@@ -128,9 +128,9 @@ Te recomiendo hacer lo mismo para las otras variables categóricas
 #| echo: true
 #| output: true
 
-penguins_data$island <- factor(penguins_data$island)
-penguins_data$sex <- factor(penguins_data$sex)
-penguins_data$species <- factor(penguins_data$species)
+penguins_data$island = factor(penguins_data$island)
+penguins_data$sex = factor(penguins_data$sex)
+penguins_data$species = factor(penguins_data$species)
 ```
 
 # Resúmenes Estadísticos
@@ -200,7 +200,7 @@ Resume una variable categórica calculando la *proporción de valores* por categ
 #| code-overflow: wrap
 
 # Calcula el número de observaciones.
-n <- nrow(penguins_data) 
+n = nrow(penguins_data) 
 
 # Calcula la frecuencia relativa.
 table(penguins_data$species)/n
@@ -273,6 +273,21 @@ gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "P
 
 ```
 
+## Aplicando plotly
+
+Y si queremos hacer la gráfica más interactiva, podemos usar `plotly`.
+
+```{r}
+#| echo: false
+#| output: true
+#| code-fold: true
+#| fig-height: 4
+#| fig-align: center
+
+my_plot = gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "Proporciones de pingüinos", subtitle = "Distribución pingüinos en Adelie, Chinstrap, and Gentoo", x = "Tipo de especie", y = "Frecuencia relativa", fill = "Especie") 
+ggplotly(my_plot)
+```
+
 # Transformando variables categóricas
 
 ## Aplica el Principio 3
@@ -313,7 +328,7 @@ Los datos están en el archivo `Boston_dataset.xlsx`. Súbelos a Google Colab y 
 #| echo: true
 #| output: true
 
-Boston_dataset <- read_excel("Boston_dataset.xlsx")
+Boston_dataset = read_excel("Boston_dataset.xlsx")
 head(Boston_dataset)
 ```
 
@@ -331,8 +346,8 @@ Asegúrate de que R sabe que esas variables son categóricas.
 #| echo: true
 #| output: true
 
-Boston_dataset$chas <- factor(Boston_dataset$chas)
-Boston_dataset$rad <- factor(Boston_dataset$rad)
+Boston_dataset$chas = factor(Boston_dataset$chas)
+Boston_dataset$rad = factor(Boston_dataset$rad)
 ```
 
 ## Re-etiquetado
@@ -372,7 +387,7 @@ Lo mejor es re-nombrar las categorías de la variable `chas` para que la gráfic
     #| output: true
 
     # Usa un vector para denotar los normbres.
-    levels(Boston_dataset$chas) <- c("No", "Si")
+    levels(Boston_dataset$chas) = c("No", "Si")
     ```
 
 ## Veamos que sucede ahora.
@@ -410,7 +425,8 @@ Para tener el orden de las categorías deseado, debemos de ser más explícitos 
 #| output: true
 #| fig-pos: center
 
-Boston_dataset$rad <- factor(Boston_dataset$rad, levels = c("Low", "Medium", "High"))
+Boston_dataset$rad = factor(Boston_dataset$rad, 
+                            levels = c("Low", "Medium", "High"))
 gf_percents( ~ rad, data = Boston_dataset)
 ```
 
@@ -424,7 +440,7 @@ Para guardar una gráfica de ggplot2, primero guardamos la gráfica en un objeto
 #| echo: true
 #| output: true
 
-mi_grafica_de_barras <- gf_percents( ~ rad, data = Boston_dataset)
+mi_grafica_de_barras = gf_percents( ~ rad, data = Boston_dataset)
 ```
 
 Luego, usamos la función `ggsave()`.
@@ -476,5 +492,5 @@ Pie charts versus bar charts.
 [Preguntale a ChatGPT]{style="color:darkgreen;"}
 
 1.  Ve ChatGPT en <https://chat.openai.com/>
-2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** en R.
+2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** o **plotly** en R.
 3.  Adapta tu código para producir una gráfica circular de la variable `island` en `penguin_data`.
