@@ -116,7 +116,7 @@ Existen varios tipos de gráficas que nos ayudan a explorar relaciones entre dos
 
 ::: center
 | Tipo        | Gráfica                                                                                       |
-|:----------------|:------------------------------------------------------|
+|:-----------------|:-----------------------------------------------------|
 | Numéricas   | Gráfico de dispersión, gráfico de lineas                                                      |
 | Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico                 |
 | Mixta       | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |
@@ -174,8 +174,7 @@ gf_point(mpg ~ weight, data = auto_data)
 ```{r}
 #| fig-pos: center
 #| echo: true
-#| output: false
-
+#| output: true
 
 gf_point(mpg ~ weight, data = auto_data)
 ```
@@ -203,6 +202,21 @@ gf_point(mpg ~ weight, data = auto_data, color = "blue",
 ## Posibles formas de los puntos
 
 ![](images/FIG-SCATTER-SHAPES-CHART-1.png){fig-align="center" width="530" height="344"}
+
+## 
+
+Siguiendo con el principio 3, puedes usar funciones antes vistas para mejorar aún más la apariencia del gráfico.
+
+```{r}
+#| fig-pos: center
+#| echo: true
+#| code-fold: true
+
+mi_diagrama <- gf_point(mpg ~ weight, data = auto_data, color = "darkblue", size = 2) + labs(title = "Relación de peso y millas por galón en autos", x = "Peso (lb)", y = "Millas por galón")
+mi_diagrama <- mi_diagrama + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
+                                   plot.title=element_text(size=25))
+mi_diagrama
+```
 
 ## Incluir el cero
 
