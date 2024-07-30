@@ -27,7 +27,7 @@ css: style.css
 
 ## Carguemos las librerías
 
-Carguemos las librerías `ggplot2`, `ggformula`, `readxl`, `plotly` y `dplyr` en Google Colab y R antes de comenzar.
+Carguemos las librerías `ggplot2`, `ggformula`, `readxl`, y `dplyr` en Google Colab y R antes de comenzar.
 
 ```{r}
 #| echo: true
@@ -39,7 +39,6 @@ library(readxl)
 library(ggplot2)
 library(ggformula)
 library(dplyr)
-library(plotly)
 ```
 
 ## Ejemplo
@@ -83,7 +82,7 @@ Preguntas que podemos contestar con la regresión lineal simple
 mi_diagrama = gf_point(mpg ~ weight, data = auto_data, color = "darkblue", size = 2) + labs(x = "Peso (lb)", y = "Millas por galón")
 mi_diagrama = mi_diagrama + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
                                    plot.title=element_text(size=25))
-ggplotly(mi_diagrama)
+mi_diagrama
 ```
 
 ## Problema de regresión
