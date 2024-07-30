@@ -16,17 +16,17 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Los Tópicos de Hoy
+## Agenda
 
 ::: columns
 ::: {.column width="50%"}
-1.  Ciencia de datos.
+1.  Ciencia de datos
 
     ![](images/clipboard-974366284.png){width="320"}
 :::
 
 ::: {.column width="50%"}
-2.  Visualización y sus tres principios.
+2.  Los 3 principios de visualización
 
     ![](images/clipboard-1163901538.png){width="345"}
 :::
@@ -34,7 +34,7 @@ css: style.css
 
 ::: columns
 ::: {.column width="30%"}
-3.  Actividad.
+3.  Actividad
 :::
 
 ::: {.column width="70%"}
@@ -64,78 +64,6 @@ un campo multidisciplinario que utiliza métodos, procesos, algoritmos y sistema
 :::
 :::
 
-## En el 2004 ...
-
-El huracán Francés estaba arrasando el Caribe y amenazando con golpear directamente la costa atlántica de Florida.
-
-. . .
-
-::: center
-::: columns
-::: {.column width="30%"}
-![](images/clipboard-123225538.png){width="194"}
-:::
-
-::: {.column width="30%"}
-![](https://c8.alamy.com/compes/ccn9gk/ft-pierce-9-6-04-un-clubouse-danados-por-el-huracan-frances-en-ocean-village-en-hutchinson-island-el-lunes-el-complejo-tambien-recibio-algunos-danos-a-techos-pisos-de-tierra-y-algunas-unidades-fueron-danadas-por-las-tormentas-foto-por-aguas-lannis-el-palm-beach-post-no-para-su-distribucion-fuera-de-cox-ccn9gk.jpg){width="268"}
-:::
-
-::: {.column width="30%"}
-![](images/clipboard-679480994.png){width="280"}
-:::
-:::
-:::
-
-. . .
-
-Los residentes se dirigieron a terrenos más altos, pero en Arkansas, los ejecutivos de Wal-Mart vieron que la situación ofrecía una gran oportunidad para una de sus armas más nuevas basadas en datos: ***la tecnología predictiva***.
-
-## 
-
-::: center
-::: columns
-::: {.column width="70%"}
-::: {style="font-size: 90%;"}
-Una semana antes de que la tormenta tocara tierra, Linda M. Dillman, directora de información de Wal-Mart, presionó a su personal para que elaboraran pronósticos basados en lo que había sucedido cuando el huracán Charley azotó varias semanas antes.
-
-<br/>
-
-Respaldada por billones de bytes de historial de compradores almacenados en el almacén de datos de Wal-Mart, consideró que la empresa podría “empezar a predecir lo que va a suceder, en lugar de esperar a que suceda”, como ella dijo.
-:::
-:::
-
-::: {.column width="30%"}
-![](images/clipboard-3960378011.png){width="224"}
-
-<br/>
-
-![](images/clipboard-4213549697.png){width="516"}
-:::
-:::
-:::
-
-## ¡De hecho, eso es lo que pasó!
-
-::: columns
-::: {.column width="50%"}
-El New York Times informó
-
-::: {style="font-size: 80%;"}
-> *“… los expertos analizaron los datos y descubrieron que las tiendas efectivamente necesitarían ciertos productos, y no sólo las habituales linternas.*"
-:::
-:::
-
-::: {.column width="50%"}
-Dillman dijo
-
-::: {style="font-size: 80%;"}
-> *"No sabíamos en el pasado que las Pop-Tarts de fresa aumentan sus ventas, como siete veces su tasa de ventas normal, antes de un huracán"*
-:::
-:::
-:::
-
-[![](images/clipboard-3670330051.png){fig-align="center" width="529"}](https://www.nytimes.com/2004/11/14/business/yourmoney/what-walmart-knows-about-customers-habits.html)
-
 ## El esquema de ciencia de datos
 
 ![](images/clipboard-4096324521.png){fig-align="center"}
@@ -150,9 +78,9 @@ Dillman dijo
 
 ## Data understanding
 
-::: incremental
 -   Si el objetivo es resolver un problema empresarial, los datos que componen la materia prima disponible a partir de la cual se construirá la solución.
 
+::: incremental
 -   Los datos disponibles rara vez coinciden con el problema.
 
 -   Por ejemplo, los datos históricos a menudo se recopilan con fines no relacionados con el problema empresarial actual o sin ningún propósito explícito.
@@ -224,7 +152,7 @@ Para esto, tendrás a tu disposición una base de datos con 7242 videos y 51 var
 
 Puedes encontrar más información en nuestra página de Canvas.
 
-# Visualización de datos y sus principios
+# Los 3 principios de la visualización de datos
 
 ## ¿Qué es la visualización de datos?
 
@@ -236,19 +164,23 @@ Puedes encontrar más información en nuestra página de Canvas.
 
 En esencia, una visualización de datos te permite profundizar en conjuntos de datos complejos para obtener información significativa mediante el uso de pantallas gráficas.
 
-<br/>
+</br>
 
 Las visualizaciones de datos se ocupan principalmente de proporcionar evidencia y permitir que la audiencia explore y llegue a sus propias conclusiones sobre lo que las visualizaciones revelan sobre los datos.
+
+</br>
+
+. . .
+
+[***La visualización de datos tiene 3 principios...***]{style="color:#023562;"}
 
 ::: notes
 As data scientists, we create data visualizations in order to understand our data and explain our analyses to other people. A plot should have a message, and it’s our job to communicate this message as clearly as possible.
 :::
 
-# Los 3 principios de la visualización de datos
+## ***Principio 1*****:** Formula el mensaje o pregunta
 
-## ***Principio 1*****:** Formula el mensaje
-
-Muchas veces el mensaje se obtiene al contestar una pregunta de interés.
+Formúla la pregunta de interés o el mensaje que quieres transmitir.
 
 ::: center
 ::: columns
@@ -335,6 +267,90 @@ No te limites a cosas simples. Enriquece tu gráfica con símbolos de color para
 También, agrega una leyenda a la gráfica que describa las características importantes y resuma sus conclusiones.
 :::
 
+## Ejemplo
+
+[**Principio 1**]{style="color:#023562;"}: Es más barato tomar Uber que poseer un auto en cuatro de las cinco ciudades más grandes de USA.
+
+::: columns
+::: {.column width="70%"}
+| Ciudad          | Uber | Auto |
+|-----------------|------|------|
+| New York City   | 142  | 218  |
+| Washington D.C. | 96   | 130  |
+| Chicago         | 77   | 116  |
+| Los Angeles     | 62   | 89   |
+| Dallas          | 181  | 65   |
+
+: Costo semanal (en USD) del viaje diario
+:::
+
+::: {.column width="30%"}
+![](images/clipboard-3936281418.png)
+:::
+:::
+
+::: notes
+The estimated costs are based on a twice-daily 10.4 mile one-way commute at peak times over the course of a week using either the UberPool option (where available) or alternatively UberX vs the cost of using a personal vehicle (including any associated costs of ownership). Study conducted in February 2017.
+:::
+
+## 
+
+[**Principio 2**]{style="color:#023562;"}: Transforma los datos en información.
+
+```{r}
+#| echo: false
+#| output: true
+#| fig-height: 4
+#| fig-pos: center
+
+
+library(ggplot2)
+library(ggformula)
+library(plotly)
+# Sample data
+uber <- data.frame(
+  Ciudad = rep(c("New York City", "Washington D.C.", "Chicago", "Los Angeles", "Dallas"), each = 2),
+  Tipo = rep(c("Uber", "Auto"), times = 5),
+  Costo = c(142, 218, 96, 130, 77, 116, 62, 89, 181, 65)
+)
+
+slp_plot = ggplot(data = uber, aes(x = Tipo, y = Costo, group = Ciudad, color = factor(Ciudad))) 
+slp_plot = slp_plot + geom_line(size = 2, alpha = 0.5) 
+slp_plot = slp_plot + geom_point(size = 3)
+slp_plot = slp_plot + labs(title = "Es más barato tomar Uber que poseer un auto en cuatro de las cinco ciudades más grandes de USA.", x = "", y = "Costo (USD)", color = "Ciudad")
+slp_plot
+```
+
+## 
+
+[**Principio 3**]{style="color:#023562;"}: Aplica los principios del diseño gráfico.
+
+```{r}
+#| echo: false
+#| output: true
+#| fig-height: 4
+#| fig-pos: center
+
+
+library(ggplot2)
+library(ggformula)
+library(plotly)
+# Sample data
+uber <- data.frame(
+  Ciudad = rep(c("New York City", "Washington D.C.", "Chicago", "Los Angeles", "Dallas"), each = 2),
+  Tipo = rep(c("Uber", "Auto"), times = 5),
+  Costo = c(142, 218, 96, 130, 77, 116, 62, 89, 181, 65)
+)
+
+slp_plot = ggplot(data = uber, aes(x = Tipo, y = Costo, group = Ciudad, color = factor(Ciudad))) 
+slp_plot = slp_plot + geom_line(size = 2, alpha = 0.5) 
+slp_plot = slp_plot + geom_point(size = 3)
+slp_plot = slp_plot + labs(title = "Es más barato tomar Uber que poseer un auto en cuatro de las \n cinco ciudades más grandes de USA.", x = "", y = "Costo (USD)", color = "Ciudad")
+slp_plot = slp_plot + scale_color_manual(values = c("Chicago" = "#619CFF", "Dallas" = "red", "Los Angeles" = "#619CFF", "New York City" = "#619CFF", "Washington D.C." = "#619CFF"))
+slp_plot + theme_minimal() + theme(text = element_text(size = 15),
+        axis.text.x = element_text(size = 20), axis.text.y = element_text(size = 15))
+```
+
 ## 
 
 ::: columns
@@ -346,6 +362,10 @@ También, agrega una leyenda a la gráfica que describa las características imp
 ![](https://upload.wikimedia.org/wikipedia/en/e/e9/John_Tukey.jpg){alt="John Tukey - Wikipedia"}
 :::
 :::
+
+. . .
+
+<https://www.storytellingwithdata.com/> es una excelente guía sobre visualizaciones.
 
 ::: notes
 Principios del diseño gráfico
