@@ -45,7 +45,6 @@ library(ggformula)
 library(dplyr)
 ```
 
-
 ## Datos multivariados
 
 Los datos multivariados son conjunto de datos que contienen observaciones de dos o más variables.
@@ -60,7 +59,7 @@ Los datos multivariados son conjunto de datos que contienen observaciones de dos
 
 De hecho, el **objetivo** es establecer si hay alguna relación entre las variables, así como el tipo de relación.
 
-## Ejemplo
+## Ejemplo 1
 
 Consideremos datos de 392 autos sobre sus millas por galón, número de cilindros, caballos de fuerza, peso, aceleración, año, origen, entre otras variables.
 
@@ -93,11 +92,11 @@ En el contexto de datos de múltiples variables, las preguntas típicas a estudi
 Existen varios tipos de gráficas que nos ayudan a explorar relaciones entre dos o más variables.
 
 ::: center
-| Tipo        | Gráfica                                                                                       |
-|:----------------|:------------------------------------------------------|
-| Numéricas   | Gráfico de dispersión, gráfico de lineas                                                      |
-| Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas                 |
-| Mixta       | Gráfico de caja uno al lado del otro |
+| Tipo        | Gráfica                                                   |
+|:------------|:----------------------------------------------------------|
+| Numéricas   | Gráfico de dispersión, gráfico de lineas                  |
+| Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas |
+| Mixta       | Gráfico de caja uno al lado del otro                      |
 :::
 
 ::: notes
@@ -129,7 +128,6 @@ La gráfica mas común para examinar la relación entre dos variables numéricas
 Las variables $X$ y $Y$ se colocan en el eje horizontal y vertical, respectivamente. Cada punto en la gráfica marca la posición de un par de valores de $X$ y $Y$.
 
 Con los diagramas de dispersión, buscamos relaciones lineales y no lineales, y examinamos el nivel de las relaciones.
-
 
 ## 
 
@@ -254,6 +252,51 @@ histogram_weight
 :::
 :::
 
+## Gráfica de linea
+
+Una gráfica de línea es una representación visual de datos en la que puntos de datos están conectados por una línea. Muestra tendencias a lo largo del tiempo o la evolución de una variable continua. Ejes:
+
+-   $X$ (horizontal): Representa el tiempo o la variable independiente.
+-   $Y$ (vertical): Representa la variable dependiente.
+
+En la gráfica, cada punto representa un valor específico en un momento dado. Las línea conecta los puntos de datos para mostrar la tendencia.
+
+## Ejemplo 2
+
+Considera los datos en el archivo "spotify.csv". El conjunto de datos de este contiene las reproducciones diarias globales de las cinco canciones más populares en el servicio de transmisión de música Spotify en el 2017.
+
+```{r}
+#| echo: true
+
+spotify_data = read_excel("spotify.xlsx") 
+spotify_data %>% head()
+```
+
+## 
+
+Nos enfocaremos en la canción *Despacito* de Luis Fonsi. Para construir gráficas de dispersión, usamos la función `gf_line(Y ~ X, data = data_set)`.
+
+```{r}
+#| echo: true
+
+gf_line(Despacito ~ Date, data = spotify_data)
+```
+
+## Aplicando el principio 3
+
+Podemos cambiar varios aspectos de la gráfica usando argumentos adicionales `gf_line(Y ~ X, linetype, size, color, data = data_set)`.
+
+```{r}
+#| echo: true
+#| code-fold: true
+
+
+mi_linea <- gf_line(Despacito ~ Date, data = spotify_data, color = "darkblue", size = 2) + labs(title = "Popularidad de la canción despacito de Luis Fonsi", x = "Fecha", y = "Número de reproducciones en Spotify")
+mi_linea <- mi_linea + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
+                                plot.title=element_text(size=25)) 
+mi_linea
+```
+
 # Una variable categórica y una numérica
 
 ## !Divide los datos en grupos!
@@ -314,63 +357,6 @@ bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), ax
 bp_mpg_by_origin
 ```
 
-## Resúmenes estadísticos
-
-En muchos casos, es útil calcular resúmenes estadísticos de la variable numérica $Y$ para cada categórica de la variable categórica $X$.
-
-</br>
-
-Para hacer esto, usamos las funciones `group_by()` y `summarise()` para agrupar y resumir datos.
-
-## 
-
-Las funciones se usan con una sintaxis especial que usa el operador `%>%` para indicar el orden entre las operaciones.
-
-```{r}
-#| fig-pos: center
-#| echo: true
-#| output: false
-
-auto_data %>% group_by(origin) %>% 
-  summarize("mean" = mean(mpg), "max" = max(mpg), "min" = min(mpg))
-```
-
-</br>
-
-El código se lee:
-
-"Del objeto `auto_data`, agrupa los datos por la variable `origin`, y resume los datos usando el promedio (`mean`), el mínimo (`min`), y el máximo (`max`)."
-
-Puedes agregar cualquier resumen estadístico visto antes, como la varianza (`var`) y desviación estándard (`sd`).
-
-## 
-
-El resultado es una nueva tabla con el resumen de los datos.
-
-```{r}
-#| fig-pos: center
-#| echo: true
-#| output: true
-
-auto_data %>% group_by(origin) %>% 
-  summarize("mean" = mean(mpg), "max" = max(mpg), "min" = min(mpg))
-```
-
-## 
-
-Puedes guardar la tabla en un nuevo objeto y usar las mismas funciones de antes para visualizar los resúmenes estadísticos en lugar de los datos originales.
-
-```{r}
-#| fig-pos: center
-#| echo: true
-
-sum_data = auto_data %>% group_by(origin) %>% 
-  summarize("Promedio" = mean(mpg), "Maximo" = max(mpg), 
-            "Minimo" = min(mpg))
-
-gf_point(Promedio ~ origin, data = sum_data, shape = 5, size = 7)
-```
-
 # Dos variables categóricas
 
 ## !Divide los datos en grupos!
@@ -386,7 +372,7 @@ Para hacer esto, los gráficos más populares son una extensión de las gráfica
 -   Gráficas de barras apiladas
 -   Gráficas de barras lado al lado
 
-## Ejemplo
+## Ejemplo 3
 
 Como ejemplo, consideremos los datos en el archivo "penguins.xlsx".
 
@@ -394,9 +380,7 @@ Como ejemplo, consideremos los datos en el archivo "penguins.xlsx".
 #| echo: true
 
 penguins_data = read_excel("penguins.xlsx")
-
-# Imprime las primeras 6 filas de los datos.
-head(penguins_data)
+penguins_data %>% head()
 ```
 
 ## 
@@ -411,8 +395,8 @@ Asegúrate que sean especificados como `factor` en R.
 ```{r}
 #| echo: true
 
-penguins_data$island = factor(penguins_data$island)
-penguins_data$species = factor(penguins_data$species)
+penguins_data = penguins_data %>% 
+  mutate_at(c("species", "island", "sex"), as.factor)
 ```
 
 ## Gráfica de barras apiladas
@@ -518,8 +502,7 @@ Para dos variables numéricas y una categórica.
 #| fig-pos: center
 #| echo: true
 
-my_scatter = gf_point(mpg ~ weight, color = ~origin, data = auto_data) 
-my_scatter
+gf_point(mpg ~ weight, color = ~origin, data = auto_data) 
 ```
 
 ## Gráfica de facetas o enrejado
@@ -558,8 +541,79 @@ Si cambiamos el orden de la variable `origin` en la función `gf_facet_grid`, ob
 #| fig-pos: center
 #| echo: true
 
-my_facet = gf_point(mpg ~ weight, data = auto_data) %>% gf_facet_grid( ~ origin)
-my_facet
+gf_point(mpg ~ weight, data = auto_data) %>% gf_facet_grid( ~ origin)
+```
+
+## Gráficas de varias líneas
+
+Podemos utilizar estos comandos para visualizar la evolución de las reproducciones de las 5 canciones en el archivo "spotify.xlsx". Sin embargo, requerimos manipular los datos para obtener el formato deseado por la función.
+
+</br>
+
+Específicamente, necesitamos juntar las columnas `Shape of You`, `Despacito`, `Something Just Like This`, `HUMBLE` y `Unforgettable` en dos columnas. Una columna contendrá el número de reproducciones y la otra el título de la canción. Ambas columnas estarán ordenadas por la variable `Date`.
+
+## Una nueva librería: tidyr
+
+::: columns
+::: {.column width="50%"}
+![](images/tidyverse.jpeg){fig-align="center" width="491" height="374"}
+:::
+
+::: {.column width="50%"}
+-   **tidyr** permite remodelar y reagrupar un conjunto de datos.
+
+-   Es parte de una colección de paquetes de ciencia de datos llamado *tidyverse*.
+
+-   <https://tidyr.tidyverse.org/>
+:::
+:::
+
+Cárgala en Google Colab con el siguiente código.
+
+```{r}
+#| echo: true
+#| output: false
+
+library(tidyr)
+```
+
+## 
+
+Para hacer el formateo necesario, usamos la función `pivot_longer()` de la librería **tidyr**.
+
+```{r}
+#| fig-pos: center
+#| echo: true
+
+data_lines = spotify_data %>% 
+  pivot_longer(c("Shape of You", "Despacito", "Something Just Like This", 
+                 "HUMBLE.", "Unforgettable"), 
+               names_to = "Cancion", 
+               values_to = "Reproducciones")
+data_lines %>% head()
+```
+
+## 
+
+Ahora, aplicamos funciones similares sobre el objeto `data_lines`.
+
+```{r}
+#| fig-pos: center
+#| echo: true
+
+gf_line(Reproducciones ~ Date, data = data_lines) %>%
+  gf_facet_grid( ~ Cancion)
+```
+
+## 
+
+O podemos poner todas las lineas en una sola gráfica.
+
+```{r}
+#| fig-pos: center
+#| echo: true
+
+gf_line(Reproducciones ~ Date, color = ~Cancion, data = data_lines)
 ```
 
 ## Gráficas para cuatro variables
