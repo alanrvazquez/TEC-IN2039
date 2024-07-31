@@ -116,9 +116,9 @@ penguins_data = penguins_data %>%
 
 Nota que acabamos de reemplazar el objeto `penguins_data` con la nueva versión.
 
-##
+## 
 
-Ahora, las etiquetas de las variables son `fct`. 
+Ahora, las etiquetas de las variables son `fct`.
 
 ```{r}
 #| echo: true
@@ -187,6 +187,24 @@ penguins_data %>%
 
 4.  Ayuda en la toma de decisiones informadas.
 :::
+
+## 
+
+```{r}
+#| fig-pos: center
+#| echo: true
+#| output: false
+
+penguins_data %>% 
+  group_by(species) %>% 
+  summarise("Frecuencia" = n())
+```
+
+</br>
+
+El código se lee:
+
+> Del objeto `penguins_data`, agrupa los datos por la variable `species`, y resume los datos usando el el número de elementos por categoría (`n()`).
 
 ## Tabla de Frecuencia Relativa
 
@@ -365,7 +383,7 @@ Lo mejor es re-nombrar las categorías de la variable `chas` para que la gráfic
 
 ## 
 
-2.  Re-emplaza por nombres apropiados usando las funciones `mutate()` y  `case_match()`.
+2.  Re-emplaza por nombres apropiados usando las funciones `mutate()` y `case_match()`.
 
     ```{r}
     #| echo: true

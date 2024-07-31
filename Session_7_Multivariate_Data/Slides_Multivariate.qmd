@@ -17,7 +17,7 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Los Tópicos de Hoy
+## Agenda
 
 1.  Datos de más de una variable
 
@@ -31,7 +31,7 @@ css: style.css
 
 ## Carguemos las librerías
 
-Carguémos las librerías `readxl`, `ggplot2`, `ggformula`, y `plotly` en Google Colab y R antes de comenzar.
+Carguémos las librerías `readxl`, `ggplot2`, `ggformula`, y `dplyr` en Google Colab y R antes de comenzar.
 
 ```{r}
 #| echo: true
@@ -42,33 +42,9 @@ Carguémos las librerías `readxl`, `ggplot2`, `ggformula`, y `plotly` en Google
 library(readxl)
 library(ggplot2)
 library(ggformula)
-library(plotly)
-```
-
-## Una nueva librería
-
-Hoy, utilizaremos una librería llamada **dplyr** para generar resúmenes estadísticos cuando tenemos más de una variable.
-
-::: columns
-::: {.column width="50%"}
-![](images/tidyverse.jpeg){fig-align="center" width="352" height="280"}
-:::
-
-::: {.column width="50%"}
--   La librería **dplyr** es una herramienta para manipular y transformar datos.
-
--   Es parte del *tidyverse*.
-:::
-:::
-
-Cárgala en Google Colab con el siguiente código.
-
-```{r}
-#| echo: true
-#| output: false
-
 library(dplyr)
 ```
+
 
 ## Datos multivariados
 
@@ -92,9 +68,10 @@ Los datos están en el archivo "auto_dataset.xlsx".
 
 ```{r}
 #| echo: true
-
-auto_data = read_excel("auto_dataset.xlsx") # Leer los datos.
-head(auto_data) # Ver las primeras 6 observaciones.
+# Leer los datos.
+auto_data = read_excel("auto_dataset.xlsx") 
+# Ver las primeras 6 observaciones.
+auto_data %>% head()
 ```
 
 ## Principio 1
@@ -102,7 +79,7 @@ head(auto_data) # Ver las primeras 6 observaciones.
 En el contexto de datos de múltiples variables, las preguntas típicas a estudiar son:
 
 ::: incremental
--   ¿Cómo se relacionan entre sí la variable $X$ y la variable $Y$?
+-   ¿Cómo se relacionan la variable $X$ y la variable $Y$?
 
 -   ¿Es la distribución de la variable $X$ la misma en todos los subgrupos definidos por la variable $Z$?
 
@@ -117,10 +94,10 @@ Existen varios tipos de gráficas que nos ayudan a explorar relaciones entre dos
 
 ::: center
 | Tipo        | Gráfica                                                                                       |
-|:------------|:----------------------------------------------------------------------------------------------|
+|:----------------|:------------------------------------------------------|
 | Numéricas   | Gráfico de dispersión, gráfico de lineas                                                      |
-| Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico                 |
-| Mixta       | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |
+| Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas                 |
+| Mixta       | Gráfico de caja uno al lado del otro |
 :::
 
 ::: notes
@@ -153,6 +130,7 @@ Las variables $X$ y $Y$ se colocan en el eje horizontal y vertical, respectivame
 
 Con los diagramas de dispersión, buscamos relaciones lineales y no lineales, y examinamos el nivel de las relaciones.
 
+
 ## 
 
 Para construir gráficas de dispersión, usamos la función `gf_point(Y ~ X, data = data_set)`.
@@ -175,7 +153,7 @@ gf_point(mpg ~ weight, data = auto_data)
 ```{r}
 #| fig-pos: center
 #| echo: true
-#| output: false
+#| output: true
 
 
 gf_point(mpg ~ weight, data = auto_data)
@@ -216,8 +194,8 @@ Siguiendo con el principio 3, puedes usar funciones antes vistas para mejorar a�
 
 mi_diagrama <- gf_point(mpg ~ weight, data = auto_data, color = "darkblue", size = 2) + labs(title = "Relación de peso y millas por galón en autos", x = "Peso (lb)", y = "Millas por galón")
 mi_diagrama <- mi_diagrama + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
-                                   plot.title=element_text(size=25))
-ggplotly(mi_diagrama)
+                                   plot.title=element_text(size=25)) 
+mi_diagrama 
 ```
 
 ## Incluir el cero
@@ -245,7 +223,7 @@ mi_diagrama + scale_x_continuous(limits = c(0, 5500))
 
 ## Gráficas individuales
 
-Las gráficas individuales de variables ( como el histograma) no permiten estudiar la relación entre dos variables. Solo dan información de la *distribución* cada variable.
+Las gráficas individuales de variables (como el histograma) no permiten estudiar la relación entre dos variables. Solo dan información de la *distribución* cada variable.
 
 ::: columns
 ::: {.column width="50%"}
@@ -316,7 +294,7 @@ gf_boxplot(mpg ~ origin, data = auto_data)
 bp_mpg_by_origin <- gf_boxplot(mpg ~ origin, data = auto_data, fill = "lightblue", color = "black") 
 bp_mpg_by_origin <- bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen")
 bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
-ggplotly(bp_mpg_by_origin)
+bp_mpg_by_origin
 ```
 
 ## 
@@ -342,11 +320,7 @@ En muchos casos, es útil calcular resúmenes estadísticos de la variable numé
 
 </br>
 
-Para hacer esto, usamos la librería `library(dplyr)`.
-
-</br>
-
-Aquí usaremos dos de sus funciones más útiles, `group_by()` y `summarize()`, para agrupar y resumir datos.
+Para hacer esto, usamos las funciones `group_by()` y `summarise()` para agrupar y resumir datos.
 
 ## 
 
@@ -545,7 +519,7 @@ Para dos variables numéricas y una categórica.
 #| echo: true
 
 my_scatter = gf_point(mpg ~ weight, color = ~origin, data = auto_data) 
-ggplotly(my_scatter)
+my_scatter
 ```
 
 ## Gráfica de facetas o enrejado
@@ -585,7 +559,7 @@ Si cambiamos el orden de la variable `origin` en la función `gf_facet_grid`, ob
 #| echo: true
 
 my_facet = gf_point(mpg ~ weight, data = auto_data) %>% gf_facet_grid( ~ origin)
-ggplotly(my_facet)
+my_facet
 ```
 
 ## Gráficas para cuatro variables
