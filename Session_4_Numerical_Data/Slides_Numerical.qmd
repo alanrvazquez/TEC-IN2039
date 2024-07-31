@@ -230,7 +230,7 @@ piston_data %>%
 
 ## 
 
-Los cuartiles se calculan con la función `quantile()` y `reframe()`. Como la función quantile da 5 valores, es mejor usar `reframe()` que `summarise()` en este caso `summarise()` trabaja con funciones cuya salida es un solo valor.
+Los cuartiles se calculan con las funciones `quantile()` y `reframe()`. Como la función quantile da 5 valores, es mejor usar `reframe()` que `summarise()` en este caso `summarise()` trabaja con funciones cuya salida es un solo valor.
 
 ```{r}
 piston_data %>% 
