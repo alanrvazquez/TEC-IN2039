@@ -117,7 +117,7 @@ Existen varios tipos de gráficas que nos ayudan a explorar relaciones entre dos
 
 ::: center
 | Tipo        | Gráfica                                                                                       |
-|:-------------|:---------------------------------------------------------|
+|:------------|:----------------------------------------------------------------------------------------------|
 | Numéricas   | Gráfico de dispersión, gráfico de lineas                                                      |
 | Categóricas | Gráfico de barras lado a lado, gráfico de barras apiladas, gráfico de mosaico                 |
 | Mixta       | Curvas de densidad superpuestas, diagramas de caja uno al lado del otro, gráficas de contorno |
@@ -335,7 +335,6 @@ bp_mpg_by_origin <- bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen
 bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
 bp_mpg_by_origin
 ```
-
 
 ## Resúmenes estadísticos
 
