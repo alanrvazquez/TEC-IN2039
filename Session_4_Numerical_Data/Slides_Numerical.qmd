@@ -80,7 +80,6 @@ piston_data %>% head()
 
 En R, los datos numéricos se llaman `dbl`. Vemos que R si reconoce nuestros datos correctamente.
 
-
 ## Tipo de variable
 
 En R, los datos numéricos se llaman `dbl`. Vemos que R si reconoce nuestros datos correctamente.
@@ -349,7 +348,6 @@ gf_histogram( ~ cycle_time, data = piston_data, color = "black",
             caption = "Datos de 50 pistones") + theme_bw()
 ```
 
-
 ## No es lo mismo que una gráfica de barras
 
 Con datos categóricos, la gráfica de barras se parece al histograma porque presenta la frecuencia de las categorías.
@@ -403,12 +401,11 @@ gf_histogram( ~ cycle_time, data = piston_data, bins = 30,
 :::
 :::
 
-En este curso, usaremos el número de `bins` dado por default. 
+En este curso, usaremos el número de `bins` dado por default.
 
 ::: notes
 The histogram is a familiar type of plot that uses smoothing. A histogram aggregates data values by putting points into bins and plotting one bar for each bin. Smoothing here means that we cannot differentiate the location of individual points in a bin: the points are smoothly allocated across their bins.
 :::
-
 
 ## ¿Qué buscar en un histograma?
 
