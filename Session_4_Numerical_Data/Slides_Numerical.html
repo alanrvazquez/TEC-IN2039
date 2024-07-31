@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-input1ecc836a</title>
+  <title>quarto-input677f1bbc</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -391,15 +391,6 @@
   </style>
   <link href="Slides_Numerical_files/libs/countdown-0.4.0/countdown.css" rel="stylesheet">
   <script src="Slides_Numerical_files/libs/countdown-0.4.0/countdown.js"></script>
-  <link href="Slides_Numerical_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-  <script src="Slides_Numerical_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-  <script src="Slides_Numerical_files/libs/plotly-binding-4.10.4/plotly.js"></script>
-  <script src="Slides_Numerical_files/libs/typedarray-0.1/typedarray.min.js"></script>
-  <script src="Slides_Numerical_files/libs/jquery-3.5.1/jquery.min.js"></script>
-  <link href="Slides_Numerical_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
-  <script src="Slides_Numerical_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-  <link href="Slides_Numerical_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
-  <script src="Slides_Numerical_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -420,8 +411,8 @@ Alan R. Vázquez
 </div>
 
 </section>
-<section id="los-tópicos-de-hoy" class="slide level2">
-<h2>Los Tópicos de Hoy</h2>
+<section id="agenda" class="slide level2">
+<h2>Agenda</h2>
 <p><span style="color:darkblue;"><em>Enfocarnos en 1 variable numérica.</em></span></p>
 <p><br></p>
 <ol type="1">
@@ -444,7 +435,7 @@ Alan R. Vázquez
 </section>
 <section id="recuerda-cargar-las-librerías" class="slide level2">
 <h2>Recuerda cargar las librerías</h2>
-<p>Aquí usaremos las librerías <code>ggplot2</code>, <code>ggformula</code>, y <code>readxl</code>.</p>
+<p>Aquí usaremos las librerías <code>ggplot2</code>, <code>ggformula</code>, <code>readxl</code>, y <code>dplyr</code>.</p>
 <p>Carguémoslas en Google Colab y R antes de comenzar.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Nos se te olvide instalar la librería "ggformula" en Google Colab.</span></span>
@@ -452,7 +443,7 @@ Alan R. Vázquez
 <span id="cb1-3"><a href=""></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-4"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-5"><a href=""></a><span class="fu">library</span>(ggformula)</span>
-<span id="cb1-6"><a href=""></a><span class="fu">library</span>(plotly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href=""></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="carga-los-datos" class="slide level2">
@@ -460,8 +451,10 @@ Alan R. Vázquez
 <p>En Google Colab, el archivo “CYLT.xlsx” debe de estar en la carpeta llamada “content” o “contenido.”</p>
 <p>Ahora carguemos los datos R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>piston_data <span class="ot">=</span> <span class="fu">read_excel</span>(<span class="st">"CYCLT.xlsx"</span>) <span class="co"># Leer los datos.</span></span>
-<span id="cb2-2"><a href=""></a><span class="fu">head</span>(piston_data) <span class="co"># Ver las primeras 6 observaciones.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># Leer los datos.</span></span>
+<span id="cb2-2"><a href=""></a>piston_data <span class="ot">=</span> <span class="fu">read_excel</span>(<span class="st">"CYCLT.xlsx"</span>) </span>
+<span id="cb2-3"><a href=""></a><span class="co"># Ver las primeras 6 observaciones.</span></span>
+<span id="cb2-4"><a href=""></a>piston_data <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 1
   cycle_time
@@ -474,14 +467,22 @@ Alan R. Vázquez
 6      1.07 </code></pre>
 </div>
 </div>
+<p>En R, los datos numéricos se llaman <code>dbl</code>. Vemos que R si reconoce nuestros datos correctamente.</p>
 </section>
 <section id="tipo-de-variable" class="slide level2">
 <h2>Tipo de variable</h2>
-<p>En R, los datos numéricos se llaman <code>numeric</code>. Preguntemos si R reconoce nuestros datos correctamente.</p>
+<p>En R, los datos numéricos se llaman <code>dbl</code>. Vemos que R si reconoce nuestros datos correctamente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">is.numeric</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
+<pre><code># A tibble: 6 × 1
+  cycle_time
+       &lt;dbl&gt;
+1      1.01 
+2      1.10 
+3      1.12 
+4      0.423
+5      1.02 
+6      1.07 </code></pre>
 </div>
 </div>
 </section>
@@ -513,11 +514,15 @@ Alan R. Vázquez
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<p>En R, el promedio se calcula usando la función <code>mean()</code>.</p>
+<p>En R, el promedio se calcula usando las funciones <code>summarise()</code> y <code>mean()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">mean</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>piston_data <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">summarise</span>(<span class="st">"Promedio"</span> <span class="ot">=</span> <span class="fu">mean</span>(cycle_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.65246</code></pre>
+<pre><code># A tibble: 1 × 1
+  Promedio
+     &lt;dbl&gt;
+1    0.652</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -540,11 +545,15 @@ s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 = \frac{(y_1 - \bar{y})^2  
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<p>En R, la varianza se calcula usando la función <code>var()</code>.</p>
+<p>En R, la varianza se calcula usando las funciones <code>summarise()</code> y <code>var()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="fu">var</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>piston_data <span class="sc">%&gt;%</span> </span>
+<span id="cb7-2"><a href=""></a>  <span class="fu">summarise</span>(<span class="st">"Varianza"</span> <span class="ot">=</span> <span class="fu">var</span>(cycle_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1391073</code></pre>
+<pre><code># A tibble: 1 × 1
+  Varianza
+     &lt;dbl&gt;
+1    0.139</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -568,11 +577,15 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 </section>
 <section id="section-3" class="slide level2">
 <h2></h2>
-<p>En R, la desviación estándar se calcula usando la función <code>sd()</code>.</p>
+<p>En R, la desviación estándar se calcula usando las funciones <code>summarise()</code> y <code>sd()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="fu">sd</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>piston_data <span class="sc">%&gt;%</span> </span>
+<span id="cb9-2"><a href=""></a>  <span class="fu">summarise</span>(<span class="st">"Desv.Std"</span> <span class="ot">=</span> <span class="fu">sd</span>(cycle_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3729709</code></pre>
+<pre><code># A tibble: 1 × 1
+  Desv.Std
+     &lt;dbl&gt;
+1    0.373</code></pre>
 </div>
 </div>
 <div class="fragment">
@@ -599,40 +612,62 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <img data-src="images/clipboard-1950324610.png" class="r-stretch"></section>
 <section id="section-5" class="slide level2">
 <h2></h2>
-<p>En R, la mediana se calcula con la función <code>median()</code>.</p>
+<p>En R, la mediana se calcula con las funciones <code>summarise()</code> y <code>median()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="fu">median</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>piston_data <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href=""></a>  <span class="fu">summarise</span>(<span class="st">"Mediana"</span> <span class="ot">=</span> <span class="fu">median</span>(cycle_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5455</code></pre>
+<pre><code># A tibble: 1 × 1
+  Mediana
+    &lt;dbl&gt;
+1   0.546</code></pre>
 </div>
 </div>
 <p><span style="color:darkgray;"><em>Interpretación:</em></span> El 50% de los tiempos de ciclo del pistón es menor que 0.5455 segundos.</p>
-<div class="fragment">
-<p>Los cuartiles se calculan con la función <code>quantile()</code>.</p>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<p>Los cuartiles se calculan con la función <code>quantile()</code> y <code>reframe()</code>. Como la función quantile da 5 valores, es mejor usar <code>reframe()</code> que <code>summarise()</code> en este caso <code>summarise()</code> trabaja con funciones cuya salida es un solo valor.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="fu">quantile</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>piston_data <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href=""></a>  <span class="fu">reframe</span>(<span class="st">"Value"</span> <span class="ot">=</span> <span class="fu">quantile</span>(cycle_time)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href=""></a>  <span class="fu">mutate</span>(<span class="st">"Quantile"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    0%    25%    50%    75%   100% 
-0.1750 0.3050 0.5455 1.0690 1.1410 </code></pre>
+<pre><code># A tibble: 5 × 2
+  Value Quantile
+  &lt;dbl&gt;    &lt;dbl&gt;
+1 0.175     0   
+2 0.305     0.25
+3 0.546     0.5 
+4 1.07      0.75
+5 1.14      1   </code></pre>
 </div>
 </div>
 <p><span style="color:darkgray;"><em>Interpretación:</em></span> El 25%, 50% y 75% de los tiempos de ciclo del pistón es menor que 0.3050, 0.5455 y 1.0690 segundos, respectivamente.</p>
-</div>
 </section>
 <section id="máximo-y-mínimo" class="slide level2">
 <h2>Máximo y mínimo</h2>
 <p>Otros estadísticos relevantes son el <strong>máximo</strong> y el <strong>mínimo</strong>, que se calculan con las funciones <code>max()</code> y <code>min()</code>, respectivamente.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">max</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>piston_data <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">"Maximo"</span> <span class="ot">=</span> <span class="fu">max</span>(cycle_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1.141</code></pre>
+<pre><code># A tibble: 1 × 1
+  Maximo
+   &lt;dbl&gt;
+1   1.14</code></pre>
 </div>
 </div>
 <p><span style="color:darkgray;"><em>Interpretación:</em></span> El tiempo de ciclo máximo del pistón es 1.141 segundos.</p>
+</section>
+<section id="section-7" class="slide level2">
+<h2></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">min</span>(piston_data<span class="sc">$</span>cycle_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>piston_data <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="st">"Minimo"</span> <span class="ot">=</span> <span class="fu">min</span>(cycle_time))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.175</code></pre>
+<pre><code># A tibble: 1 × 1
+  Minimo
+   &lt;dbl&gt;
+1  0.175</code></pre>
 </div>
 </div>
 <p><span style="color:darkgray;"><em>Interpretación:</em></span> El tiempo de ciclo mínimo del pistón es 0.175 segundos.</p>
@@ -646,7 +681,7 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_307c72e1" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_3d460bc9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -683,7 +718,6 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <p>Tres tipos comunes de gráficas para visualizar una variable numérica son:</p>
 <ul>
 <li>Histograma.</li>
-<li>Curva de densidad.</li>
 <li>Gráfica de cajas.</li>
 </ul>
 </div>
@@ -706,11 +740,11 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <p>R calcula automáticamente la tabla de frecuencia para datos numéricos. El histograma es una visualización de esta tabla.</p>
 </div>
 </section>
-<section id="section-6" class="slide level2">
+<section id="section-8" class="slide level2">
 <h2></h2>
 <p>En <code>ggplot2</code>, puedes construir un histograma usando el siguiente comando.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-12-1.png" data-fig-pos="center" width="960" class="r-stretch"><aside class="notes">
@@ -731,28 +765,13 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <h2>Mejora la gráfica</h2>
 <p>Para transmitir un mejor mensaje, aplicamos el <em>Principio 3: Aplica los principios de diseño gráfico.</em></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb21-2"><a href=""></a>            <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, </span>
-<span id="cb21-3"><a href=""></a>            <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, </span>
-<span id="cb21-4"><a href=""></a>            <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">color =</span> <span class="st">"black"</span>,</span>
+<span id="cb20-2"><a href=""></a>            <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, </span>
+<span id="cb20-3"><a href=""></a>            <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, </span>
+<span id="cb20-4"><a href=""></a>            <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-13-1.png" data-fig-pos="center" width="960" class="r-stretch"></section>
-<section id="section-7" class="slide level2">
-<h2></h2>
-<p>También, podemos hacer la gráfica interactiva con la función <code>ggplotly()</code> de <code>plotly</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>my_hist <span class="ot">=</span> <span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">color =</span> <span class="st">"black"</span>,</span>
-<span id="cb22-2"><a href=""></a>            <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, </span>
-<span id="cb22-3"><a href=""></a>            <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, </span>
-<span id="cb22-4"><a href=""></a>            <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span>
-<span id="cb22-5"><a href=""></a><span class="fu">ggplotly</span>(my_hist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-9378f4ef03cc39a89bac" style="width:960px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-9378f4ef03cc39a89bac">{"x":{"data":[{"orientation":"v","width":[0.040250000000000008,0.040250000000000008,0.040250000000000008,0.040250000000000008,0.040250000000000008,0.040250000000000008,0.040250000000000008,0.040250000000000008,0.040250000000000008,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040249999999999897,0.040250000000000341,0.040249999999999897,0.040250000000000341],"base":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"x":[0.161,0.20124999999999998,0.24149999999999999,0.28175,0.32200000000000001,0.36225000000000002,0.40250000000000002,0.44275000000000003,0.48300000000000004,0.52324999999999999,0.56350000000000011,0.60375000000000001,0.64399999999999991,0.68425000000000002,0.72449999999999992,0.76475000000000004,0.80499999999999994,0.84525000000000006,0.88549999999999995,0.92575000000000007,0.96599999999999997,1.0062500000000001,1.0465,1.0867500000000001,1.1270000000000002],"y":[2,5,1,4,5,1,0,4,2,1,1,1,3,0,0,0,0,0,0,0,0,3,2,9,6],"text":["count: 2<br />cycle_time: 0.16100","count: 5<br />cycle_time: 0.20125","count: 1<br />cycle_time: 0.24150","count: 4<br />cycle_time: 0.28175","count: 5<br />cycle_time: 0.32200","count: 1<br />cycle_time: 0.36225","count: 0<br />cycle_time: 0.40250","count: 4<br />cycle_time: 0.44275","count: 2<br />cycle_time: 0.48300","count: 1<br />cycle_time: 0.52325","count: 1<br />cycle_time: 0.56350","count: 1<br />cycle_time: 0.60375","count: 3<br />cycle_time: 0.64400","count: 0<br />cycle_time: 0.68425","count: 0<br />cycle_time: 0.72450","count: 0<br />cycle_time: 0.76475","count: 0<br />cycle_time: 0.80500","count: 0<br />cycle_time: 0.84525","count: 0<br />cycle_time: 0.88550","count: 0<br />cycle_time: 0.92575","count: 0<br />cycle_time: 0.96600","count: 3<br />cycle_time: 1.00625","count: 2<br />cycle_time: 1.04650","count: 9<br />cycle_time: 1.08675","count: 6<br />cycle_time: 1.12700"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(255,255,255,0.5)","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":48.146118721461193,"r":7.3059360730593621,"b":44.56621004566211,"l":43.105022831050235},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Histograma de tiempo de ciclo","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.09056249999999999,1.1974375000000004],"tickmode":"array","ticktext":["0.3","0.6","0.9"],"tickvals":[0.30000000000000004,0.60000000000000009,0.90000000000000013],"categoryorder":"array","categoryarray":["0.3","0.6","0.9"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Tiempo de ciclo (segundos)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.45000000000000001,9.4499999999999993],"tickmode":"array","ticktext":["0.0","2.5","5.0","7.5"],"tickvals":[0,2.5000000000000004,5,7.5],"categoryorder":"array","categoryarray":["0.0","2.5","5.0","7.5"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Frequencia","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"697518661dce":{"x":{},"type":"bar"}},"cur_data":"697518661dce","visdat":{"697518661dce":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-</section>
 <section id="no-es-lo-mismo-que-una-gráfica-de-barras" class="slide level2">
 <h2>No es lo mismo que una gráfica de barras</h2>
 <p>Con datos categóricos, la gráfica de barras se parece al histograma porque presenta la frecuencia de las categorías.</p>
@@ -782,12 +801,12 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 </ul>
 <p>Este se fija usando el argumento <code>bins</code> en la función <code>gf_histogram()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">5</span>, </span>
-<span id="cb23-2"><a href=""></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">5</span>, </span>
+<span id="cb21-2"><a href=""></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-15-1.png" data-fig-pos="center" width="960" class="r-stretch"></section>
-<section id="section-8" class="slide level2">
+<img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-14-1.png" data-fig-pos="center" width="960" class="r-stretch"></section>
+<section id="section-9" class="slide level2">
 <h2></h2>
 <p><span style="font-size: 100%;">El histograma izquierdo usa <code>bins = 5</code> y el histograma derecho usa <code>bins = 30</code>.</span></p>
 <div class="columns">
@@ -795,8 +814,23 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">5</span>, </span>
-<span id="cb24-2"><a href=""></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">5</span>, </span>
+<span id="cb22-2"><a href=""></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-15-1.png" data-fig-pos="center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">30</span>, </span>
+<span id="cb23-2"><a href=""></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -806,23 +840,9 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 </div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">gf_histogram</span>( <span class="sc">~</span> cycle_time, <span class="at">data =</span> piston_data, <span class="at">bins =</span> <span class="dv">30</span>, </span>
-<span id="cb25-2"><a href=""></a>              <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">fill =</span> <span class="st">"white"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histograma de tiempo de ciclo"</span>, <span class="at">x =</span> <span class="st">"Tiempo de ciclo (segundos)"</span>, <span class="at">y =</span> <span class="st">"Frequencia"</span>, <span class="at">caption =</span> <span class="st">"Datos de 50 pistones"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-17-1.png" data-fig-pos="center" width="960"></p>
-</figure>
 </div>
 </div>
-</div>
-</div>
-</div>
+<p>En este curso, usaremos el número de <code>bins</code> dado por default.</p>
 <aside class="notes">
 <p>The histogram is a familiar type of plot that uses smoothing. A histogram aggregates data values by putting points into bins and plotting one bar for each bin. Smoothing here means that we cannot differentiate the location of individual points in a bin: the points are smoothly allocated across their bins.</p>
 <style type="text/css">
@@ -845,7 +865,7 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <li>La longitud de las colas.</li>
 <li>Brechas donde no se observan valores.</li>
 <li>Valores inusualmente grandes o anómalos.</li>
-<li>Una forma de campana.</li>
+<li>Una forma de <span style="color:#1e3f5a;"><strong>campana</strong></span>.</li>
 </ul>
 </section>
 <section id="la-obsesión-con-las-campanas" class="slide level2">
@@ -859,7 +879,7 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 </div>
 <p>Se caracteriza por tener una forma de campana simétrica alrededor de su media, con la mayor densidad de probabilidad centrada en la media y disminuyendo simétricamente hacia los extremos.</p>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <p>Básicamente, si tus observaciones siguen una distribución normal, puedes utilizar métodos estadísticos para sacar conclusiones fundamentadas por teoría matemática.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -891,21 +911,21 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 
 <img data-src="images/clipboard-84021266.png" class="quarto-figure quarto-figure-center r-stretch"><p>Conoce más en esa liga <a href="#/0" class="uri"><strong>https://towardsdatascience.com/why-1-5-in-iqr-method-of-outlier-detection-5d07fdc82097</strong></a></p>
 </section>
-<section id="section-10" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <p>Para construir una gráfica de caja, utiliza la función <code>gf_boxplot()</code>.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">gf_boxplot</span>(cycle_time <span class="sc">~</span> <span class="dv">1</span>, </span>
-<span id="cb26-2"><a href=""></a>          <span class="at">data =</span> piston_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">gf_boxplot</span>(cycle_time <span class="sc">~</span> <span class="dv">1</span>, </span>
+<span id="cb24-2"><a href=""></a>          <span class="at">data =</span> piston_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-19-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="Slides_Numerical_files/figure-revealjs/unnamed-chunk-18-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -919,9 +939,7 @@ s = \left(\frac{1}{n-1} \sum_{i=1}^{n} (y_i - \bar{y})^2 \right)^{1/2}
 <p>El archivo <code>bolts.xlsx</code> contiene la cantidad de pernos no conformes durante los últimos 45 turnos. Usando R, crea las siguientes gráficas</p>
 <ul>
 <li>Histograma</li>
-<li>Curva de densidad</li>
 <li>Gráfica de caja</li>
-<li>Gráfica de violin</li>
 </ul>
 <div class="quarto-auto-generated-content">
 <p><img src="IN2039_logo.png" class="slide-logo"></p>

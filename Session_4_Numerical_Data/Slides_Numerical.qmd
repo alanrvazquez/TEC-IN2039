@@ -19,7 +19,7 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Los Tópicos de Hoy
+## Agenda
 
 [*Enfocarnos en 1 variable numérica.*]{style="color:darkblue;"}
 
@@ -49,7 +49,7 @@ El archivo "CYLT.xlsx" contiene 50 tiempos de ciclo de un pistón operado en con
 
 ## Recuerda cargar las librerías
 
-Aquí usaremos las librerías `ggplot2`, `ggformula`, y `readxl`.
+Aquí usaremos las librerías `ggplot2`, `ggformula`, `readxl`, y `dplyr`.
 
 Carguémoslas en Google Colab y R antes de comenzar.
 
@@ -62,7 +62,7 @@ Carguémoslas en Google Colab y R antes de comenzar.
 library(readxl)
 library(ggplot2)
 library(ggformula)
-library(plotly)
+library(dplyr)
 ```
 
 ## Carga los datos
@@ -72,18 +72,24 @@ En Google Colab, el archivo "CYLT.xlsx" debe de estar en la carpeta llamada "con
 Ahora carguemos los datos R.
 
 ```{r}
-piston_data = read_excel("CYCLT.xlsx") # Leer los datos.
-head(piston_data) # Ver las primeras 6 observaciones.
+# Leer los datos.
+piston_data = read_excel("CYCLT.xlsx") 
+# Ver las primeras 6 observaciones.
+piston_data %>% head()
 ```
+
+En R, los datos numéricos se llaman `dbl`. Vemos que R si reconoce nuestros datos correctamente.
+
 
 ## Tipo de variable
 
-En R, los datos numéricos se llaman `numeric`. Preguntemos si R reconoce nuestros datos correctamente.
+En R, los datos numéricos se llaman `dbl`. Vemos que R si reconoce nuestros datos correctamente.
 
 ```{r}
 #| output: true
+#| echo: false
 
-is.numeric(piston_data$cycle_time)
+piston_data %>% head()
 ```
 
 ## Resumen estadístico
@@ -113,12 +119,13 @@ $$\bar{y} = \frac{1}{n}\sum_{i=1}^{n} y_i = \frac{y_1 + y_2 + \cdots + y_n}{n}.$
 
 ## 
 
-En R, el promedio se calcula usando la función `mean()`.
+En R, el promedio se calcula usando las funciones `summarise()` y `mean()`.
 
 ```{r}
 #| output: true
 
-mean(piston_data$cycle_time)
+piston_data %>% 
+  summarise("Promedio" = mean(cycle_time))
 ```
 
 <br/>
@@ -143,12 +150,13 @@ $$
 
 ## 
 
-En R, la varianza se calcula usando la función `var()`.
+En R, la varianza se calcula usando las funciones `summarise()` y `var()`.
 
 ```{r}
 #| output: true
 
-var(piston_data$cycle_time)
+piston_data %>% 
+  summarise("Varianza" = var(cycle_time))
 ```
 
 . . .
@@ -177,12 +185,13 @@ Esta es la desviación estándar, que esta en las mismas unidades que las observ
 
 ## 
 
-En R, la desviación estándar se calcula usando la función `sd()`.
+En R, la desviación estándar se calcula usando las funciones `summarise()` y `sd()`.
 
 ```{r}
 #| output: true
 
-sd(piston_data$cycle_time)
+piston_data %>% 
+  summarise("Desv.Std" = sd(cycle_time))
 ```
 
 . . .
@@ -211,20 +220,23 @@ Los [**cuartiles**]{style="color:darkgreen;"} dividen las observaciones en cuatr
 
 ## 
 
-En R, la mediana se calcula con la función `median()`.
+En R, la mediana se calcula con las funciones `summarise()` y `median()`.
 
 ```{r}
-median(piston_data$cycle_time)
+piston_data %>% 
+  summarise("Mediana" = median(cycle_time))
 ```
 
 [*Interpretación:*]{style="color:darkgray;"} El 50% de los tiempos de ciclo del pistón es menor que 0.5455 segundos.
 
-. . .
+## 
 
-Los cuartiles se calculan con la función `quantile()`.
+Los cuartiles se calculan con la función `quantile()` y `reframe()`. Como la función quantile da 5 valores, es mejor usar `reframe()` que `summarise()` en este caso `summarise()` trabaja con funciones cuya salida es un solo valor.
 
 ```{r}
-quantile(piston_data$cycle_time)
+piston_data %>% 
+  reframe("Value" = quantile(cycle_time)) %>%
+  mutate("Quantile" = c(0, 0.25, 0.5, 0.75, 1))
 ```
 
 [*Interpretación:*]{style="color:darkgray;"} El 25%, 50% y 75% de los tiempos de ciclo del pistón es menor que 0.3050, 0.5455 y 1.0690 segundos, respectivamente.
@@ -234,13 +246,15 @@ quantile(piston_data$cycle_time)
 Otros estadísticos relevantes son el **máximo** y el **mínimo**, que se calculan con las funciones `max()` y `min()`, respectivamente.
 
 ```{r}
-max(piston_data$cycle_time)
+piston_data %>% summarise("Maximo" = max(cycle_time))
 ```
 
 [*Interpretación:*]{style="color:darkgray;"} El tiempo de ciclo máximo del pistón es 1.141 segundos.
 
+## 
+
 ```{r}
-min(piston_data$cycle_time)
+piston_data %>% summarise("Minimo" = min(cycle_time))
 ```
 
 [*Interpretación:*]{style="color:darkgray;"} El tiempo de ciclo mínimo del pistón es 0.175 segundos.
@@ -286,7 +300,6 @@ Las preguntas típicas sobre una variable numérica $X$ son:
 Tres tipos comunes de gráficas para visualizar una variable numérica son:
 
 -   Histograma.
--   Curva de densidad.
 -   Gráfica de cajas.
 
 . . .
@@ -333,22 +346,9 @@ Para transmitir un mejor mensaje, aplicamos el *Principio 3: Aplica los principi
 gf_histogram( ~ cycle_time, data = piston_data, color = "black",
             fill = "white") + labs(title = "Histograma de tiempo de ciclo", 
             x = "Tiempo de ciclo (segundos)", y = "Frequencia", 
-            caption = "Datos de 50 pistones")
+            caption = "Datos de 50 pistones") + theme_bw()
 ```
 
-## 
-
-También, podemos hacer la gráfica interactiva con la función `ggplotly()` de `plotly`.
-
-```{r}
-#| fig-pos: center
-
-my_hist = gf_histogram( ~ cycle_time, data = piston_data, color = "black",
-            fill = "white") + labs(title = "Histograma de tiempo de ciclo", 
-            x = "Tiempo de ciclo (segundos)", y = "Frequencia", 
-            caption = "Datos de 50 pistones")
-ggplotly(my_hist)
-```
 
 ## No es lo mismo que una gráfica de barras
 
@@ -403,6 +403,8 @@ gf_histogram( ~ cycle_time, data = piston_data, bins = 30,
 :::
 :::
 
+En este curso, usaremos el número de `bins` dado por default. 
+
 ::: notes
 The histogram is a familiar type of plot that uses smoothing. A histogram aggregates data values by putting points into bins and plotting one bar for each bin. Smoothing here means that we cannot differentiate the location of individual points in a bin: the points are smoothly allocated across their bins.
 :::
@@ -415,7 +417,7 @@ The histogram is a familiar type of plot that uses smoothing. A histogram aggreg
 -   La longitud de las colas.
 -   Brechas donde no se observan valores.
 -   Valores inusualmente grandes o anómalos.
--   Una forma de campana.
+-   Una forma de [**campana**]{style="color:#1e3f5a;"}.
 
 ## La obsesión con las campanas
 
@@ -492,6 +494,4 @@ Tiene la syntaxis especial: `cycle_time ~ 1`. Si usas `~ cycle_time`, obtendrás
 El archivo `bolts.xlsx` contiene la cantidad de pernos no conformes durante los últimos 45 turnos. Usando R, crea las siguientes gráficas
 
 -   Histograma
--   Curva de densidad
 -   Gráfica de caja
--   Gráfica de violin
