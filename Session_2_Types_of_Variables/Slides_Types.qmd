@@ -197,34 +197,33 @@ penguins_data <- read_excel("penguins.xlsx")
 head(penguins_data)
 ```
 
-##
+## 
 
 Las abreviaturas de letras debajo de los nombres de las columnas. Estos describen el tipo de cada variable:
 
 ::: incremental
-- `dbl` significa dobles o números reales. Para variables [*continuas*]{style="color:darkblue;"}.
+-   `dbl` significa dobles o números reales. Para variables [*continuas*]{style="color:darkblue;"}.
 
-- `int` significa enteros. Para variables [*discretas*]{style="color:darkblue;"}
+-   `int` significa enteros. Para variables [*discretas*]{style="color:darkblue;"}.
 
-- `fctr` significa factores, que R usa para representar variables categóricas [*nominales*]{style="color:darkred;"} y [*ordinales*]{style="color:darkgreen;"} con valores posibles fijos.
+-   `fctr` significa factores, que R usa para representar variables categóricas [*nominales*]{style="color:darkred;"} y [*ordinales*]{style="color:darkgreen;"} con valores posibles fijos.
 
-- `lgl` significa lógico, vectores que solo contienen `TRUE` o `FALSE`. Para variables categóricas [*nominales*]{style="color:darkred;"}.
+-   `lgl` significa lógico, vectores que solo contienen `TRUE` o `FALSE`. Para variables categóricas [*nominales*]{style="color:darkred;"}.
 :::
 
-##
+## 
 
 También hay otros tres tipos especiales de variables:
 
-- `dttm` significa fechas y horas (una fecha + una hora).
+-   `dttm` significa fechas y horas (una fecha + una hora).
 
-- `date` significa fechas.
+-   `date` significa fechas.
 
-- `chr` significa vectores de caracteres o cadenas.
+-   `chr` significa vectores de caracteres o cadenas.
 
 . . .
 
 Más adelante veremos como transformar una variable `chr` en `fctr`.
-
 
 ## Mini-actividad (*cooperative* mode)
 
@@ -241,7 +240,6 @@ Más adelante veremos como transformar una variable `chr` en `fctr`.
 ```{r}
 countdown::countdown(minutes = 30)
 ```
-
 
 # dplyr
 
@@ -313,8 +311,7 @@ penguins_data %>% filter(species == "Gentoo") %>% head()
 
 > La función `head()` permite imprimir las primeras 6 filas de los datos.
 
-
-##
+## 
 
 También podemos filtrar los datos para obtener los pingüinos con una masa corporal mayor que 5000.
 
@@ -324,8 +321,6 @@ También podemos filtrar los datos para obtener los pingüinos con una masa corp
 
 penguins_data %>% filter(body_mass_g > 5000) %>% head()
 ```
-
-
 
 ## `select()`
 
@@ -394,7 +389,6 @@ penguins_data %>%
   head()
 ```
 
-
 ## `summarise()`
 
 Podemos calcular el promedio de las columnas `bill_length_mm`, `bill_depth_mm`, y `body_mass_g`.
@@ -411,7 +405,6 @@ penguins_data %>%
 ```
 
 > El argumento `na.rm == TRUE` permite ignorar los datos faltantes.
-
 
 ## Comentarios finales
 
