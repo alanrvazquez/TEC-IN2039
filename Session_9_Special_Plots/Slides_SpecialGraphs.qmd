@@ -1,7 +1,7 @@
 ---
 title: |
    | Sesión 9: 
-   | Gráficas Especiales  
+   | Tópicos Especiales  
 author: 
   - name: Alan R. Vázquez
     email: alanrvazquez@tec.mx
@@ -13,6 +13,18 @@ slide-number: True
 logo: IN2039_logo.png
 css: style.css
 ---
+
+## Agenda
+
+1.  Instalación local de R y RStudio.
+
+2.  Gráficas interactivas con \`plotly\`
+
+3.  Creación de dashboards con Quarto
+
+::: notes
+Incluir ejemplo de Datos Nuevo León.
+:::
 
 ## Dashboards
 
@@ -38,7 +50,7 @@ Algunas de sus características principales son:
 -   Compatibilidad con Python, R y ggplot2.
 
 -   Integración con Dash para crear dashboards.
-::: 
+:::
 
 ## Plotly en ggplot2
 
@@ -99,7 +111,7 @@ Algunas de sus características principales son:
 -   Compatibilidad con Python, R y ggplot2.
 
 -   Integración con Dash para crear dashboards.
-::: 
+:::
 
 ## Plotly en ggplot2
 
