@@ -190,8 +190,8 @@ Siguiendo con el principio 3, puedes usar funciones antes vistas para mejorar a�
 #| echo: true
 #| code-fold: true
 
-mi_diagrama <- gf_point(mpg ~ weight, data = auto_data, color = "darkblue", size = 2) + labs(title = "Relación de peso y millas por galón en autos", x = "Peso (lb)", y = "Millas por galón")
-mi_diagrama <- mi_diagrama + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
+mi_diagrama = gf_point(mpg ~ weight, data = auto_data, color = "darkblue", size = 2, linetype = 1) + labs(title = "Relación de peso y millas por galón en autos", x = "Peso (lb)", y = "Millas por galón")
+mi_diagrama = mi_diagrama + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
                                    plot.title=element_text(size=25)) 
 mi_diagrama 
 ```
@@ -204,7 +204,7 @@ En la gráfica anterior, el valor mínimo del eje vertical está alrededor de 10
 #| fig-pos: center
 #| echo: true
 
-mi_diagrama <- mi_diagrama + scale_y_continuous(limits = c(0, 50))
+mi_diagrama = mi_diagrama + scale_y_continuous(limits = c(0, 50))
 mi_diagrama
 ```
 
@@ -230,9 +230,9 @@ Las gráficas individuales de variables (como el histograma) no permiten estudia
 #| echo: true
 #| code-fold: true
 
-histogram_mpg <- gf_histogram( ~ mpg, data = auto_data, fill = "darkblue", color = "black") 
-histogram_mpg <- histogram_mpg + labs(title = "Distribución de milas por galón", x = "Millas por galón", y = "Frecuencia")
-histogram_mpg <- histogram_mpg + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
+histogram_mpg = gf_histogram( ~ mpg, data = auto_data, fill = "darkblue", color = "black") 
+histogram_mpg = histogram_mpg + labs(title = "Distribución de milas por galón", x = "Millas por galón", y = "Frecuencia")
+histogram_mpg = histogram_mpg + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
                                        plot.title=element_text(size=25))
 histogram_mpg
 ```
@@ -244,9 +244,9 @@ histogram_mpg
 #| echo: true
 #| code-fold: true
 
-histogram_weight <- gf_histogram( ~ weight, data = auto_data, fill = "darkblue", color = "black") 
-histogram_weight <- histogram_weight + labs(title = "Distribución de peso", x = "Peso (lb)", y = "Frecuencia")
-histogram_weight <- histogram_weight + theme(axis.text=element_text(size=20), axis.title=element_text(size=20), plot.title=element_text(size=25))
+histogram_weight = gf_histogram( ~ weight, data = auto_data, fill = "darkblue", color = "black") 
+histogram_weight = histogram_weight + labs(title = "Distribución de peso", x = "Peso (lb)", y = "Frecuencia")
+histogram_weight = histogram_weight + theme(axis.text=element_text(size=20), axis.title=element_text(size=20), plot.title=element_text(size=25))
 histogram_weight
 ```
 :::
@@ -263,7 +263,7 @@ En la gráfica, cada punto representa un valor específico en un momento dado. L
 
 ## Ejemplo 2
 
-Considera los datos en el archivo "spotify.csv". El conjunto de datos de este contiene las reproducciones diarias globales de las cinco canciones más populares en el servicio de transmisión de música Spotify en el 2017.
+Considera los datos en el archivo "spotify.xlsx". El conjunto de datos de este contiene las reproducciones diarias globales de las cinco canciones más populares en el servicio de transmisión de música Spotify en el 2017.
 
 ```{r}
 #| echo: true
@@ -291,11 +291,15 @@ Podemos cambiar varios aspectos de la gráfica usando argumentos adicionales `gf
 #| code-fold: true
 
 
-mi_linea <- gf_line(Despacito ~ Date, data = spotify_data, color = "darkblue", size = 2) + labs(title = "Popularidad de la canción despacito de Luis Fonsi", x = "Fecha", y = "Número de reproducciones en Spotify")
-mi_linea <- mi_linea + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
+mi_linea = gf_line(Despacito ~ Date, data = spotify_data, color = "darkblue", size = 2) + labs(title = "Popularidad de la canción despacito de Luis Fonsi", x = "Fecha", y = "Número de reproducciones en Spotify")
+mi_linea = mi_linea + theme(axis.text=element_text(size=20), axis.title=element_text(size=20),
                                 plot.title=element_text(size=25)) 
 mi_linea
 ```
+
+## Tipos de linea 
+
+![](images/clipboard-2759814636.png){fig-align="center"}
 
 # Una variable categórica y una numérica
 
@@ -334,9 +338,9 @@ gf_boxplot(mpg ~ origin, data = auto_data)
 #| echo: true
 #| code-fold: true
 
-bp_mpg_by_origin <- gf_boxplot(mpg ~ origin, data = auto_data, fill = "lightblue", color = "black") 
-bp_mpg_by_origin <- bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen")
-bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
+bp_mpg_by_origin = gf_boxplot(mpg ~ origin, data = auto_data, fill = "lightblue", color = "black") 
+bp_mpg_by_origin = bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen")
+bp_mpg_by_origin = bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
 bp_mpg_by_origin
 ```
 
@@ -349,11 +353,11 @@ También podemos cambiar el formato de los puntos atípicos usando los argumento
 #| echo: true
 #| code-fold: true
 
-bp_mpg_by_origin <- gf_boxplot(mpg ~ origin, data = auto_data, fill = "lightblue", 
+bp_mpg_by_origin = gf_boxplot(mpg ~ origin, data = auto_data, fill = "lightblue", 
                                color = "black", outlier.color = "red",
                                outlier.shape = 4, outlier.size = 4) 
-bp_mpg_by_origin <- bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen")
-bp_mpg_by_origin <- bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
+bp_mpg_by_origin = bp_mpg_by_origin + labs(y = "Millas por galón", x = "Origen")
+bp_mpg_by_origin = bp_mpg_by_origin + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
 bp_mpg_by_origin
 ```
 
