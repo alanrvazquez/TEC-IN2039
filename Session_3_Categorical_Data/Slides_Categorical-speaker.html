@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.4.555">
 
   <meta name="author" content="Alan R. Vázquez">
-  <title>quarto-inputdb089b68</title>
+  <title>quarto-inputd7aff1f9</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -389,15 +389,6 @@
       margin-right: 0; 
     }
   </style>
-  <link href="Slides_Categorical_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-  <script src="Slides_Categorical_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-  <script src="Slides_Categorical_files/libs/plotly-binding-4.10.4/plotly.js"></script>
-  <script src="Slides_Categorical_files/libs/typedarray-0.1/typedarray.min.js"></script>
-  <script src="Slides_Categorical_files/libs/jquery-3.5.1/jquery.min.js"></script>
-  <link href="Slides_Categorical_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
-  <script src="Slides_Categorical_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-  <link href="Slides_Categorical_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
-  <script src="Slides_Categorical_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -418,8 +409,8 @@ Alan R. Vázquez
 </div>
 
 </section>
-<section id="los-tópicos-de-hoy" class="slide level2">
-<h2>Los Tópicos de Hoy</h2>
+<section id="agenda" class="slide level2">
+<h2>Agenda</h2>
 <p><span style="color:darkgreen;"><em>Enfocarnos en 1 variable categórica.</em></span></p>
 <p><br></p>
 <ol type="1">
@@ -432,7 +423,7 @@ Alan R. Vázquez
 </section>
 <section id="primero-lo-primero" class="slide level2">
 <h2>Primero lo primero</h2>
-<p>Hoy usaremos R para construir gráficas y tablas. Para esto, usaremos las librerías que ya vimos antes como <code>readxl</code>, <code>ggplot2</code>, <code>ggformula</code>, y <code>plotly</code>.</p>
+<p>Hoy usaremos R para construir gráficas y tablas. Para esto, usaremos las librerías que ya vimos antes como <code>readxl</code>, <code>ggplot2</code>, <code>ggformula</code>, y <code>dplyr</code>.</p>
 <p><br></p>
 <p>Carguémoslas en R antes de comenzar.</p>
 <div class="cell">
@@ -441,7 +432,7 @@ Alan R. Vázquez
 <span id="cb1-3"><a href=""></a><span class="fu">library</span>(readxl)</span>
 <span id="cb1-4"><a href=""></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-5"><a href=""></a><span class="fu">library</span>(ggformula)</span>
-<span id="cb1-6"><a href=""></a><span class="fu">library</span>(plotly)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href=""></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="penguins-dataset" class="slide level2">
@@ -466,44 +457,61 @@ Alan R. Vázquez
 <section id="section" class="slide level2">
 <h2></h2>
 <p>Hoy nos enfocaremos en visualizar las variables categóricas: <code>species</code>, <code>island</code> y <code>sex</code>.</p>
-
-<img data-src="images/clipboard-3758853900.png" class="r-stretch"></section>
-<section id="asegúrate-que-r-sabe-que-la-variable-es-categórica" class="slide level2">
-<h2>Asegúrate que R sabe que la variable es categórica</h2>
-<p>Antes de comenzar, debemos de revisar si R reconoce estas variables como categóricas.</p>
-<blockquote>
-<p>Recuerda que las variables categóricas se conocen como <code>factor</code>.</p>
-</blockquote>
-<p>Le puedes preguntar a R por una variable en particular, por ejemplo, <code>species</code>, así:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="fu">is.factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>penguins_data <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href=""></a>  <span class="fu">select</span>(species, island, sex) <span class="sc">%&gt;%</span></span>
+<span id="cb3-3"><a href=""></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
+<pre><code># A tibble: 6 × 3
+  species island    sex   
+  &lt;chr&gt;   &lt;chr&gt;     &lt;chr&gt; 
+1 Adelie  Torgersen male  
+2 Adelie  Torgersen female
+3 Adelie  Torgersen female
+4 Adelie  Torgersen &lt;NA&gt;  
+5 Adelie  Torgersen female
+6 Adelie  Torgersen male  </code></pre>
 </div>
 </div>
 </section>
-<section id="r-no-es-inteligente" class="slide level2">
-<h2>R no es inteligente</h2>
-<p>A pesar de que la variable <code>species</code> claramente es categórica, R no reconoce esto. Para asegurarnos que R sepa que la variable es categórica, hacemos lo siguiente</p>
+<section id="asegúrate-que-r-sabe-que-la-variable-es-categórica" class="slide level2">
+<h2>Asegúrate que R sabe que la variable es categórica</h2>
+<p>A pesar de que la variables <code>species</code>, <code>island</code> y <code>sex</code> son claramente categóricas, R no reconoce esto.</p>
+<p>Por default, R determina que esas variables son carácter o <code>chr</code> porque están compuestas por texto.</p>
+<blockquote>
+<p>En R, las variables categóricas se conocen como <code>factor</code> o <code>fct</code>.</p>
+</blockquote>
+</section>
+<section id="definiendo-variables-categóricas-en-r" class="slide level2">
+<h2>Definiendo variables categóricas en R</h2>
+<p>Para asegurarnos que R sepa que la variable es categórica o <code>fct</code>, usamos la función <code>mutate_at()</code> de <code>dplyr</code>:</p>
+<p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>penguins_data<span class="sc">$</span>species <span class="ot">=</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a>penguins_data <span class="ot">=</span> penguins_data <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">mutate_at</span>(<span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"sex"</span>), as.factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
-<p>Preguntemosle a R el tipo de variable otra vez.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="fu">is.factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
-</div>
+<p>Nota que acabamos de reemplazar el objeto <code>penguins_data</code> con la nueva versión.</p>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<p>Te recomiendo hacer lo mismo para las otras variables categóricas</p>
+<p>Ahora, las etiquetas de las variables son <code>fct</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>penguins_data<span class="sc">$</span>island <span class="ot">=</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>island)</span>
-<span id="cb8-2"><a href=""></a>penguins_data<span class="sc">$</span>sex <span class="ot">=</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>sex)</span>
-<span id="cb8-3"><a href=""></a>penguins_data<span class="sc">$</span>species <span class="ot">=</span> <span class="fu">factor</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>penguins_data <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href=""></a>  <span class="fu">mutate_at</span>(<span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>, <span class="st">"sex"</span>), as.factor) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href=""></a>  <span class="fu">select</span>(species, island, sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href=""></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  species island    sex   
+  &lt;fct&gt;   &lt;fct&gt;     &lt;fct&gt; 
+1 Adelie  Torgersen male  
+2 Adelie  Torgersen female
+3 Adelie  Torgersen female
+4 Adelie  Torgersen &lt;NA&gt;  
+5 Adelie  Torgersen female
+6 Adelie  Torgersen male  </code></pre>
+</div>
 </div>
 </section>
 <section>
@@ -532,11 +540,16 @@ Alan R. Vázquez
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">table</span>(penguins_data<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a>penguins_data <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href=""></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="st">"Frecuencia"</span> <span class="ot">=</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-   Adelie Chinstrap    Gentoo 
-      152        68       124 </code></pre>
+<pre><code># A tibble: 3 × 2
+  species   Frecuencia
+  &lt;fct&gt;          &lt;int&gt;
+1 Adelie           152
+2 Chinstrap         68
+3 Gentoo           124</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:50%;">
@@ -591,21 +604,37 @@ Alan R. Vázquez
           display:block!important;
       }</style></aside>
 </section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>penguins_data <span class="sc">%&gt;%</span> </span>
+<span id="cb10-2"><a href=""></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb10-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="st">"Frecuencia"</span> <span class="ot">=</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p>El código se lee:</p>
+<blockquote>
+<p>Del objeto <code>penguins_data</code>, agrupa los datos por la variable <code>species</code>, y resume los datos usando el el número de elementos por categoría (<code>n()</code>).</p>
+</blockquote>
+</section>
 <section id="tabla-de-frecuencia-relativa" class="slide level2">
 <h2>Tabla de Frecuencia Relativa</h2>
 <p>Resume una variable categórica calculando la <em>proporción de valores</em> por categoría.</p>
 <div class="columns">
 <div class="column" style="width:55%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># Calcula el número de observaciones.</span></span>
-<span id="cb11-2"><a href=""></a>n <span class="ot">=</span> <span class="fu">nrow</span>(penguins_data) </span>
-<span id="cb11-3"><a href=""></a></span>
-<span id="cb11-4"><a href=""></a><span class="co"># Calcula la frecuencia relativa.</span></span>
-<span id="cb11-5"><a href=""></a><span class="fu">table</span>(penguins_data<span class="sc">$</span>species)<span class="sc">/</span>n</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r code-overflow-wrap number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a>penguins_data <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href=""></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="st">"Frecuencia"</span> <span class="ot">=</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href=""></a>  <span class="fu">mutate</span>(<span class="st">"Freq.Rel"</span> <span class="ot">=</span> </span>
+<span id="cb11-5"><a href=""></a>           Frecuencia<span class="sc">/</span><span class="fu">sum</span>(Frecuencia))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
-   Adelie Chinstrap    Gentoo 
-0.4418605 0.1976744 0.3604651 </code></pre>
+<pre><code># A tibble: 3 × 3
+  species   Frecuencia Freq.Rel
+  &lt;fct&gt;          &lt;int&gt;    &lt;dbl&gt;
+1 Adelie           152    0.442
+2 Chinstrap         68    0.198
+3 Gentoo           124    0.360</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:45%;">
@@ -681,7 +710,7 @@ Alan R. Vázquez
 </figure>
 </div>
 </div>
-</div></section><section id="section-2" class="slide level2">
+</div></section><section id="section-3" class="slide level2">
 <h2></h2>
 <p>Si quieres graficar la frecuencia relativa, usa la función <code>gf_percents</code>.</p>
 <div class="cell" data-layout-align="center">
@@ -693,17 +722,7 @@ Alan R. Vázquez
 <h2>Ejemplo: Mejorando la gráfica</h2>
 <p>Usando las herramientas para gráficos en ggplot, podemos mejorar el código anterior para que la gráfica se vea así.</p>
 
-<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
-<section id="aplicando-plotly" class="slide level2">
-<h2>Aplicando plotly</h2>
-<p>Y si queremos hacer la gráfica más interactiva, podemos usar <code>plotly</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-d3e96101f243e2b91134" style="width:960px;height:384px;"></div>
-<script type="application/json" data-for="htmlwidget-d3e96101f243e2b91134">{"x":{"data":[{"orientation":"v","width":0.89999999999999991,"base":0,"x":[1],"y":[44.186046511627907],"text":"percs_by_group(count, PANEL): 44.18605<br />species: Adelie<br />species: Adelie","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Adelie","legendgroup":"Adelie","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.90000000000000013,"base":0,"x":[2],"y":[19.767441860465116],"text":"percs_by_group(count, PANEL): 19.76744<br />species: Chinstrap<br />species: Chinstrap","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Chinstrap","legendgroup":"Chinstrap","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":0.90000000000000036,"base":0,"x":[3],"y":[36.046511627906973],"text":"percs_by_group(count, PANEL): 36.04651<br />species: Gentoo<br />species: Gentoo","type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","line":{"width":1.8897637795275593,"color":"transparent"}},"name":"Gentoo","legendgroup":"Gentoo","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":51.799086757990871,"r":7.3059360730593621,"b":48.219178082191789,"l":37.260273972602747},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"title":{"text":"Proporciones de pingüinos","font":{"color":"rgba(0,0,0,1)","family":"","size":17.534246575342465},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,3.6000000000000001],"tickmode":"array","ticktext":["Adelie","Chinstrap","Gentoo"],"tickvals":[1,2,3],"categoryorder":"array","categoryarray":["Adelie","Chinstrap","Gentoo"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Tipo de especie","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2.2093023255813953,46.395348837209305],"tickmode":"array","ticktext":["0","10","20","30","40"],"tickvals":[0,10,20,30.000000000000004,40],"categoryorder":"array","categoryarray":["0","10","20","30","40"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Frecuencia relativa","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Especie","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"668e6bb7fbdd":{"y":{},"fill":{},"x":{},"type":"bar"}},"cur_data":"668e6bb7fbdd","visdat":{"668e6bb7fbdd":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-</div>
-</div>
-</section></section>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-11-1.png" class="quarto-figure quarto-figure-center r-stretch" width="960"></section></section>
 <section>
 <section id="transformando-variables-categóricas" class="title-slide slide level1 center">
 <h1>Transformando variables categóricas</h1>
@@ -736,12 +755,12 @@ Alan R. Vázquez
 </div>
 </div>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <p>Los datos están en el archivo <code>Boston_dataset.xlsx</code>. Súbelos a Google Colab y cárgalos en R usando el siguiente comando.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>Boston_dataset <span class="ot">=</span> <span class="fu">read_excel</span>(<span class="st">"Boston_dataset.xlsx"</span>)</span>
-<span id="cb15-2"><a href=""></a><span class="fu">head</span>(Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-2"><a href=""></a>Boston_dataset <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 14
      crim    zn indus  chas   nox    rm   age   dis rad     tax ptratio black
@@ -765,78 +784,109 @@ Alan R. Vázquez
 <h2>Recuerda…</h2>
 <p>Asegúrate de que R sabe que esas variables son categóricas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>Boston_dataset<span class="sc">$</span>chas <span class="ot">=</span> <span class="fu">factor</span>(Boston_dataset<span class="sc">$</span>chas)</span>
-<span id="cb17-2"><a href=""></a>Boston_dataset<span class="sc">$</span>rad <span class="ot">=</span> <span class="fu">factor</span>(Boston_dataset<span class="sc">$</span>rad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>Boston_dataset <span class="ot">=</span> Boston_dataset <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href=""></a>  <span class="fu">mutate_at</span>(<span class="fu">c</span>(<span class="st">"chas"</span>, <span class="st">"rad"</span>), as.factor)</span>
+<span id="cb17-3"><a href=""></a>Boston_dataset <span class="sc">%&gt;%</span> <span class="fu">select</span>(chas, rad) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  chas  rad  
+  &lt;fct&gt; &lt;fct&gt;
+1 0     Low  
+2 0     Low  
+3 0     Low  
+4 0     Low  
+5 0     Low  
+6 0     Low  </code></pre>
+</div>
 </div>
 </section>
-<section id="re-etiquetado" class="slide level2">
-<h2>Re-etiquetado</h2>
+<section id="gráfica-inicial" class="slide level2">
+<h2>Gráfica inicial</h2>
 <p>Vamos a construir una gráfica de barras de <code>chas</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">gf_percents</span>( <span class="sc">~</span> chas, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">gf_percents</span>( <span class="sc">~</span> chas, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-15-1.png" data-fig-pos="center" width="960" class="r-stretch"><p>Sin embargo, las categorías en la gráfica no son informativas.</p>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-14-1.png" data-fig-pos="center" width="960" class="r-stretch"><p>Sin embargo, las categorías en la gráfica no son informativas.</p>
 </section>
-<section id="section-4" class="slide level2">
-<h2></h2>
+<section id="re-etiquetado-categorías" class="slide level2">
+<h2>Re-etiquetado categorías</h2>
 <p>Lo mejor es re-nombrar las categorías de la variable <code>chas</code> para que la gráfica de barras de mas información al usuario.</p>
 <ol type="1">
-<li><p>Verifica los nombres de las categorías en la variable.</p>
+<li><p>Verifica los nombres de las categorías en la variable usando la función <code>unique()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">levels</span>(Boston_dataset<span class="sc">$</span>chas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a>Boston_dataset <span class="sc">%&gt;%</span> <span class="fu">select</span>(chas) <span class="sc">%&gt;%</span> <span class="fu">unique</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "0" "1"</code></pre>
+<pre><code># A tibble: 2 × 1
+  chas 
+  &lt;fct&gt;
+1 0    
+2 1    </code></pre>
 </div>
 </div></li>
 </ol>
-<!-- -->
+</section>
+<section id="section-5" class="slide level2">
+<h2></h2>
 <ol start="2" type="1">
-<li><p>Re-emplaza por nombres apropiados.</p>
+<li><p>Re-emplaza por nombres apropiados usando las funciones <code>mutate()</code> y <code>case_match()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># Usa un vector para denotar los normbres.</span></span>
-<span id="cb21-2"><a href=""></a><span class="fu">levels</span>(Boston_dataset<span class="sc">$</span>chas) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"No"</span>, <span class="st">"Si"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a>Boston_dataset <span class="ot">=</span> Boston_dataset <span class="sc">%&gt;%</span> </span>
+<span id="cb22-2"><a href=""></a>  <span class="fu">mutate</span>(<span class="at">chas =</span> <span class="fu">case_match</span>(chas, <span class="st">"0"</span> <span class="sc">~</span> <span class="st">"No"</span>, <span class="st">"1"</span> <span class="sc">~</span> <span class="st">"Si"</span>))</span>
+<span id="cb22-3"><a href=""></a>Boston_dataset <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 14
+     crim    zn indus chas    nox    rm   age   dis rad     tax ptratio black
+    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 0.00632    18  2.31 No    0.538  6.58  65.2  4.09 Low     296    15.3  397.
+2 0.0273      0  7.07 No    0.469  6.42  78.9  4.97 Low     242    17.8  397.
+3 0.0273      0  7.07 No    0.469  7.18  61.1  4.97 Low     242    17.8  393.
+4 0.0324      0  2.18 No    0.458  7.00  45.8  6.06 Low     222    18.7  395.
+5 0.0690      0  2.18 No    0.458  7.15  54.2  6.06 Low     222    18.7  397.
+6 0.0298      0  2.18 No    0.458  6.43  58.7  6.06 Low     222    18.7  394.
+# ℹ 2 more variables: lstat &lt;dbl&gt;, medv &lt;dbl&gt;</code></pre>
+</div>
 </div></li>
 </ol>
 </section>
 <section id="veamos-que-sucede-ahora." class="slide level2">
 <h2>Veamos que sucede ahora.</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">gf_percents</span>( <span class="sc">~</span> chas, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a><span class="fu">gf_percents</span>( <span class="sc">~</span> chas, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-18-1.png" data-fig-pos="center" width="960" class="r-stretch"><p>Mucho mejor 😃</p>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-17-1.png" data-fig-pos="center" width="960" class="r-stretch"><p>Mucho mejor 😃</p>
 </section>
 <section id="re-ordenar-categorías" class="slide level2">
 <h2>Re-ordenar categorías</h2>
 <p>Ahora, construyamos una gráfica de barras de <code>rad</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">gf_percents</span>( <span class="sc">~</span> rad, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">gf_percents</span>( <span class="sc">~</span> rad, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-19-1.png" data-fig-pos="center" width="960" class="r-stretch"><p>Las categorías no siguen un orden natural de izquierda a derecha: <code>Low</code>, <code>Medium</code>, y <code>High</code>.</p>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-18-1.png" data-fig-pos="center" width="960" class="r-stretch"><p>Las categorías no siguen un orden natural de izquierda a derecha: <code>Low</code>, <code>Medium</code>, y <code>High</code>.</p>
 </section>
-<section id="section-5" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <p>Para tener el orden de las categorías deseado, debemos de ser más explícitos al momento de definir la variable categórica en R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>Boston_dataset<span class="sc">$</span>rad <span class="ot">=</span> <span class="fu">factor</span>(Boston_dataset<span class="sc">$</span>rad, </span>
-<span id="cb24-2"><a href=""></a>                            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))</span>
-<span id="cb24-3"><a href=""></a><span class="fu">gf_percents</span>( <span class="sc">~</span> rad, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a>Boston_dataset <span class="ot">=</span> Boston_dataset <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href=""></a>      <span class="fu">mutate</span>(<span class="at">rad =</span> <span class="fu">factor</span>(rad, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>)))</span>
+<span id="cb26-3"><a href=""></a><span class="fu">gf_percents</span>( <span class="sc">~</span> rad, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-20-1.png" data-fig-pos="center" width="960" class="r-stretch"><p>Mucho mejor 😃</p>
+<img data-src="Slides_Categorical_files/figure-revealjs/unnamed-chunk-19-1.png" data-fig-pos="center" width="960" class="r-stretch"><p>Mucho mejor 😃</p>
 </section>
 <section id="guardando-gráficas-en-ggplot2" class="slide level2">
 <h2>Guardando gráficas en ggplot2</h2>
 <p>Para guardar una gráfica de ggplot2, primero guardamos la gráfica en un objeto de R.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>mi_grafica_de_barras <span class="ot">=</span> <span class="fu">gf_percents</span>( <span class="sc">~</span> rad, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a>mi_grafica_de_barras <span class="ot">=</span> <span class="fu">gf_percents</span>( <span class="sc">~</span> rad, <span class="at">data =</span> Boston_dataset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Luego, usamos la función <code>ggsave()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"Mi_grafica.jpg"</span>, <span class="at">plot =</span> mi_grafica_de_barras, </span>
-<span id="cb26-2"><a href=""></a>       <span class="at">width =</span> <span class="cn">NA</span>, <span class="at">height =</span> <span class="cn">NA</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">ggsave</span>(<span class="at">filename =</span> <span class="st">"Mi_grafica.jpg"</span>, <span class="at">plot =</span> mi_grafica_de_barras, </span>
+<span id="cb28-2"><a href=""></a>       <span class="at">width =</span> <span class="cn">NA</span>, <span class="at">height =</span> <span class="cn">NA</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Algunos de los argumentos arriba son:</p>
 <ul>

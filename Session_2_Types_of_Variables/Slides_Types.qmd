@@ -17,13 +17,19 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Los Tópicos de Hoy
+## Agenda
 
 ::: columns
 ::: {.column width="50%"}
 1.  ¿De qué tipo es mi variable?
 
     ![](images/clipboard-2750534250.png)
+:::
+
+::: {.column width="50%"}
+2.  dplyr
+
+    ![](images/clipboard-4025446454.png){width="245"}
 :::
 :::
 
@@ -96,7 +102,7 @@ Toman valores que se colocan en *categorías*.
 . . .
 
 |                  |                                                                 |
-|----------------------|--------------------------------------------------|
+|------------------|------------------------------------------------------|
 | **Variable**     | **Categorias**                                                  |
 | Reseña en Amazon | 1$\bigstar$, 2$\bigstar$, 3$\bigstar$, 4$\bigstar$, 5$\bigstar$ |
 | País de origen   | México, Canadá, EUA                                             |
@@ -173,101 +179,51 @@ En la práctica, los valores booleanos (`TRUE` y `FALSE`) a menudo representan c
 
 ## ¿Cómo checar el tipo de variable en R?
 
-En R, podemos varias funciones para revisar el tipo de objeto que se está usando. Por ejemplo, consideremos el siguiente conjunto de datos:
+Una ves cargando los datos en R, podemos ver el tipo de variable al imprimir la tabla de datos. Por ejemplo, consideremos el conjunto de datos `penguins.xlsx`:
 
 ```{r}
 #| eval: true
-#| echo: true
+#| echo: false
 
-mediciones <- c(10,5, 10.2, 25, 23.036)
+library(readxl)
+penguins_data <- read_excel("penguins.xlsx")
 ```
 
-. . .
-
-Es evidente que la variable `medicion` es una variable numérica porque contiene números que tienen decimales.
-
-. . .
-
-La función `is.numeric()` nos permite preguntarle a R si esta reconociendo esta variable como numérica.
-
 ```{r}
 #| eval: true
 #| echo: true
 
-is.numeric(mediciones)
-```
-
-## Otros tipos de objetos
-
-Como sabemos, en R hay tres tipos de objetos: numérico, carácter, y lógico.
-
-. . .
-
-La función `is.character()` nos ayuda a saber si el objeto es de tipo carácter.
-
-```{r}
-#| eval: true
-#| echo: true
-
-niveles = c("Bajo", "Medio", "Alto", "Alto", "Medio")
-is.character(niveles)
-```
-
-. . .
-
-La función `is.logical()` nos ayuda a saber si el objeto es de tipo lógico o booleano.
-
-```{r}
-#| eval: true
-#| echo: true
-
-estas_deacuerdo = c(TRUE, TRUE, FALSE)
-is.logical(estas_deacuerdo)
-```
-
-## Definiendo variables categóricas
-
-En R, necesitamos de una función especial para decirle al sistema que cierta variable es categórica.
-
-. . .
-
-Por ejemplo, consideremos una variable llamada `niveles` que contiene niveles de percepción de 5 clientes sobre la calidad de un producto. Los niveles son: bajo, medio alto.
-
-. . .
-
-```{r}
-#| eval: true
-#| echo: true
-
-niveles = c("Bajo", "Medio", "Alto", "Alto", "Medio")
+# Imprime las primeras 6 filas de los datos.
+head(penguins_data)
 ```
 
 ## 
 
-Para que R entienda que estos datos siguen las tres categorías con un orden específico usamos la función `factor`.
+Las abreviaturas de letras debajo de los nombres de las columnas. Estos describen el tipo de cada variable:
 
-```{r}
-#| eval: true
-#| echo: true
+::: incremental
+-   `dbl` significa dobles o números reales. Para variables [*continuas*]{style="color:darkblue;"}.
 
-mi_variable_ordinal = factor(niveles, levels = c("Bajo", "Medio", "Alto"))
-mi_variable_ordinal
-```
+-   `int` significa enteros. Para variables [*discretas*]{style="color:darkblue;"}.
+
+-   `fctr` significa factores, que R usa para representar variables categóricas [*nominales*]{style="color:darkred;"} y [*ordinales*]{style="color:darkgreen;"} con valores posibles fijos.
+
+-   `lgl` significa lógico, vectores que solo contienen `TRUE` o `FALSE`. Para variables categóricas [*nominales*]{style="color:darkred;"}.
+:::
+
+## 
+
+También hay otros tres tipos especiales de variables:
+
+-   `dttm` significa fechas y horas (una fecha + una hora).
+
+-   `date` significa fechas.
+
+-   `chr` significa vectores de caracteres o cadenas.
 
 . . .
 
-Nota que al imprimir la variable, se imprimen los niveles especificados. En R, una variable categórica se llama `factor`.
-
-. . .
-
-Ahora, podemos usar la función `is.factor()` para asegurarnos que `mi_variable_ordinal` es un factor.
-
-```{r}
-#| eval: true
-#| echo: true
-
-is.factor(mi_variable_ordinal)
-```
+Más adelante veremos como transformar una variable `chr` en `fctr`.
 
 ## Mini-actividad (*cooperative* mode)
 
@@ -285,11 +241,174 @@ is.factor(mi_variable_ordinal)
 countdown::countdown(minutes = 30)
 ```
 
+# dplyr
+
+## Una nueva librería: dplyr
+
+::: columns
+::: {.column width="50%"}
+![](images/tidyverse.jpeg){fig-align="center" width="465" height="375"}
+:::
+
+::: {.column width="50%"}
+-   **dplyr** permite manipular datos y generar resúmenes estadísticos.
+
+-   Es parte de una colección de paquetes de ciencia de datos llamado *tidyverse*.
+
+-   <https://dplyr.tidyverse.org/>
+:::
+:::
+
+Cárgala en Google Colab con el siguiente código.
+
+```{r}
+#| echo: true
+#| output: false
+
+library(dplyr)
+```
+
+## pipe
+
+Uno de los comandos más importantes de **dplyr** es `pipe` que se ejecuta con el operador `%>%`. Este operador envía un objeto a una función o expresión de llamada.
+
+La grámatica para usar pipe es la siguiente:
+
+![](images/clipboard-3314164992.png){fig-align="center"}
+
+## Otras funciones de dplyr
+
+**dplyr** es una gramática de manipulación de datos que proporciona un conjunto coherente de verbos que le ayudan a resolver los desafíos más comunes de manipulación de datos:
+
+-   `filter()` selecciona casos según sus valores.
+
+-   `select()` selecciona variables según sus nombres.
+
+-   `mutate()` agrega nuevas variables que son funciones de variables existentes
+
+-   `arrange()` cambia el orden de las filas.
+
+-   `summarise()` reduce múltiples valores a un único resumen.
+
+## 
+
+![](images/clipboard-2829866229.png){fig-align="center"}
+
+Para esto, usaremos el conjunto de datos `penguins_data`.
+
+## `filter()`
+
+Filtremos los datos para la especie "Gentoo."
+
+```{r}
+#| eval: true
+#| echo: true
+
+penguins_data %>% filter(species == "Gentoo") %>% head()
+```
+
+> La función `head()` permite imprimir las primeras 6 filas de los datos.
+
+## 
+
+También podemos filtrar los datos para obtener los pingüinos con una masa corporal mayor que 5000.
+
+```{r}
+#| eval: true
+#| echo: true
+
+penguins_data %>% filter(body_mass_g > 5000) %>% head()
+```
+
+## `select()`
+
+Selecciona las columnas `species`, `body_mass_g` y `sex`.
+
+```{r}
+#| eval: true
+#| echo: true
+
+penguins_data %>% select(species, body_mass_g, sex)
+```
+
+## `select()` y `filter()`
+
+Selecciona las columnas `species`, `body_mass_g` y `sex`. Después, filtra los datos para la especie "Gentoo."
+
+```{r}
+#| eval: true
+#| echo: true
+
+penguins_data %>% 
+  select(species, body_mass_g, sex) %>% 
+  filter(species == "Gentoo") %>% 
+  head()
+```
+
+## `mutate()`
+
+Con `mutate()`, podemos agregar nuevas columnas (variables) que son funciones de las columnas en los datos. Por ejemplo, podemos calcular la división de `bill_length_mm` y `bill_depth_mm`.
+
+```{r}
+#| eval: true
+#| echo: true
+
+penguins_data %>% 
+  mutate("RadioLengthDepth" = bill_length_mm/bill_depth_mm) %>% 
+  select(species, body_mass_g, sex, RadioLengthDepth) %>%
+  head()
+```
+
+## `arrange()`
+
+Podemos ordenar los datos en función de una columna, digamos `bill_length_mm`. Para ordenar de forma descendente usamos `desc(bill_length_mm)` en `arrange()`.
+
+```{r}
+#| eval: true
+#| echo: true
+
+penguins_data %>% 
+  arrange(desc(bill_length_mm)) %>% 
+  head()
+```
+
+## 
+
+Para ordenar de forma ascendente usamos
+
+`desc(-bill_length_mm)`.
+
+```{r}
+#| eval: true
+#| echo: true
+
+penguins_data %>% 
+  arrange(desc(-bill_length_mm)) %>% 
+  head()
+```
+
+## `summarise()`
+
+Podemos calcular el promedio de las columnas `bill_length_mm`, `bill_depth_mm`, y `body_mass_g`.
+
+```{r}
+#| eval: true
+#| echo: true
+
+penguins_data %>% 
+  select(bill_length_mm, bill_depth_mm, body_mass_g) %>%
+  summarise(PromLength = mean(bill_length_mm, na.rm = TRUE), 
+            PromDepth = mean(bill_depth_mm, na.rm = TRUE),
+            PromMass = mean(body_mass_g, na.rm = TRUE))
+```
+
+> El argumento `na.rm == TRUE` permite ignorar los datos faltantes.
+
 ## Comentarios finales
 
--   Los tipos de variable definen nuestro análisis
+-   **dplyr** es una librería que nos permite manipular datos en R.
 
--   Ayudan a especificar las operaciones, visualizaciones y modelos que podemos aplicar a los datos.
+-   Los tipos de variable ayudan a especificar las operaciones y visualizaciones que podemos aplicar a los datos.
 
 -   Existen gráficas apropiadas o diseñadas para visualizar variables númericas o categóricas.
 

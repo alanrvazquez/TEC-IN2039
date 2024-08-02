@@ -17,7 +17,7 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Los Tópicos de Hoy
+## Agenda
 
 [*Enfocarnos en 1 variable categórica.*]{style="color:darkgreen;"}
 
@@ -35,7 +35,7 @@ css: style.css
 
 ## Primero lo primero
 
-Hoy usaremos R para construir gráficas y tablas. Para esto, usaremos las librerías que ya vimos antes como `readxl`, `ggplot2`, y `ggformula`
+Hoy usaremos R para construir gráficas y tablas. Para esto, usaremos las librerías que ya vimos antes como `readxl`, `ggplot2`, `ggformula`, y `dplyr`.
 
 <br/>
 
@@ -50,6 +50,7 @@ Carguémoslas en R antes de comenzar.
 library(readxl)
 library(ggplot2)
 library(ggformula)
+library(dplyr)
 ```
 
 ## Penguins Dataset
@@ -80,56 +81,54 @@ En Google Colab, el archivo debe de estar en la carpeta llamada "content" o "con
 
 Hoy nos enfocaremos en visualizar las variables categóricas: `species`, `island` y `sex`.
 
-![](images/clipboard-3758853900.png)
+```{r}
+#| output: true
+#| echo: true
+
+penguins_data %>% 
+  select(species, island, sex) %>%
+  head()
+```
 
 ## Asegúrate que R sabe que la variable es categórica
 
-Antes de comenzar, debemos de revisar si R reconoce estas variables como categóricas.
+A pesar de que la variables `species`, `island` y `sex` son claramente categóricas, R no reconoce esto.
 
-> Recuerda que las variables categóricas se conocen como `factor`.
+Por default, R determina que esas variables son carácter o `chr` porque están compuestas por texto.
 
-Le puedes preguntar a R por una variable en particular, por ejemplo, `species`, así:
+> En R, las variables categóricas se conocen como `factor` o `fct`.
 
-```{r}
-#| echo: true
-#| output: true
+## Definiendo variables categóricas en R
 
-is.factor(penguins_data$species)
-```
+Para asegurarnos que R sepa que la variable es categórica o `fct`, usamos la función `mutate_at()` de `dplyr`:
 
-## R no es inteligente
-
-A pesar de que la variable `species` claramente es categórica, R no reconoce esto. Para asegurarnos que R sepa que la variable es categórica, hacemos lo siguiente
+</br>
 
 ```{r}
 #| echo: true
 #| output: true
 
-penguins_data$species = factor(penguins_data$species)
+penguins_data = penguins_data %>% 
+  mutate_at(c("species", "island", "sex"), as.factor)
 ```
 
-<br/>
+</br>
 
-Preguntemosle a R el tipo de variable otra vez.
-
-```{r}
-#| echo: true
-#| output: true
-
-is.factor(penguins_data$species)
-```
+Nota que acabamos de reemplazar el objeto `penguins_data` con la nueva versión.
 
 ## 
 
-Te recomiendo hacer lo mismo para las otras variables categóricas
+Ahora, las etiquetas de las variables son `fct`.
 
 ```{r}
 #| echo: true
 #| output: true
 
-penguins_data$island = factor(penguins_data$island)
-penguins_data$sex = factor(penguins_data$sex)
-penguins_data$species = factor(penguins_data$species)
+penguins_data %>% 
+  mutate_at(c("species", "island", "sex"), as.factor) %>% 
+  select(species, island, sex) %>% 
+  head()
+
 ```
 
 # Resúmenes Estadísticos
@@ -159,7 +158,9 @@ Resume una variable categórica contando los valores por categoría.
 #| output: true
 #| code-overflow: wrap
 
-table(penguins_data$species)
+penguins_data %>% 
+  group_by(species) %>% 
+  summarise("Frecuencia" = n())
 ```
 :::
 
@@ -187,6 +188,24 @@ table(penguins_data$species)
 4.  Ayuda en la toma de decisiones informadas.
 :::
 
+## 
+
+```{r}
+#| fig-pos: center
+#| echo: true
+#| output: false
+
+penguins_data %>% 
+  group_by(species) %>% 
+  summarise("Frecuencia" = n())
+```
+
+</br>
+
+El código se lee:
+
+> Del objeto `penguins_data`, agrupa los datos por la variable `species`, y resume los datos usando el el número de elementos por categoría (`n()`).
+
 ## Tabla de Frecuencia Relativa
 
 Resume una variable categórica calculando la *proporción de valores* por categoría.
@@ -198,11 +217,11 @@ Resume una variable categórica calculando la *proporción de valores* por categ
 #| output: true
 #| code-overflow: wrap
 
-# Calcula el número de observaciones.
-n = nrow(penguins_data) 
-
-# Calcula la frecuencia relativa.
-table(penguins_data$species)/n
+penguins_data %>% 
+  group_by(species) %>% 
+  summarise("Frecuencia" = n()) %>%
+  mutate("Freq.Rel" = 
+           Frecuencia/sum(Frecuencia))
 ```
 :::
 
@@ -268,7 +287,8 @@ Usando las herramientas para gráficos en ggplot, podemos mejorar el código ant
 #| fig-height: 4
 #| fig-align: center
 
-gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "Proporciones de pingüinos", subtitle = "Distribución pingüinos en Adelie, Chinstrap, and Gentoo", x = "Tipo de especie", y = "Frecuencia relativa", fill = "Especie") 
+gf_percents( ~ species, data = penguins_data, fill = ~species) + labs(title = "Proporciones de pingüinos", subtitle = "Distribución pingüinos en Adelie, Chinstrap, and Gentoo", x = "Tipo de especie", y = "Frecuencia relativa", fill = "Especie") + theme_minimal()
+
 ```
 
 # Transformando variables categóricas
@@ -312,7 +332,7 @@ Los datos están en el archivo `Boston_dataset.xlsx`. Súbelos a Google Colab y 
 #| output: true
 
 Boston_dataset = read_excel("Boston_dataset.xlsx")
-head(Boston_dataset)
+Boston_dataset %>% head()
 ```
 
 Nos concentraremos en las siguientes variables
@@ -329,11 +349,12 @@ Asegúrate de que R sabe que esas variables son categóricas.
 #| echo: true
 #| output: true
 
-Boston_dataset$chas = factor(Boston_dataset$chas)
-Boston_dataset$rad = factor(Boston_dataset$rad)
+Boston_dataset = Boston_dataset %>% 
+  mutate_at(c("chas", "rad"), as.factor)
+Boston_dataset %>% select(chas, rad) %>% head()
 ```
 
-## Re-etiquetado
+## Gráfica inicial
 
 Vamos a construir una gráfica de barras de `chas`.
 
@@ -343,34 +364,34 @@ Vamos a construir una gráfica de barras de `chas`.
 #| fig-pos: center
 
 gf_percents( ~ chas, data = Boston_dataset)
-
 ```
 
 Sin embargo, las categorías en la gráfica no son informativas.
 
-## 
+## Re-etiquetado categorías
 
 Lo mejor es re-nombrar las categorías de la variable `chas` para que la gráfica de barras de mas información al usuario.
 
-1.  Verifica los nombres de las categorías en la variable.
+1.  Verifica los nombres de las categorías en la variable usando la función `unique()`.
 
     ```{r}
     #| echo: true
     #| output: true
 
-    levels(Boston_dataset$chas)
+    Boston_dataset %>% select(chas) %>% unique()
     ```
 
-<!-- -->
+## 
 
-2.  Re-emplaza por nombres apropiados.
+2.  Re-emplaza por nombres apropiados usando las funciones `mutate()` y `case_match()`.
 
     ```{r}
     #| echo: true
     #| output: true
 
-    # Usa un vector para denotar los normbres.
-    levels(Boston_dataset$chas) = c("No", "Si")
+    Boston_dataset = Boston_dataset %>% 
+      mutate(chas = case_match(chas, "0" ~ "No", "1" ~ "Si"))
+    Boston_dataset %>% head()
     ```
 
 ## Veamos que sucede ahora.
@@ -408,8 +429,8 @@ Para tener el orden de las categorías deseado, debemos de ser más explícitos 
 #| output: true
 #| fig-pos: center
 
-Boston_dataset$rad = factor(Boston_dataset$rad, 
-                            levels = c("Low", "Medium", "High"))
+Boston_dataset = Boston_dataset %>% 
+      mutate(rad = factor(rad, levels = c("Low", "Medium", "High")))
 gf_percents( ~ rad, data = Boston_dataset)
 ```
 
@@ -475,5 +496,5 @@ Pie charts versus bar charts.
 [Preguntale a ChatGPT]{style="color:darkgreen;"}
 
 1.  Ve ChatGPT en <https://chat.openai.com/>
-2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** en R.
+2.  Pidele a ChatGPT que te muestre como generar una gráfica de circular (o de *pastel*) usando **ggplot2** o **plotly** en R.
 3.  Adapta tu código para producir una gráfica circular de la variable `island` en `penguin_data`.

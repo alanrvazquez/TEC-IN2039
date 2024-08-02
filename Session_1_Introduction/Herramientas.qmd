@@ -17,7 +17,7 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Los Tópicos de Hoy
+## Agenda
 
 ::: columns
 ::: {.column width="50%"}
@@ -476,7 +476,7 @@ A menudo tenemos que encontrar estos errores mediante prueba y error.
 
 -   En septiembre de 2020, hay más de 16, 000 paquetes disponibles en CRAN (la red integral de archivos R)
 
--   Trabajaremos mayormente con las librerías `readxl`, `dplyr`,  `ggplot2`, `ggformula`, y `plotly`.
+-   Trabajaremos mayormente con las librerías `readxl`, `dplyr`, `ggplot2`, y `ggformula`.
 
 # ¿Cómo cargar datos en R?
 
@@ -571,6 +571,7 @@ En este curso, asumiremos que los datos están almacenados en un archivo Excel c
 ![](images/clipboard-1776523589.png){width="475"}
 :::
 :::
+
 [***El archivo debe de ser previamente cargado en Google Colab.***]{style="color:red;"}
 
 ## Librería `readxl`
@@ -651,7 +652,7 @@ library(ggformula)
 
 ggplot tiene una estructura para crear gráficas por pasos.
 
-[gf_PLOTTYPE(Variable2 ~ Variable1, data = my_data, color = ~Variable3, shape = ~Variable4)]{style="color:#619CFF;"}
+[gf_PLOTTYPE(Variable2 \~ Variable1, data = my_data, color = \~Variable3, shape = \~Variable4)]{style="color:#619CFF;"}
 
 [+ labs(title, subtitle, caption, x, y, color, shape)]{style="color:#F8766D;"}
 

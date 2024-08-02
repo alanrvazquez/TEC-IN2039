@@ -17,7 +17,7 @@ logo: IN2039_logo.png
 css: style.css
 ---
 
-## Los Tópicos de Hoy
+## Agenda
 
 1.  Introducción
 
@@ -50,8 +50,8 @@ Los datos están en el archivo "auto_dataset.xlsx".
 ```{r}
 #| echo: true
 
-auto_data = read_excel("auto_dataset.xlsx") # Leer los datos.
-head(auto_data) # Ver las primeras 6 observaciones.
+auto_data = read_excel("auto_dataset.xlsx") 
+auto_data %>% head() 
 ```
 
 # Relación entre dos variables numéricas
@@ -200,7 +200,7 @@ $\hat{\beta}_1$ es el cambio promedio en la respuesta al aumentar $X_i$ en una u
 grafica_modelo
 ```
 
-## Interpretación
+## Interpretación de $\hat{\beta}_1$
 
 *Por cada libra extra en el peso de un auto, el auto tiene una reducción promedio de 0.0076 millas por galón.*
 
@@ -228,17 +228,19 @@ para las $n$ observaciones.
 
 ## Inspeccionar los errores
 
-El comportamiento de los errores indica si el modelo esta correcto o no. Si el modelo es correcto, los errores se deben de comportar como sigue:
+El comportamiento de los errores indica si el modelo es correcto o no. Si el modelo es correcto, los errores se deben de comportar como sigue:
 
 1.  En promedio, deben de estar alrededor de 0 para cada valor predecido $\hat{Y}_i$.
 2.  Tener una dispersión constante alrededor de cada valor predecido $\hat{Y}_i$.
 3.  Ser independientes los unos de los otros. Es decir, no estar relacionados.
 
-## 
+## Análisis gráfico de errores
 
-Para evaluar estos comportamientos, usamos dos gráficas de errores.
+Para evaluar estos comportamientos, usamos dos gráficas de dispersión de los errores:
 
-Aquí solo mostraremos una gráfica sencilla sobre los valores predecidos y los errores.
+- Eje Horizontal = Errores y Eje Vertical = Predicciones. Está gráfica permite validar los primeros dos supuestos (*dispersión constante*).
+
+- Eje Horizontal = Errores y Eje Vertical = Tiempo en que se tomó la observación. Está gráfica permite validar el tercer supuesto (*independencia*).
 
 ## Dispersión constante
 
@@ -247,12 +249,43 @@ Aquí solo mostraremos una gráfica sencilla sobre los valores predecidos y los 
 #| code-fold: true
 
 
-mi_modelo <- lm(mpg ~ weight, data = auto_data)
-datos_modelo <- data.frame("Predicciones" = mi_modelo$fitted, 
+mi_modelo = lm(mpg ~ weight, data = auto_data)
+datos_modelo = tibble("Predicciones" = mi_modelo$fitted, 
                            "Errores" = mi_modelo$residuals)
 
-mi_diagrama_residuos <- gf_point(Errores ~ Predicciones, data = datos_modelo, color = "darkblue", size = 2) 
-mi_diagrama_residuos <- mi_diagrama_residuos + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
-mi_diagrama_residuos <- mi_diagrama_residuos %>% gf_hline(yintercept = 0, lty = 2)
+mi_diagrama_residuos = gf_point(Errores ~ Predicciones, data = datos_modelo, color = "darkblue", size = 2) 
+mi_diagrama_residuos = mi_diagrama_residuos + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
+mi_diagrama_residuos = mi_diagrama_residuos %>% gf_hline(yintercept = 0, lty = 2)
 mi_diagrama_residuos
 ```
+
+## Errores independientes
+
+```{r}
+#| echo: true
+#| code-fold: true
+
+
+mi_modelo = lm(mpg ~ weight, data = auto_data)
+datos_modelo = tibble("Tiempo" = 1:nrow(auto_data), 
+                           "Errores" = mi_modelo$residuals)
+
+mi_diagrama_residuos = gf_point(Errores ~ Tiempo, data = datos_modelo, color = "darkblue", size = 2) 
+mi_diagrama_residuos = mi_diagrama_residuos + theme(axis.text=element_text(size=20), axis.title=element_text(size=20))
+mi_diagrama_residuos = mi_diagrama_residuos %>% gf_hline(yintercept = 0, lty = 2)
+mi_diagrama_residuos
+```
+
+## Comentarios finales
+
+- Las dos gráficas **no** validan los supuestos del modelo de regresión lineal. 
+
+- Existen métodos para corregir esto pero no los veremos aquí.
+
+- Si ambos supuestos no son validados, entonces el modelo de regresión lineal se usa sólo como una linea de tendencia o referencia de los datos.
+
+## 
+
+- Si se validan ambos supuestos, entonces el modelo se puede usar para predecir la respuesta en nuevas observaciones y para verificar si existe una relación significativa entre $Y$ y $X$.
+
+- Veremos más sobre regresión lineal en IN1002B e IN1001B.
