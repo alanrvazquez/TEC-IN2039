@@ -1,13 +1,13 @@
 ---
-title: |
-   | Sesión 9: 
-   | Tópicos Especiales  
+title: Tópicos Especiales  
 author: 
   - name: Alan R. Vázquez
-    email: alanrvazquez@tec.mx
     affiliations:
       - name: Departamento de Ingeniería Industrial
-format: revealjs
+format: 
+  revealjs:
+    chalkboard: true
+    multiplex: true
     footer: "Tecnológico de Monterrey"
     logo: IN2039_logo.png
     css: style.css
@@ -67,6 +67,7 @@ Para esto, primero guardamos la gráfica de ggplot a un objeto llamado `my_plot`
 
 # install.packages("plotly)
 library(plotly)
+library(ggformula)
 my_plot = gf_point(bill_length_mm ~ bill_depth_mm, data = penguins_data, 
 color = ~species) + labs(title = "Profundidad y longitud del pico", 
 subtitle = "Dimensiones para pingüinos en Adelie,
