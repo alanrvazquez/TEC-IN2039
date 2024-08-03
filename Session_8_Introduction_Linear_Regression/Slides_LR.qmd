@@ -4,17 +4,18 @@ title: |
 author: 
   - name: Alan R. Vázquez
     affiliations:
-      - name: Tecnológico de Monterrey
+      - name: Departamento de Ingeniería Industrial
 format: 
   revealjs:
     chalkboard: true
     multiplex: true
+    footer: "Tecnológico de Monterrey"
+    logo: IN2039_logo.png
+    css: style.css
+    slide-number: True
 execute:
   echo: true
 editor: visual
-slide-number: True
-logo: IN2039_logo.png
-css: style.css
 ---
 
 ## Agenda
@@ -238,9 +239,9 @@ El comportamiento de los errores indica si el modelo es correcto o no. Si el mod
 
 Para evaluar estos comportamientos, usamos dos gráficas de dispersión de los errores:
 
-- Eje Horizontal = Errores y Eje Vertical = Predicciones. Está gráfica permite validar los primeros dos supuestos (*dispersión constante*).
+-   Eje Horizontal = Errores y Eje Vertical = Predicciones. Está gráfica permite validar los primeros dos supuestos (*dispersión constante*).
 
-- Eje Horizontal = Errores y Eje Vertical = Tiempo en que se tomó la observación. Está gráfica permite validar el tercer supuesto (*independencia*).
+-   Eje Horizontal = Errores y Eje Vertical = Tiempo en que se tomó la observación. Está gráfica permite validar el tercer supuesto (*independencia*).
 
 ## Dispersión constante
 
@@ -278,14 +279,14 @@ mi_diagrama_residuos
 
 ## Comentarios finales
 
-- Las dos gráficas **no** validan los supuestos del modelo de regresión lineal. 
+-   Las dos gráficas **no** validan los supuestos del modelo de regresión lineal.
 
-- Existen métodos para corregir esto pero no los veremos aquí.
+-   Existen métodos para corregir esto pero no los veremos aquí.
 
-- Si ambos supuestos no son validados, entonces el modelo de regresión lineal se usa sólo como una linea de tendencia o referencia de los datos.
+-   Si ambos supuestos no son validados, entonces el modelo de regresión lineal se usa sólo como una linea de tendencia o referencia de los datos.
 
 ## 
 
-- Si se validan ambos supuestos, entonces el modelo se puede usar para predecir la respuesta en nuevas observaciones y para verificar si existe una relación significativa entre $Y$ y $X$.
+-   Si se validan ambos supuestos, entonces el modelo se puede usar para predecir la respuesta en nuevas observaciones y para verificar si existe una relación significativa entre $Y$ y $X$.
 
-- Veremos más sobre regresión lineal en IN1002B e IN1001B.
+-   Veremos más sobre regresión lineal en IN1002B e IN1001B.
