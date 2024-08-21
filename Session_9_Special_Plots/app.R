@@ -1,6 +1,6 @@
 # Librerías del curso.
 library(readxl)
-library(ggplot)
+library(ggplot2)
 library(ggformula)
 library(dplyr)
 
