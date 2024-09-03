@@ -188,7 +188,7 @@ Los resúmenes estadísticos más utilizados para datos numéricos son:
 
 ::: center
 | Tipo     | Gráfica                                                           |
-|:---------|:------------------------------------------------------------------|
+|:--------------|:--------------------------------------------------------|
 | Numérica | Histograma, gráfica de caja, gráfica de violín, curva de densidad |
 :::
 
