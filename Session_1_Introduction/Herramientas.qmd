@@ -20,7 +20,7 @@ css: style.css
 
 ## Los Tópicos de Hoy
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 1.  R Software
 
@@ -32,7 +32,7 @@ css: style.css
 
     ![](images/clipboard-4021595969.png){width="265"}
 :::
-:::
+:::::
 
 ::: {style="font-size: 70%;"}
 Estas diapositivas están basadas en material disponible en <https://coursekata.org/>
@@ -40,7 +40,7 @@ Estas diapositivas están basadas en material disponible en <https://coursekata.
 
 ## R software
 
-::: columns
+::::: columns
 ::: {.column width="70%"}
 -   R es un lenguaje de programación estadística.
 
@@ -54,7 +54,7 @@ Estas diapositivas están basadas en material disponible en <https://coursekata.
 ::: {.column width="30%"}
 ![](images/clipboard-148304512.png){fig-align="center" width="324"}
 :::
-:::
+:::::
 
 ::: notes
 Para hacer gráficos o visualizaciones se tiene que usar la computadora y programas especiales. Hay muchos como Python tableu, o incluso, excel. Sin embargo los mas bonitos son los de R.
@@ -521,7 +521,7 @@ Dependiendo del estudio, las filas podrían ser personas, estados, parejas, rato
 
 ## 
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 Las columnas representan variables o los atributos de cada caso que se midieron.
 :::
@@ -537,7 +537,7 @@ Las columnas representan variables o los atributos de cada caso que se midieron.
 6    Informed   39  189  183.2
 ```
 :::
-:::
+:::::
 
 . . .
 
@@ -577,7 +577,7 @@ Por lo tanto, los valores en cada fila representan los valores de ese caso parti
 
 En este curso, asumiremos que los datos están almacenados en un archivo Excel con la organización anterior. Como ejemplo, usemos el archivo `prenguins.xlsx`.
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ![](images/print_excel.png){width="478"}
 :::
@@ -585,13 +585,13 @@ En este curso, asumiremos que los datos están almacenados en un archivo Excel c
 ::: {.column width="50%"}
 ![](images/clipboard-1776523589.png){width="475"}
 :::
-:::
+:::::
 
 [***El archivo debe de ser previamente cargado en Google Colab.***]{style="color:red;"}
 
 ## Librería `readxl`
 
-::: columns
+::::: columns
 ::: {.column width="70%"}
 Para cargar datos en R, usaremos la librería llamada `readxl`. Primero, debes de instalar esta librería en R utilizando el comando `install.packages("readxl")`
 :::
@@ -599,7 +599,7 @@ Para cargar datos en R, usaremos la librería llamada `readxl`. Primero, debes d
 ::: {.column width="30%"}
 ![](images/clipboard-2627775172.png){fig-align="right" width="244"}
 :::
-:::
+:::::
 
 <br/> Una vez instalada la librería, la cargamos en R usando el siguiente comando.
 
@@ -627,7 +627,7 @@ head(penguins_data)
 
 ## ggplot2
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ![](images/tidyverse.png){fig-align="left"}
 :::
@@ -638,11 +638,11 @@ head(penguins_data)
 -   Está basado en la *Gramática de las Gráficas.*
 -   <https://ggplot2-book.org/>
 :::
-:::
+:::::
 
 ## Instalación
 
-::: columns
+::::: columns
 ::: {.column width="80%"}
 1.  Instala la librería usando el comando `install.packages("ggplot2")`
 :::
@@ -650,7 +650,7 @@ head(penguins_data)
 ::: {.column width="20%"}
 ![](images/clipboard-4021595969.png){fig-align="right" width="146"}
 :::
-:::
+:::::
 
 2.  Instala una librería auxiliar `install.packages("ggformula")`
 
